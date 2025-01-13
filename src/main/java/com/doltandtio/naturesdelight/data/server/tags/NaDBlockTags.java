@@ -9,9 +9,9 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 
-public class NDBlockTags extends BlockTagsProvider {
+public class NaDBlockTags extends BlockTagsProvider {
 
-    public NDBlockTags(GatherDataEvent event) {
+    public NaDBlockTags(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), event.getLookupProvider(), NaturesDelight.MOD_ID, event.getExistingFileHelper());
     }
 

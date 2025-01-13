@@ -56,10 +56,6 @@ public class DoubleCropBlock extends CropBlock {
         return age >= isDoubleAfterAge;
     }
 
-    public int getIsDoubleAfterAge() {
-        return isDoubleAfterAge;
-    }
-
     public DoubleBlockHalf getHalf(BlockState state) {
         return state.getValue(HALF);
     }

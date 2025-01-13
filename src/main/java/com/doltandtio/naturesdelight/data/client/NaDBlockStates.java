@@ -10,10 +10,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
 
-public class NDBlockStates extends BlueprintBlockStateProvider {
+public class NaDBlockStates extends BlueprintBlockStateProvider {
     private static final String ITEM_GENERATED = "item/generated";
 
-    public NDBlockStates(GatherDataEvent e) {
+    public NaDBlockStates(GatherDataEvent e) {
         super(e.getGenerator().getPackOutput(), NaturesDelight.MOD_ID, e.getExistingFileHelper());
     }
 
