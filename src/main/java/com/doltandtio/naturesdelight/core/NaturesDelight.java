@@ -1,7 +1,10 @@
 package com.doltandtio.naturesdelight.core;
 
+import com.doltandtio.naturesdelight.data.client.NDBlockStates;
+import com.doltandtio.naturesdelight.data.server.tags.NDBlockTags;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -46,6 +49,13 @@ public class NaturesDelight {
 	}
 
 	private void dataSetup(GatherDataEvent event) {
+		DataGenerator gen = event.getGenerator();
 
+		boolean server = event.includeServer();
+		NDBlockTags blockTags = new NDBlockTags(event);
+		gen.addProvider(server, blockTags);
+
+		boolean client = event.includeClient();
+		gen.addProvider(client, new NDBlockStates(event));
 	}
 }

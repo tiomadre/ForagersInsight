@@ -1,4 +1,4 @@
-package com.doltandtio.naturesdelight.core;
+package com.doltandtio.naturesdelight.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -124,6 +124,14 @@ public class DoubleCropBlock extends CropBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDef) {
         stateDef.add(HALF, AGE);
+    }
+
+    public static boolean isIllegalState(BlockState state) {
+        Block block = state.getBlock();
+        if (block instanceof DoubleCropBlock crop) {
+            return state.getValue(AGE) < crop.isDoubleAfterAge && state.getValue(HALF) == UPPER;
+        }
+        return false;
     }
 
     // bone meal
