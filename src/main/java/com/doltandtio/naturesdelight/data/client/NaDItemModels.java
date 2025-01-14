@@ -14,8 +14,11 @@ public class NaDItemModels extends BlueprintItemModelProvider {
 
     @Override
     protected void registerModels() {
+        this.basicItem(CRUSHED_ICE.get());
+
         this.basicItem(ROSE_PETALS.get());
         this.basicItem(ROSE_COOKIE.get());
         this.basicItem(ROSE_GRANITA.get());
+        this.basicItem(ROSE_WATER_CORDIAL.get());
     }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:rose_petals"
+    },
+    {
+      "item": "naturesdelight:rose_petals"
+    },
+    {
+      "item": "naturesdelight:rose_hip"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "naturesdelight:rose_water_cordial"
+  }
+}

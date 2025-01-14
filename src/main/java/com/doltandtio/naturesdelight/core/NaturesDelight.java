@@ -2,12 +2,14 @@ package com.doltandtio.naturesdelight.core;
 
 import com.doltandtio.naturesdelight.core.other.NaDDataUtil;
 import com.doltandtio.naturesdelight.core.registry.NDBlocks;
-import com.doltandtio.naturesdelight.core.registry.NaDLootModifiers;
+import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
 import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NaDItemModels;
-import com.doltandtio.naturesdelight.data.server.NDCraftingRecipes;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
+import com.doltandtio.naturesdelight.data.server.recipes.NDCookingRecipes;
+import com.doltandtio.naturesdelight.data.server.recipes.NDCraftingRecipes;
 import com.doltandtio.naturesdelight.data.server.tags.NaDBlockTags;
+import com.doltandtio.naturesdelight.data.server.tags.NaDItemTags;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
@@ -34,7 +36,7 @@ public class NaturesDelight {
 		MinecraftForge.EVENT_BUS.register(this);
 
 		REGISTRY_HELPER.register(bus);
-		NaDLootModifiers.LOOT_MODIFIERS.register(bus);
+		NDLootModifiers.LOOT_MODIFIERS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
@@ -65,6 +67,7 @@ public class NaturesDelight {
 		boolean server = event.includeServer();
 		NaDBlockTags blockTags = new NaDBlockTags(event);
 		gen.addProvider(server, blockTags);
+		gen.addProvider(server, new NaDItemTags(event, blockTags));
 		gen.addProvider(server, new NDLoot(event));
 		gen.addProvider(server, new NDCraftingRecipes(event));
 

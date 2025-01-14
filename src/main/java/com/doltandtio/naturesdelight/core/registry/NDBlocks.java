@@ -6,11 +6,13 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
+
+import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
+import static net.minecraft.world.item.crafting.Ingredient.of;
 
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDBlocks {
@@ -23,11 +25,12 @@ public class NDBlocks {
     public static void setupTabEditors() {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                    .addItemsAfter(Ingredient.of(Items.BEETROOT_SEEDS), ROSE_HIP)
+                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                    .addItemsAfter(Ingredient.of(Items.COOKIE), NDItems.ROSE_COOKIE)
+                    .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE)
+                    .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA, ROSE_WATER_CORDIAL)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                    .addItemsAfter(Ingredient.of(Items.WHEAT), NDItems.ROSE_PETALS);
+                    .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE);
 
     }
 }
