@@ -1,6 +1,8 @@
 package com.doltandtio.naturesdelight.core;
 
 import com.doltandtio.naturesdelight.core.other.NaDDataUtil;
+import com.doltandtio.naturesdelight.core.registry.NDBlocks;
+import com.doltandtio.naturesdelight.core.registry.NaDLootModifiers;
 import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NaDItemModels;
 import com.doltandtio.naturesdelight.data.server.tags.NaDBlockTags;
@@ -9,9 +11,11 @@ import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,10 +33,13 @@ public class NaturesDelight {
 		MinecraftForge.EVENT_BUS.register(this);
 
 		REGISTRY_HELPER.register(bus);
+		NaDLootModifiers.LOOT_MODIFIERS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
+
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> NDBlocks::setupTabEditors);
 	}
 
 	public static ResourceLocation rl(String namespace) {
@@ -42,6 +49,7 @@ public class NaturesDelight {
 	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			NaDDataUtil.registerCompat();
+
 		});
 	}
 

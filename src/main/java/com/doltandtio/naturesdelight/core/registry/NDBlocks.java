@@ -2,7 +2,11 @@ package com.doltandtio.naturesdelight.core.registry;
 
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.fml.common.Mod;
@@ -15,4 +19,12 @@ public class NDBlocks {
     public static final RegistryObject<DoubleCropBlock> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
 
+
+    public static void setupTabEditors() {
+        CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
+                .tab(CreativeModeTabs.NATURAL_BLOCKS)
+                    .addItemsAfter(Ingredient.of(Items.BEETROOT_SEEDS), ROSE_HIP)
+                .tab(CreativeModeTabs.INGREDIENTS)
+                    .addItemsAfter(Ingredient.of(Items.WHEAT), NaDItems.ROSE_PETALS);
+    }
 }
