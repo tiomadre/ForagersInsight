@@ -1,4 +1,4 @@
-package com.doltandtio.naturesdelight.data.server.tags;
+package com.doltandtio.naturesdelight.data.server;
 
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
-import static com.doltandtio.naturesdelight.core.registry.NaDItems.ROSE_PETALS;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_PETALS;
 
 public class NDLoot extends LootTableProvider {
     public NDLoot(GatherDataEvent e) {

@@ -5,8 +5,9 @@ import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.core.registry.NaDLootModifiers;
 import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NaDItemModels;
+import com.doltandtio.naturesdelight.data.server.NDCraftingRecipes;
+import com.doltandtio.naturesdelight.data.server.NDLoot;
 import com.doltandtio.naturesdelight.data.server.tags.NaDBlockTags;
-import com.doltandtio.naturesdelight.data.server.tags.NDLoot;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
@@ -49,7 +50,6 @@ public class NaturesDelight {
 	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			NaDDataUtil.registerCompat();
-
 		});
 	}
 
@@ -66,6 +66,7 @@ public class NaturesDelight {
 		NaDBlockTags blockTags = new NaDBlockTags(event);
 		gen.addProvider(server, blockTags);
 		gen.addProvider(server, new NDLoot(event));
+		gen.addProvider(server, new NDCraftingRecipes(event));
 
 		boolean client = event.includeClient();
 		gen.addProvider(client, new NaDBlockStates(event));

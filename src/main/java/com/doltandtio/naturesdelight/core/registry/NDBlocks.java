@@ -24,7 +24,10 @@ public class NDBlocks {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                     .addItemsAfter(Ingredient.of(Items.BEETROOT_SEEDS), ROSE_HIP)
+                .tab(CreativeModeTabs.FOOD_AND_DRINKS)
+                    .addItemsAfter(Ingredient.of(Items.COOKIE), NDItems.ROSE_COOKIE)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                    .addItemsAfter(Ingredient.of(Items.WHEAT), NaDItems.ROSE_PETALS);
+                    .addItemsAfter(Ingredient.of(Items.WHEAT), NDItems.ROSE_PETALS);
+
     }
 }
