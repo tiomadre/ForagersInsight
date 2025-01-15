@@ -22,5 +22,5 @@ public class NDItems {
     public static final RegistryObject<Item> ROSE_GRANITA = HELPER.createItem("rose_granita", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_GRANITA).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> ROSE_WATER_CORDIAL = HELPER.createItem("rose_water_cordial", () -> new DrinkableItem(new Item.Properties()
-            .food(NDFoods.ROSE_GRANITA).craftRemainder(Items.GLASS_BOTTLE)));
+            .food(NDFoods.ROSE_WATER_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
 }

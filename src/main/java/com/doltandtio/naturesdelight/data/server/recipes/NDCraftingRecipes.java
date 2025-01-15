@@ -1,6 +1,7 @@
 package com.doltandtio.naturesdelight.data.server.recipes;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
@@ -12,7 +13,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 
 import java.util.function.Consumer;
 
-import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
+import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_PETALS;
 import static net.minecraft.world.item.Items.GLASS_BOTTLE;
 import static net.minecraft.world.item.Items.MELON_SLICE;
@@ -31,6 +32,9 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
                 .requires(NDTags.ItemTag.ICE).requires(GLASS_BOTTLE)
                 .unlockedBy("has_rose_hip", has(ROSE_HIP.get())).save(consumer);
+
+        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_CRATE.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_PETALS.get(), RecipeCategory.DECORATIONS, ROSE_PETALS_SACK.get());
 
         NDCookingRecipes.buildRecipes(consumer);
     }

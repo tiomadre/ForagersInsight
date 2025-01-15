@@ -16,13 +16,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.function.Supplier;
 
-public class KnifeFlowersModifier extends LootModifier {
-    public static final Supplier<Codec<KnifeFlowersModifier>> CODEC = Suppliers.memoize(() ->
+public class ReplaceItemModifier extends LootModifier {
+    public static final Supplier<Codec<ReplaceItemModifier>> CODEC = Suppliers.memoize(() ->
             RecordCodecBuilder.create(inst -> codecStart(inst)
                     .and(ForgeRegistries.ITEMS.getCodec().fieldOf("new").forGetter(m -> m.newItem))
                     .and(ForgeRegistries.ITEMS.getCodec().fieldOf("replace").forGetter(m -> m.replaceItem))
-                    .apply(inst, KnifeFlowersModifier::new)));
-    protected KnifeFlowersModifier(LootItemCondition[] conditionsIn, Item item, Item replaceItem) {
+                    .apply(inst, ReplaceItemModifier::new)));
+    protected ReplaceItemModifier(LootItemCondition[] conditionsIn, Item item, Item replaceItem) {
         super(conditionsIn);
         this.newItem = item;
         this.replaceItem = replaceItem;

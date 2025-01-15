@@ -6,10 +6,12 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
@@ -20,6 +22,12 @@ public class NDBlocks {
 
     public static final RegistryObject<DoubleCropBlock> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
+
+    public static final RegistryObject<Block> ROSE_HIP_CRATE = HELPER.createBlock("rose_hip_crate", () -> new Block(
+            BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
+    public static final RegistryObject<Block> ROSE_PETALS_SACK = HELPER.createBlock("rose_petals_sack", () -> new Block(
+            BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
+
 
 
     public static void setupTabEditors() {

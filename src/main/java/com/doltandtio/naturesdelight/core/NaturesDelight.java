@@ -3,6 +3,7 @@ package com.doltandtio.naturesdelight.core;
 import com.doltandtio.naturesdelight.core.other.NaDDataUtil;
 import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
+import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
 import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NaDItemModels;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
@@ -37,6 +38,7 @@ public class NaturesDelight {
 
 		REGISTRY_HELPER.register(bus);
 		NDLootModifiers.LOOT_MODIFIERS.register(bus);
+		NDMobEffects.MOB_EFFECTS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);

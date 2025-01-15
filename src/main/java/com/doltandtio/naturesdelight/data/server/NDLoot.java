@@ -37,7 +37,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
+import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_PETALS;
 
 public class NDLoot extends LootTableProvider {
@@ -75,12 +75,8 @@ public class NDLoot extends LootTableProvider {
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)))));
 
-//            this.add(Blocks.CARROTS, this.applyExplosionDecay(Blocks.CARROTS,
-//                    LootTable.lootTable()
-//                            .withPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.CARROT)))
-//                            .withPool(LootPool.lootPool().when($$2).add(LootItem.lootTableItem(Items.CARROT)
-//                                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
-//
+            this.dropSelf(ROSE_HIP_CRATE.get());
+            this.dropSelf(ROSE_PETALS_SACK.get());
         }
 
         private <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<T> property, String value) {
