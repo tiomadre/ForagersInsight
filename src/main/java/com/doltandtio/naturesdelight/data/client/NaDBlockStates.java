@@ -30,9 +30,9 @@ public class NaDBlockStates extends NaDBlockStatesHelper {
     public void sackBlock(RegistryObject<? extends Block> block) {
         String name = name(block.get());
         this.simpleBlock(block.get(), models().cube(name,
-                modTexture(name + "_bottom"), modTexture(name + "_top"),  modTexture(name + "_side"),
+                modTexture(name + "_bottom"), modTexture(name + "_top"),  modTexture(name + "_unique_side"),
                 modTexture(name + "_unique_side"), modTexture(name + "_side"),
-                modTexture(name + "_unique_side")));
+                modTexture(name + "_side")).texture("particle", modTexture(name + "_top")));
 
         this.blockItem(block.get());
     }
