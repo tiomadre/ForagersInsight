@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rose_petals_sack": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "naturesdelight:rose_petals_sack"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "naturesdelight:rose_petals"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_rose_petals_sack",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "naturesdelight:rose_petals"
+    ]
+  },
+  "sends_telemetry_event": false
+}

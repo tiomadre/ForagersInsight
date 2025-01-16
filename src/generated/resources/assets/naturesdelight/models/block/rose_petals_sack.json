@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "naturesdelight:block/rose_petals_sack_bottom",
+    "east": "naturesdelight:block/rose_petals_sack_side",
+    "north": "naturesdelight:block/rose_petals_sack_side",
+    "south": "naturesdelight:block/rose_petals_sack_unique_side",
+    "up": "naturesdelight:block/rose_petals_sack_top",
+    "west": "naturesdelight:block/rose_petals_sack_unique_side"
+  }
+}

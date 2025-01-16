@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "naturesdelight:block/crate_bottom",
+    "side": "naturesdelight:block/rose_hip_crate_side",
+    "top": "naturesdelight:block/rose_hip_crate_top"
+  }
+}

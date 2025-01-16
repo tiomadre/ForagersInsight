@@ -34,11 +34,11 @@ public class NDBlocks {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
                     .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP)
+                    .addItemsAfter(of(Items.HAY_BLOCK), ROSE_HIP_CRATE, ROSE_PETALS_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                     .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE)
                     .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA, ROSE_WATER_CORDIAL)
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE);
-
     }
 }
