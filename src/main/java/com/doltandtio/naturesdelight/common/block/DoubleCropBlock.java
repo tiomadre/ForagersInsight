@@ -3,6 +3,8 @@ package com.doltandtio.naturesdelight.common.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -85,6 +87,14 @@ public class DoubleCropBlock extends CropBlock {
             return;
         }
 
+        if (!canGrow(level, pos) && isDouble(getAge(state) + stages)) {
+            int index = stagesBeforeDouble(state);
+            if (index != 0) {
+                mature(index, level, state, pos);
+            }
+            return;
+        }
+
         if (this.getHalf(state) == UPPER) {
             if (level.getBlockState(pos.below()).is(this)) {
                 mature(stages, level, level.getBlockState(pos.below()), pos.below());
@@ -132,14 +142,18 @@ public class DoubleCropBlock extends CropBlock {
 
     // bone meal
 
-    @Override
-    protected int getBonemealAgeIncrease(Level level) {
-        return level.getRandom().nextInt(1, 3);
+    protected int getBonemealAgeIncrease(Level level, BlockPos pos, BlockState state) {
+        if (canGrow(level, pos)) {
+            return level.getRandom().nextInt(1, 3);
+        }
+        else {
+            return Math.min(stagesBeforeDouble(state), level.getRandom().nextInt(1, 3));
+        }
     }
 
     @Override
     public void growCrops(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        mature(getBonemealAgeIncrease(level), level, state, pos);
+        mature(getBonemealAgeIncrease(level, pos, state), level, state, pos);
     }
 
     // shape
@@ -191,5 +205,14 @@ public class DoubleCropBlock extends CropBlock {
                 return blockstate.is(this) && blockstate.getValue(HALF) == LOWER;
             }
         }
+    }
+
+    public boolean canGrow(Level level, BlockPos pos) {
+        BlockState aboveState = level.getBlockState(pos.above());
+        return aboveState.is(BlockTags.REPLACEABLE) || aboveState.is(this);
+    }
+
+    public int stagesBeforeDouble(BlockState state) {
+        return this.isDoubleAfterAge - 1 - getAge(state);
     }
 }
