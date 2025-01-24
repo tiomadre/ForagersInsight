@@ -7,7 +7,7 @@ import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
 import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NaDItemModels;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
-import com.doltandtio.naturesdelight.data.server.recipes.NDCookingRecipes;
+import com.doltandtio.naturesdelight.data.server.NDWorldgen;
 import com.doltandtio.naturesdelight.data.server.recipes.NDCraftingRecipes;
 import com.doltandtio.naturesdelight.data.server.tags.NaDBlockTags;
 import com.doltandtio.naturesdelight.data.server.tags.NaDItemTags;
@@ -72,6 +72,7 @@ public class NaturesDelight {
 		gen.addProvider(server, new NaDItemTags(event, blockTags));
 		gen.addProvider(server, new NDLoot(event));
 		gen.addProvider(server, new NDCraftingRecipes(event));
+		gen.addProvider(server, new NDWorldgen(event));
 
 		boolean client = event.includeClient();
 		gen.addProvider(client, new NaDBlockStates(event));
