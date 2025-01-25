@@ -89,6 +89,10 @@ public class NDLoot extends LootTableProvider {
                                         .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, ROSE_HIP.get().getMaxAge())))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
+                                .when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
+                                .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, ROSE_HIP.get().getMaxAge()))
+                                .add(LootItem.lootTableItem(Items.ROSE_BUSH)))
+                        .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE))));
 
             this.dropSelf(ROSE_HIP_CRATE.get());
