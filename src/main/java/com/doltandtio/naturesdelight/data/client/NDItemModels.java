@@ -6,9 +6,9 @@ import net.minecraftforge.data.event.GatherDataEvent;
 
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 
-public class NaDItemModels extends BlueprintItemModelProvider {
+public class NDItemModels extends BlueprintItemModelProvider {
 
-    public NaDItemModels(GatherDataEvent e) {
+    public NDItemModels(GatherDataEvent e) {
         super(e.getGenerator().getPackOutput(), NaturesDelight.MOD_ID, e.getExistingFileHelper());
     }
 

@@ -1,5 +1,6 @@
 package com.doltandtio.naturesdelight.core.registry;
 
+import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
@@ -20,6 +21,9 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
 
+
+    public static final RegistryObject<BountifulLeavesBlock> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
+            new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<DoubleCropBlock> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
 

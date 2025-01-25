@@ -1,15 +1,16 @@
 package com.doltandtio.naturesdelight.core;
 
-import com.doltandtio.naturesdelight.core.other.NaDDataUtil;
+import com.doltandtio.naturesdelight.core.other.NDClientCompat;
+import com.doltandtio.naturesdelight.core.other.NDDataUtil;
 import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
 import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
-import com.doltandtio.naturesdelight.data.client.NaDBlockStates;
-import com.doltandtio.naturesdelight.data.client.NaDItemModels;
+import com.doltandtio.naturesdelight.data.client.NDBlockStates;
+import com.doltandtio.naturesdelight.data.client.NDItemModels;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
 import com.doltandtio.naturesdelight.data.server.NDWorldgen;
 import com.doltandtio.naturesdelight.data.server.recipes.NDCraftingRecipes;
-import com.doltandtio.naturesdelight.data.server.tags.NaDBlockTags;
+import com.doltandtio.naturesdelight.data.server.tags.NDBlockTags;
 import com.doltandtio.naturesdelight.data.server.tags.NaDItemTags;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
@@ -53,13 +54,13 @@ public class NaturesDelight {
 
 	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			NaDDataUtil.registerCompat();
+			NDDataUtil.registerCompat();
 		});
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-
+			NDClientCompat.registerCompat();
 		});
 	}
 
@@ -67,7 +68,7 @@ public class NaturesDelight {
 		DataGenerator gen = event.getGenerator();
 
 		boolean server = event.includeServer();
-		NaDBlockTags blockTags = new NaDBlockTags(event);
+		NDBlockTags blockTags = new NDBlockTags(event);
 		gen.addProvider(server, blockTags);
 		gen.addProvider(server, new NaDItemTags(event, blockTags));
 		gen.addProvider(server, new NDLoot(event));
@@ -75,7 +76,7 @@ public class NaturesDelight {
 		gen.addProvider(server, new NDWorldgen(event));
 
 		boolean client = event.includeClient();
-		gen.addProvider(client, new NaDBlockStates(event));
-		gen.addProvider(client, new NaDItemModels(event));
+		gen.addProvider(client, new NDBlockStates(event));
+		gen.addProvider(client, new NDItemModels(event));
 	}
 }

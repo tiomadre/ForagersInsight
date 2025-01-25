@@ -2,6 +2,15 @@
   "type": "minecraft:block",
   "functions": [
     {
+      "enchantment": "minecraft:fortune",
+      "formula": "minecraft:binomial_with_bonus_count",
+      "function": "minecraft:apply_bonus",
+      "parameters": {
+        "extra": 3,
+        "probability": 0.5714285
+      }
+    },
+    {
       "function": "minecraft:explosion_decay"
     }
   ],
@@ -54,17 +63,6 @@
         {
           "type": "minecraft:item",
           "name": "naturesdelight:rose_hip"
-        }
-      ],
-      "functions": [
-        {
-          "enchantment": "minecraft:fortune",
-          "formula": "minecraft:binomial_with_bonus_count",
-          "function": "minecraft:apply_bonus",
-          "parameters": {
-            "extra": 3,
-            "probability": 0.5714285
-          }
         }
       ],
       "rolls": 1.0

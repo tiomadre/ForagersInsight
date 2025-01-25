@@ -1,22 +1,22 @@
 package com.doltandtio.naturesdelight.data.client;
 
+import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
-import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
-import vectorwing.farmersdelight.FarmersDelight;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 
-public class NaDBlockStates extends NaDBlockStatesHelper {
+public class NDBlockStates extends NDBlockStatesHelper {
     private static final String ITEM_GENERATED = "item/generated";
 
-    public NaDBlockStates(GatherDataEvent e) {
+    public NDBlockStates(GatherDataEvent e) {
         super(e.getGenerator().getPackOutput(), NaturesDelight.MOD_ID, e.getExistingFileHelper());
     }
 
@@ -25,6 +25,8 @@ public class NaDBlockStates extends NaDBlockStatesHelper {
         doubleCrop(ROSE_HIP);
         this.crateBlock(ROSE_HIP_CRATE, "rose_hip");
         this.sackBlock(ROSE_PETALS_SACK);
+
+        this.bountifulLeaf(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
     }
 
     public void sackBlock(RegistryObject<? extends Block> block) {
@@ -44,6 +46,20 @@ public class NaDBlockStates extends NaDBlockStatesHelper {
                         modTexture(cropName + "_crate_top")));
 
         this.blockItem(block.get());
+    }
+
+    private void bountifulLeaf(RegistryObject<? extends BountifulLeavesBlock> block, Block base) {
+        BountifulLeavesBlock leavesBlock = block.get();
+
+        this.getVariantBuilder(leavesBlock).forAllStatesExcept(state -> {
+            int age = leavesBlock.getAge(state);
+
+             return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d".formatted(name(leavesBlock), age), "naturesdelight:block/leaves_with_overlay")
+                     .texture("all", blockTexture(base)).texture("overlay", "%s_stage%d".formatted(blockTexture(leavesBlock), age))).build();
+
+        }, LeavesBlock.DISTANCE, LeavesBlock.PERSISTENT, LeavesBlock.WATERLOGGED);
+
+        this.itemModels().withExistingParent(name(leavesBlock), concatRL(blockTexture(leavesBlock), "_stage0"));
     }
 
     private void doubleCrop(RegistryObject<? extends DoubleCropBlock> crop) {

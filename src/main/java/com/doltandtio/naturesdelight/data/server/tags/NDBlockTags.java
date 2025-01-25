@@ -10,15 +10,18 @@ import vectorwing.farmersdelight.common.tag.ModTags;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 
-public class NaDBlockTags extends BlockTagsProvider {
+public class NDBlockTags extends BlockTagsProvider {
 
-    public NaDBlockTags(GatherDataEvent event) {
+    public NDBlockTags(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), event.getLookupProvider(), NaturesDelight.MOD_ID, event.getExistingFileHelper());
     }
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ROSE_HIP.get(), ROSE_HIP_CRATE.get());
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get());
+
         this.tag(ModTags.MINEABLE_WITH_KNIFE).addOptional(ROSE_PETALS_SACK.getId());
 
         this.tag(BlockTags.CROPS).add(ROSE_HIP.get());
