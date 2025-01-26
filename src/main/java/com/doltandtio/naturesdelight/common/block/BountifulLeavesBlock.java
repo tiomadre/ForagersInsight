@@ -1,6 +1,7 @@
 package com.doltandtio.naturesdelight.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -10,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +22,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
@@ -39,6 +44,29 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     @Override
     public void randomTick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         super.randomTick(pState, pLevel, pPos, pRandom);
+
+        if (pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean()
+                && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean()) {
+
+            if (!pLevel.isAreaLoaded(pPos, 1)) return;
+            if (pLevel.getRawBrightness(pPos, 0) < 9) return;
+
+            mature(pLevel, pPos, pState);
+
+            for (Direction dir : Direction.values()) {
+                BlockState relativeState = pLevel.getBlockState(pPos.relative(dir));
+                if (relativeState.getBlock() instanceof BountifulLeavesBlock) {
+                    mature(pLevel, pPos.relative(dir), pLevel.getBlockState(pPos.relative(dir)));
+                }
+            }
+        }
+    }
+
+    private void mature(Level level, BlockPos pos, BlockState state) {
+        if (canGrow(state)) {
+            int newAge = getAge(state) + 1;
+            level.setBlock(pos, state.setValue(AGE, newAge), Block.UPDATE_CLIENTS);
+        }
     }
 
     public int getAge(@NotNull BlockState state) {
@@ -58,14 +86,17 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         int age = pState.getValue(AGE);
         boolean isFullGrown = age == MAX_AGE;
+        boolean playerHasShears = pPlayer.getItemInHand(pHand).canPerformAction(ToolActions.SHEARS_HARVEST);
 
         if (!isFullGrown && pPlayer.getItemInHand(pHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
         }
-        else if (isFullGrown) {
+        else if (isFullGrown && playerHasShears) {
+            popResource(pLevel, pPos, new ItemStack(Items.APPLE));
+            pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, entity -> entity.broadcastBreakEvent(pHand));
 
-            popResource(pLevel, pPos, new ItemStack(Items.APPLE, 1));
             pLevel.playSound(null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
+            pLevel.playSound(null, pPos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
 
             BlockState blockstate = pState.setValue(AGE, 0);
             pLevel.setBlock(pPos, blockstate, Block.UPDATE_CLIENTS);
@@ -100,5 +131,10 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource pRandom, @NotNull BlockPos pos, @NotNull BlockState state) {
         int aNewAgeArrives = getAge(state) + 1;
         level.setBlock(pos, state.setValue(AGE, aNewAgeArrives), Block.UPDATE_ALL);
+    }
+
+    private boolean shittyMethodIReallyWantToWrite(RandomSource random, int times) {
+        if (times <= 0) return true;
+        return random.nextBoolean() && shittyMethodIReallyWantToWrite(random, times - 1);
     }
 }
