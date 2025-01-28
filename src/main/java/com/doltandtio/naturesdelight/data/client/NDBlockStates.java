@@ -5,6 +5,7 @@ import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -30,7 +31,7 @@ public class NDBlockStates extends NDBlockStatesHelper {
     protected void registerStatesAndModels() {
         doubleCrop(ROSE_HIP);
         this.crateBlock(ROSE_HIP_CRATE, "rose_hip");
-        this.crossBlock(BOUNTIFUL_OAK_SAPLING);
+        this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.sackBlock(ROSE_PETALS_SACK);
 
         this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
@@ -43,10 +44,10 @@ public class NDBlockStates extends NDBlockStatesHelper {
         Block cropBlock = crop.get();
         MultiPartBlockStateBuilder builder = this.getMultipartBuilder(cropBlock);
 
-        Predicate<Integer> shouldIncValue = i -> i != 2 && i != 4 && i != 6;
+        Predicate<Integer> shouldIncValue = i -> i != 1 && i != 3 && i != 5;
         int currentAge = 0;
         for (int i = 0; i < 8; i++) {
-            builder.part().modelFile(models().cross(name(cropBlock), concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
+            builder.part().modelFile(models().cross("%s_stage%d".formatted(name(cropBlock), i), concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
                     .addModel().condition(CropBlock.AGE, i).end();
             if (shouldIncValue.test(i)) {
                 currentAge += 1;
@@ -54,6 +55,12 @@ public class NDBlockStates extends NDBlockStatesHelper {
         }
 
         this.itemModels().basicItem(seeds.get());
+    }
+
+    public void crossCutout(RegistryObject<? extends Block> cross) {
+        this.simpleBlock(cross.get(), this.models().cross(name(cross.get()), this.blockTexture(cross.get()))
+                .renderType("cutout"));
+        this.generatedItem(cross.get(), "block");
     }
 
     public void sackBlock(RegistryObject<? extends Block> block) {

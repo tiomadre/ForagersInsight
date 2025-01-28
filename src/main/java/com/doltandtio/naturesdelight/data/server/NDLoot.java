@@ -83,28 +83,31 @@ public class NDLoot extends LootTableProvider {
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool().when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
                                 .add(LootItem.lootTableItem(ROSE_HIP.get())))
-                        .withPool(LootPool.lootPool().when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
+                        .withPool(LootPool.lootPool().when(lower(ROSE_HIP))
                                 .add(LootItem.lootTableItem(ROSE_HIP.get()))
-                                        .when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
+                                        .when(lower(ROSE_HIP))
                                         .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE))));
+                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower(ROSE_HIP)))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(Blocks.ROSE_BUSH).when(lower(ROSE_HIP)))));
 
             this.dropSelf(ROSE_HIP_CRATE.get());
             this.dropSelf(ROSE_PETALS_SACK.get());
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
 
             this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, Items.APPLE, BOUNTIFUL_OAK_SAPLING.get().asItem()));
-            this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT);
-            this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS);
+            this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.DANDELION);
+            this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.POPPY);
         }
 
-        private void createFlowerBushDrops(RegistryObject<? extends Block> registryBlock, RegistryObject<Item> registrySeed) {
+        private void createFlowerBushDrops(RegistryObject<? extends Block> registryBlock, RegistryObject<Item> registrySeed, Item originalFlower) {
             Block bush = registryBlock.get();
             Item seed = registrySeed.get();
             this.add(bush, this.applyExplosionDecay(seed, LootTable.lootTable()
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)))
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(originalFlower)).when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)
                             .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3))))));
         }
@@ -125,15 +128,19 @@ public class NDLoot extends LootTableProvider {
                             .add(this.applyExplosionCondition(block, LootItem.lootTableItem(bounty))));
         }
 
-        private <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<T> property, String value) {
+        private static <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<T> property, String value) {
             return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
         }
 
 
-        private <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<Integer> property, int value) {
+        private static LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<Integer> property, int value) {
             return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
+        }
+
+        private static LootItemCondition.Builder lower(RegistryObject<? extends Block> block) {
+            return stateCond(block, DoubleCropBlock.HALF, "lower");
         }
 
         @Override

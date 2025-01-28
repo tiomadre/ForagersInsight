@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "naturesdelight:block/bountiful_oak_sapling"
+    "cross": "naturesdelight:block/dandelion_bush_stage1"
   }
 }
