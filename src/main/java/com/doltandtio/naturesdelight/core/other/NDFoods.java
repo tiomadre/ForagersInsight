@@ -9,7 +9,6 @@ public class NDFoods {
     public static final FoodProperties ROSE_GRANITA = new FoodProperties.Builder()
             .nutrition(6).saturationMod(0.9f)
             .effect(() -> new MobEffectInstance(NDMobEffects.CHILLED.get(), 300), 1).build();
-
-    public static final FoodProperties ROSE_WATER_CORDIAL = new FoodProperties.Builder()
+    public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder()
             .nutrition(0).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200), 1).build();
 }

@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_PETALS;
-import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_WATER_CORDIAL;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_CORDIAL;
 
 public class NDCookingRecipes {
     public static final int FAST_COOKING = 100;      // 5 seconds
@@ -21,7 +21,7 @@ public class NDCookingRecipes {
     public static final float LARGE_EXP = 2.0F;
 
     public static void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        CookingPotRecipeBuilder.cookingPotRecipe(ROSE_WATER_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_PETALS.get())
                 .addIngredient(ROSE_PETALS.get())
                 .addIngredient(ROSE_HIP.get())

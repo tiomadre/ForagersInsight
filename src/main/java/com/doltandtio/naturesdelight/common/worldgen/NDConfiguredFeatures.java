@@ -35,7 +35,7 @@ public class NDConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(Blocks.OAK_LEAVES.defaultBlockState(), 1)
+                        .add(Blocks.OAK_LEAVES.defaultBlockState(), 2)
                         .add(NDBlocks.BOUNTIFUL_OAK_LEAVES.get().defaultBlockState(), 1)),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)

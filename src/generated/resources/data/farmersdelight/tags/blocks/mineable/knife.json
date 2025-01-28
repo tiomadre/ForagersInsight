@@ -1,8 +1,5 @@
 {
   "values": [
-    {
-      "id": "naturesdelight:rose_petals_sack",
-      "required": false
-    }
+    "naturesdelight:rose_petals_sack"
   ]
 }

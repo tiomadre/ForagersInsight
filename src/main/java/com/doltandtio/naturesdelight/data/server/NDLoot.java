@@ -3,6 +3,7 @@ package com.doltandtio.naturesdelight.data.server;
 import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -93,8 +94,9 @@ public class NDLoot extends LootTableProvider {
 
             this.dropSelf(ROSE_HIP_CRATE.get());
             this.dropSelf(ROSE_PETALS_SACK.get());
+            this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
 
-            this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, Items.APPLE, Items.OAK_SAPLING));
+            this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, Items.APPLE, BOUNTIFUL_OAK_SAPLING.get().asItem()));
         }
 
         private LootTable.Builder createBountifulLeavesDrops(RegistryObject<? extends BountifulLeavesBlock> leafBlock, Item bounty, Item sapling) {

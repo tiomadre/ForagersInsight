@@ -16,7 +16,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:cooking/rose_water_cordial"
+        "recipe": "farmersdelight:cooking/rose_cordial"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:cooking/rose_water_cordial"
+      "farmersdelight:cooking/rose_cordial"
     ]
   },
   "sends_telemetry_event": true

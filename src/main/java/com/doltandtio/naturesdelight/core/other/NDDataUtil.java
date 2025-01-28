@@ -14,6 +14,7 @@ public class NDDataUtil {
 
     private static void registerCompostable() {
         DataUtil.registerCompostable(BOUNTIFUL_OAK_LEAVES.get(), 0.3f);
+        DataUtil.registerCompostable(BOUNTIFUL_OAK_SAPLING.get(), 0.3f);
 
         DataUtil.registerCompostable(ROSE_HIP.get(), 0.3f);
         DataUtil.registerCompostable(ROSE_HIP_CRATE.get(), 1.0f);
