@@ -3,13 +3,19 @@ package com.doltandtio.naturesdelight.data.client;
 import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.core.registry.NDItems;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Predicate;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 
@@ -24,9 +30,30 @@ public class NDBlockStates extends NDBlockStatesHelper {
     protected void registerStatesAndModels() {
         doubleCrop(ROSE_HIP);
         this.crateBlock(ROSE_HIP_CRATE, "rose_hip");
+        this.crossBlock(BOUNTIFUL_OAK_SAPLING);
         this.sackBlock(ROSE_PETALS_SACK);
 
+        this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
+        this.age5Crop(POPPY_BUSH, NDItems.POPPY_SEEDS);
+
         this.bountifulLeaf(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
+    }
+
+    private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
+        Block cropBlock = crop.get();
+        MultiPartBlockStateBuilder builder = this.getMultipartBuilder(cropBlock);
+
+        Predicate<Integer> shouldIncValue = i -> i != 2 && i != 4 && i != 6;
+        int currentAge = 0;
+        for (int i = 0; i < 8; i++) {
+            builder.part().modelFile(models().cross(name(cropBlock), concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
+                    .addModel().condition(CropBlock.AGE, i).end();
+            if (shouldIncValue.test(i)) {
+                currentAge += 1;
+            }
+        }
+
+        this.itemModels().basicItem(seeds.get());
     }
 
     public void sackBlock(RegistryObject<? extends Block> block) {
@@ -48,8 +75,8 @@ public class NDBlockStates extends NDBlockStatesHelper {
         this.blockItem(block.get());
     }
 
-    private void bountifulLeaf(RegistryObject<? extends BountifulLeavesBlock> block, Block base) {
-        BountifulLeavesBlock leavesBlock = block.get();
+    private void bountifulLeaf(RegistryObject<? extends Block> block, Block base) {
+        BountifulLeavesBlock leavesBlock = (BountifulLeavesBlock) block.get();
 
         this.getVariantBuilder(leavesBlock).forAllStatesExcept(state -> {
             int age = leavesBlock.getAge(state);
@@ -62,8 +89,8 @@ public class NDBlockStates extends NDBlockStatesHelper {
         this.itemModels().withExistingParent(name(leavesBlock), concatRL(blockTexture(leavesBlock), "_stage0"));
     }
 
-    private void doubleCrop(RegistryObject<? extends DoubleCropBlock> crop) {
-        DoubleCropBlock block = crop.get();
+    private void doubleCrop(RegistryObject<? extends Block> crop) {
+        DoubleCropBlock block = (DoubleCropBlock) crop.get();
 
         this.getVariantBuilder(block).forAllStates(state -> {
             int age;

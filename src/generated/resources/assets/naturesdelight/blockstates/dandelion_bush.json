@@ -1,0 +1,68 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "naturesdelight:block/dandelion_bush"
+      },
+      "when": {
+        "age": "7"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "naturesdelight:block/dandelion_bush_stage4"
+  }
+}

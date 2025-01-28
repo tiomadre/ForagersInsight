@@ -3,7 +3,6 @@ package com.doltandtio.naturesdelight.data.server;
 import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
-import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -20,6 +19,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -34,7 +34,6 @@ import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableConditio
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -48,7 +47,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
-import static com.doltandtio.naturesdelight.core.registry.NDItems.ROSE_PETALS;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 
 public class NDLoot extends LootTableProvider {
     protected static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
@@ -87,7 +86,7 @@ public class NDLoot extends LootTableProvider {
                         .withPool(LootPool.lootPool().when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
                                 .add(LootItem.lootTableItem(ROSE_HIP.get()))
                                         .when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
-                                        .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, ROSE_HIP.get().getMaxAge())))
+                                        .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE))));
@@ -97,10 +96,21 @@ public class NDLoot extends LootTableProvider {
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
 
             this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, Items.APPLE, BOUNTIFUL_OAK_SAPLING.get().asItem()));
+            this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT);
+            this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS);
         }
 
-        private LootTable.Builder createBountifulLeavesDrops(RegistryObject<? extends BountifulLeavesBlock> leafBlock, Item bounty, Item sapling) {
-            BountifulLeavesBlock block = leafBlock.get();
+        private void createFlowerBushDrops(RegistryObject<? extends Block> registryBlock, RegistryObject<Item> registrySeed) {
+            Block bush = registryBlock.get();
+            Item seed = registrySeed.get();
+            this.add(bush, this.applyExplosionDecay(seed, LootTable.lootTable()
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)))
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)
+                            .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3))))));
+        }
+
+        private LootTable.Builder createBountifulLeavesDrops(RegistryObject<? extends Block> leafBlock, Item bounty, Item sapling) {
+            BountifulLeavesBlock block = (BountifulLeavesBlock) leafBlock.get();
             return createSilkTouchOrShearsDispatchTable(block,
                     this.applyExplosionCondition(block,
                             LootItem.lootTableItem(sapling))

@@ -1,12 +1,16 @@
 package com.doltandtio.naturesdelight.core.registry;
 
 import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
+import com.doltandtio.naturesdelight.common.block.DandelionBushBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
+import com.doltandtio.naturesdelight.common.block.PoppyBushBlock;
 import com.doltandtio.naturesdelight.common.worldgen.trees.foliage.BountifulOakGrower;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,12 +27,16 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
 
+    public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
+            new PoppyBushBlock(BlockBehaviour.Properties.copy(Blocks.BEETROOTS)));
+    public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
+            new DandelionBushBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
 
-    public static final RegistryObject<SaplingBlock> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
+    public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), 100);
-    public static final RegistryObject<BountifulLeavesBlock> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
+    public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
             new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<DoubleCropBlock> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
+    public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
 
     public static final RegistryObject<Block> ROSE_HIP_CRATE = HELPER.createBlock("rose_hip_crate", () -> new Block(
