@@ -3,6 +3,7 @@ package com.doltandtio.naturesdelight.core;
 import com.doltandtio.naturesdelight.core.other.NDClientCompat;
 import com.doltandtio.naturesdelight.core.other.NDDataUtil;
 import com.doltandtio.naturesdelight.core.registry.NDBlocks;
+import com.doltandtio.naturesdelight.core.registry.NDFoliagePlacerType;
 import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
 import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
 import com.doltandtio.naturesdelight.data.client.NDBlockStates;
@@ -10,8 +11,9 @@ import com.doltandtio.naturesdelight.data.client.NDItemModels;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
 import com.doltandtio.naturesdelight.data.server.NDWorldgen;
 import com.doltandtio.naturesdelight.data.server.recipes.NDCraftingRecipes;
+import com.doltandtio.naturesdelight.data.server.tags.NDBiomeTags;
 import com.doltandtio.naturesdelight.data.server.tags.NDBlockTags;
-import com.doltandtio.naturesdelight.data.server.tags.NaDItemTags;
+import com.doltandtio.naturesdelight.data.server.tags.NDItemTags;
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
@@ -40,6 +42,7 @@ public class NaturesDelight {
 		REGISTRY_HELPER.register(bus);
 		NDLootModifiers.LOOT_MODIFIERS.register(bus);
 		NDMobEffects.MOB_EFFECTS.register(bus);
+		NDFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
@@ -70,7 +73,8 @@ public class NaturesDelight {
 		boolean server = event.includeServer();
 		NDBlockTags blockTags = new NDBlockTags(event);
 		gen.addProvider(server, blockTags);
-		gen.addProvider(server, new NaDItemTags(event, blockTags));
+		gen.addProvider(server, new NDBiomeTags(event));
+		gen.addProvider(server, new NDItemTags(event, blockTags));
 		gen.addProvider(server, new NDLoot(event));
 		gen.addProvider(server, new NDCraftingRecipes(event));
 		gen.addProvider(server, new NDWorldgen(event));

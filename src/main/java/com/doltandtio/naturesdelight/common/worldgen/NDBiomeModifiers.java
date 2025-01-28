@@ -1,6 +1,8 @@
 package com.doltandtio.naturesdelight.common.worldgen;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.data.server.tags.NDBiomeTags;
+import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -19,7 +21,7 @@ public class NDBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
 
         context.register(ADD_APPLE_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+            biomes.getOrThrow(NDTags.BiomeTag.HAS_APPLE_TREES),
                 HolderSet.direct(placedFeatures.getOrThrow(NDPlacedFeatures.APPLE_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );

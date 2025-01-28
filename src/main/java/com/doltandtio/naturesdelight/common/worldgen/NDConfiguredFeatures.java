@@ -1,14 +1,13 @@
 package com.doltandtio.naturesdelight.common.worldgen;
 
+import com.doltandtio.naturesdelight.common.worldgen.trees.foliage.AppleTreeFoliagePlacer;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.core.BlockPos;
+import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -17,13 +16,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.List;
-import java.util.function.BiConsumer;
 
 public class NDConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_TREE_KEY = registerKey("apple_tree");
@@ -38,7 +34,9 @@ public class NDConfiguredFeatures {
         register(context, APPLE_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
-                BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
+                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(Blocks.OAK_LEAVES.defaultBlockState(), 1)
+                        .add(NDBlocks.BOUNTIFUL_OAK_LEAVES.get().defaultBlockState(), 1)),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)
         ).build());

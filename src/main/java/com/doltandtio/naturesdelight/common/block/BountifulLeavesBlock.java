@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -22,10 +21,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
@@ -42,21 +39,21 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     }
 
     @Override
-    public void randomTick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
-        super.randomTick(pState, pLevel, pPos, pRandom);
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
+        super.randomTick(state, level, pos, rand);
 
-        if (pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean()
-                && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean() && pRandom.nextBoolean()) {
+        if (rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean()
+                && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean()) {
 
-            if (!pLevel.isAreaLoaded(pPos, 1)) return;
-            if (pLevel.getRawBrightness(pPos, 0) < 9) return;
+            if (!level.isAreaLoaded(pos, 1)) return;
+            if (level.getRawBrightness(pos, 0) < 9) return;
 
-            mature(pLevel, pPos, pState);
+            mature(level, pos, state);
 
             for (Direction dir : Direction.values()) {
-                BlockState relativeState = pLevel.getBlockState(pPos.relative(dir));
+                BlockState relativeState = level.getBlockState(pos.relative(dir));
                 if (relativeState.getBlock() instanceof BountifulLeavesBlock) {
-                    mature(pLevel, pPos.relative(dir), pLevel.getBlockState(pPos.relative(dir)));
+                    mature(level, pos.relative(dir), level.getBlockState(pos.relative(dir)));
                 }
             }
         }

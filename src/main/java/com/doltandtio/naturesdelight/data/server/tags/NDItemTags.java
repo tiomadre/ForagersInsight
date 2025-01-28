@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.doltandtio.naturesdelight.core.registry.NDItems.CRUSHED_ICE;
 
-public class NaDItemTags extends ItemTagsProvider {
-    public NaDItemTags(GatherDataEvent e, NDBlockTags blockTags) {
+public class NDItemTags extends ItemTagsProvider {
+    public NDItemTags(GatherDataEvent e, NDBlockTags blockTags) {
         super(e.getGenerator().getPackOutput(), e.getLookupProvider(), blockTags.contentsGetter());
     }
 
