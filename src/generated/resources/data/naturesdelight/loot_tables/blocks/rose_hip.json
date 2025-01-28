@@ -69,6 +69,15 @@
     },
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "naturesdelight:rose_hip",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -81,6 +90,25 @@
             }
           ],
           "name": "naturesdelight:rose_petals"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "naturesdelight:rose_hip",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "minecraft:rose_bush"
         }
       ],
       "rolls": 1.0

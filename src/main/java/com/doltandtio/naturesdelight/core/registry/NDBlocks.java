@@ -49,7 +49,9 @@ public class NDBlocks {
     public static void setupTabEditors() {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP)
+                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP, POPPY_SEEDS, DANDELION_ROOT)
+                    .addItemsAfter(of(Items.OAK_SAPLING), BOUNTIFUL_OAK_SAPLING)
+                    .addItemsAfter(of(Items.OAK_LEAVES), BOUNTIFUL_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), ROSE_HIP_CRATE, ROSE_PETALS_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                     .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE)

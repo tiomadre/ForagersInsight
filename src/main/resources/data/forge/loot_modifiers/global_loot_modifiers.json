@@ -1,6 +1,8 @@
 {
   "replace": false,
   "entries": [
-    "naturesdelight:rose_hip_from_knifing_rose"
+    "naturesdelight:rose_hip_from_knifing_rose",
+    "naturesdelight:poppy_seeds_from_knifing_poppy",
+    "naturesdelight:dandelion_roots_from_knifing_dandelion"
   ]
 }

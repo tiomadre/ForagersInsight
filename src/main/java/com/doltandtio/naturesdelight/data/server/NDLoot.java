@@ -76,7 +76,6 @@ public class NDLoot extends LootTableProvider {
 
         private static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.KNIVES));
 
-
         @Override
         protected void generate() {
             this.add(ROSE_HIP.get(), this.applyExplosionDecay(ROSE_HIP.get(),
