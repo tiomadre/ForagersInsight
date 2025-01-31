@@ -1,6 +1,7 @@
 package com.doltandtio.naturesdelight.core.mixin;
 
 import com.doltandtio.naturesdelight.common.worldgen.NDConfiguredFeatures;
+import com.doltandtio.naturesdelight.core.NaturesDelight;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.OakTreeGrower;
@@ -12,8 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(OakTreeGrower.class)
 public class OakTreeGrowerMixin {
-    @Inject(method = "getConfiguredFeature", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getConfiguredFeature(Lnet/minecraft/util/RandomSource;Z)Lnet/minecraft/resources/ResourceKey;", at = @At("HEAD"), cancellable = true, remap = false)
     private void NaturesDelight$OakSapingRandomlyHaveAppleTree(RandomSource rand, boolean p_256536_, CallbackInfoReturnable<ResourceKey<ConfiguredFeature<?, ?>>> cir) {
+        NaturesDelight.LOGGER.info("Mixin works natures delight hi i'm dolt btw");
         if (rand.nextInt(40) == 0) {
             cir.setReturnValue(NDConfiguredFeatures.APPLE_TREE_KEY);
         }

@@ -8,7 +8,6 @@ import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 public class NDDataUtil {
     public static void registerCompat() {
         registerCompostable();
-
     }
 
     private static void registerCompostable() {

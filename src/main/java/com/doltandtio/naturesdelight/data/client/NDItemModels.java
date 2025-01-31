@@ -19,6 +19,7 @@ public class NDItemModels extends BlueprintItemModelProvider {
         this.basicItem(ROSE_PETALS.get());
         this.basicItem(ROSE_COOKIE.get());
         this.basicItem(ROSE_GRANITA.get());
+        this.basicItem(ROSE_ROASTED_ROOTS.get());
         this.basicItem(ROSE_CORDIAL.get());
     }
 }

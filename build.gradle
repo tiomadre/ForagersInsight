@@ -122,7 +122,7 @@ jar {
                 "Implementation-Version"  : project.modVersion,
                 "Implementation-Vendor"   : "Team Doltum and Tio",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : project.modId + ".mixins.json"
+                "MixinConfigs"            : "naturesdelight.mixins.json"
         ])
     }
 }

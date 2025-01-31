@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class ReplaceItemModifier extends LootModifier {
     public static final Supplier<Codec<ReplaceItemModifier>> CODEC = Suppliers.memoize(() ->
@@ -33,16 +34,9 @@ public class ReplaceItemModifier extends LootModifier {
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> loot, LootContext lootContext) {
-        Iterator<ItemStack> lootCopy = loot.iterator();
-        while (lootCopy.hasNext()) {
-            ItemStack stack = lootCopy.next();
-            if (stack.is(this.replaceItem)) {
-                loot.remove(stack);
-                loot.add(new ItemStack(newItem));
-            }
-        }
-
-        return loot;
+        return ObjectArrayList.wrap(loot.stream()
+                .map(stack -> stack.is(this.replaceItem) ? new ItemStack(newItem, stack.getCount()) : stack)
+                .toArray(ItemStack[]::new));
     }
 
     @Override
