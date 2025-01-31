@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class OakTreeGrowerMixin {
     @Inject(method = "getConfiguredFeature(Lnet/minecraft/util/RandomSource;Z)Lnet/minecraft/resources/ResourceKey;", at = @At("HEAD"), cancellable = true, remap = false)
     private void NaturesDelight$OakSapingRandomlyHaveAppleTree(RandomSource rand, boolean p_256536_, CallbackInfoReturnable<ResourceKey<ConfiguredFeature<?, ?>>> cir) {
-        NaturesDelight.LOGGER.info("Mixin works natures delight hi i'm dolt btw");
         if (rand.nextInt(40) == 0) {
             cir.setReturnValue(NDConfiguredFeatures.APPLE_TREE_KEY);
         }

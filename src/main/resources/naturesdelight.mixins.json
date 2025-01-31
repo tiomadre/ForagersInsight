@@ -2,12 +2,12 @@
   "required": true,
   "package": "com.doltandtio.naturesdelight.core.mixin",
   "compatibilityLevel": "JAVA_17",
-  "minVersion": "0.8",
   "refmap": "naturesdelight.refmap.json",
   "mixins": [
     "OakTreeGrowerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "minVersion": "0.8"
 }
