@@ -65,9 +65,10 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), ROSE_HIP_CRATE, ROSE_PETALS_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                    .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE)
+                    .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE, ACORN_COOKIE)
                     .addItemsAfter(of(Items.APPLE), BLACK_ACORN)
                     .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA, ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.RABBIT_STEW), ROSE_ROASTED_ROOTS)
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE);
     }

@@ -1,4 +1,6 @@
 {
+  "item.naturesdelight.crushed_ice": "Crushed Ice",
+
   "block.naturesdelight.rose_hip": "Rose Hip",
   "block.naturesdelight.rose_hip_crate": "Rose Hip Crate",
 
@@ -25,5 +27,5 @@
   "item.naturesdelight.rose_cookie": "Rose Cookie",
   "item.naturesdelight.rose_granita": "Rose Granita",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
-  "item.naturesdelight.rose_cordial": "Rose Water Cordial"
+  "item.naturesdelight.rose_cordial": "Rose Cordial"
 }
