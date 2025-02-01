@@ -54,6 +54,10 @@ public class NDBlocks {
     public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
 
+    public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
+            new Block(BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
+    public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->
+            new Block(BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
     public static final RegistryObject<Block> ROSE_HIP_CRATE = HELPER.createBlock("rose_hip_crate", () -> new Block(
             BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
     public static final RegistryObject<Block> ROSE_PETALS_SACK = HELPER.createBlock("rose_petals_sack", () -> new Block(

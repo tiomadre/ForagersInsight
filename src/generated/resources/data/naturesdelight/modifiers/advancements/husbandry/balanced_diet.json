@@ -1,0 +1,73 @@
+{
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "naturesdelight:0": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:apple_slice"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:1": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:acorn_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:2": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:3": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_granita"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:4": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_cordial"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:5": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_roasted_roots"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          }
+        }
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:husbandry/balanced_diet"
+}

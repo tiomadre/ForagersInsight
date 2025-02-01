@@ -14,5 +14,6 @@ public class NDBiomeTags extends BiomeTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         this.tag(NDTags.BiomeTag.HAS_APPLE_TREES).add(Biomes.FOREST, Biomes.FLOWER_FOREST);
+        this.tag(NDTags.BiomeTag.HAS_ACORN_TREES).add(Biomes.DARK_FOREST);
     }
 }

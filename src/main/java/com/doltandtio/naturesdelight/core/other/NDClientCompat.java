@@ -23,7 +23,7 @@ public class NDClientCompat {
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
         List<RegistryObject<Block>> foliageColors = Arrays.asList(
-                NDBlocks.BOUNTIFUL_OAK_LEAVES
+                NDBlocks.BOUNTIFUL_OAK_LEAVES, NDBlocks.BOUNTIFUL_DARK_OAK_LEAVES
         );
 
         DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.get(0.5D, 1.0D), foliageColors);

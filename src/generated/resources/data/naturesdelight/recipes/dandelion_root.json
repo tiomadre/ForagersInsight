@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "naturesdelight:dandelion_roots_crate"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "naturesdelight:dandelion_root"
+  }
+}

@@ -8,6 +8,7 @@ import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
 import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
 import com.doltandtio.naturesdelight.data.client.NDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NDItemModels;
+import com.doltandtio.naturesdelight.data.server.NDAdvancements;
 import com.doltandtio.naturesdelight.data.server.NDLoot;
 import com.doltandtio.naturesdelight.data.server.NDWorldgen;
 import com.doltandtio.naturesdelight.data.server.recipes.NDCraftingRecipes;
@@ -78,6 +79,7 @@ public class NaturesDelight {
 		gen.addProvider(server, new NDLoot(event));
 		gen.addProvider(server, new NDCraftingRecipes(event));
 		gen.addProvider(server, new NDWorldgen(event));
+		gen.addProvider(server, new NDAdvancements(event));
 
 		boolean client = event.includeClient();
 		gen.addProvider(client, new NDBlockStates(event));

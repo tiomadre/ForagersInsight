@@ -15,6 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NDBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_APPLE_TREES = registerKey("add_apple_trees");
+    public static final ResourceKey<BiomeModifier> ADD_ACORN_TREES = registerKey("add_acorn_trees");
 
     public static void bootstap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -26,7 +27,13 @@ public class NDBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
 
+        context.register(ADD_ACORN_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(NDTags.BiomeTag.HAS_ACORN_TREES),
+                HolderSet.direct(placedFeatures.getOrThrow(NDPlacedFeatures.ACORN_DARK_OAK_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION)
+        );
     }
+
     public static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, NaturesDelight.rl(name));
     }

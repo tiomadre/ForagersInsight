@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ing": {
+    "has_dandelion_root": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_hip"
+              "naturesdelight:dandelion_root"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_cookie"
+        "recipe": "naturesdelight:dandelion_roots_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ing",
+      "has_dandelion_root",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_cookie"
+      "naturesdelight:dandelion_roots_crate"
     ]
   },
   "sends_telemetry_event": false

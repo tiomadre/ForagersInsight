@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#naturesdelight:has_feature/acorn_trees",
+  "features": "naturesdelight:acorn_dark_oak_placed",
+  "step": "vegetal_decoration"
+}

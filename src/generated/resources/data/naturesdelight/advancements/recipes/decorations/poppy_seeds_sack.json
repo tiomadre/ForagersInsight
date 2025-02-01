@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ing": {
+    "has_poppy_seeds": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_hip"
+              "naturesdelight:poppy_seeds"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_cookie"
+        "recipe": "naturesdelight:poppy_seeds_sack"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ing",
+      "has_poppy_seeds",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_cookie"
+      "naturesdelight:poppy_seeds_sack"
     ]
   },
   "sends_telemetry_event": false

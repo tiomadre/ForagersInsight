@@ -14,9 +14,13 @@ public class NDDataUtil {
         DataUtil.registerCompostable(BOUNTIFUL_OAK_LEAVES.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_OAK_SAPLING.get(), 0.3f);
         DataUtil.registerCompostable(POPPY_SEEDS.get(), 0.3f);
+        DataUtil.registerCompostable(POPPY_SEEDS_SACK.get(), 1.0f);
         DataUtil.registerCompostable(DANDELION_ROOT.get(), 0.3f);
+        DataUtil.registerCompostable(DANDELION_ROOTS_CRATE.get(), 1.0f);
 
         DataUtil.registerCompostable(BLACK_ACORN.get(), 0.5f);
+        DataUtil.registerCompostable(ACORN_COOKIE.get(), 0.85f);
+
         DataUtil.registerCompostable(APPLE_SLICE.get(), 0.3f);
 
         DataUtil.registerCompostable(ROSE_HIP.get(), 0.3f);
@@ -25,5 +29,6 @@ public class NDDataUtil {
         DataUtil.registerCompostable(ROSE_PETALS_SACK.get(), 1.0f);
 
         DataUtil.registerCompostable(ROSE_COOKIE.get(), 0.85f);
+        DataUtil.registerCompostable(ACORN_COOKIE.get(), 0.85f);
     }
 }

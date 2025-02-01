@@ -18,8 +18,11 @@ public class NDItems {
 
     public static final RegistryObject<Item> APPLE_SLICE = HELPER.createItem("apple_slice", () ->
             new Item(new Item.Properties().food(NDFoods.APPLE_SLICE)));
+
     public static final RegistryObject<Item> CRUSHED_ICE = HELPER.createItem("crushed_ice", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLACK_ACORN = HELPER.createItem("black_acorn", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ACORN_COOKIE = HELPER.createItem("acorn_cookie", () -> new Item(new Item.Properties()
+            .food(FoodValues.COOKIES)));
 
 
 

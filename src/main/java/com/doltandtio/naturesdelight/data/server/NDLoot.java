@@ -101,6 +101,8 @@ public class NDLoot extends LootTableProvider {
             this.add(BOUNTIFUL_DARK_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_DARK_OAK_LEAVES, BOUNTIFUL_DARK_OAK_SAPLING.get()));
 
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.DANDELION);
+            this.dropSelf(DANDELION_ROOTS_CRATE.get());
+            this.dropSelf(POPPY_SEEDS_SACK.get());
             this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.POPPY);
         }
 

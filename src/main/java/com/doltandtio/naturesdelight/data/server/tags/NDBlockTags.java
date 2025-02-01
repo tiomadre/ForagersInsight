@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
@@ -19,15 +20,18 @@ public class NDBlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ROSE_HIP.get(), ROSE_HIP_CRATE.get(), BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ROSE_HIP.get(), ROSE_HIP_CRATE.get(), BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(),
+                DANDELION_ROOTS_CRATE.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get());
 
         this.tag(BlockTags.SAPLINGS).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_OAK_LEAVES.get());
 
-        this.tag(ModTags.MINEABLE_WITH_KNIFE).add(ROSE_PETALS_SACK.get());
+        this.tag(ModTags.MINEABLE_WITH_KNIFE).add(ROSE_PETALS_SACK.get(), POPPY_SEEDS_SACK.get());
 
-        this.tag(BlockTags.CROPS).add(ROSE_HIP.get());
+        this.tag(BlockTags.CROPS).add(ROSE_HIP.get(), DANDELION_BUSH.get(), POPPY_BUSH.get());
+        this.tag(BlockTags.SMALL_FLOWERS).add(DANDELION_BUSH.get(), POPPY_BUSH.get());
+        this.tag(BlockTags.TALL_FLOWERS).add(ROSE_HIP.get());
     }
 }

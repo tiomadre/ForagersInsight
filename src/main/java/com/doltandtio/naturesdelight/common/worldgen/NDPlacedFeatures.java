@@ -18,6 +18,7 @@ import java.util.List;
 
 public class NDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_TREE_PLACED_KEY = registerKey("apple_tree_placed");
+    public static final ResourceKey<PlacedFeature> ACORN_DARK_OAK_TREE_PLACED_KEY = registerKey("acorn_dark_oak_placed");
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, NaturesDelight.rl(name));
@@ -26,7 +27,9 @@ public class NDPlacedFeatures {
     public static void bootstap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         register(context, APPLE_TREE_PLACED_KEY, configuredFeatures.getOrThrow(NDConfiguredFeatures.APPLE_TREE_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1666666667f, 1), Blocks.OAK_SAPLING));
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.OAK_SAPLING));
+        register(context, ACORN_DARK_OAK_TREE_PLACED_KEY, configuredFeatures.getOrThrow(NDConfiguredFeatures.ACORN_TREE_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.DARK_OAK_SAPLING));
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,

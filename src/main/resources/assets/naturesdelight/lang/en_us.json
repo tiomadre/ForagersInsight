@@ -13,13 +13,17 @@
   "block.naturesdelight.bountiful_dark_oak_sapling": "Bountiful Dark Oak Sapling",
   "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
 
+  "item.naturesdelight.black_acorn": "Black Acorn",
 
 
   "item.naturesdelight.poppy_seeds": "Poppy Seeds",
+  "block.naturesdelight.poppy_seeds_sack": "Sack of Poppy Seeds",
+
   "item.naturesdelight.dandelion_root": "Dandelion Root",
+  "block.naturesdelight.dandelion_roots_crate": "Crate of Dandelion Roots",
 
   "item.naturesdelight.rose_cookie": "Rose Cookie",
   "item.naturesdelight.rose_granita": "Rose Granita",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
-  "item.naturesdelight.rose_water_cordial": "Rose Water Cordial"
+  "item.naturesdelight.rose_cordial": "Rose Water Cordial"
 }

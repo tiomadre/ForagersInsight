@@ -17,6 +17,7 @@ public class NDTags {
 
     public static class BiomeTag {
         public static final TagKey<Biome> HAS_APPLE_TREES = hasFeature("apple_trees");
+        public static final TagKey<Biome> HAS_ACORN_TREES = hasFeature("acorn_trees");
 
         private static TagKey<Biome> modTag(String namespace) {
             return TagUtil.biomeTag(NaturesDelight.MOD_ID, namespace);

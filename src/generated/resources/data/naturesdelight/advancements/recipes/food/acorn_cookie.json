@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "naturesdelight:rose_hip"
+              "naturesdelight:black_acorn"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_cookie"
+        "recipe": "naturesdelight:acorn_cookie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_cookie"
+      "naturesdelight:acorn_cookie"
     ]
   },
   "sends_telemetry_event": false

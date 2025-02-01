@@ -8,11 +8,20 @@
   "block.naturesdelight.bountiful_oak_sapling": "Treasure oak shrub",
   "block.naturesdelight.bountiful_oak_leaves": "Oaken leaves w' treasure",
 
+  "item.naturesdelight.apple_slice": "Sliver o' scurvy's cure",
+
+  "block.naturesdelight.bountiful_dark_oak_sapling": "Shrub o' blackbeard's treasure",
+  "block.naturesdelight.bountiful_dark_oak_leaves": "Dusken leaves w' treasure",
+
+  "item.naturesdelight.black_acorn": "Blackbeard's tricorn fruit",
+
   "item.naturesdelight.poppy_seeds": "Bits o' red flowarr",
+  "block.naturesdelight.poppy_seeds_sack": "Bag o' bits o' poppy",
   "item.naturesdelight.dandelion_root": "Earthen ancharr o' yellow flower",
+  "block.naturesdelight.dandelion_roots_crate": "Cargo o' root o' yellow flowar",
 
   "item.naturesdelight.rose_cookie": "Good smellin' biscuit",
   "item.naturesdelight.rose_granita": "Fancy landlubber drink",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
-  "item.naturesdelight.rose_water_cordial": "Bilge w' petals n' stuff"
+  "item.naturesdelight.rose_cordial": "Bilge w' petals n' stuff"
 }
