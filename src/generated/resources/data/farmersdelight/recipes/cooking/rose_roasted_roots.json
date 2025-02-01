@@ -1,0 +1,30 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:dandelion_root"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    [
+      {
+        "item": "naturesdelight:dandelion_root"
+      },
+      {
+        "item": "minecraft:beetroot"
+      }
+    ],
+    {
+      "item": "naturesdelight:rose_hip"
+    }
+  ],
+  "result": {
+    "item": "naturesdelight:rose_roasted_roots"
+  }
+}

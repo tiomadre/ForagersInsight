@@ -15,8 +15,13 @@ import vectorwing.farmersdelight.common.item.DrinkableItem;
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDItems {
     public static final ItemSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getItemSubHelper();
-    
+
+    public static final RegistryObject<Item> APPLE_SLICE = HELPER.createItem("apple_slice", () ->
+            new Item(new Item.Properties().food(NDFoods.APPLE_SLICE)));
     public static final RegistryObject<Item> CRUSHED_ICE = HELPER.createItem("crushed_ice", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BLACK_ACORN = HELPER.createItem("black_acorn", () -> new Item(new Item.Properties()));
+
+
 
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
             new ItemNameBlockItem(NDBlocks.POPPY_BUSH.get(), new Item.Properties()));

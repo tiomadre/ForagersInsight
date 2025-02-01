@@ -15,4 +15,6 @@ public class NDFoods {
     public static final FoodProperties ROSE_ROASTED_ROOTS = new FoodProperties.Builder()
             .nutrition(12).saturationMod(1f)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 3600), 1).build();
+    public static final FoodProperties APPLE_SLICE = new FoodProperties.Builder()
+            .nutrition(2).saturationMod(0.3f).alwaysEat().build();
 }

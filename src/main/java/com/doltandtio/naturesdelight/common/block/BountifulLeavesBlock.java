@@ -9,6 +9,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -24,12 +25,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
+
 public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlock {
+    private final Supplier<Item> bounty;
+
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
-    public BountifulLeavesBlock(Properties pProperties) {
-        super(pProperties);
+    public BountifulLeavesBlock(Properties props, Supplier<Item> bounty) {
+        super(props);
+        this.bounty = bounty;
+
         this.registerDefaultState(super.defaultBlockState().setValue(AGE, 0));
     }
 
@@ -87,9 +94,9 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
 
         if (!isFullGrown && pPlayer.getItemInHand(pHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
-        }
-        else if (isFullGrown && playerHasShears) {
-            popResource(pLevel, pPos, new ItemStack(Items.APPLE));
+        } else if (isFullGrown && playerHasShears) {
+            popResource(pLevel, pPos, new ItemStack(this.bounty.get()));
+
             pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, entity -> entity.broadcastBreakEvent(pHand));
 
             pLevel.playSound(null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
@@ -100,8 +107,7 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
 
             pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos, GameEvent.Context.of(pPlayer, blockstate));
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
-        }
-        else {
+        } else {
             return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
     }
@@ -130,8 +136,7 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
         level.setBlock(pos, state.setValue(AGE, aNewAgeArrives), Block.UPDATE_ALL);
     }
 
-    private boolean shittyMethodIReallyWantToWrite(RandomSource random, int times) {
-        if (times <= 0) return true;
-        return random.nextBoolean() && shittyMethodIReallyWantToWrite(random, times - 1);
+    public Item getBounty() {
+        return bounty.get();
     }
 }

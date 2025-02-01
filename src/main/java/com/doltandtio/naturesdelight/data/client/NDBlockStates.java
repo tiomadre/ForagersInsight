@@ -5,7 +5,6 @@ import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -32,12 +31,15 @@ public class NDBlockStates extends NDBlockStatesHelper {
         doubleCrop(ROSE_HIP);
         this.crateBlock(ROSE_HIP_CRATE, "rose_hip");
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
+        this.crossCutout(BOUNTIFUL_DARK_OAK_SAPLING);
+
         this.sackBlock(ROSE_PETALS_SACK);
 
         this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
         this.age5Crop(POPPY_BUSH, NDItems.POPPY_SEEDS);
 
-        this.bountifulLeaf(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
+        this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
+        this.bountifulLeaves(BOUNTIFUL_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
     }
 
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
@@ -82,7 +84,7 @@ public class NDBlockStates extends NDBlockStatesHelper {
         this.blockItem(block.get());
     }
 
-    private void bountifulLeaf(RegistryObject<? extends Block> block, Block base) {
+    private void bountifulLeaves(RegistryObject<? extends Block> block, Block base) {
         BountifulLeavesBlock leavesBlock = (BountifulLeavesBlock) block.get();
 
         this.getVariantBuilder(leavesBlock).forAllStatesExcept(state -> {

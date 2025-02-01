@@ -95,8 +95,11 @@ public class NDLoot extends LootTableProvider {
             this.dropSelf(ROSE_HIP_CRATE.get());
             this.dropSelf(ROSE_PETALS_SACK.get());
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
+            this.dropSelf(BOUNTIFUL_DARK_OAK_SAPLING.get());
 
-            this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, Items.APPLE, BOUNTIFUL_OAK_SAPLING.get().asItem()));
+            this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, BOUNTIFUL_OAK_SAPLING.get()));
+            this.add(BOUNTIFUL_DARK_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_DARK_OAK_LEAVES, BOUNTIFUL_DARK_OAK_SAPLING.get()));
+
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.DANDELION);
             this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.POPPY);
         }
@@ -111,7 +114,7 @@ public class NDLoot extends LootTableProvider {
                             .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3))))));
         }
 
-        private LootTable.Builder createBountifulLeavesDrops(RegistryObject<? extends Block> leafBlock, Item bounty, Item sapling) {
+        private LootTable.Builder createBountifulLeavesDrops(RegistryObject<? extends Block> leafBlock, ItemLike sapling) {
             BountifulLeavesBlock block = (BountifulLeavesBlock) leafBlock.get();
             return createSilkTouchOrShearsDispatchTable(block,
                     this.applyExplosionCondition(block,
@@ -124,7 +127,7 @@ public class NDLoot extends LootTableProvider {
                                     .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_LEAVES_STICK_CHANCES))))
                     .withPool(LootPool.lootPool()
                             .when(HAS_NO_SHEARS_OR_SILK_TOUCH).when(stateCond(leafBlock, BountifulLeavesBlock.AGE, BountifulLeavesBlock.MAX_AGE))
-                            .add(this.applyExplosionCondition(block, LootItem.lootTableItem(bounty))));
+                            .add(this.applyExplosionCondition(block, LootItem.lootTableItem(block.getBounty()))));
         }
 
         private static <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<T> property, String value) {

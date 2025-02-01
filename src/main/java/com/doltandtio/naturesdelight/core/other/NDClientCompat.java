@@ -22,8 +22,7 @@ public class NDClientCompat {
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
-        @SuppressWarnings("unchecked")
-        List<RegistryObject<Block>> foliageColors = (List<RegistryObject<Block>>) (List<?>) Arrays.asList(
+        List<RegistryObject<Block>> foliageColors = Arrays.asList(
                 NDBlocks.BOUNTIFUL_OAK_LEAVES
         );
 

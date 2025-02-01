@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.grower.DarkOakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -42,7 +43,14 @@ public class NDBlocks {
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
-            new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES), () -> Items.APPLE));
+
+    public static final RegistryObject<Block> BOUNTIFUL_DARK_OAK_SAPLING = HELPER.createFuelBlock("bountiful_dark_oak_sapling", () ->
+            new SaplingBlock(new DarkOakTreeGrower(), BlockBehaviour.Properties.copy(Blocks.DARK_OAK_SAPLING)), 100);
+    public static final RegistryObject<Block> BOUNTIFUL_DARK_OAK_LEAVES = HELPER.createBlock("bountiful_dark_oak_leaves", () ->
+            new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_LEAVES), BLACK_ACORN));
+
+
     public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlock("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
 
@@ -58,9 +66,12 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP, POPPY_SEEDS, DANDELION_ROOT)
                     .addItemsAfter(of(Items.OAK_SAPLING), BOUNTIFUL_OAK_SAPLING)
                     .addItemsAfter(of(Items.OAK_LEAVES), BOUNTIFUL_OAK_LEAVES)
+                    .addItemsAfter(of(Items.DARK_OAK_SAPLING), BOUNTIFUL_DARK_OAK_SAPLING)
+                    .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), ROSE_HIP_CRATE, ROSE_PETALS_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                     .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE)
+                    .addItemsAfter(of(Items.APPLE), BLACK_ACORN)
                     .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA, ROSE_CORDIAL)
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE);
