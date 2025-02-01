@@ -2,10 +2,7 @@ package com.doltandtio.naturesdelight.core;
 
 import com.doltandtio.naturesdelight.core.other.NDClientCompat;
 import com.doltandtio.naturesdelight.core.other.NDDataUtil;
-import com.doltandtio.naturesdelight.core.registry.NDBlocks;
-import com.doltandtio.naturesdelight.core.registry.NDFoliagePlacerType;
-import com.doltandtio.naturesdelight.core.registry.NDLootModifiers;
-import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
+import com.doltandtio.naturesdelight.core.registry.*;
 import com.doltandtio.naturesdelight.data.client.NDBlockStates;
 import com.doltandtio.naturesdelight.data.client.NDItemModels;
 import com.doltandtio.naturesdelight.data.server.NDAdvancements;
@@ -24,7 +21,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -37,6 +36,7 @@ public class NaturesDelight {
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public NaturesDelight() {
+		ModLoadingContext context = ModLoadingContext.get();
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		MinecraftForge.EVENT_BUS.register(this);
 
@@ -48,6 +48,8 @@ public class NaturesDelight {
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
+
+		context.registerConfig(ModConfig.Type.COMMON, NDConfig.COMMON_SPEC);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> NDBlocks::setupTabEditors);
 	}
