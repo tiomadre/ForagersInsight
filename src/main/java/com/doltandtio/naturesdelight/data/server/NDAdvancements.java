@@ -19,12 +19,16 @@ public class NDAdvancements extends AdvancementModifierProvider {
 
     @Override
     protected void registerEntries(HolderLookup.Provider provider) {
+        balancedDiet();
+    }
+
+    private void balancedDiet() {
         CriteriaModifier.Builder builder = CriteriaModifier.builder(this.modId);
         AtomicInteger counter = new AtomicInteger(0);
         ForgeRegistries.ITEMS.getValues().stream().filter(item -> ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(NaturesDelight.MOD_ID))
                 .filter(Item::isEdible).forEach(item -> builder.addCriterion("%d".formatted(counter.getAndIncrement()), ConsumeItemTrigger.TriggerInstance.usedItem(
                         ItemPredicate.Builder.item().of(item).build()
-        )));
+                )));
 
         this.entry("husbandry/balanced_diet").selects("husbandry/balanced_diet").addModifier(builder.build());
     }

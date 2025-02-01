@@ -1,4 +1,4 @@
-package com.doltandtio.naturesdelight.common.worldgen.trees.foliage;
+package com.doltandtio.naturesdelight.common.worldgen.trees.grower;
 
 import com.doltandtio.naturesdelight.common.worldgen.NDConfiguredFeatures;
 import net.minecraft.resources.ResourceKey;
