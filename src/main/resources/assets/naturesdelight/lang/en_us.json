@@ -2,7 +2,7 @@
   "item.naturesdelight.crushed_ice": "Crushed Ice",
 
   "block.naturesdelight.rose_hip": "Rose Hip",
-  "block.naturesdelight.rose_hip_crate": "Rose Hip Crate",
+  "block.naturesdelight.rose_hip_sack": "Rose Hip Sack",
 
   "item.naturesdelight.rose_petals": "Rose Petals",
   "block.naturesdelight.rose_petals_sack": "Rose Petals Sack",
@@ -16,7 +16,10 @@
   "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
 
   "item.naturesdelight.black_acorn": "Black Acorn",
+  "block.naturesdelight.black_acorn_sack": "Sack of Black Acorns",
 
+  "item.naturesdelight.spruce_tips": "Spruce Tips",
+  "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips",
 
   "item.naturesdelight.poppy_seeds": "Poppy Seeds",
   "block.naturesdelight.poppy_seeds_sack": "Sack of Poppy Seeds",

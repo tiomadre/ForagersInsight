@@ -2,7 +2,7 @@
   "item.naturesdelight.crushed_ice": "Doubloons o' frost",
 
   "block.naturesdelight.rose_hip": "Bit o' Rose",
-  "block.naturesdelight.rose_hip_crate": "Cargo o' rose bits",
+  "block.naturesdelight.rose_hip_sack": "Big bag o' rose bits",
 
   "item.naturesdelight.rose_petals": "Petal o' rose",
   "block.naturesdelight.rose_petals_sack": "Bag o' pretty petals",
@@ -16,9 +16,14 @@
   "block.naturesdelight.bountiful_dark_oak_leaves": "Dusken leaves w' treasure",
 
   "item.naturesdelight.black_acorn": "Blackbeard's tricorn fruit",
+  "block.naturesdelight.black_acorn_sack": "Trove o' Blackbeard's fruits",
+
+  "item.naturesdelight.spruce_tips": "Pine tips",
+  "block.naturesdelight.spruce_tips_sack": "Sack o' pine tips",
 
   "item.naturesdelight.poppy_seeds": "Bits o' red flowarr",
   "block.naturesdelight.poppy_seeds_sack": "Bag o' bits o' poppy",
+
   "item.naturesdelight.dandelion_root": "Earthen ancharr o' yellow flower",
   "block.naturesdelight.dandelion_roots_crate": "Cargo o' root o' yellow flowar",
 
