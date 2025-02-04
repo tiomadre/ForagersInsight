@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_rose_hip": {
+    "has_black_acorn": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_hip"
+              "naturesdelight:black_acorn"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_hip_crate"
+        "recipe": "naturesdelight:black_acorn_sack"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_rose_hip",
+      "has_black_acorn",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_hip_crate"
+      "naturesdelight:black_acorn_sack"
     ]
   },
   "sends_telemetry_event": false

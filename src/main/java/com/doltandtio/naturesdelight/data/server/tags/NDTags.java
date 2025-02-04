@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.core.util.TagUtil;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 
 public class NDTags {
     public static class ItemTag {
@@ -12,6 +13,36 @@ public class NDTags {
 
         private static TagKey<Item> modTag(String namespace) {
             return TagUtil.itemTag(NaturesDelight.MOD_ID, namespace);
+        }
+
+
+        public static final TagKey<Item> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
+        public static final TagKey<Item> STORAGE_BLOCK_ROSE_PETALS = storageTag("rose_petals");
+        public static final TagKey<Item> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
+        public static final TagKey<Item> STORAGE_BLOCK_DANDELION_ROOT = storageTag("dandelion_root");
+        public static final TagKey<Item> STORAGE_BLOCK_POPPY_SEEDS = storageTag("poppy_seeds");
+        public static final TagKey<Item> STORAGE_BLOCK_BLACK_ACORNS = storageTag("black_acorns");
+
+        public static TagKey<Item> storageTag(String thing) {
+            return TagUtil.itemTag("forge", "storage_blocks/" + thing);
+        }
+    }
+
+    public static class BlockTag {
+
+        public static final TagKey<Block> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
+        public static final TagKey<Block> STORAGE_BLOCK_ROSE_PETALS = storageTag("rose_petals");
+        public static final TagKey<Block> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
+        public static final TagKey<Block> STORAGE_BLOCK_DANDELION_ROOT = storageTag("dandelion_root");
+        public static final TagKey<Block> STORAGE_BLOCK_POPPY_SEEDS = storageTag("poppy_seeds");
+        public static final TagKey<Block> STORAGE_BLOCK_BLACK_ACORNS = storageTag("black_acorns");
+
+        public static TagKey<Block> blockTag(String namespace) {
+            return TagUtil.blockTag(NaturesDelight.MOD_ID, namespace);
+        }
+
+        public static TagKey<Block> storageTag(String thing) {
+            return TagUtil.blockTag("forge", "storage_blocks/" + thing);
         }
     }
 

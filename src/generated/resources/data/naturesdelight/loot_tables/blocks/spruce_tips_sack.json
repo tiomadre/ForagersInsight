@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "naturesdelight:rose_hip_crate"
+          "name": "naturesdelight:spruce_tips_sack"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "naturesdelight:blocks/rose_hip_crate"
+  "random_sequence": "naturesdelight:blocks/spruce_tips_sack"
 }

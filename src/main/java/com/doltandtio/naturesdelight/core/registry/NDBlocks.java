@@ -49,21 +49,27 @@ public class NDBlocks {
             new Block(BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
     public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->
             new Block(BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
-    public static final RegistryObject<Block> ROSE_HIP_CRATE = HELPER.createBlock("rose_hip_crate", () -> new Block(
-            BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
+    public static final RegistryObject<Block> ROSE_HIP_SACK = HELPER.createBlock("rose_hip_sack", () -> new Block(
+            BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
     public static final RegistryObject<Block> ROSE_PETALS_SACK = HELPER.createBlock("rose_petals_sack", () -> new Block(
+            BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
+
+    public static final RegistryObject<Block> BLACK_ACORN_SACK = HELPER.createBlock("black_acorn_sack", () -> new Block(
+            BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
+    public static final RegistryObject<Block> SPRUCE_TIPS_SACK = HELPER.createBlock("spruce_tips_sack", () -> new Block(
             BlockBehaviour.Properties.copy(ModBlocks.RICE_BAG.get())));
 
 
     public static void setupTabEditors() {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP, POPPY_SEEDS, DANDELION_ROOT)
+                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP, POPPY_SEEDS, DANDELION_ROOT, SPRUCE_TIPS)
                     .addItemsAfter(of(Items.OAK_SAPLING), BOUNTIFUL_OAK_SAPLING)
                     .addItemsAfter(of(Items.OAK_LEAVES), BOUNTIFUL_OAK_LEAVES)
                     .addItemsAfter(of(Items.DARK_OAK_SAPLING), BOUNTIFUL_DARK_OAK_SAPLING)
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
-                    .addItemsAfter(of(Items.HAY_BLOCK), ROSE_HIP_CRATE, ROSE_PETALS_SACK)
+                    .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, ROSE_PETALS_SACK,
+                            POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
                     .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE, ACORN_COOKIE)
                     .addItemsAfter(of(Items.APPLE), BLACK_ACORN)

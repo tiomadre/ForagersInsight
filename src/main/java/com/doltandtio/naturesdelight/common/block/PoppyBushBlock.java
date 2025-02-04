@@ -1,6 +1,7 @@
 package com.doltandtio.naturesdelight.common.block;
 
 import com.doltandtio.naturesdelight.core.registry.NDBlocks;
+import com.doltandtio.naturesdelight.core.registry.NDItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -14,12 +15,14 @@ public class PoppyBushBlock extends CropBlock {
         super(pProperties);
     }
 
+    @Override
     public BlockState getPlant(BlockGetter level, BlockPos pos) {
         return NDBlocks.POPPY_BUSH.get().defaultBlockState();
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.CABBAGE_SEEDS.get();
+        return NDItems.POPPY_SEEDS.get();
     }
 
 }

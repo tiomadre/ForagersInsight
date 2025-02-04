@@ -24,6 +24,7 @@ public class NDItems {
     public static final RegistryObject<Item> ACORN_COOKIE = HELPER.createItem("acorn_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
 
+    public static final RegistryObject<Item> SPRUCE_TIPS = HELPER.createItem("spruce_tips", () -> new Item(new Item.Properties()));
 
 
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->

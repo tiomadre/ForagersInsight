@@ -5,6 +5,7 @@
   "refmap": "naturesdelight.refmap.json",
   "mixins": [
     "DarkOakTreeGrowerMixin",
+    "MobEffectInstantMixin",
     "OakTreeGrowerMixin"
   ],
   "injectors": {

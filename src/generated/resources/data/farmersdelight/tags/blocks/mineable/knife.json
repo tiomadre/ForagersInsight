@@ -1,6 +1,9 @@
 {
   "values": [
+    "naturesdelight:rose_hip_sack",
     "naturesdelight:rose_petals_sack",
-    "naturesdelight:poppy_seeds_sack"
+    "naturesdelight:poppy_seeds_sack",
+    "naturesdelight:spruce_tips_sack",
+    "naturesdelight:black_acorn_sack"
   ]
 }

@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "naturesdelight:rose_hip_sack"
+      "item": "naturesdelight:spruce_tips_sack"
     }
   ],
   "result": {
     "count": 9,
-    "item": "naturesdelight:rose_hip"
+    "item": "naturesdelight:spruce_tips"
   }
 }

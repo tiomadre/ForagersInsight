@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_rose_hip_sack": {
+    "has_spruce_tips": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_hip_sack"
+              "naturesdelight:spruce_tips"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_hip"
+        "recipe": "naturesdelight:spruce_tips_sack"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_rose_hip_sack",
+      "has_spruce_tips",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_hip"
+      "naturesdelight:spruce_tips_sack"
     ]
   },
   "sends_telemetry_event": false

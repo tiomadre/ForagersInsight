@@ -29,10 +29,10 @@ public class NDBlockStates extends NDBlockStatesHelper {
     @Override
     protected void registerStatesAndModels() {
         doubleCrop(ROSE_HIP);
-        this.crateBlock(ROSE_HIP_CRATE, "rose_hip");
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.crossCutout(BOUNTIFUL_DARK_OAK_SAPLING);
 
+        this.sackBlock(ROSE_HIP_SACK);
         this.sackBlock(ROSE_PETALS_SACK);
 
         this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
@@ -68,8 +68,8 @@ public class NDBlockStates extends NDBlockStatesHelper {
     public void sackBlock(RegistryObject<? extends Block> block) {
         String name = name(block.get());
         this.simpleBlock(block.get(), models().cube(name,
-                modTexture(name + "_bottom"), modTexture(name + "_top"),  modTexture(name + "_unique_side"),
-                modTexture(name + "_unique_side"), modTexture(name + "_side"),
+                modTexture(name + "_bottom"), modTexture(name + "_top"),  modTexture(name + "_side_special"),
+                modTexture(name + "_side_special"), modTexture(name + "_side"),
                 modTexture(name + "_side")).texture("particle", modTexture(name + "_top")));
 
         this.blockItem(block.get());

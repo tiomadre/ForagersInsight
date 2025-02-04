@@ -37,11 +37,15 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(NDTags.ItemTag.ICE).requires(GLASS_BOTTLE)
                 .unlockedBy("has_rose_hip", has(ROSE_HIP.get())).save(consumer);
 
-        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_CRATE.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_PETALS.get(), RecipeCategory.DECORATIONS, ROSE_PETALS_SACK.get());
 
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, DANDELION_ROOT.get(), RecipeCategory.DECORATIONS, DANDELION_ROOTS_CRATE.get());
+
+        this.storageRecipes(consumer, RecipeCategory.FOOD, BLACK_ACORN.get(), RecipeCategory.DECORATIONS, BLACK_ACORN_SACK.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, SPRUCE_TIPS.get(), RecipeCategory.DECORATIONS, SPRUCE_TIPS_SACK.get());
+
         NDCookingRecipes.buildRecipes(consumer);
         NDCuttingRecipes.buildRecipes(consumer);
     }

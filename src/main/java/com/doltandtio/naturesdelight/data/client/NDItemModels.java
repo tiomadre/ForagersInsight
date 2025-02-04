@@ -14,7 +14,7 @@ public class NDItemModels extends BlueprintItemModelProvider {
 
     @Override
     protected void registerModels() {
-        this.generatedItem(BLACK_ACORN, APPLE_SLICE, CRUSHED_ICE,
+        this.generatedItem(BLACK_ACORN, APPLE_SLICE, CRUSHED_ICE, SPRUCE_TIPS,
                 ROSE_PETALS, ROSE_COOKIE, ROSE_GRANITA, ROSE_ROASTED_ROOTS, ROSE_CORDIAL);
 
     }

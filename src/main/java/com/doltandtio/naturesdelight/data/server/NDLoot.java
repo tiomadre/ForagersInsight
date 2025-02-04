@@ -92,8 +92,11 @@ public class NDLoot extends LootTableProvider {
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(Blocks.ROSE_BUSH).when(lower(ROSE_HIP)))));
 
-            this.dropSelf(ROSE_HIP_CRATE.get());
+            this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(ROSE_PETALS_SACK.get());
+            this.dropSelf(BLACK_ACORN_SACK.get());
+            this.dropSelf(SPRUCE_TIPS_SACK.get());
+
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
             this.dropSelf(BOUNTIFUL_DARK_OAK_SAPLING.get());
 
