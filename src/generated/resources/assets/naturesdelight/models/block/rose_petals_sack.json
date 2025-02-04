@@ -3,7 +3,7 @@
   "textures": {
     "down": "naturesdelight:block/rose_petals_sack_bottom",
     "east": "naturesdelight:block/rose_petals_sack_side",
-    "north": "naturesdelight:block/rose_petals_sack_side_special",
+    "north": "naturesdelight:block/rose_petals_sack_side",
     "particle": "naturesdelight:block/rose_petals_sack_top",
     "south": "naturesdelight:block/rose_petals_sack_side_special",
     "up": "naturesdelight:block/rose_petals_sack_top",

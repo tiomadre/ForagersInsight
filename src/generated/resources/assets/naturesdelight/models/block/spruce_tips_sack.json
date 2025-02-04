@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "naturesdelight:block/spruce_tips_sack_bottom",
+    "east": "naturesdelight:block/spruce_tips_sack_side",
+    "north": "naturesdelight:block/spruce_tips_sack_side",
+    "particle": "naturesdelight:block/spruce_tips_sack_top",
+    "south": "naturesdelight:block/spruce_tips_sack_side_special",
+    "up": "naturesdelight:block/spruce_tips_sack_top",
+    "west": "naturesdelight:block/spruce_tips_sack_side"
+  }
+}
