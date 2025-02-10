@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "naturesdelight:block/poppy_seeds_sack_bottom",
+    "east": "naturesdelight:block/poppy_seeds_sack_side",
+    "north": "naturesdelight:block/poppy_seeds_sack_side",
+    "particle": "naturesdelight:block/poppy_seeds_sack_top",
+    "south": "naturesdelight:block/poppy_seeds_sack_side_special",
+    "up": "naturesdelight:block/poppy_seeds_sack_top",
+    "west": "naturesdelight:block/poppy_seeds_sack_side"
+  }
+}

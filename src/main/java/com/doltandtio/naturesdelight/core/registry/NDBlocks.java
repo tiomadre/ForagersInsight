@@ -1,9 +1,6 @@
 package com.doltandtio.naturesdelight.core.registry;
 
-import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
-import com.doltandtio.naturesdelight.common.block.DandelionBushBlock;
-import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
-import com.doltandtio.naturesdelight.common.block.PoppyBushBlock;
+import com.doltandtio.naturesdelight.common.block.*;
 import com.doltandtio.naturesdelight.common.worldgen.trees.grower.BountifulDarkOakTreeGrower;
 import com.doltandtio.naturesdelight.common.worldgen.trees.grower.BountifulOakGrower;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
@@ -16,6 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.grower.DarkOakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -26,6 +24,9 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
+
+    public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
+            new TapperBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
     public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
             new PoppyBushBlock(BlockBehaviour.Properties.copy(Blocks.BEETROOTS)));

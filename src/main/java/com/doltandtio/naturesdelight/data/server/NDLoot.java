@@ -39,6 +39,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.Map;
@@ -102,6 +103,8 @@ public class NDLoot extends LootTableProvider {
 
             this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, BOUNTIFUL_OAK_SAPLING.get()));
             this.add(BOUNTIFUL_DARK_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_DARK_OAK_LEAVES, BOUNTIFUL_DARK_OAK_SAPLING.get()));
+
+            this.dropOther(TAPPER.get(), ModItems.IRON_KNIFE.get());
 
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.DANDELION);
             this.dropSelf(DANDELION_ROOTS_CRATE.get());

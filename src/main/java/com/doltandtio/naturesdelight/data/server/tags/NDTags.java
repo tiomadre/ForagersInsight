@@ -29,6 +29,7 @@ public class NDTags {
     }
 
     public static class BlockTag {
+        public static final TagKey<Block> TAPPABLE = blockTag("tappable");
 
         public static final TagKey<Block> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
         public static final TagKey<Block> STORAGE_BLOCK_ROSE_PETALS = storageTag("rose_petals");

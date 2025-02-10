@@ -20,8 +20,6 @@ import java.util.function.Predicate;
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 
 public class NDBlockStates extends NDBlockStatesHelper {
-    private static final String ITEM_GENERATED = "item/generated";
-
     public NDBlockStates(GatherDataEvent e) {
         super(e.getGenerator().getPackOutput(), NaturesDelight.MOD_ID, e.getExistingFileHelper());
     }
@@ -38,6 +36,7 @@ public class NDBlockStates extends NDBlockStatesHelper {
         this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
         this.sackBlock(SPRUCE_TIPS_SACK);
         this.sackBlock(BLACK_ACORN_SACK);
+        this.sackBlock(POPPY_SEEDS_SACK);
 
         this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
         this.age5Crop(POPPY_BUSH, NDItems.POPPY_SEEDS);
