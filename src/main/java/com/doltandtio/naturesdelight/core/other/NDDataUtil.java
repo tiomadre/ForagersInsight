@@ -27,7 +27,6 @@ public class NDDataUtil {
 
         DataUtil.registerCompostable(POPPY_SEEDS_SACK.get(), 1.0f);
         DataUtil.registerCompostable(ROSE_HIP_SACK.get(), 1.0f);
-        DataUtil.registerCompostable(ROSE_PETALS_SACK.get(), 1.0f);
         DataUtil.registerCompostable(SPRUCE_TIPS_SACK.get(), 1.0f);
        //Food
         DataUtil.registerCompostable(ACORN_COOKIE.get(), 0.85f);

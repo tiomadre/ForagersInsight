@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: Nature Delight
+Specification-Vendor: Team Doltum and Tio
+Specification-Version: 1
+Implementation-Title: Nature Delight
+Implementation-Version: 1.0.0
+Implementation-Vendor: Team Doltum and Tio
+Implementation-Timestamp: 2025-01-31T15:30:07-0800
+MixinConfigs: naturesdelight.mixins.json
+
