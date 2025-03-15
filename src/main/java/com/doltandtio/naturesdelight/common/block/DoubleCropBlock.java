@@ -81,7 +81,7 @@ public class DoubleCropBlock extends CropBlock implements BonemealableBlock {
         }
     }
 
-    // increases the current age of the plant
+    // Increases the current age of the plant
     private void mature(int stages, Level level, BlockState state, BlockPos pos) {
         if (this.isMaxAge(state)) {
             return;
@@ -116,7 +116,7 @@ public class DoubleCropBlock extends CropBlock implements BonemealableBlock {
         mature(1, level, state, pos);
     }
 
-    // blockstates stuff
+    // Blockstates stuff
     @Override
     protected @NotNull IntegerProperty getAgeProperty() {
         return AGE;

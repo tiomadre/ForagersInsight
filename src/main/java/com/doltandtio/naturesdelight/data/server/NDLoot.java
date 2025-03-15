@@ -3,6 +3,8 @@ package com.doltandtio.naturesdelight.data.server;
 import com.doltandtio.naturesdelight.common.block.BountifulLeavesBlock;
 import com.doltandtio.naturesdelight.common.block.DoubleCropBlock;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.core.registry.NDBlocks;
+import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -79,22 +81,21 @@ public class NDLoot extends LootTableProvider {
 
         @Override
         protected void generate() {
-            this.add(ROSE_HIP.get(), this.applyExplosionDecay(ROSE_HIP.get(),
+            this.add(NDBlocks.ROSE_HIP.get(), this.applyExplosionDecay(NDItems.ROSE_HIP.get(),
                 LootTable.lootTable()
-                        .withPool(LootPool.lootPool().when(stateCond(ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
-                                .add(LootItem.lootTableItem(ROSE_HIP.get())))
-                        .withPool(LootPool.lootPool().when(lower(ROSE_HIP))
-                                .add(LootItem.lootTableItem(ROSE_HIP.get()))
-                                        .when(lower(ROSE_HIP))
-                                        .when(stateCond(ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
+                        .withPool(LootPool.lootPool().when(stateCond(NDBlocks.ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
+                                .add(LootItem.lootTableItem(NDItems.ROSE_HIP.get())))
+                        .withPool(LootPool.lootPool().when(lower(NDBlocks.ROSE_HIP))
+                                .add(LootItem.lootTableItem(NDItems.ROSE_HIP.get()))
+                                        .when(lower(NDBlocks.ROSE_HIP))
+                                        .when(stateCond(NDBlocks.ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower(ROSE_HIP)))
+                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower(NDBlocks.ROSE_HIP)))
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(Blocks.ROSE_BUSH).when(lower(ROSE_HIP)))));
+                                .add(LootItem.lootTableItem(Blocks.ROSE_BUSH).when(lower(NDBlocks.ROSE_HIP)))));
 
             this.dropSelf(ROSE_HIP_SACK.get());
-            this.dropSelf(ROSE_PETALS_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
             this.dropSelf(SPRUCE_TIPS_SACK.get());
 

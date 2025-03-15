@@ -1,6 +1,7 @@
 package com.doltandtio.naturesdelight.data.client;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
+import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 
@@ -14,8 +15,7 @@ public class NDItemModels extends BlueprintItemModelProvider {
 
     @Override
     protected void registerModels() {
-        this.generatedItem(BLACK_ACORN, APPLE_SLICE, CRUSHED_ICE, SPRUCE_TIPS,
-                ROSE_PETALS, ROSE_COOKIE, ROSE_GRANITA, ROSE_ROASTED_ROOTS, ROSE_CORDIAL);
+        this.generatedItem(ACORN_COOKIE,APPLE_SLICE, MEADOW_MEDLEY, ROSE_HIP, SPRUCE_TIPS, ROSE_PETALS, ROSE_COOKIE, ROSE_GRANITA, ROSE_ROASTED_ROOTS, ROSE_CORDIAL);
 
     }
 }

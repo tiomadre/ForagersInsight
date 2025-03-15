@@ -19,8 +19,7 @@ import java.util.function.Supplier;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
-import static net.minecraft.world.item.Items.GLASS_BOTTLE;
-import static net.minecraft.world.item.Items.MELON_SLICE;
+import static net.minecraft.world.item.Items.*;
 
 public class NDCraftingRecipes extends BlueprintRecipeProvider {
     public NDCraftingRecipes(GatherDataEvent e) {
@@ -29,16 +28,20 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        cookie(ROSE_COOKIE, ROSE_HIP, consumer);
+        cookie(ROSE_COOKIE, NDItems.ROSE_HIP, consumer);
         cookie(ACORN_COOKIE, BLACK_ACORN, consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, NDItems.ROSE_GRANITA.get())
-                .requires(ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
+                .requires(NDItems.ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
                 .requires(NDTags.ItemTag.ICE).requires(GLASS_BOTTLE)
-                .unlockedBy("has_rose_hip", has(ROSE_HIP.get())).save(consumer);
+                .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
 
-        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
-        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_PETALS.get(), RecipeCategory.DECORATIONS, ROSE_PETALS_SACK.get());
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MEADOW_MEDLEY.get())
+                .requires(APPLE_SLICE.get()).requires(POPPY_SEEDS.get()).requires(DANDELION).requires(DANDELION)
+                .requires(BOWL)
+                .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
+
+        this.storageRecipes(consumer, RecipeCategory.FOOD, NDItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
 
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, DANDELION_ROOT.get(), RecipeCategory.DECORATIONS, DANDELION_ROOTS_CRATE.get());
