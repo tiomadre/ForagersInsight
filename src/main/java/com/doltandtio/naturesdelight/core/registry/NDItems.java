@@ -40,7 +40,9 @@ public class NDItems {
     public static final RegistryObject<Item> ROSE_COOKIE = HELPER.createItem("rose_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
 
-
+//Meats
+    public static final RegistryObject<Item> RAW_RABBIT_LEG = HELPER.createItem("raw_rabbit_leg",() -> new ConsumableItem(
+            new Item.Properties().food((NDFoods.RAW_RABBIT_LEG))));
 //Dishes
     public static final RegistryObject<Item> MEADOW_MEDLEY = HELPER.createItem("meadow_medley",() -> new ConsumableItem(
             new Item.Properties().food(NDFoods.MEADOW_MEDLEY).craftRemainder(Items.BOWL)));

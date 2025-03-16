@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_rose_petals_sack": {
+    "has_poppy_seed": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_petals_sack"
+              "naturesdelight:poppy_seeds"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_petals"
+        "recipe": "naturesdelight:meadow_medley"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_rose_petals_sack",
+      "has_poppy_seed",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_petals"
+      "naturesdelight:meadow_medley"
     ]
   },
   "sends_telemetry_event": false

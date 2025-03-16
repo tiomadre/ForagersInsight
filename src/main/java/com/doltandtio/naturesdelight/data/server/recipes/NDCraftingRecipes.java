@@ -37,7 +37,7 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MEADOW_MEDLEY.get())
-                .requires(APPLE_SLICE.get()).requires(POPPY_SEEDS.get()).requires(DANDELION).requires(DANDELION)
+                .requires(APPLE_SLICE.get()).requires(POPPY_SEEDS.get()).requires(POPPY_SEEDS.get()).requires(DANDELION).requires(DANDELION)
                 .requires(BOWL)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
 

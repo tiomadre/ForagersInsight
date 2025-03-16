@@ -26,7 +26,6 @@ public class NDItemTags extends ItemTagsProvider {
 
     protected void registerForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(ROSE_HIP_SACK.get().asItem());
-        tag(STORAGE_BLOCK_ROSE_PETALS).add(ROSE_PETALS_SACK.get().asItem());
 
         tag(STORAGE_BLOCK_POPPY_SEEDS).add(POPPY_SEEDS_SACK.get().asItem());
         tag(STORAGE_BLOCK_DANDELION_ROOT).add(DANDELION_ROOTS_CRATE.get().asItem());

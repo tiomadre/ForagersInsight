@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "naturesdelight:apple_slice"
+    },
+    {
+      "item": "naturesdelight:poppy_seeds"
+    },
+    {
+      "item": "naturesdelight:poppy_seeds"
+    },
+    {
+      "item": "minecraft:dandelion"
+    },
+    {
+      "item": "minecraft:dandelion"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "naturesdelight:meadow_medley"
+  }
+}

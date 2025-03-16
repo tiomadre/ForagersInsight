@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "tag": "forge:raw_fishes/cod"
+    },
+    {
+      "item": "farmersdelight:pumpkin_slice"
+    },
+    {
+      "tag": "forge:milk/milk_bottle"
+    },
+    {
+      "item": "farmersdelight:tomato"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "naturesdelight:cod_and_pumpkin_stew"
+  }
+}

@@ -27,22 +27,27 @@ public class NDBlockStates extends NDBlockStatesHelper {
     @Override
     protected void registerStatesAndModels() {
         doubleCrop(ROSE_HIP);
-        this.crossCutout(BOUNTIFUL_OAK_SAPLING);
-        this.crossCutout(BOUNTIFUL_DARK_OAK_SAPLING);
-
         this.sackBlock(ROSE_HIP_SACK);
-        this.sackBlock(ROSE_PETALS_SACK);
 
-        this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
-        this.sackBlock(SPRUCE_TIPS_SACK);
+        this.crossCutout(BOUNTIFUL_OAK_SAPLING);
+        this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
+
+        this.crossCutout(BOUNTIFUL_DARK_OAK_SAPLING);
+        this.bountifulLeaves(BOUNTIFUL_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
         this.sackBlock(BLACK_ACORN_SACK);
-        this.sackBlock(POPPY_SEEDS_SACK);
 
         this.age5Crop(DANDELION_BUSH, NDItems.DANDELION_ROOT);
+        this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
+
+        this.sackBlock(SPRUCE_TIPS_SACK);
+
+
+
+        this.sackBlock(POPPY_SEEDS_SACK);
         this.age5Crop(POPPY_BUSH, NDItems.POPPY_SEEDS);
 
-        this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
-        this.bountifulLeaves(BOUNTIFUL_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
+
+
     }
 
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {

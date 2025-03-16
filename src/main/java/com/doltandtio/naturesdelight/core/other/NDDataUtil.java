@@ -17,7 +17,7 @@ public class NDDataUtil {
         DataUtil.registerCompostable(BOUNTIFUL_OAK_SAPLING.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_DARK_OAK_LEAVES.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_DARK_OAK_SAPLING.get(), 0.3f);
-       //Non Edible Crop Drops
+       //Non-Edible Crop Drops
         DataUtil.registerCompostable(POPPY_SEEDS.get(), 0.3f);
         DataUtil.registerCompostable(ROSE_PETALS.get(), 0.3f);
 

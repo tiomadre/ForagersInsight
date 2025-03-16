@@ -1,12 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_rose_petals": {
+    "has_any_ingredient": {
       "conditions": {
         "items": [
           {
             "items": [
-              "naturesdelight:rose_petals"
+              "farmersdelight:pumpkin_slice",
+              "minecraft:cod"
             ]
           }
         ]
@@ -15,21 +16,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "naturesdelight:rose_petals_sack"
+        "recipe": "farmersdelight:cooking/cod_and_pumpkin_stew"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_rose_petals",
+      "has_any_ingredient",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "naturesdelight:rose_petals_sack"
+      "farmersdelight:cooking/cod_and_pumpkin_stew"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

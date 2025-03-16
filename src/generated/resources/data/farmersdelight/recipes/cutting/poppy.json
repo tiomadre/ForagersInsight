@@ -1,0 +1,16 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:poppy"
+    }
+  ],
+  "result": [
+    {
+      "item": "naturesdelight:poppy_seeds"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}

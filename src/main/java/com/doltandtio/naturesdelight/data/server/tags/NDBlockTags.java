@@ -48,10 +48,8 @@ public class NDBlockTags extends BlockTagsProvider {
 
     protected void registerForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(ROSE_HIP_SACK.get());
-
         tag(STORAGE_BLOCK_POPPY_SEEDS).add(POPPY_SEEDS_SACK.get());
         tag(STORAGE_BLOCK_DANDELION_ROOT).add(DANDELION_ROOTS_CRATE.get());
-
         tag(STORAGE_BLOCK_SPRUCE_TIPS).add(SPRUCE_TIPS_SACK.get());
         tag(STORAGE_BLOCK_BLACK_ACORNS).add(BLACK_ACORN_SACK.get());
     }
