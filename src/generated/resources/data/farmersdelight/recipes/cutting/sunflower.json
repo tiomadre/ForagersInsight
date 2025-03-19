@@ -1,0 +1,16 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    }
+  ],
+  "result": [
+    {
+      "item": "naturesdelight:sunflower_kernels"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}
