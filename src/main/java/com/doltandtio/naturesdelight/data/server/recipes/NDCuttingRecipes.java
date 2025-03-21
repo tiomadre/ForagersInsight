@@ -13,6 +13,16 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class NDCuttingRecipes {
     public static void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
+        // Fruit & Vegetable Cuts
         CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.APPLE), of(ForgeTags.TOOLS_KNIVES), NDItems.APPLE_SLICE.get(), 2).build(consumer);
+        // Meat Cuts
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.RABBIT), of(ForgeTags.TOOLS_KNIVES), NDItems.RAW_RABBIT_LEG.get(), 2)
+                .addResultWithChance(Items.RABBIT_FOOT,0.3f)
+                .build(consumer);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.COOKED_RABBIT), of(ForgeTags.TOOLS_KNIVES), NDItems.COOKED_RABBIT_LEG.get(), 2)
+                .addResultWithChance(Items.RABBIT_FOOT,0.3f)
+                .build(consumer);
     }
+
+
 }
