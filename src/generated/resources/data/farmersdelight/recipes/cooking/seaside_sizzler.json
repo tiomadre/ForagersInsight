@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:tropical_fish"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "farmersdelight:rice"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "naturesdelight:seaside_sizzler"
+  }
+}
