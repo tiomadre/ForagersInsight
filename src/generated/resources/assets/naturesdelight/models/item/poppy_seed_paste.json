@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "naturesdelight:item/acorn_cookie"
+    "layer0": "naturesdelight:item/poppy_seed_paste"
   }
 }

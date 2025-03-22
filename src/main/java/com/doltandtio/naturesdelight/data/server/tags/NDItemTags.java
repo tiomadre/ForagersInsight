@@ -23,7 +23,9 @@ public class NDItemTags extends ItemTagsProvider {
                 .addOptional(new ResourceLocation("neapolitan", "ice_cubes"));
         this.tag(NDTags.ItemTag.SEEDS).add(NDItems.BLACK_ACORN.get(), NDItems.POPPY_SEEDS.get(), NDItems.SUNFLOWER_KERNELS.get());
         this.tag(NDTags.ItemTag.MILK_BUCKET).add(NDItems.SEED_MILK_BUCKET.get());
-        this.tag(NDTags.ItemTag.MILK_BOTTLE).add(NDItems.SEED_MILK_BUCKET.get());
+        this.tag(NDTags.ItemTag.MILK_BOTTLE).add(NDItems.SEED_MILK_BOTTLE.get());
+        this.tag(NDTags.ItemTag.APPLE).add(NDItems.APPLE_SLICE.get(),Items.APPLE);
+        this.tag(NDTags.ItemTag.POPPY_SEEDS).add(NDItems.POPPY_SEEDS.get(),NDItems.POPPY_SEED_PASTE.get());
 
         registerForgeTags();
     }

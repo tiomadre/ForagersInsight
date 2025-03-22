@@ -24,6 +24,7 @@
       "item": "naturesdelight:rose_hip"
     }
   ],
+  "recipe_book_tab": "meals",
   "result": {
     "item": "naturesdelight:rose_roasted_roots"
   }

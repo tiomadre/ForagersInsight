@@ -7,13 +7,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
+import javax.swing.text.html.HTML;
+
 public class NDTags {
     public static class ItemTag {
         public static final TagKey<net.minecraft.world.item.Item> ICE = TagUtil.itemTag("forge", "ice");
         public static final TagKey<net.minecraft.world.item.Item> SEEDS = TagUtil.itemTag("forge", "seeds");
         public static final TagKey<net.minecraft.world.item.Item> MILK_BUCKET = TagUtil.itemTag("forge", "milk/milk");
         public static final TagKey<net.minecraft.world.item.Item> MILK_BOTTLE = TagUtil.itemTag("forge", "milk/milk_bottle");
-
+        public static final TagKey<net.minecraft.world.item.Item> APPLE = TagUtil.itemTag("forge", "apple");
+        public static final TagKey<net.minecraft.world.item.Item> POPPY_SEEDS = TagUtil.itemTag("forge", "seeds/poppy_seeds");
 
         private static TagKey<Item> modTag(String namespace) {
             return TagUtil.itemTag(NaturesDelight.MOD_ID, namespace);

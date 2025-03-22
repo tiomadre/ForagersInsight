@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "food",
+  "category": "misc",
   "ingredients": [
     {
       "item": "naturesdelight:seed_milk_bucket"
@@ -19,7 +19,6 @@
     }
   ],
   "result": {
-    "item": "naturesdelight:seed_milk_bottle",
-    "count": 4
+    "item": "naturesdelight:seed_milk_bottle"
   }
 }

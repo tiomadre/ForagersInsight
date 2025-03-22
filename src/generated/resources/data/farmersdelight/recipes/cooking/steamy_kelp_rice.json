@@ -4,13 +4,13 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "minecraft:dried_kelp"
-    },
-    {
-      "item": "minecraft:dried_kelp"
-    },
-    {
       "item": "farmersdelight:rice"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "item": "minecraft:dried_kelp"
     }
   ],
   "recipe_book_tab": "meals",

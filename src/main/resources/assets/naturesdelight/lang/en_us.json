@@ -1,28 +1,47 @@
 {
-
   "item.naturesdelight.acorn_cookie": "Acorn Cookie",
+  "item.naturesdelight.rose_cookie": "Rose Cookie",
+  "item.naturesdelight.red_velvet_cupcake": "Red Velvet Cupcake",
+
   "item.naturesdelight.apple_slice": "Apple Slice",
   "item.naturesdelight.black_acorn": "Black Acorn",
-  "item.naturesdelight.crushed_ice": "Crushed Ice",
   "item.naturesdelight.dandelion_root": "Dandelion Root",
-  "item.naturesdelight.meadow_medley": "Meadow Medley",
   "item.naturesdelight.poppy_seeds": "Poppy Seeds",
-  "item.naturesdelight.rose_cookie": "Rose Cookie",
-  "item.naturesdelight.rose_cordial": "Rose Cordial",
   "item.naturesdelight.rose_hip": "Rose Hips",
+  "item.naturesdelight.spruce_tips": "Spruce Tips",
+  "item.naturesdelight.sunflower_kernels": "Sunflower Kernels",
+
+  "item.naturesdelight.cod_and_pumpkin_stew": "Cod and Pumpkin Stew",
+  "item.naturesdelight.kelp_and_beet_salad": "Kelp and Beet Salad",
+  "item.naturesdelight.kelp_wrap": "Kelp Wrap",
+  "item.naturesdelight.meadow_medley": "Meadow Medley",
+  "item.naturesdelight.rose_cordial": "Rose Cordial",
   "item.naturesdelight.rose_granita": "Rose Granita",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
+  "item.naturesdelight.seaside_sizzler": "Seaside Sizzler",
+  "item.naturesdelight.steamy_kelp_rice": "Steamy Kelp Rice",
+
+  "item.naturesdelight.crushed_ice": "Crushed Ice",
+  "item.naturesdelight.poppy_seed_paste":"Poppy Seed Paste",
   "item.naturesdelight.rose_petals": "Rose Petals",
-  "item.naturesdelight.spruce_tips": "Spruce Tips",
+  "item.naturesdelight.seed_milk_bottle": "Seed Milk Bottle",
+  "item.naturesdelight.seed_milk_bucket": "Seed Milk Bucket",
+  "item.naturesdelight.sunflower_butter": "Sunflower Butter",
+
+  "item.naturesdelight.cooked_rabbit_leg": "Cooked Rabbit Leg",
+  "item.naturesdelight.raw_rabbit_leg": "Raw Rabbit Leg",
+
+  "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
+  "block.naturesdelight.bountiful_oak_leaves": "Bountiful Oak Leaves",
 
   "block.naturesdelight.bountiful_dark_oak_sapling": "Bountiful Dark Oak Sapling",
-  "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
   "block.naturesdelight.bountiful_oak_sapling": "Bountiful Oak Sapling",
-  "block.naturesdelight.bountiful_oak_leaves": "Bountiful Oak Leaves",
+
   "block.naturesdelight.dandelion_roots_crate": "Crate of Dandelion Roots",
   "block.naturesdelight.black_acorn_sack": "Sack of Black Acorns",
   "block.naturesdelight.poppy_seeds_sack": "Sack of Poppy Seeds",
   "block.naturesdelight.rose_hip_sack": "Sack of Rose Hips",
-  "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips"
+  "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips",
 
+  "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect"
 }

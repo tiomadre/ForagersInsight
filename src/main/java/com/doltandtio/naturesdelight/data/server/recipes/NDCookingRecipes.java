@@ -30,7 +30,7 @@ public class NDCookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.RAW_FISHES_COD)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
-                .addIngredient(ForgeTags.MILK_BOTTLE)
+                .addIngredient(ForgeTags.MILK)
                 .addIngredient(ModItems.TOMATO.get())
                 .unlockedByAnyIngredient(ModItems.PUMPKIN_SLICE.get(), Items.COD)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -84,10 +84,10 @@ public class NDCookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
                 .addIngredient(ModItems.RICE.get())
                 .addIngredient(SUNFLOWER_KERNELS.get())
-                .addIngredient(Items.PUMPKIN_SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
-                .unlockedByAnyIngredient(Items.PUMPKIN_SEEDS,SUNFLOWER_KERNELS.get(), ModItems.RICE.get())
+                .addIngredient(ForgeTags.SEEDS)
+                .unlockedByAnyIngredient(SUNFLOWER_KERNELS.get(), ModItems.RICE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
     }

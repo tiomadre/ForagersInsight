@@ -10,7 +10,7 @@
       "item": "naturesdelight:sunflower_kernels"
     },
     {
-      "item": "minecraft:pumpkin_seeds"
+      "tag": "forge:seeds"
     },
     {
       "tag": "forge:seeds"
@@ -19,7 +19,7 @@
       "tag": "forge:seeds"
     }
   ],
-  "recipe_book_tab": "meals",
+  "recipe_book_tab": "drinks",
   "result": {
     "item": "naturesdelight:seed_milk_bucket"
   }

@@ -36,6 +36,7 @@ public class NDDataUtil {
 
         DataUtil.registerCompostable(ROSE_COOKIE.get(), 0.85f);
         DataUtil.registerCompostable(NDItems.ROSE_HIP.get(), 0.3f);
-        DataUtil.registerCompostable(SPRUCE_TIPS.get(), 0.65f);
+        DataUtil.registerCompostable(SPRUCE_TIPS.get(), 0.3f);
+        DataUtil.registerCompostable(SUNFLOWER_KERNELS.get(), 0.3f);
     }
 }

@@ -18,23 +18,13 @@
             "conditions": {
               "item": {
                 "items": [
-                  "naturesdelight:acorn_cookie"
+                  "naturesdelight:raw_rabbit_leg"
                 ]
               }
             },
             "trigger": "minecraft:consume_item"
           },
-          "naturesdelight:2": {
-            "conditions": {
-              "item": {
-                "items": [
-                  "naturesdelight:rose_cookie"
-                ]
-              }
-            },
-            "trigger": "minecraft:consume_item"
-          },
-          "naturesdelight:3": {
+          "naturesdelight:10": {
             "conditions": {
               "item": {
                 "items": [
@@ -44,7 +34,77 @@
             },
             "trigger": "minecraft:consume_item"
           },
-          "naturesdelight:4": {
+          "naturesdelight:11": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:cod_and_pumpkin_stew"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:12": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:steamy_kelp_rice"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:13": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_roasted_roots"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:14": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:seaside_sizzler"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:15": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:kelp_and_beet_salad"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:16": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:meadow_medley"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:17": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:kelp_wrap"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:18": {
             "conditions": {
               "item": {
                 "items": [
@@ -54,11 +114,101 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "naturesdelight:19": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:seed_milk_bottle"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:2": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:cooked_rabbit_leg"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:20": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:seed_milk_bucket"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:3": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:black_acorn"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:4": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:sunflower_kernels"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "naturesdelight:5": {
             "conditions": {
               "item": {
                 "items": [
-                  "naturesdelight:rose_roasted_roots"
+                  "naturesdelight:poppy_seeds"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:6": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_hip"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:7": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:acorn_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:8": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:rose_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "naturesdelight:9": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "naturesdelight:red_velvet_cupcake"
                 ]
               }
             },

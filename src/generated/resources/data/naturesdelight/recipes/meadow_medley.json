@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "naturesdelight:apple_slice"
+      "tag": "forge:apple"
     },
     {
-      "item": "naturesdelight:poppy_seeds"
+      "tag": "forge:seeds/poppy_seeds"
     },
     {
-      "item": "naturesdelight:poppy_seeds"
+      "tag": "forge:seeds/poppy_seeds"
     },
     {
       "item": "minecraft:dandelion"

@@ -1,18 +1,24 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "food",
+  "category": "misc",
   "ingredients": [
     {
       "item": "minecraft:kelp"
     },
     {
+      "item": "minecraft:ink_sac"
+    },
+    {
+      "tag": "forge:crops/tomato"
+    },
+    {
+      "tag": "forge:crops/onion"
+    },
+    {
+      "tag": "forge:cooked_fishes/cod"
+    },
+    {
       "item": "minecraft:kelp"
-    },
-    {
-      "item": "minecraft:beetroot"
-    },
-    {
-      "item": "minecraft:bowl"
     }
   ],
   "result": {
