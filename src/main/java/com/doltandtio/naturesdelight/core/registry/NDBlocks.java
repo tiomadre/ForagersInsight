@@ -17,6 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
@@ -59,19 +60,20 @@ public class NDBlocks {
     public static void setupTabEditors() {
         CreativeModeTabContentsPopulator.mod(NaturesDelight.MOD_ID)
                 .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                    .addItemsAfter(of(Items.BEETROOT_SEEDS), ROSE_HIP, POPPY_SEEDS, DANDELION_ROOT, SPRUCE_TIPS)
+                    .addItemsAfter(of(Items.BEETROOT_SEEDS), POPPY_SEEDS, DANDELION_ROOT, SPRUCE_TIPS)
                     .addItemsAfter(of(Items.OAK_SAPLING), BOUNTIFUL_OAK_SAPLING)
                     .addItemsAfter(of(Items.OAK_LEAVES), BOUNTIFUL_OAK_LEAVES)
                     .addItemsAfter(of(Items.DARK_OAK_SAPLING), BOUNTIFUL_DARK_OAK_SAPLING)
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
-                    .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK,
-                            POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
+                    .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                    .addItemsAfter(of(Items.COOKIE), ROSE_COOKIE, ACORN_COOKIE)
-                    .addItemsAfter(of(Items.APPLE), BLACK_ACORN)
-                    .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA, ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
+                    .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE, RED_VELVET_CUPCAKE)
+                    .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,ROSE_HIP,SUNFLOWER_KERNELS)
+                    .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA,ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
                     .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
-                    .addItemsAfter(of(Items.RABBIT_STEW), ROSE_ROASTED_ROOTS)
+                    .addItemsAfter(of(Items.RABBIT_STEW),COD_AND_PUMPKIN_STEW,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,SEASIDE_SIZZLER,STEAMY_KELP_RICE,ROSE_ROASTED_ROOTS)
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE);
     }

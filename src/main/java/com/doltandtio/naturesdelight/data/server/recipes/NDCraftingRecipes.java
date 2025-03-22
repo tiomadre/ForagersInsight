@@ -7,12 +7,14 @@ import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -37,9 +39,32 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MEADOW_MEDLEY.get())
-                .requires(APPLE_SLICE.get()).requires(POPPY_SEEDS.get()).requires(POPPY_SEEDS.get()).requires(DANDELION).requires(DANDELION)
+                .requires(APPLE_SLICE.get()).requires(POPPY_SEEDS.get()).requires(POPPY_SEEDS.get())
+                .requires(DANDELION).requires(DANDELION)
                 .requires(BOWL)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_WRAP.get())
+                .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
+                .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
+                .unlockedBy("has_kelp", has(KELP)).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_AND_BEET_SALAD.get())
+                .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
+                .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
+                .unlockedBy("has_kelp", has(KELP)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
+                .requires(SEED_MILK_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .unlockedBy("has_seed_milk_bucket", has(SEED_MILK_BUCKET.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BUCKET.get())
+                .requires(BUCKET).requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
+                .requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
+                .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
+
+
+        //FD Recipe Additions
+
 
         this.storageRecipes(consumer, RecipeCategory.FOOD, NDItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
 

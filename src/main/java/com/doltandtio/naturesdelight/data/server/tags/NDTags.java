@@ -10,14 +10,15 @@ import net.minecraft.world.level.block.Block;
 public class NDTags {
     public static class ItemTag {
         public static final TagKey<net.minecraft.world.item.Item> ICE = TagUtil.itemTag("forge", "ice");
+        public static final TagKey<net.minecraft.world.item.Item> SEEDS = TagUtil.itemTag("forge", "seeds");
+        public static final TagKey<net.minecraft.world.item.Item> MILK_BUCKET = TagUtil.itemTag("forge", "milk/milk");
+        public static final TagKey<net.minecraft.world.item.Item> MILK_BOTTLE = TagUtil.itemTag("forge", "milk/milk_bottle");
+
 
         private static TagKey<Item> modTag(String namespace) {
             return TagUtil.itemTag(NaturesDelight.MOD_ID, namespace);
         }
-
-
         public static final TagKey<Item> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
-        public static final TagKey<Item> STORAGE_BLOCK_ROSE_PETALS = storageTag("rose_petals");
         public static final TagKey<Item> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
         public static final TagKey<Item> STORAGE_BLOCK_DANDELION_ROOT = storageTag("dandelion_root");
         public static final TagKey<Item> STORAGE_BLOCK_POPPY_SEEDS = storageTag("poppy_seeds");
@@ -32,7 +33,6 @@ public class NDTags {
         public static final TagKey<Block> TAPPABLE = blockTag("tappable");
 
         public static final TagKey<Block> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
-        public static final TagKey<Block> STORAGE_BLOCK_ROSE_PETALS = storageTag("rose_petals");
         public static final TagKey<Block> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
         public static final TagKey<Block> STORAGE_BLOCK_DANDELION_ROOT = storageTag("dandelion_root");
         public static final TagKey<Block> STORAGE_BLOCK_POPPY_SEEDS = storageTag("poppy_seeds");

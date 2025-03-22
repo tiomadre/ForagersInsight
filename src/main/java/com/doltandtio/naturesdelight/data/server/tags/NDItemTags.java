@@ -1,5 +1,6 @@
 package com.doltandtio.naturesdelight.data.server.tags;
 
+import com.doltandtio.naturesdelight.core.registry.NDItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,9 @@ public class NDItemTags extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         this.tag(NDTags.ItemTag.ICE).add(Items.ICE, CRUSHED_ICE.get())
                 .addOptional(new ResourceLocation("neapolitan", "ice_cubes"));
+        this.tag(NDTags.ItemTag.SEEDS).add(NDItems.BLACK_ACORN.get(), NDItems.POPPY_SEEDS.get(), NDItems.SUNFLOWER_KERNELS.get());
+        this.tag(NDTags.ItemTag.MILK_BUCKET).add(NDItems.SEED_MILK_BUCKET.get());
+        this.tag(NDTags.ItemTag.MILK_BOTTLE).add(NDItems.SEED_MILK_BUCKET.get());
 
         registerForgeTags();
     }
