@@ -26,6 +26,8 @@ public class NDItemTags extends ItemTagsProvider {
         this.tag(NDTags.ItemTag.MILK_BOTTLE).add(NDItems.SEED_MILK_BOTTLE.get());
         this.tag(NDTags.ItemTag.APPLE).add(NDItems.APPLE_SLICE.get(),Items.APPLE);
         this.tag(NDTags.ItemTag.POPPY_SEEDS).add(NDItems.POPPY_SEEDS.get(),NDItems.POPPY_SEED_PASTE.get());
+        this.tag(ACORN).add(NDItems.BLACK_ACORN.get(),NDItems.ACORN_MEAL.get());
+        this.tag(COCOA).add(Items.COCOA_BEANS,NDItems.COCOA_POWDER.get());
 
         registerForgeTags();
     }

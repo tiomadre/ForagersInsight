@@ -54,7 +54,6 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
                 .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
                 .unlockedBy("has_kelp", has(KELP)).save(consumer);
-
     //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
@@ -64,8 +63,7 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BUCKET).requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
-
-        //Storage
+    //Storage
         this.storageRecipes(consumer, RecipeCategory.FOOD, NDItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
 
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());

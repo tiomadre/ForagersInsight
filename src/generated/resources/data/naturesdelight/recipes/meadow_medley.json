@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:apple"
+      "tag": "forge:crops/apple"
     },
     {
-      "tag": "forge:seeds/poppy_seeds"
+      "tag": "forge:crops/poppy_seeds"
     },
     {
-      "tag": "forge:seeds/poppy_seeds"
+      "tag": "forge:crops/poppy_seeds"
     },
     {
       "item": "minecraft:dandelion"

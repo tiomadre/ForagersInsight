@@ -15,8 +15,11 @@ public class NDTags {
         public static final TagKey<net.minecraft.world.item.Item> SEEDS = TagUtil.itemTag("forge", "seeds");
         public static final TagKey<net.minecraft.world.item.Item> MILK_BUCKET = TagUtil.itemTag("forge", "milk/milk");
         public static final TagKey<net.minecraft.world.item.Item> MILK_BOTTLE = TagUtil.itemTag("forge", "milk/milk_bottle");
-        public static final TagKey<net.minecraft.world.item.Item> APPLE = TagUtil.itemTag("forge", "apple");
-        public static final TagKey<net.minecraft.world.item.Item> POPPY_SEEDS = TagUtil.itemTag("forge", "seeds/poppy_seeds");
+        //Crops
+        public static final TagKey<net.minecraft.world.item.Item> APPLE = TagUtil.itemTag("forge", "crops/apple");
+        public static final TagKey<net.minecraft.world.item.Item> POPPY_SEEDS = TagUtil.itemTag("forge", "crops/poppy_seeds");
+        public static final TagKey<net.minecraft.world.item.Item> ACORN = TagUtil.itemTag("forge", "crops/acorn");
+        public static final TagKey<net.minecraft.world.item.Item> COCOA = TagUtil.itemTag("forge", "crops/cocoa");
 
         private static TagKey<Item> modTag(String namespace) {
             return TagUtil.itemTag(NaturesDelight.MOD_ID, namespace);

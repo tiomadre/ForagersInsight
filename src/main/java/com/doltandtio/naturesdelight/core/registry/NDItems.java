@@ -30,6 +30,10 @@ public class NDItems {
 //Crushed
     public static final RegistryObject<Item> CRUSHED_ICE = HELPER.createItem("crushed_ice", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> POPPY_SEED_PASTE = HELPER.createItem("poppy_seed_paste", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ACORN_MEAL = HELPER.createItem("acorn_meal", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> COCOA_POWDER = HELPER.createItem("cocoa_powder", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> WHEAT_FLOUR = HELPER.createItem("wheat_flour",() -> new Item(new Item.Properties()));
+
 //Crops
     public static final RegistryObject<Item> BLACK_ACORN = HELPER.createItem("black_acorn", () ->
         new Item(new Item.Properties().food(NDFoods.BLACK_ACORN)));

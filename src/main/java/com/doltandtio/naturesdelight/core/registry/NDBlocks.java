@@ -76,6 +76,6 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.RABBIT_STEW),COD_AND_PUMPKIN_STEW,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,SEASIDE_SIZZLER,
                             STEAMY_KELP_RICE,ROSE_ROASTED_ROOTS)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                    .addItemsAfter(of(Items.WHEAT), ROSE_PETALS, CRUSHED_ICE, POPPY_SEED_PASTE);
+                    .addItemsAfter(of(Items.WHEAT),ROSE_PETALS,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,WHEAT_FLOUR);
     }
 }
