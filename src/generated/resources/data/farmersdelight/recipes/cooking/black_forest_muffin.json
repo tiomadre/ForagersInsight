@@ -4,10 +4,10 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "farmersdelight:wheat_dough"
+      "item": "naturesdelight:acorn_dough"
     },
     {
-      "item": "minecraft:beetroot"
+      "tag": "forge:crops/cocoa"
     },
     {
       "tag": "forge:crops/cocoa"
@@ -19,6 +19,6 @@
   "recipe_book_tab": "meals",
   "result": {
     "count": 2,
-    "item": "naturesdelight:red_velvet_cupcake"
+    "item": "naturesdelight:black_forest_muffin"
   }
 }

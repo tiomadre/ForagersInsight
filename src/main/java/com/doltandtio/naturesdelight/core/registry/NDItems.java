@@ -18,9 +18,13 @@ import vectorwing.farmersdelight.common.registry.ModBlocks;
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDItems {
     public static final ItemSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getItemSubHelper();
+
+//Acorn Dough
+    public static final RegistryObject<Item> ACORN_DOUGH = HELPER.createItem("acorn_dough",() ->
+       new Item(new Item.Properties().food(NDFoods.ACORN_DOUGH)));
 //Cuts & Knife Drops
     public static final RegistryObject<Item> APPLE_SLICE = HELPER.createItem("apple_slice", () ->
-            new Item(new Item.Properties().food(NDFoods.APPLE_SLICE)));
+            new Item(new Item.Properties().food(NDFoods.MID_SAT_MORSELS)));
     public static final RegistryObject<Item> RAW_RABBIT_LEG = HELPER.createItem("raw_rabbit_leg",() -> new ConsumableItem(
             new Item.Properties().food((NDFoods.RAW_RABBIT_LEG))));
     public static final RegistryObject<Item> COOKED_RABBIT_LEG = HELPER.createItem("cooked_rabbit_leg",() -> new ConsumableItem(
@@ -36,26 +40,31 @@ public class NDItems {
 
 //Crops
     public static final RegistryObject<Item> BLACK_ACORN = HELPER.createItem("black_acorn", () ->
-        new Item(new Item.Properties().food(NDFoods.BLACK_ACORN)));
-    public static final RegistryObject<Item> DANDELION_ROOT = HELPER.createItem("dandelion_root", () ->
-            new ItemNameBlockItem(NDBlocks.DANDELION_BUSH.get(), new Item.Properties()));
-    public static final RegistryObject<Item> SUNFLOWER_KERNELS = HELPER.createItem("sunflower_kernels", () ->
-            new Item(new Item.Properties().food(NDFoods.SUNFLOWER_KERNELS)));
+        new Item(new Item.Properties().food(NDFoods.MID_SAT_MORSELS)));
 
-                //This is for 1 Hunger no Saturation Crops: Poppy Seeds/Rose Hips/Spruce Tips
+    public static final RegistryObject<Item> DANDELION_ROOT = HELPER.createItem("dandelion_root", () ->
+            new ItemNameBlockItem(NDBlocks.DANDELION_BUSH.get(), new Item.Properties().food(NDFoods.LOW_SAT_MORSELS)));
+    public static final RegistryObject<Item> SUNFLOWER_KERNELS = HELPER.createItem("sunflower_kernels", () ->
+            new Item(new Item.Properties().food(NDFoods.LOW_SAT_MORSELS)));
+
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
-            new ItemNameBlockItem(NDBlocks.POPPY_BUSH.get(), new Item.Properties().food(NDFoods.NO_SATURATION_PSRHST)));
+            new ItemNameBlockItem(NDBlocks.POPPY_BUSH.get(), new Item.Properties().food(NDFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> ROSE_HIP = HELPER.createItem("rose_hip", () ->
-            new ItemNameBlockItem(NDBlocks.ROSE_HIP.get(), new Item.Properties().food(NDFoods.NO_SATURATION_PSRHST)));
+            new ItemNameBlockItem(NDBlocks.ROSE_HIP.get(), new Item.Properties().food(NDFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> SPRUCE_TIPS = HELPER.createItem("spruce_tips", () -> new Item(new Item.Properties()));
 
-//Cookies and Sweets
+//Baked Goods and Sweets
     public static final RegistryObject<Item> ACORN_COOKIE = HELPER.createItem("acorn_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
     public static final RegistryObject<Item> ROSE_COOKIE = HELPER.createItem("rose_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
     public static final RegistryObject<Item> RED_VELVET_CUPCAKE = HELPER.createItem("red_velvet_cupcake",() -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.RED_VELVET_CUPCAKE)));
+            new Item.Properties().food(NDFoods.BAKED_GOOD)));
+    public static final RegistryObject<Item> BLACK_FOREST_MUFFIN = HELPER.createItem("black_forest_muffin",() -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.BAKED_GOOD)));
+    public static final RegistryObject<Item> POPPY_SEED_BAGEL = HELPER.createItem("poppy_seed_bagel",() -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.BAKED_GOOD)));
+
 //DISHES
     //Chilled
     public static final RegistryObject<Item> ROSE_GRANITA = HELPER.createItem("rose_granita", () -> new DrinkableItem(new Item.Properties()
@@ -63,32 +72,42 @@ public class NDItems {
     //Comfort
     public static final RegistryObject<Item> COD_AND_PUMPKIN_STEW = HELPER.createItem("cod_and_pumpkin_stew", () -> new ConsumableItem(
         new Item.Properties().food(NDFoods.COD_AND_PUMPKIN_STEW).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> FORAGERS_GRANOLA = HELPER.createItem("foragers_granola", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.FORAGERS_GRANOLA).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
     //Medicinal
 
     //Nourishment
+    public static final RegistryObject<Item> ACORN_NOODLES = HELPER.createItem("acorn_noodles", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.ACORN_NOODLES).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> ROSE_ROASTED_ROOTS = HELPER.createItem("rose_roasted_roots", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.ROSE_ROASTED_ROOTS).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> SEASIDE_SIZZLER = HELPER.createItem("seaside_sizzler", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.SEASIDE_SIZZLER).craftRemainder(Items.BOWL)));
     //Salads
     public static final RegistryObject<Item> KELP_AND_BEET_SALAD = HELPER.createItem("kelp_and_beet_salad",() -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.KELP_AND_BEET_SALAD).craftRemainder(Items.BOWL)));
+            new Item.Properties().food(NDFoods.SALAD).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> MEADOW_MEDLEY = HELPER.createItem("meadow_medley",() -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.MEADOW_MEDLEY).craftRemainder(Items.BOWL)));
+            new Item.Properties().food(NDFoods.SALAD).craftRemainder(Items.BOWL)));
     //Sandwiches + Finger Foods
     public static final RegistryObject<Item> KELP_WRAP = HELPER.createItem("kelp_wrap",() -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.KELP_WRAP).craftRemainder(Items.BOWL)));
+            new Item.Properties().food(NDFoods.KELP_WRAP)));
+    public static final RegistryObject<Item> DANDELION_FRIES = HELPER.createItem("kelp_wrap",() -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.DANDELION_FRIES)));
+
 
 //Drinks
     public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
     //Chilled Drinks
 
-// Seed Milk Stuff
+//Seed Milk Stuff
     public static final RegistryObject<Item> SEED_MILK_BOTTLE = HELPER.createItem("seed_milk_bottle", () -> new MilkBottleItem(
             new Item.Properties().food(NDFoods.SEED_MILK_BOTTLE)));
     public static final RegistryObject<Item> SEED_MILK_BUCKET = HELPER.createItem("seed_milk_bucket", () -> new MilkBucketItem(
             new Item.Properties().food(NDFoods.SEED_MILK_BUCKET)));
+
+//Tools
+
 }

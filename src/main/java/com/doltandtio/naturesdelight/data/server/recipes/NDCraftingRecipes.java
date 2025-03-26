@@ -33,7 +33,26 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
         cookie(ROSE_COOKIE, NDItems.ROSE_HIP, consumer);
         cookie(ACORN_COOKIE, BLACK_ACORN, consumer);
+ //ACORN DOUGH
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
+                .requires(NDTags.ItemTag.ACORN).requires(NDTags.ItemTag.ACORN)
+                .requires(NDTags.ItemTag.ACORN).requires(WATER_BUCKET)
+                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
+                .requires(NDTags.ItemTag.ACORN).requires(NDTags.ItemTag.ACORN)
+                .requires(NDTags.ItemTag.ACORN).requires(ForgeTags.EGGS)
+                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
  //DISHES
+    //Comfort
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FORAGERS_GRANOLA.get())
+                .requires(NDItems.ROSE_HIP.get()).requires(NDTags.ItemTag.APPLE).requires(NDItems.ROSE_HIP.get())
+                .requires(NDTags.ItemTag.ACORN).requires(BOWL)
+                .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, RABBIT_STEW)
+                .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(NDTags.ItemTag.ROOTS)
+                .requires(NDTags.ItemTag.MUSHROOM).requires(BOWL)
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
+    //Nourishment
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, NDItems.ROSE_GRANITA.get())
                 .requires(NDItems.ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
                 .requires(NDTags.ItemTag.ICE).requires(GLASS_BOTTLE)

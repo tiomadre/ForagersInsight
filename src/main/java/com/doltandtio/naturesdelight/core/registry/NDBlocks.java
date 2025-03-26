@@ -67,15 +67,16 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
+                .addItemsAfter(of(Items.BREAD), POPPY_SEED_BAGEL)
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
-                    .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE, RED_VELVET_CUPCAKE)
+                    .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
                     .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,ROSE_HIP,SUNFLOWER_KERNELS)
                     .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA,ROSE_CORDIAL)
                     .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
                     .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
-                    .addItemsAfter(of(Items.RABBIT_STEW),COD_AND_PUMPKIN_STEW,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,SEASIDE_SIZZLER,
-                            STEAMY_KELP_RICE,ROSE_ROASTED_ROOTS)
+                    .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,FORAGERS_GRANOLA,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,ROSE_ROASTED_ROOTS,
+                            SEASIDE_SIZZLER,STEAMY_KELP_RICE)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                    .addItemsAfter(of(Items.WHEAT),ROSE_PETALS,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,WHEAT_FLOUR);
+                    .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,ROSE_PETALS,WHEAT_FLOUR);
     }
 }

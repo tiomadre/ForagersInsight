@@ -6,12 +6,14 @@
   "cookingtime": 400,
   "experience": 1.0,
   "ingredients": [
-    {
-      "item": "farmersdelight:rice"
-    },
-    {
-      "item": "naturesdelight:sunflower_kernels"
-    },
+    [
+      {
+        "item": "naturesdelight:sunflower_kernels"
+      },
+      {
+        "item": "farmersdelight:rice"
+      }
+    ],
     {
       "tag": "forge:seeds"
     },

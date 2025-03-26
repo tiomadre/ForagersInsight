@@ -1,5 +1,6 @@
 package com.doltandtio.naturesdelight.data.server.recipes;
 
+import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraft.world.item.Items;
@@ -27,6 +28,7 @@ public class NDCookingRecipes {
     public static final float LARGE_EXP = 2.0F;
 
     public static void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
+        //Comfort
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.RAW_FISHES_COD)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
@@ -35,24 +37,46 @@ public class NDCookingRecipes {
                 .unlockedByAnyIngredient(ModItems.PUMPKIN_SLICE.get(), Items.COD)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
-
+        CookingPotRecipeBuilder.cookingPotRecipe(STEAMY_KELP_RICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ModItems.RICE.get())
+                .addIngredient(Items.DRIED_KELP)
+                .addIngredient(Items.DRIED_KELP)
+                .unlockedByAnyIngredient(Items.KELP, ModItems.RICE.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(BLACK_FOREST_MUFFIN.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ACORN_DOUGH.get())
+                .addIngredient(NDTags.ItemTag.COCOA)
+                .addIngredient(NDTags.ItemTag.COCOA)
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(BLACK_ACORN.get(), Items.COCOA_BEANS)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(RED_VELVET_CUPCAKE.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ModItems.WHEAT_DOUGH.get())
                 .addIngredient(Items.BEETROOT)
-                .addIngredient(Items.COCOA_BEANS)
+                .addIngredient(NDTags.ItemTag.COCOA)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.BEETROOT, Items.COCOA_BEANS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
-
-        CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(ROSE_PETALS.get())
-                .addIngredient(ROSE_PETALS.get())
-                .addIngredient(ROSE_HIP.get())
-                .unlockedByAnyIngredient(ROSE_PETALS.get(), ROSE_HIP.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+        CookingPotRecipeBuilder.cookingPotRecipe(POPPY_SEED_BAGEL.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ModItems.WHEAT_DOUGH.get())
+                .addIngredient(NDTags.ItemTag.POPPY_SEEDS)
+                .addIngredient(NDTags.ItemTag.POPPY_SEEDS)
+                .addIngredient(NDTags.ItemTag.POPPY_SEEDS)
+                .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.WHEAT)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
-
+        //Nourishment
+        CookingPotRecipeBuilder.cookingPotRecipe(ACORN_NOODLES.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ACORN_DOUGH.get())
+                .addIngredient(BLACK_ACORN.get())
+                .addIngredient(BLACK_ACORN.get())
+                .addIngredient(ForgeTags.MILK)
+                .unlockedByAnyIngredient(BLACK_ACORN.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_ROASTED_ROOTS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(DANDELION_ROOT.get())
                 .addIngredient(Items.BEETROOT)
@@ -62,7 +86,6 @@ public class NDCookingRecipes {
                 .unlockedByAnyIngredient(ROSE_HIP.get(), DANDELION_ROOT.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
-
         CookingPotRecipeBuilder.cookingPotRecipe(SEASIDE_SIZZLER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Items.TROPICAL_FISH)
                 .addIngredient(Items.BEETROOT)
@@ -73,17 +96,17 @@ public class NDCookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
 
-        CookingPotRecipeBuilder.cookingPotRecipe(STEAMY_KELP_RICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(ModItems.RICE.get())
-                .addIngredient(Items.DRIED_KELP)
-                .addIngredient(Items.DRIED_KELP)
-                .unlockedByAnyIngredient(Items.KELP, ModItems.RICE.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+        //Drinks
+        CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ROSE_PETALS.get())
+                .addIngredient(ROSE_PETALS.get())
+                .addIngredient(ROSE_HIP.get())
+                .unlockedByAnyIngredient(ROSE_PETALS.get(), ROSE_HIP.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
-
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
-                .addIngredient(ModItems.RICE.get())
-                .addIngredient(SUNFLOWER_KERNELS.get())
+                .addIngredient(Ingredient.of(SUNFLOWER_KERNELS.get(), ModItems.RICE.get()))
+                .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)

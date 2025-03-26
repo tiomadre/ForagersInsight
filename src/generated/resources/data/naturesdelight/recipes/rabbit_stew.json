@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "item": "naturesdelight:cooked_rabbit_leg"
+    },
+    {
+      "tag": "forge:crops/root_vegetable"
+    },
+    {
+      "tag": "forge:crops/mushroom"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "minecraft:rabbit_stew"
+  }
+}

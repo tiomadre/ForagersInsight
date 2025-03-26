@@ -19,15 +19,20 @@ public class NDItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
+        //Other
         this.tag(NDTags.ItemTag.ICE).add(Items.ICE, CRUSHED_ICE.get())
                 .addOptional(new ResourceLocation("neapolitan", "ice_cubes"));
         this.tag(NDTags.ItemTag.SEEDS).add(NDItems.BLACK_ACORN.get(), NDItems.POPPY_SEEDS.get(), NDItems.SUNFLOWER_KERNELS.get());
         this.tag(NDTags.ItemTag.MILK_BUCKET).add(NDItems.SEED_MILK_BUCKET.get());
         this.tag(NDTags.ItemTag.MILK_BOTTLE).add(NDItems.SEED_MILK_BOTTLE.get());
+        //Crops
         this.tag(NDTags.ItemTag.APPLE).add(NDItems.APPLE_SLICE.get(),Items.APPLE);
         this.tag(NDTags.ItemTag.POPPY_SEEDS).add(NDItems.POPPY_SEEDS.get(),NDItems.POPPY_SEED_PASTE.get());
         this.tag(ACORN).add(NDItems.BLACK_ACORN.get(),NDItems.ACORN_MEAL.get());
         this.tag(COCOA).add(Items.COCOA_BEANS,NDItems.COCOA_POWDER.get());
+        this.tag(ROOTS).add(Items.CARROT,Items.BEETROOT,NDItems.DANDELION_ROOT.get());
+        this.tag(MUSHROOM).add(Items.RED_MUSHROOM,Items.BROWN_MUSHROOM);
+        //
 
         registerForgeTags();
     }

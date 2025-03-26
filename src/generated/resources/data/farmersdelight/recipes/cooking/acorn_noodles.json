@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:acorn_dough"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "item": "naturesdelight:acorn_noodles"
+  }
+}

@@ -1,5 +1,6 @@
 {
   "item.naturesdelight.acorn_cookie": "Acorn Cookie",
+  "item.naturesdelight.black_forest_muffin": "Black Forest Muffin",
   "item.naturesdelight.rose_cookie": "Rose Cookie",
   "item.naturesdelight.red_velvet_cupcake": "Red Velvet Cupcake",
 
@@ -11,7 +12,9 @@
   "item.naturesdelight.spruce_tips": "Spruce Tips",
   "item.naturesdelight.sunflower_kernels": "Sunflower Kernels",
 
+  "item.naturesdelight.acorn_noodles": "Acorn Noodles",
   "item.naturesdelight.cod_and_pumpkin_stew": "Cod and Pumpkin Stew",
+  "item.naturesdelight.foragers_granola": "Forager's Granola",
   "item.naturesdelight.kelp_and_beet_salad": "Kelp and Beet Salad",
   "item.naturesdelight.kelp_wrap": "Kelp Wrap",
   "item.naturesdelight.meadow_medley": "Meadow Medley",
@@ -21,6 +24,7 @@
   "item.naturesdelight.seaside_sizzler": "Seaside Sizzler",
   "item.naturesdelight.steamy_kelp_rice": "Steamy Kelp Rice",
 
+  "item.naturesdelight.acorn_dough": "Acorn Dough",
   "item.naturesdelight.acorn_meal": "Acorn Meal",
   "item.naturesdelight.cocoa_powder": "Cocoa Powder",
   "item.naturesdelight.crushed_ice": "Crushed Ice",

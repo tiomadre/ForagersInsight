@@ -16,6 +16,15 @@ public class NDItemModels extends BlueprintItemModelProvider {
     @Override
     protected void registerModels() {
         this.generatedItem(
+                //BAKED GOODS, COOKIES AND SWEETS
+                    //Baked Goods
+                BLACK_FOREST_MUFFIN,POPPY_SEED_BAGEL,RED_VELVET_CUPCAKE,
+                    //Cakes and Pies
+
+                    //Cookies
+                ACORN_COOKIE,ROSE_COOKIE,
+                    //Sweets
+
                 //Crops
                 BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSE_HIP,SPRUCE_TIPS,SUNFLOWER_KERNELS,
                 //Cuts + Knife Drops
@@ -23,11 +32,26 @@ public class NDItemModels extends BlueprintItemModelProvider {
                 //Crushed + Mallet Drops
                 ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,WHEAT_FLOUR,
                 //Dishes
-                COD_AND_PUMPKIN_STEW, KELP_AND_BEET_SALAD, KELP_WRAP,MEADOW_MEDLEY,ROSE_GRANITA,
-                ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,STEAMY_KELP_RICE,
+                    //Chilled
+                ROSE_GRANITA,
+                    //Comfort
+                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,
+                    //Medicinal
+
+                    //Nourishment
+                ACORN_NOODLES,ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,
+                    //Salad
+                KELP_AND_BEET_SALAD,MEADOW_MEDLEY,
+                    //Sandwiches + Finger Foods
+                DANDELION_FRIES,KELP_WRAP,
                 //Drinks
-                ROSE_CORDIAL,SEED_MILK_BOTTLE,SEED_MILK_BUCKET,
-                //Sweets
-                ACORN_COOKIE,RED_VELVET_CUPCAKE,ROSE_COOKIE);
+                ROSE_CORDIAL,
+                    //Chilled
+
+                    //Medicinal
+
+                //Other
+                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET);
+
     }
 }
