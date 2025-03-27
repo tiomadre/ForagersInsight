@@ -24,15 +24,20 @@ public class NDFoods {
     //DISHES
         //Comfort
     public static final FoodProperties COD_AND_PUMPKIN_STEW = new FoodProperties.Builder()
-            .nutrition(9).saturationMod(0.8f)
+            .nutrition(9).saturationMod(0.9f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(),2000),1).build();
+    public static final FoodProperties CREAMY_SALMON_BAGEL = new FoodProperties.Builder().fast()
+            .nutrition(3).saturationMod(0.3f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 800), 1).build();
     public static final FoodProperties STEAMY_KELP_RICE = new FoodProperties.Builder()
-            .nutrition(7).saturationMod(0.6f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1500), 1).build();
+            .nutrition(6).saturationMod(0.5f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1100), 1).build();
     public static final FoodProperties FORAGERS_GRANOLA = new FoodProperties.Builder()
             .nutrition(6).saturationMod(0.6f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1100), 1).build();
-
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1200), 1).build();
+    public static final FoodProperties JAMMY_BREAKFAST_SANDWICH = new FoodProperties.Builder().fast()
+            .nutrition(8).saturationMod(0.6f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1350), 1).build();
         //Chilled
         public static final FoodProperties ROSE_GRANITA = new FoodProperties.Builder()
                 .nutrition(6).saturationMod(0.9f)
@@ -58,8 +63,9 @@ public class NDFoods {
         public static final FoodProperties SALAD = new FoodProperties.Builder()
             .nutrition(6).saturationMod(0.4f)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100), 1).build();
-        public static final FoodProperties DANDELION_FRIES = new FoodProperties.Builder()
-            .nutrition(5).saturationMod(0.5f).build();
+        public static final FoodProperties DANDELION_FRIES = new FoodProperties.Builder().fast()
+            .nutrition(3).saturationMod(0.3f).build();
+
 
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder()

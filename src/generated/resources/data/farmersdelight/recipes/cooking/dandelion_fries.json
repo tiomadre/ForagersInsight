@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:paper"
+  },
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "item": "naturesdelight:dandelion_root"
+    },
+    {
+      "item": "naturesdelight:dandelion_root"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "naturesdelight:dandelion_fries"
+  }
+}

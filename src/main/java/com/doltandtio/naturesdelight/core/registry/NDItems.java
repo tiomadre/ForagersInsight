@@ -72,8 +72,13 @@ public class NDItems {
     //Comfort
     public static final RegistryObject<Item> COD_AND_PUMPKIN_STEW = HELPER.createItem("cod_and_pumpkin_stew", () -> new ConsumableItem(
         new Item.Properties().food(NDFoods.COD_AND_PUMPKIN_STEW).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> CREAMY_SALMON_BAGEL = HELPER.createItem("creamy_salmon_bagel", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.CREAMY_SALMON_BAGEL).craftRemainder(Items.BOWL)));
+
     public static final RegistryObject<Item> FORAGERS_GRANOLA = HELPER.createItem("foragers_granola", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.FORAGERS_GRANOLA).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> JAMMY_BREAKFAST_SANDWICH = HELPER.createItem("jammy_breakfast_sandwich", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.JAMMY_BREAKFAST_SANDWICH).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
     //Medicinal
@@ -93,8 +98,9 @@ public class NDItems {
     //Sandwiches + Finger Foods
     public static final RegistryObject<Item> KELP_WRAP = HELPER.createItem("kelp_wrap",() -> new ConsumableItem(
             new Item.Properties().food(NDFoods.KELP_WRAP)));
-    public static final RegistryObject<Item> DANDELION_FRIES = HELPER.createItem("kelp_wrap",() -> new ConsumableItem(
+    public static final RegistryObject<Item> DANDELION_FRIES = HELPER.createItem("dandelion_fries",() -> new ConsumableItem(
             new Item.Properties().food(NDFoods.DANDELION_FRIES)));
+
 
 
 //Drinks

@@ -35,7 +35,7 @@ public class NDItemModels extends BlueprintItemModelProvider {
                     //Chilled
                 ROSE_GRANITA,
                     //Comfort
-                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,
+                COD_AND_PUMPKIN_STEW,CREAMY_SALMON_BAGEL,FORAGERS_GRANOLA,JAMMY_BREAKFAST_SANDWICH,STEAMY_KELP_RICE,
                     //Medicinal
 
                     //Nourishment

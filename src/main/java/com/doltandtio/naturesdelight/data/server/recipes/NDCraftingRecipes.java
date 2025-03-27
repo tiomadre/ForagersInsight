@@ -15,6 +15,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
+import org.checkerframework.checker.units.qual.C;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.function.Consumer;
@@ -48,6 +50,13 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(NDItems.ROSE_HIP.get()).requires(NDTags.ItemTag.APPLE).requires(NDItems.ROSE_HIP.get())
                 .requires(NDTags.ItemTag.ACORN).requires(BOWL)
                 .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CREAMY_SALMON_BAGEL.get(), 2)
+                .requires(ForgeTags.MILK).requires(POPPY_SEED_BAGEL.get()).requires(ForgeTags.COOKED_FISHES_SALMON)
+                .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, JAMMY_BREAKFAST_SANDWICH.get())
+                .requires(SWEET_BERRIES).requires(POPPY_SEED_BAGEL.get()).requires(ModItems.BACON.get())
+                .requires(ModItems.FRIED_EGG.get()).requires(SWEET_BERRIES)
+                .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, RABBIT_STEW)
                 .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(NDTags.ItemTag.ROOTS)
                 .requires(NDTags.ItemTag.MUSHROOM).requires(BOWL)

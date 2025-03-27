@@ -113,5 +113,11 @@ public class NDCookingRecipes {
                 .unlockedByAnyIngredient(SUNFLOWER_KERNELS.get(), ModItems.RICE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
+        //Other
+        CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_FRIES.get(), 1, FAST_COOKING, SMALL_EXP)
+                .addIngredient(DANDELION_ROOT.get())
+                .unlockedByAnyIngredient(DANDELION_ROOT.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
     }
 }
