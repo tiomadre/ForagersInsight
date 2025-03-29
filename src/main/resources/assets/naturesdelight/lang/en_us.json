@@ -61,6 +61,8 @@
   "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips",
 
   "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
-  "farmersdelight.tooltip.dandelion_root_tea": "'Now with extra root!'",
+  "naturesdelight.tooltip.dandelion_root_tea": "'Now with extra root!'",
+  "effect.naturesdelight.chilled": "Chilled",
   "effect.naturesdelight.medicinal": "Medicinal"
+
 }
