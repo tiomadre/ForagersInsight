@@ -6,7 +6,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-
 import javax.swing.text.html.HTML;
 
 public class NDTags {
@@ -25,7 +24,7 @@ public class NDTags {
         public static final TagKey<net.minecraft.world.item.Item> MUSHROOM = TagUtil.itemTag("forge", "crops/mushroom");
 
         private static TagKey<Item> modTag(String namespace) {
-            return TagUtil.itemTag(NaturesDelight.MOD_ID, namespace);
+            return TagUtil.itemTag("naturesdelight", namespace);
         }
         public static final TagKey<Item> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
         public static final TagKey<Item> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");

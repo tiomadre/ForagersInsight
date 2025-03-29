@@ -11,9 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.grower.DarkOakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -25,17 +23,17 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
-//Syrup Tap
-    public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
-            new TapperBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
-//Flower Crops
+    //Chilled Pot
+
+    //Crops
+        //Flower
     public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
             new PoppyBushBlock(BlockBehaviour.Properties.copy(Blocks.BEETROOTS)));
     public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
             new DandelionBushBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
     public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlockNoItem("rose_hip", () -> new DoubleCropBlock(
             BlockBehaviour.Properties.copy(Blocks.WHEAT), 3));
-//Tree Crops & Saplings
+        //Tree
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
@@ -44,6 +42,11 @@ public class NDBlocks {
             new SaplingBlock(new BountifulDarkOakTreeGrower(), BlockBehaviour.Properties.copy(Blocks.DARK_OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_DARK_OAK_LEAVES = HELPER.createBlock("bountiful_dark_oak_leaves", () ->
             new BountifulLeavesBlock(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_LEAVES), BLACK_ACORN));
+
+    //Syrup Tap
+    public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
+            new TapperBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
 //Storage
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
             new Block(BlockBehaviour.Properties.copy(ModBlocks.CABBAGE_CRATE.get())));
