@@ -4,6 +4,7 @@
   "item.naturesdelight.rose_cookie": "Rose Cookie",
   "item.naturesdelight.red_velvet_cupcake": "Red Velvet Cupcake",
 
+
   "item.naturesdelight.apple_slice": "Apple Slice",
   "item.naturesdelight.black_acorn": "Black Acorn",
   "item.naturesdelight.dandelion_root": "Dandelion Root",
@@ -11,6 +12,7 @@
   "item.naturesdelight.rose_hip": "Rose Hips",
   "item.naturesdelight.spruce_tips": "Spruce Tips",
   "item.naturesdelight.sunflower_kernels": "Sunflower Kernels",
+
 
   "item.naturesdelight.acorn_noodles": "Acorn Noodles",
   "item.naturesdelight.cod_and_pumpkin_stew": "Cod and Pumpkin Stew",
@@ -22,11 +24,15 @@
   "item.naturesdelight.kelp_wrap": "Kelp Wrap",
   "item.naturesdelight.meadow_medley": "Meadow Medley",
   "item.naturesdelight.poppy_seed_bagel": "Poppy Seed Bagel",
-  "item.naturesdelight.rose_cordial": "Rose Cordial",
   "item.naturesdelight.rose_granita": "Rose Granita",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
   "item.naturesdelight.seaside_sizzler": "Seaside Sizzler",
   "item.naturesdelight.steamy_kelp_rice": "Steamy Kelp Rice",
+
+
+  "item.naturesdelight.dandelion_root_tea": "Dandelion Root Tea",
+  "item.naturesdelight.rose_cordial": "Rose Cordial",
+
 
   "item.naturesdelight.acorn_dough": "Acorn Dough",
   "item.naturesdelight.acorn_meal": "Acorn Meal",
@@ -54,5 +60,7 @@
   "block.naturesdelight.rose_hip_sack": "Sack of Rose Hips",
   "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips",
 
-  "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect"
+  "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
+  "farmersdelight.tooltip.dandelion_root_tea": "'Now with extra root!'",
+  "effect.naturesdelight.medicinal": "Medicinal"
 }

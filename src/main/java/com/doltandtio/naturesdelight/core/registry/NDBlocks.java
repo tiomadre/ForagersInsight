@@ -71,7 +71,7 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
                     .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
                     .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,ROSE_HIP,SUNFLOWER_KERNELS)
-                    .addItemsAfter(of(Items.HONEY_BOTTLE), ROSE_GRANITA,ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,ROSE_GRANITA,ROSE_CORDIAL)
                     .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
                     .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
                     .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,CREAMY_SALMON_BAGEL,DANDELION_FRIES,FORAGERS_GRANOLA,JAMMY_BREAKFAST_SANDWICH,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,ROSE_ROASTED_ROOTS,

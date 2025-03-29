@@ -104,6 +104,15 @@ public class NDCookingRecipes {
                 .unlockedByAnyIngredient(ROSE_PETALS.get(), ROSE_HIP.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
+            //Medicinal
+        CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_ROOT_TEA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(DANDELION_ROOT.get())
+                .addIngredient(DANDELION_ROOT.get())
+                .addIngredient(ForgeTags.MILK_BOTTLE)
+                .unlockedByAnyIngredient(DANDELION_ROOT.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                .build(consumer);
+            //Seed Milk
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
                 .addIngredient(Ingredient.of(SUNFLOWER_KERNELS.get(), ModItems.RICE.get()))
                 .addIngredient(ForgeTags.SEEDS)

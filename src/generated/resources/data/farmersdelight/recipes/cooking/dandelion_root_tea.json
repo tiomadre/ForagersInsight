@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:dandelion_root"
+    },
+    {
+      "item": "naturesdelight:dandelion_root"
+    },
+    {
+      "tag": "forge:milk/milk_bottle"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "naturesdelight:dandelion_root_tea"
+  }
+}

@@ -106,7 +106,10 @@ public class NDItems {
 //Drinks
     public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
-    //Chilled Drinks
+    //Chilled
+    //Medicinal
+    public static final RegistryObject<Item> DANDELION_ROOT_TEA = HELPER.createItem("dandelion_root_tea", () -> new DrinkableItem(new Item.Properties()
+            .food(NDFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
 
 //Seed Milk Stuff
     public static final RegistryObject<Item> SEED_MILK_BOTTLE = HELPER.createItem("seed_milk_bottle", () -> new MilkBottleItem(
