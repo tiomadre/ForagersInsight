@@ -61,8 +61,13 @@
   "block.naturesdelight.spruce_tips_sack": "Sack of Spruce Tips",
 
   "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
-  "naturesdelight.tooltip.dandelion_root_tea": "'Now with extra root!'",
+
+  "naturesdelight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",
+  "naturesdelight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
+  "naturesdelight.flavortext.seed_milk_bucket": "A bucket of plant milk made of various seeds.",
+
   "effect.naturesdelight.chilled": "Chilled",
+  "effect.naturesdelight.chilled.desc": "Chilled",
   "effect.naturesdelight.medicinal": "Medicinal"
 
 }
