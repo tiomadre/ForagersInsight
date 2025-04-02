@@ -51,7 +51,9 @@ public class NDItemModels extends BlueprintItemModelProvider {
                     //Medicinal
                     DANDELION_ROOT_TEA,
                 //Other
-                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET);
+                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET,
+                //Tools and Workstations
+                FLINT_SHEARS        );
 
     }
 }

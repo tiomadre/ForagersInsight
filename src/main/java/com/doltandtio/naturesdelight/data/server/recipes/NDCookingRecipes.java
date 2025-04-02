@@ -1,21 +1,16 @@
 package com.doltandtio.naturesdelight.data.server.recipes;
 
+import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
-import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
-
 import java.util.function.Consumer;
-
-import static com.doltandtio.naturesdelight.core.registry.NDBlocks.DANDELION_BUSH;
-import static com.doltandtio.naturesdelight.core.registry.NDBlocks.ROSE_HIP;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 
 public class NDCookingRecipes {
@@ -82,8 +77,8 @@ public class NDCookingRecipes {
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(ModItems.RICE.get())
                 .addIngredient(Ingredient.of(DANDELION_ROOT.get(), Items.BEETROOT))
-                .addIngredient(ROSE_HIP.get())
-                .unlockedByAnyIngredient(ROSE_HIP.get(), DANDELION_ROOT.get())
+                .addIngredient(NDItems.ROSE_HIP.get())
+                .unlockedByAnyIngredient(NDItems.ROSE_HIP.get(), DANDELION_ROOT.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(SEASIDE_SIZZLER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
@@ -100,8 +95,8 @@ public class NDCookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_PETALS.get())
                 .addIngredient(ROSE_PETALS.get())
-                .addIngredient(ROSE_HIP.get())
-                .unlockedByAnyIngredient(ROSE_PETALS.get(), ROSE_HIP.get())
+                .addIngredient(NDItems.ROSE_HIP.get())
+                .unlockedByAnyIngredient(ROSE_PETALS.get(), NDItems.ROSE_HIP.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
             //Medicinal

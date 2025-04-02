@@ -12,22 +12,21 @@ public class ChilledEffect extends MobEffect {
     public ChilledEffect() {
         super(MobEffectCategory.NEUTRAL, 0xc2ecff);
     }
+    //This effect freezes the duration of any Beneficial effects on the affected target for the length of Chilled.
+    //Chilled is tagged as Neutral to avoid extending itself.
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         ArrayList<MobEffectInstance> activeEffects = new ArrayList<>(entity.getActiveEffects());
 
         for (MobEffectInstance effectInstance : activeEffects) {
-            // Affects only beneficial effects
             if (effectInstance.getEffect().getCategory() == MobEffectCategory.BENEFICIAL
                     && effectInstance.getEffect() != this) {
                 int currentDuration = effectInstance.getDuration();
-                int newDuration = currentDuration + 1; // +1 tick to counter the natural decay
+                int newDuration = currentDuration + 1;
                 int effectAmplifier = effectInstance.getAmplifier();
                 boolean ambient = effectInstance.isAmbient();
                 boolean visible = effectInstance.isVisible();
                 boolean showIcon = effectInstance.showIcon();
-
-                // effects are removed and reapplied w/ increased duration
                 entity.removeEffect(effectInstance.getEffect());
                 MobEffectInstance newEffect = new MobEffectInstance(
                         effectInstance.getEffect(),

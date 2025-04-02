@@ -45,6 +45,8 @@
   "item.naturesdelight.sunflower_butter": "Sunflower Butter",
   "item.naturesdelight.wheat_flour": "Wheat Flour",
 
+  "item.naturesdelight.flint_shears": "FLint Shears",
+
   "item.naturesdelight.cooked_rabbit_leg": "Cooked Rabbit Leg",
   "item.naturesdelight.raw_rabbit_leg": "Raw Rabbit Leg",
 
@@ -64,10 +66,10 @@
 
   "naturesdelight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",
   "naturesdelight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
-  "naturesdelight.flavortext.seed_milk_bucket": "A bucket of plant milk made of various seeds.",
+  "naturesdelight.flavortext.seed_milk_bucket": "A bucket of milk derived from various seeds.",
 
   "effect.naturesdelight.chilled": "Chilled",
-  "effect.naturesdelight.chilled.desc": "Chilled",
+  "effect.naturesdelight.chilled.desc": "Freeze the duration of beneficial effects.",
+  "effect.naturesdelight.medicinal.desc": "Heals,removes and prevents the application of Poison and Wither.",
   "effect.naturesdelight.medicinal": "Medicinal"
-
 }

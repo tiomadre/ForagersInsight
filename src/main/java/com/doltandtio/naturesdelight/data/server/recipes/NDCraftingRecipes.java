@@ -30,12 +30,14 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
     public NDCraftingRecipes(GatherDataEvent e) {
         super(NaturesDelight.MOD_ID, e.getGenerator().getPackOutput());
     }
-
+//ITEMS
+    //Cookies
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
         cookie(ROSE_COOKIE, NDItems.ROSE_HIP, consumer);
         cookie(ACORN_COOKIE, BLACK_ACORN, consumer);
- //ACORN DOUGH
+
+        //ACORN DOUGH
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
                 .requires(NDTags.ItemTag.ACORN).requires(NDTags.ItemTag.ACORN)
                 .requires(NDTags.ItemTag.ACORN).requires(WATER_BUCKET)
@@ -44,8 +46,8 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(NDTags.ItemTag.ACORN).requires(NDTags.ItemTag.ACORN)
                 .requires(NDTags.ItemTag.ACORN).requires(ForgeTags.EGGS)
                 .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
- //DISHES
-    //Comfort
+    //DISHES
+        //Comfort
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FORAGERS_GRANOLA.get())
                 .requires(NDItems.ROSE_HIP.get()).requires(NDTags.ItemTag.APPLE).requires(NDItems.ROSE_HIP.get())
                 .requires(NDTags.ItemTag.ACORN).requires(BOWL)
@@ -61,12 +63,12 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(NDTags.ItemTag.ROOTS)
                 .requires(NDTags.ItemTag.MUSHROOM).requires(BOWL)
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
-    //Nourishment
+        //Nourishment
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, NDItems.ROSE_GRANITA.get())
                 .requires(NDItems.ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
                 .requires(NDTags.ItemTag.ICE).requires(GLASS_BOTTLE)
                 .unlockedBy("has_rose_hip", has(NDItems.ROSE_HIP.get())).save(consumer);
-    //Salads
+        //Salads
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_AND_BEET_SALAD.get())
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
                 .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
@@ -77,12 +79,13 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(DANDELION).requires(DANDELION)
                 .requires(BOWL)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(consumer);
-    //Sandwiches + Finger Foods
+        //Sandwiches + Finger Foods
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_WRAP.get())
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
                 .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
                 .unlockedBy("has_kelp", has(KELP)).save(consumer);
-    //Seed Milk
+    //OTHER
+        //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
                 .requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
@@ -91,7 +94,13 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BUCKET).requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
-    //Storage
+        //Tools
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
+                .requires(FLINT)
+                .requires(FLINT);
+
+ //BLOCKS
+        //Storage
         this.storageRecipes(consumer, RecipeCategory.FOOD, NDItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
 
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());

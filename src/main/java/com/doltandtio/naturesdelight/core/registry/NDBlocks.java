@@ -8,14 +8,12 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
@@ -23,7 +21,7 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
-    //Chilled Pot
+    //Chiller
 
     //Crops
         //Flower
@@ -70,7 +68,7 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.BREAD), POPPY_SEED_BAGEL)
+                    .addItemsAfter(of(Items.BREAD), POPPY_SEED_BAGEL)
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
                     .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
                     .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,ROSE_HIP,SUNFLOWER_KERNELS)
@@ -80,6 +78,8 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,CREAMY_SALMON_BAGEL,DANDELION_FRIES,FORAGERS_GRANOLA,JAMMY_BREAKFAST_SANDWICH,KELP_AND_BEET_SALAD,KELP_WRAP,MEADOW_MEDLEY,ROSE_ROASTED_ROOTS,
                             SEASIDE_SIZZLER,STEAMY_KELP_RICE)
                 .tab(CreativeModeTabs.INGREDIENTS)
-                    .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,ROSE_PETALS,WHEAT_FLOUR);
+                    .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,POPPY_SEED_PASTE,ROSE_PETALS,WHEAT_FLOUR)
+                .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
+                .addItemsAfter(of(Items.SHEARS), FLINT_SHEARS);
     }
 }

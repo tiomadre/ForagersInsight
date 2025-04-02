@@ -76,6 +76,7 @@ public class NDFoods {
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
                 .nutrition(0)
                 .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 1200), 1).build();
+        //Other
     //Ingredients
     public static final FoodProperties ACORN_DOUGH = new FoodProperties.Builder()
             .nutrition(2).saturationMod(0.3f)

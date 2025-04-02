@@ -9,27 +9,24 @@ public class MedicinalEffect extends MobEffect {
     public MedicinalEffect() {
         super(MobEffectCategory.BENEFICIAL, 0x0a5f38);
     }
+    //This effect removes any Poison and Wither effects on the affected unit and heals per effect removed.
+    //Healing only occurs on the initial trigger and for the remainder of the duration, Poison and Wither does not apply.
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        // On application, perform the healing one time.
         if (!entity.getPersistentData().getBoolean("naturesdelight:medicinal_healed")) {
             int removalCount = 0;
-            // Checks for Poison and Wither.
             if (entity.hasEffect(MobEffects.POISON)) {
                 removalCount++;
             }
             if (entity.hasEffect(MobEffects.WITHER)) {
                 removalCount++;
             }
-            // Heal heart per effect purged, 2 hearts max.
             int heartsToHeal = Math.min(removalCount, 2);
             if (heartsToHeal > 0) {
                 entity.heal(heartsToHeal * 2.0F);
             }
-            // Mark so healing from effect only occurs once.
             entity.getPersistentData().putBoolean("naturesdelight:medicinal_healed", true);
         }
-        // Always remove any Poison or Wither effects.
         entity.removeEffect(MobEffects.POISON);
         entity.removeEffect(MobEffects.WITHER);
     }
