@@ -3,9 +3,7 @@ package com.doltandtio.naturesdelight.core.other;
 import com.doltandtio.naturesdelight.core.registry.NDMobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraftforge.fml.common.Mod;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class NDFoods {
@@ -65,6 +63,11 @@ public class NDFoods {
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100), 1).build();
         public static final FoodProperties DANDELION_FRIES = new FoodProperties.Builder().fast()
             .nutrition(3).saturationMod(0.3f).build();
+        public static final FoodProperties SEED_BUTTER_JAMWICH = (new FoodProperties.Builder())
+            .nutrition(8).saturationMod(0.7F).build();
+        public static final FoodProperties CAKE_SLICE = (new FoodProperties.Builder().fast())
+            .nutrition(2).saturationMod(0.1F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 0, false, false), 1.0F).build();
 
 
     //DRINKS
@@ -76,11 +79,14 @@ public class NDFoods {
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
                 .nutrition(0)
                 .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 1200), 1).build();
-        //Other
+    //FEASTS
+
     //Ingredients
     public static final FoodProperties ACORN_DOUGH = new FoodProperties.Builder()
             .nutrition(2).saturationMod(0.3f)
             .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build();
+    public static final FoodProperties SAUCE_BOWLS = new FoodProperties.Builder()
+            .nutrition(2).saturationMod(0.3f).build();
     public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().build();
     public static final FoodProperties SEED_MILK_BUCKET = new FoodProperties.Builder().build();
 

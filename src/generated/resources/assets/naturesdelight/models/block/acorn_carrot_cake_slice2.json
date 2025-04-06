@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake",
+  "textures": {
+    "particle": "naturesdelight:block/acorn_carrot_cake_side",
+    "bottom": "naturesdelight:block/acorn_carrot_cake_bottom",
+    "top": "naturesdelight:block/acorn_carrot_cake_top",
+    "side": "naturesdelight:block/acorn_carrot_cake_side",
+    "inside": "naturesdelight:block/acorn_carrot_cake_inner"
+  }
+}

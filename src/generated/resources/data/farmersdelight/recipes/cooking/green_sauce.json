@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:spruce_tips"
+    },
+    {
+      "item": "naturesdelight:spruce_tips"
+    },
+    {
+      "item": "naturesdelight:spruce_tips"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "count": 1,
+    "item": "naturesdelight:green_sauce"
+  }
+}

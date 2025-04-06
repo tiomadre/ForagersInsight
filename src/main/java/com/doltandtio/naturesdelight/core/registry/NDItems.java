@@ -54,8 +54,13 @@ public class NDItems {
             new ItemNameBlockItem(NDBlocks.ROSE_HIP.get(), new Item.Properties().food(NDFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> SPRUCE_TIPS = HELPER.createItem("spruce_tips", () ->
             new Item(new Item.Properties().food(NDFoods.LOW_SAT_MORSELS)));
-
-    //Baked Goods & Sweets
+    //Ingredients
+    public static final RegistryObject<Item> GREEN_SAUCE = HELPER.createItem("green_sauce", () -> new Item(new Item.Properties()
+            .food(NDFoods.SAUCE_BOWLS)));
+    public static final RegistryObject<Item> SUNFLOWER_BUTTER = HELPER.createItem("sunflower_butter", () -> new Item(new Item.Properties()
+            .food(NDFoods.SAUCE_BOWLS)));
+    //DISHES
+        //Baked Goods & Sweets
     public static final RegistryObject<Item> ACORN_COOKIE = HELPER.createItem("acorn_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
     public static final RegistryObject<Item> ROSE_COOKIE = HELPER.createItem("rose_cookie", () -> new Item(new Item.Properties()
@@ -66,12 +71,15 @@ public class NDItems {
             new Item.Properties().food(NDFoods.BAKED_GOOD)));
     public static final RegistryObject<Item> POPPY_SEED_BAGEL = HELPER.createItem("poppy_seed_bagel", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.BAKED_GOOD)));
-
-    //DISHES
-    //Chilled
+        //Cake
+        public static final RegistryObject<Item> ACORN_CARROT_CAKE = HELPER.createItem("acorn_carrot_cake_item",
+                () -> new ItemNameBlockItem(NDBlocks.ACORN_CARROT_CAKE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.CAKE_SLICE)));
+        //Chilled
     public static final RegistryObject<Item> ROSE_GRANITA = HELPER.createItem("rose_granita", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_GRANITA).craftRemainder(Items.GLASS_BOTTLE)));
-    //Comfort
+        //Comfort
     public static final RegistryObject<Item> COD_AND_PUMPKIN_STEW = HELPER.createItem("cod_and_pumpkin_stew", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.COD_AND_PUMPKIN_STEW).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> CREAMY_SALMON_BAGEL = HELPER.createItem("creamy_salmon_bagel", () -> new ConsumableItem(
@@ -83,9 +91,9 @@ public class NDItems {
             new Item.Properties().food(NDFoods.JAMMY_BREAKFAST_SANDWICH).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
-    //Medicinal
+        //Medicinal
 
-    //Nourishment
+        //Nourishment
     public static final RegistryObject<Item> ACORN_NOODLES = HELPER.createItem("acorn_noodles", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.ACORN_NOODLES).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> ROSE_ROASTED_ROOTS = HELPER.createItem("rose_roasted_roots", () -> new ConsumableItem(
@@ -102,14 +110,14 @@ public class NDItems {
             new Item.Properties().food(NDFoods.KELP_WRAP)));
     public static final RegistryObject<Item> DANDELION_FRIES = HELPER.createItem("dandelion_fries", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.DANDELION_FRIES)));
-
-
+    public static final RegistryObject<Item> SEED_BUTTER_JAMWICH = HELPER.createItem("seed_butter_jamwich", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.SEED_BUTTER_JAMWICH)));
     //Drinks
     public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
-    //Chilled
+        //Chilled
 
-    //Medicinal
+        //Medicinal
     public static final RegistryObject<Item> DANDELION_ROOT_TEA = HELPER.createItem("dandelion_root_tea", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
 

@@ -123,5 +123,20 @@ public class NDCookingRecipes {
                 .unlockedByAnyIngredient(DANDELION_ROOT.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(GREEN_SAUCE.get(), 1, NORMAL_COOKING,MEDIUM_EXP)
+                .addIngredient(SPRUCE_TIPS.get())
+                .addIngredient(SPRUCE_TIPS.get())
+                .addIngredient(SPRUCE_TIPS.get())
+                .unlockedByAnyIngredient(SPRUCE_TIPS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(SUNFLOWER_BUTTER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(SUNFLOWER_KERNELS.get())
+                .addIngredient(SUNFLOWER_KERNELS.get())
+                .addIngredient(SUNFLOWER_KERNELS.get())
+                .unlockedByAnyIngredient(SUNFLOWER_KERNELS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(consumer);
+
     }
 }

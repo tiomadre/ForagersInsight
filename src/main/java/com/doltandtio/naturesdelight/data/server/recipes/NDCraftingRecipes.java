@@ -1,10 +1,12 @@
 package com.doltandtio.naturesdelight.data.server.recipes;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
-import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.doltandtio.naturesdelight.data.server.tags.NDItemTags;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
+import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.ACORN_CARROT_CAKE;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -12,19 +14,13 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import static net.minecraft.world.item.Items.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.registries.RegistryObject;
-import org.checkerframework.checker.units.qual.C;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
-
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-
-import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
-import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
-import static net.minecraft.world.item.Items.*;
 
 public class NDCraftingRecipes extends BlueprintRecipeProvider {
     public NDCraftingRecipes(GatherDataEvent e) {
@@ -84,6 +80,11 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
                 .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
                 .unlockedBy("has_kelp", has(KELP)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_BUTTER_JAMWICH.get())
+                .requires(BREAD).requires(SUNFLOWER_BUTTER.get()).requires(SWEET_BERRIES)
+                .requires(SWEET_BERRIES)
+                .unlockedBy("has_sunflower_kernels", has(SUNFLOWER_KERNELS.get())).save(consumer);
+
     //OTHER
         //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
@@ -96,10 +97,16 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
         //Tools
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
-                .requires(FLINT)
-                .requires(FLINT);
+                .requires(FLINT).requires(FLINT);
+
 
  //BLOCKS
+        //Feats and Cakes
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE.get())
+                .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
+                .requires(SUGAR).requires(ForgeTags.EGGS).requires(SUGAR)
+                .requires(ForgeTags.MILK).requires(ForgeTags.MILK).requires(ForgeTags.MILK)
+                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
         //Storage
         this.storageRecipes(consumer, RecipeCategory.FOOD, NDItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
 

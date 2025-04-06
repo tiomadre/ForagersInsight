@@ -26,6 +26,7 @@
   "item.naturesdelight.poppy_seed_bagel": "Poppy Seed Bagel",
   "item.naturesdelight.rose_granita": "Rose Granita",
   "item.naturesdelight.rose_roasted_roots": "Rose Roasted Roots",
+  "item.naturesdelight.seed_butter_jamwich": "Seed Butter Jamwich",
   "item.naturesdelight.seaside_sizzler": "Seaside Sizzler",
   "item.naturesdelight.steamy_kelp_rice": "Steamy Kelp Rice",
 
@@ -38,6 +39,7 @@
   "item.naturesdelight.acorn_meal": "Acorn Meal",
   "item.naturesdelight.cocoa_powder": "Cocoa Powder",
   "item.naturesdelight.crushed_ice": "Crushed Ice",
+  "item.naturesdelight.green_sauce": "Green Sauce",
   "item.naturesdelight.poppy_seed_paste":"Poppy Seed Paste",
   "item.naturesdelight.rose_petals": "Rose Petals",
   "item.naturesdelight.seed_milk_bottle": "Seed Milk Bottle",
@@ -45,10 +47,13 @@
   "item.naturesdelight.sunflower_butter": "Sunflower Butter",
   "item.naturesdelight.wheat_flour": "Wheat Flour",
 
-  "item.naturesdelight.flint_shears": "FLint Shears",
+  "item.naturesdelight.flint_shears": "Flint Shears",
 
   "item.naturesdelight.cooked_rabbit_leg": "Cooked Rabbit Leg",
   "item.naturesdelight.raw_rabbit_leg": "Raw Rabbit Leg",
+
+  "item.naturesdelight.slice_of_acorn_carrot_cake": "Slice of Acorn Carrot Cake",
+  "block.naturesdelight.acorn_carrot_cake": "Acorn Carrot Cake",
 
   "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
   "block.naturesdelight.bountiful_oak_leaves": "Bountiful Oak Leaves",
