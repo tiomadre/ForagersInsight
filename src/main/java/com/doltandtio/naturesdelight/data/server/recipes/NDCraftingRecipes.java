@@ -2,7 +2,6 @@ package com.doltandtio.naturesdelight.data.server.recipes;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
-import com.doltandtio.naturesdelight.data.server.tags.NDItemTags;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
