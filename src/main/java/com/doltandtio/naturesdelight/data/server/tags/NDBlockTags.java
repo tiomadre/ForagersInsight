@@ -6,9 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
-import org.checkerframework.common.value.qual.MinLenFieldInvariant;
 import org.jetbrains.annotations.NotNull;
-import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;

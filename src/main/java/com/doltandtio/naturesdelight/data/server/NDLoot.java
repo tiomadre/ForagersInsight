@@ -83,15 +83,15 @@ public class NDLoot extends LootTableProvider {
         protected void generate() {
             this.add(NDBlocks.ROSE_HIP.get(), this.applyExplosionDecay(NDItems.ROSE_HIP.get(),
                 LootTable.lootTable()
-                        .withPool(LootPool.lootPool().when(stateCond(NDBlocks.ROSE_HIP, DoubleCropBlock.HALF, DoubleBlockHalf.LOWER.toString()))
+                        .withPool(LootPool.lootPool().when(stateCond(DoubleBlockHalf.LOWER.toString()))
                                 .add(LootItem.lootTableItem(NDItems.ROSE_HIP.get())))
-                        .withPool(LootPool.lootPool().when(lower(NDBlocks.ROSE_HIP))
+                        .withPool(LootPool.lootPool().when(lower())
                                 .add(LootItem.lootTableItem(NDItems.ROSE_HIP.get()))
-                                        .when(lower(NDBlocks.ROSE_HIP))
+                                        .when(lower())
                                         .when(stateCond(NDBlocks.ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower(NDBlocks.ROSE_HIP))));
+                                .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower())));
 
             this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
@@ -137,9 +137,9 @@ public class NDLoot extends LootTableProvider {
                             .add(this.applyExplosionCondition(block, LootItem.lootTableItem(block.getBounty()))));
         }
 
-        private static <T extends Comparable<T>> LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<T> property, String value) {
-            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
-                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
+        public static LootItemCondition.Builder stateCond(String value) {
+            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(((RegistryObject<? extends Block>) NDBlocks.ROSE_HIP).get())
+                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropBlock.HALF, value));
         }
 
 
@@ -148,12 +148,12 @@ public class NDLoot extends LootTableProvider {
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
         }
 
-        private static LootItemCondition.Builder lower(RegistryObject<? extends Block> block) {
-            return stateCond(block, DoubleCropBlock.HALF, "lower");
+        private static LootItemCondition.Builder lower() {
+            return stateCond("lower");
         }
 
         @Override
-        public Iterable<Block> getKnownBlocks() {
+        public @NotNull Iterable<Block> getKnownBlocks() {
             return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(NaturesDelight.MOD_ID)).collect(Collectors.toSet());
         }
     }

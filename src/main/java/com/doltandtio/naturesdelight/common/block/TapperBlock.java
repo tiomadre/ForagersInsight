@@ -1,6 +1,5 @@
 package com.doltandtio.naturesdelight.common.block;
 
-import com.doltandtio.naturesdelight.core.registry.NDBlocks;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -8,8 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;

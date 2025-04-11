@@ -9,7 +9,6 @@ import static com.doltandtio.naturesdelight.core.registry.NDItems.ACORN_CARROT_C
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

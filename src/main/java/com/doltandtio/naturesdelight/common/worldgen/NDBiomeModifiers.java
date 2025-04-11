@@ -1,14 +1,12 @@
 package com.doltandtio.naturesdelight.common.worldgen;
 
 import com.doltandtio.naturesdelight.core.NaturesDelight;
-import com.doltandtio.naturesdelight.data.server.tags.NDBiomeTags;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
