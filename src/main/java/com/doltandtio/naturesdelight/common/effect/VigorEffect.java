@@ -9,9 +9,9 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 public class VigorEffect extends MobEffect {
 
     public VigorEffect() {
-        //Grants temporary health naturally regenerating.
-        //Adds 1 heart , plus 0.5 hearts (1 health point) per rank.
-        super(MobEffectCategory.BENEFICIAL, 0x086e3b); // Orange color for the effect
+        //Grants temporary health that can naturally regenerate.
+        //Adds 1 heart , plus 0.5 hearts per rank.
+        super(MobEffectCategory.BENEFICIAL, 0x086e3b);
         this.addAttributeModifier(Attributes.MAX_HEALTH, "91AEAA56-376B-4498-935B-2F7F68070635", 2.0D, AttributeModifier.Operation.ADDITION);
     }
     @Override

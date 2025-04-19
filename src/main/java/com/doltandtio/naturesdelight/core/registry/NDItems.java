@@ -5,6 +5,7 @@ import com.doltandtio.naturesdelight.common.item.MilkBucketItem;
 import com.doltandtio.naturesdelight.core.NaturesDelight;
 import com.doltandtio.naturesdelight.core.other.NDFoods;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
@@ -76,7 +77,7 @@ public class NDItems {
             new Item.Properties().food(NDFoods.BAKED_GOOD)));
         //Cake
         public static final RegistryObject<Item> ACORN_CARROT_CAKE = HELPER.createItem("acorn_carrot_cake_item",
-                () -> new ItemNameBlockItem(NDBlocks.ACORN_CARROT_CAKE.get(), new Item.Properties()));
+                () -> new BlockItem(NDBlocks.ACORN_CARROT_CAKE.get(), new Item.Properties()));
     public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.CAKE_SLICE)));
         //Chilled

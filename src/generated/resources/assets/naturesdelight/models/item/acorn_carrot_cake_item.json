@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "naturesdelight:item/acorn_carrot_cake"
+    "layer0": "naturesdelight:item/acorn_carrot_cake_item"
   }
 }
