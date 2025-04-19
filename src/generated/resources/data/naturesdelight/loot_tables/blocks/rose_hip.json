@@ -1,19 +1,5 @@
 {
   "type": "minecraft:block",
-  "functions": [
-    {
-      "enchantment": "minecraft:fortune",
-      "formula": "minecraft:binomial_with_bonus_count",
-      "function": "minecraft:apply_bonus",
-      "parameters": {
-        "extra": 3,
-        "probability": 0.5714285
-      }
-    },
-    {
-      "function": "minecraft:explosion_decay"
-    }
-  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -22,39 +8,7 @@
           "block": "naturesdelight:rose_hip",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "half": "lower"
-          }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "naturesdelight:rose_hip"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "naturesdelight:rose_hip",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "half": "lower"
-          }
-        },
-        {
-          "block": "naturesdelight:rose_hip",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "half": "lower"
-          }
-        },
-        {
-          "block": "naturesdelight:rose_hip",
-          "condition": "minecraft:block_state_property",
-          "properties": {
+            "half": "lower",
             "age": "4"
           }
         }
@@ -62,7 +16,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "naturesdelight:rose_hip"
+          "name": "naturesdelight:rose_hip",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ]
         }
       ],
       "rolls": 1.0
@@ -74,7 +34,8 @@
           "block": "naturesdelight:rose_hip",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "half": "lower"
+            "half": "lower",
+            "age": "4"
           }
         }
       ],
@@ -90,25 +51,6 @@
             }
           ],
           "name": "naturesdelight:rose_petals"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "naturesdelight:rose_hip",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
-              }
-            }
-          ],
-          "name": "minecraft:rose_bush"
         }
       ],
       "rolls": 1.0

@@ -82,6 +82,10 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BREAD).requires(SUNFLOWER_BUTTER.get()).requires(SWEET_BERRIES)
                 .requires(SWEET_BERRIES)
                 .unlockedBy("has_sunflower_kernels", has(SUNFLOWER_KERNELS.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SWEET_ROASTED_RABBIT_LEG.get(), 2)
+                .requires(COOKED_RABBIT_LEG.get()).requires(COOKED_RABBIT_LEG.get()).requires(NDTags.ItemTag.POPPY_SEEDS)
+                .requires(HONEY_BOTTLE)
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
 
     //OTHER
         //Seed Milk

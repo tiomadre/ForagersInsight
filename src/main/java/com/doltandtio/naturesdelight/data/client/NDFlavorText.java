@@ -33,6 +33,12 @@ public class NDFlavorText {
         event.getToolTip().add(
                 Component.translatable("naturesdelight.flavortext.seed_milk_bucket")
                         .withStyle(ChatFormatting.ITALIC).withStyle(style -> style.withColor(TextColor.fromRgb(0xd9ecdd)))); //Light Green Grey
-    }
+        }
+      // Forest's Elixir
+        if (stack.getItem() == NDItems.ROSE_CORDIAL.get()) {
+        event.getToolTip().add(
+                Component.translatable("naturesdelight.flavortext.forest_elixir")
+                        .withStyle(ChatFormatting.ITALIC).withStyle(style -> style.withColor(TextColor.fromRgb(0xf6537e)))); //Rose
+        }
     }
 }

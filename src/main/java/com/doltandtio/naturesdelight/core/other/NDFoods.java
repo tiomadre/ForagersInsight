@@ -68,6 +68,8 @@ public class NDFoods {
         public static final FoodProperties CAKE_SLICE = (new FoodProperties.Builder().fast())
             .nutrition(2).saturationMod(0.1F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 0, false, false), 1.0F).build();
+        public static final FoodProperties SWEET_ROASTED_RABBIT_LEG = (new FoodProperties.Builder()
+                .nutrition(5).saturationMod(0.9f)).build();
 
 
     //DRINKS
@@ -77,8 +79,10 @@ public class NDFoods {
         //Chilled
         //Medicinal
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
-                .nutrition(0)
-                .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 1200), 1).build();
+            .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 1200), 1).build();
+        public static final FoodProperties FOREST_ELIXIR = new FoodProperties.Builder().alwaysEat()
+            .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 600), 1)
+            .effect(() -> new MobEffectInstance(NDMobEffects.VIGOR.get(), 600, 0), 1.0F).build();
     //FEASTS
 
     //Ingredients

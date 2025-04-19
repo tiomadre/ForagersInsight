@@ -3,6 +3,7 @@ package com.doltandtio.naturesdelight.data.server.recipes;
 import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.HoneyBottleItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
@@ -105,6 +106,14 @@ public class NDCookingRecipes {
                 .addIngredient(DANDELION_ROOT.get())
                 .addIngredient(ForgeTags.MILK_BOTTLE)
                 .unlockedByAnyIngredient(DANDELION_ROOT.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(FOREST_ELIXIR.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(SPRUCE_TIPS.get())
+                .addIngredient(SPRUCE_TIPS.get())
+                .addIngredient(SPRUCE_TIPS.get())
+                .addIngredient(Items.HONEY_BOTTLE) //Replace with Syrup Bottle when Tree Trapping is added
+                .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
             //Seed Milk

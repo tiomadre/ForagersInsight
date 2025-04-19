@@ -29,10 +29,12 @@
   "item.naturesdelight.seed_butter_jamwich": "Seed Butter Jamwich",
   "item.naturesdelight.seaside_sizzler": "Seaside Sizzler",
   "item.naturesdelight.steamy_kelp_rice": "Steamy Kelp Rice",
+  "item.naturesdelight.sweet_roasted_rabbit_leg": "Sweet Roasted Rabbit Leg",
 
 
   "item.naturesdelight.dandelion_root_tea": "Dandelion Root Tea",
   "item.naturesdelight.rose_cordial": "Rose Cordial",
+  "item.naturesdelight.forest_elixir": "Forest's Elixir",
 
 
   "item.naturesdelight.acorn_dough": "Acorn Dough",
@@ -53,6 +55,7 @@
   "item.naturesdelight.raw_rabbit_leg": "Raw Rabbit Leg",
 
   "item.naturesdelight.slice_of_acorn_carrot_cake": "Slice of Acorn Carrot Cake",
+  "item.naturesdelight.acorn_carrot_cake_item": "Acorn Carrot Cake",
   "block.naturesdelight.acorn_carrot_cake": "Acorn Carrot Cake",
 
   "block.naturesdelight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
@@ -70,11 +73,14 @@
   "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
 
   "naturesdelight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",
+  "naturesdelight.flavortext.forest_elixir": "A sweetened coniferous drink made of syrup and spruce tips.",
   "naturesdelight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
   "naturesdelight.flavortext.seed_milk_bucket": "A bucket of milk derived from various seeds.",
 
   "effect.naturesdelight.chilled": "Chilled",
   "effect.naturesdelight.chilled.desc": "Freeze the duration of beneficial effects.",
   "effect.naturesdelight.medicinal.desc": "Heals,removes and prevents the application of Poison and Wither.",
-  "effect.naturesdelight.medicinal": "Medicinal"
+  "effect.naturesdelight.vigor.desc": "Grants temporary health that can be regenerated like base health.",
+  "effect.naturesdelight.medicinal": "Medicinal",
+  "effect.naturesdelight.vigor": "Vigor"
 }

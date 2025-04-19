@@ -23,7 +23,7 @@ public class NDBlocks {
 
     //Cakes and Feasts
     public static final RegistryObject<Block> ACORN_CARROT_CAKE = HELPER.createBlock("acorn_carrot_cake",
-            () -> new CakeBlock(copy(Blocks.CAKE)));
+            () -> new SliceableCakeBlock(copy(Blocks.CAKE), SLICE_OF_ACORN_CARROT_CAKE));
     // Chiller
     //Crops
         //Flower
@@ -74,11 +74,11 @@ public class NDBlocks {
                     .addItemsAfter(of(Items.CAKE), ACORN_CARROT_CAKE, SLICE_OF_ACORN_CARROT_CAKE)
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
                     .addItemsAfter(of(Items.COOKIE), ACORN_COOKIE,ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
-                    .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,ROSE_GRANITA,ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,FOREST_ELIXIR,ROSE_GRANITA,ROSE_CORDIAL)
                     .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
                     .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
                     .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,DANDELION_FRIES,FORAGERS_GRANOLA,KELP_AND_BEET_SALAD,MEADOW_MEDLEY,
-                            ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,STEAMY_KELP_RICE)
+                            ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,STEAMY_KELP_RICE,SWEET_ROASTED_RABBIT_LEG)
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,GREEN_SAUCE,POPPY_SEED_PASTE,SUNFLOWER_BUTTER,ROSE_PETALS,WHEAT_FLOUR)
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)

@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "naturesdelight:spruce_tips"
+    },
+    {
+      "item": "naturesdelight:spruce_tips"
+    },
+    {
+      "item": "naturesdelight:spruce_tips"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "naturesdelight:forest_elixir"
+  }
+}

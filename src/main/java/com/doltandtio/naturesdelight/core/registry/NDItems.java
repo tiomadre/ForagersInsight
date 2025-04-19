@@ -16,6 +16,9 @@ import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MilkBottleItem;
 
 
+/**
+ * This class is responsible for registering all items in the Natures Delight mod.
+ * Each item is created using a helper system provided by the `ItemSubRegistryHelper*/
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDItems {
     public static final ItemSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getItemSubHelper();
@@ -112,6 +115,8 @@ public class NDItems {
             new Item.Properties().food(NDFoods.DANDELION_FRIES)));
     public static final RegistryObject<Item> SEED_BUTTER_JAMWICH = HELPER.createItem("seed_butter_jamwich", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.SEED_BUTTER_JAMWICH)));
+    public static final RegistryObject<Item> SWEET_ROASTED_RABBIT_LEG = HELPER.createItem("sweet_roasted_rabbit_leg", () -> new ConsumableItem(
+            new Item.Properties().food(NDFoods.SWEET_ROASTED_RABBIT_LEG)));
     //Drinks
     public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
@@ -120,6 +125,8 @@ public class NDItems {
         //Medicinal
     public static final RegistryObject<Item> DANDELION_ROOT_TEA = HELPER.createItem("dandelion_root_tea", () -> new DrinkableItem(new Item.Properties()
             .food(NDFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> FOREST_ELIXIR = HELPER.createItem("forest_elixir", () -> new DrinkableItem(new Item.Properties()
+            .food(NDFoods.FOREST_ELIXIR).craftRemainder(Items.GLASS_BOTTLE)));
 
     //Seed Milk Stuff
     public static final RegistryObject<Item> SEED_MILK_BOTTLE = HELPER.createItem("seed_milk_bottle", () -> new MilkBottleItem(

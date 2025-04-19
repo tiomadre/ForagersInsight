@@ -50,9 +50,9 @@ public class NDItemModels extends BlueprintItemModelProvider {
                     //Chilled
 
                     //Medicinal
-                    DANDELION_ROOT_TEA,
+                    DANDELION_ROOT_TEA, FOREST_ELIXIR,
                 //Other
-                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET,
+                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
                 //Tools and Workstations
                 FLINT_SHEARS        );
 
