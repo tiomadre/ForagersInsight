@@ -9,6 +9,7 @@ import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -22,9 +23,10 @@ public class NDBlocks {
     public static final BlockSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getBlockSubHelper();
 
     //Cakes and Feasts
-    public static final RegistryObject<Block> ACORN_CARROT_CAKE = HELPER.createBlock("acorn_carrot_cake",
-            () -> new SliceableCakeBlock(copy(Blocks.CAKE), SLICE_OF_ACORN_CARROT_CAKE));
+    public static final RegistryObject<Block> ACORN_CARROT_CAKE = HELPER.createBlockNoItem("acorn_carrot_cake",
+            () -> new SliceableCakeBlock(copy(Blocks.CAKE), NDItems.SLICE_OF_ACORN_CARROT_CAKE));
     // Chiller
+
     //Crops
         //Flower
     public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
@@ -48,6 +50,7 @@ public class NDBlocks {
             new TapperBlock(copy(Blocks.IRON_BLOCK)));
 
 //Storage
+    //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
             new Block(copy(ModBlocks.CABBAGE_CRATE.get())));
     public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->

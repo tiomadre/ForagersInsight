@@ -25,7 +25,7 @@ public class NDCuttingRecipes {
                 .addResultWithChance(Items.RABBIT_FOOT,0.3f)
                 .build(consumer);
         //Cake Slices
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(NDBlocks.ACORN_CARROT_CAKE.get()), of(ForgeTags.TOOLS_KNIVES), NDItems.SLICE_OF_ACORN_CARROT_CAKE.get(), 7).build(consumer);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(NDItems.ACORN_CARROT_CAKE_ITEM.get()), of(ForgeTags.TOOLS_KNIVES), NDItems.SLICE_OF_ACORN_CARROT_CAKE.get(), 7).build(consumer);
 
     }
 

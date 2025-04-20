@@ -56,6 +56,9 @@ public class NDFoods {
         public static final FoodProperties BAKED_GOOD = new FoodProperties.Builder()
                 .nutrition(4).saturationMod(0.3f)
                 .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 500), 1).build();
+        public static final FoodProperties CAKE_SLICE = (new FoodProperties.Builder().fast())
+            .nutrition(2).saturationMod(0.1F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 0, false, false), 1.0F).build();
         public static final FoodProperties KELP_WRAP = new FoodProperties.Builder()
             .nutrition(8).saturationMod(0.7f).build();
         public static final FoodProperties SALAD = new FoodProperties.Builder()
@@ -65,18 +68,15 @@ public class NDFoods {
             .nutrition(3).saturationMod(0.3f).build();
         public static final FoodProperties SEED_BUTTER_JAMWICH = (new FoodProperties.Builder())
             .nutrition(8).saturationMod(0.7F).build();
-        public static final FoodProperties CAKE_SLICE = (new FoodProperties.Builder().fast())
-            .nutrition(2).saturationMod(0.1F)
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 0, false, false), 1.0F).build();
         public static final FoodProperties SWEET_ROASTED_RABBIT_LEG = (new FoodProperties.Builder()
                 .nutrition(5).saturationMod(0.9f)).build();
-
 
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
             .nutrition(0)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200), 1).build();
         //Chilled
+
         //Medicinal
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(NDMobEffects.MEDICINAL.get(), 1200), 1).build();

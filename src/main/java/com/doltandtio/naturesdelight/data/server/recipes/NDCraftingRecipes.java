@@ -5,7 +5,7 @@ import com.doltandtio.naturesdelight.core.registry.NDItems;
 import com.doltandtio.naturesdelight.data.server.tags.NDTags;
 import static com.doltandtio.naturesdelight.core.registry.NDBlocks.*;
 import static com.doltandtio.naturesdelight.core.registry.NDItems.*;
-import static com.doltandtio.naturesdelight.core.registry.NDItems.ACORN_CARROT_CAKE;
+import static com.doltandtio.naturesdelight.core.registry.NDItems.ACORN_CARROT_CAKE_ITEM;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -104,7 +104,7 @@ public class NDCraftingRecipes extends BlueprintRecipeProvider {
 
  //BLOCKS
         //Feats and Cakes
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
                 .requires(SUGAR).requires(ForgeTags.EGGS).requires(SUGAR)
                 .requires(ForgeTags.MILK).requires(ForgeTags.MILK).requires(ForgeTags.MILK)

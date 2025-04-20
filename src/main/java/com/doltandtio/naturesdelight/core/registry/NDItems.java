@@ -9,17 +9,16 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MilkBottleItem;
+import static vectorwing.farmersdelight.common.registry.ModItems.basicItem;
 
 
-/**
- * This class is responsible for registering all items in the Natures Delight mod.
- * Each item is created using a helper system provided by the `ItemSubRegistryHelper*/
 @Mod.EventBusSubscriber(modid = NaturesDelight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NDItems {
     public static final ItemSubRegistryHelper HELPER = NaturesDelight.REGISTRY_HELPER.getItemSubHelper();
@@ -75,10 +74,10 @@ public class NDItems {
             new Item.Properties().food(NDFoods.BAKED_GOOD)));
     public static final RegistryObject<Item> POPPY_SEED_BAGEL = HELPER.createItem("poppy_seed_bagel", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.BAKED_GOOD)));
-        //Cake
-        public static final RegistryObject<Item> ACORN_CARROT_CAKE = HELPER.createItem("acorn_carrot_cake_item",
-                () -> new BlockItem(NDBlocks.ACORN_CARROT_CAKE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
+        //Cakes and Slices
+        public static final RegistryObject<Item> ACORN_CARROT_CAKE_ITEM = HELPER.createItem("acorn_carrot_cake",
+                () -> new BlockItem(NDBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
+        public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.CAKE_SLICE)));
         //Chilled
     public static final RegistryObject<Item> ROSE_GRANITA = HELPER.createItem("rose_granita", () -> new DrinkableItem(new Item.Properties()
@@ -87,12 +86,12 @@ public class NDItems {
     public static final RegistryObject<Item> COD_AND_PUMPKIN_STEW = HELPER.createItem("cod_and_pumpkin_stew", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.COD_AND_PUMPKIN_STEW).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> CREAMY_SALMON_BAGEL = HELPER.createItem("creamy_salmon_bagel", () -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.CREAMY_SALMON_BAGEL).craftRemainder(Items.BOWL)));
+            new Item.Properties().food(NDFoods.CREAMY_SALMON_BAGEL)));
 
     public static final RegistryObject<Item> FORAGERS_GRANOLA = HELPER.createItem("foragers_granola", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.FORAGERS_GRANOLA).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> JAMMY_BREAKFAST_SANDWICH = HELPER.createItem("jammy_breakfast_sandwich", () -> new ConsumableItem(
-            new Item.Properties().food(NDFoods.JAMMY_BREAKFAST_SANDWICH).craftRemainder(Items.BOWL)));
+            new Item.Properties().food(NDFoods.JAMMY_BREAKFAST_SANDWICH)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(NDFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
         //Medicinal

@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cake",
+  "parent": "block/cake",
   "textures": {
     "particle": "naturesdelight:block/acorn_carrot_cake_side",
     "bottom": "naturesdelight:block/acorn_carrot_cake_bottom",
