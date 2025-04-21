@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "naturesdelight:item/sweet_roasted_rabbit_leg"
-  }
-}

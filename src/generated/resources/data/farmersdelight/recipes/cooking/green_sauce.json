@@ -4,18 +4,18 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "naturesdelight:spruce_tips"
+      "item": "foragersinsight:spruce_tips"
     },
     {
-      "item": "naturesdelight:spruce_tips"
+      "item": "foragersinsight:spruce_tips"
     },
     {
-      "item": "naturesdelight:spruce_tips"
+      "item": "foragersinsight:spruce_tips"
     }
   ],
   "recipe_book_tab": "misc",
   "result": {
     "count": 1,
-    "item": "naturesdelight:green_sauce"
+    "item": "foragersinsight:green_sauce"
   }
 }

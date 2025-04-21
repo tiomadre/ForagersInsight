@@ -1,0 +1,7 @@
+{
+  "parent": "foragersinsight:block/leaves_with_overlay",
+  "textures": {
+    "all": "minecraft:block/oak_leaves",
+    "overlay": "foragersinsight:block/bountiful_oak_leaves_stage2"
+  }
+}

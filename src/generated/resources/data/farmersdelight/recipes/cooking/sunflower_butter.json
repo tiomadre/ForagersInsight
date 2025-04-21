@@ -4,18 +4,18 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "naturesdelight:sunflower_kernels"
+      "item": "foragersinsight:sunflower_kernels"
     },
     {
-      "item": "naturesdelight:sunflower_kernels"
+      "item": "foragersinsight:sunflower_kernels"
     },
     {
-      "item": "naturesdelight:sunflower_kernels"
+      "item": "foragersinsight:sunflower_kernels"
     }
   ],
   "recipe_book_tab": "misc",
   "result": {
     "count": 1,
-    "item": "naturesdelight:sunflower_butter"
+    "item": "foragersinsight:sunflower_butter"
   }
 }

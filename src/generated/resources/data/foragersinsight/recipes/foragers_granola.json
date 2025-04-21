@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_hip"
+    },
+    {
+      "tag": "forge:crops/apple"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "item": "foragersinsight:rose_hip"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "foragersinsight:foragers_granola"
+  }
+}

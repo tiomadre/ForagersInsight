@@ -4,7 +4,7 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "naturesdelight:dandelion_root"
+      "item": "foragersinsight:dandelion_root"
     },
     {
       "item": "minecraft:beetroot"
@@ -14,18 +14,18 @@
     },
     [
       {
-        "item": "naturesdelight:dandelion_root"
+        "item": "foragersinsight:dandelion_root"
       },
       {
         "item": "minecraft:beetroot"
       }
     ],
     {
-      "item": "naturesdelight:rose_hip"
+      "item": "foragersinsight:rose_hip"
     }
   ],
   "recipe_book_tab": "meals",
   "result": {
-    "item": "naturesdelight:rose_roasted_roots"
+    "item": "foragersinsight:rose_roasted_roots"
   }
 }

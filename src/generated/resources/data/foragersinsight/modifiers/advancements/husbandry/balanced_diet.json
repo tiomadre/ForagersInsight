@@ -1,0 +1,223 @@
+{
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "foragersinsight:0": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:apple_slice"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:1": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:raw_rabbit_leg"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:10": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:rose_granita"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:11": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:cod_and_pumpkin_stew"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:12": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:steamy_kelp_rice"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:13": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:rose_roasted_roots"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:14": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:seaside_sizzler"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:15": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:kelp_and_beet_salad"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:16": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:meadow_medley"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:17": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:kelp_wrap"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:18": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:rose_cordial"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:19": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:seed_milk_bottle"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:2": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:cooked_rabbit_leg"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:20": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:seed_milk_bucket"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:3": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:black_acorn"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:4": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:sunflower_kernels"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:5": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:poppy_seeds"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:6": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:rose_hip"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:7": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:acorn_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:8": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:rose_cookie"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "foragersinsight:9": {
+            "conditions": {
+              "item": {
+                "items": [
+                  "foragersinsight:red_velvet_cupcake"
+                ]
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          }
+        }
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:husbandry/balanced_diet"
+}

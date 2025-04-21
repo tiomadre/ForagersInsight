@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "foragersinsight:block/spruce_tips_sack_bottom",
+    "east": "foragersinsight:block/spruce_tips_sack_side",
+    "north": "foragersinsight:block/spruce_tips_sack_side",
+    "particle": "foragersinsight:block/spruce_tips_sack_top",
+    "south": "foragersinsight:block/spruce_tips_sack_side_special",
+    "up": "foragersinsight:block/spruce_tips_sack_top",
+    "west": "foragersinsight:block/spruce_tips_sack_side"
+  }
+}

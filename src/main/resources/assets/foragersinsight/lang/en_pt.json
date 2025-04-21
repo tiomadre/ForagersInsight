@@ -1,0 +1,34 @@
+{
+  "item.foragersinsight.crushed_ice": "Doubloons o' frost",
+
+  "block.foragersinsight.rose_hip": "Bit o' Rose",
+  "block.foragersinsight.rose_hip_sack": "Big bag o' rose bits",
+
+  "item.foragersinsight.rose_petals": "Petal o' rose",
+  "block.foragersinsight.rose_petals_sack": "Bag o' pretty petals",
+
+  "block.foragersinsight.bountiful_oak_sapling": "Treasure oak shrub",
+  "block.foragersinsight.bountiful_oak_leaves": "Oaken leaves w' treasure",
+
+  "item.foragersinsight.apple_slice": "Sliver o' scurvy's cure",
+
+  "block.foragersinsight.bountiful_dark_oak_sapling": "Shrub o' blackbeard's treasure",
+  "block.foragersinsight.bountiful_dark_oak_leaves": "Dusken leaves w' treasure",
+
+  "item.foragersinsight.black_acorn": "Blackbeard's tricorn fruit",
+  "block.foragersinsight.black_acorn_sack": "Trove o' Blackbeard's fruits",
+
+  "item.foragersinsight.spruce_tips": "Pine tips",
+  "block.foragersinsight.spruce_tips_sack": "Sack o' pine tips",
+
+  "item.foragersinsight.poppy_seeds": "Bits o' red flowarr",
+  "block.foragersinsight.poppy_seeds_sack": "Bag o' bits o' poppy",
+
+  "item.foragersinsight.dandelion_root": "Earthen ancharr o' yellow flower",
+  "block.foragersinsight.dandelion_roots_crate": "Cargo o' root o' yellow flowar",
+
+  "item.foragersinsight.rose_cookie": "Good smellin' biscuit",
+  "item.foragersinsight.rose_granita": "Fancy landlubber drink",
+  "item.foragersinsight.rose_roasted_roots": "Rose Roasted Roots",
+  "item.foragersinsight.rose_cordial": "Bilge w' petals n' stuff"
+}

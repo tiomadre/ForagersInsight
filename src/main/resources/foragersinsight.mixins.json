@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.doltandtio.foragersinsight.core.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "foragersinsight.refmap.json",
+  "mixins": [
+    "DarkOakTreeGrowerMixin",
+    "MobEffectInstantMixin",
+    "OakTreeGrowerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#naturesdelight:has_feature/apple_trees",
-  "features": "naturesdelight:apple_tree_placed",
-  "step": "vegetal_decoration"
-}

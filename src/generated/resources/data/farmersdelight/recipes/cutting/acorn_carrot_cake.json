@@ -2,13 +2,13 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "naturesdelight:acorn_carrot_cake"
+      "item": "foragersinsight:acorn_carrot_cake"
     }
   ],
   "result": [
     {
       "count": 7,
-      "item": "naturesdelight:slice_of_acorn_carrot_cake"
+      "item": "foragersinsight:slice_of_acorn_carrot_cake"
     }
   ],
   "tool": {

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "foragersinsight:block/poppy_seeds_sack_bottom",
+    "east": "foragersinsight:block/poppy_seeds_sack_side",
+    "north": "foragersinsight:block/poppy_seeds_sack_side",
+    "particle": "foragersinsight:block/poppy_seeds_sack_top",
+    "south": "foragersinsight:block/poppy_seeds_sack_side_special",
+    "up": "foragersinsight:block/poppy_seeds_sack_top",
+    "west": "foragersinsight:block/poppy_seeds_sack_side"
+  }
+}

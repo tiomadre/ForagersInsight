@@ -7,14 +7,14 @@
   "experience": 0.35,
   "ingredients": [
     {
-      "item": "naturesdelight:dandelion_root"
+      "item": "foragersinsight:dandelion_root"
     },
     {
-      "item": "naturesdelight:dandelion_root"
+      "item": "foragersinsight:dandelion_root"
     }
   ],
   "recipe_book_tab": "meals",
   "result": {
-    "item": "naturesdelight:dandelion_fries"
+    "item": "foragersinsight:dandelion_fries"
   }
 }

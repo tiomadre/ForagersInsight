@@ -4,7 +4,7 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "naturesdelight:acorn_dough"
+      "item": "foragersinsight:acorn_dough"
     },
     {
       "tag": "forge:crops/cocoa"
@@ -19,6 +19,6 @@
   "recipe_book_tab": "meals",
   "result": {
     "count": 2,
-    "item": "naturesdelight:black_forest_muffin"
+    "item": "foragersinsight:black_forest_muffin"
   }
 }

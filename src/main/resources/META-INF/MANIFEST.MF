@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Specification-Title: Nature Delight
+Specification-Title: Forager's Insight
 Specification-Vendor: Team Doltum and Tio
 Specification-Version: 1
-Implementation-Title: Nature Delight
+Implementation-Title: Forager's Insight
 Implementation-Version: 1.0.0
 Implementation-Vendor: Team Doltum and Tio
 Implementation-Timestamp: 2025-01-31T15:30:07-0800
-MixinConfigs: naturesdelight.mixins.json
+MixinConfigs: foragersinsight.mixins.json
 

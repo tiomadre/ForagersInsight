@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:cooked_rabbit_leg"
+    },
+    {
+      "item": "foragersinsight:cooked_rabbit_leg"
+    },
+    {
+      "tag": "forge:crops/poppy_seeds"
+    },
+    {
+      "tag": "forge:crops/poppy_seeds"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "foragersinsight:sweet_roasted_rabbit_leg"
+  }
+}

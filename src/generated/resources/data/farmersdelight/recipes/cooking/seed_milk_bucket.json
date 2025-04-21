@@ -8,7 +8,7 @@
   "ingredients": [
     [
       {
-        "item": "naturesdelight:sunflower_kernels"
+        "item": "foragersinsight:sunflower_kernels"
       },
       {
         "item": "farmersdelight:rice"
@@ -26,6 +26,6 @@
   ],
   "recipe_book_tab": "drinks",
   "result": {
-    "item": "naturesdelight:seed_milk_bucket"
+    "item": "foragersinsight:seed_milk_bucket"
   }
 }

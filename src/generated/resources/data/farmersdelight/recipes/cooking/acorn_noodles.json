@@ -4,7 +4,7 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "naturesdelight:acorn_dough"
+      "item": "foragersinsight:acorn_dough"
     },
     {
       "tag": "forge:crops/acorn"
@@ -19,6 +19,6 @@
   "recipe_book_tab": "meals",
   "result": {
     "count": 1,
-    "item": "naturesdelight:acorn_noodles"
+    "item": "foragersinsight:acorn_noodles"
   }
 }
