@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER;
 
-public class DoubleCropBlock extends CropBlock implements BonemealableBlock {
+public class RoseCropBlock extends CropBlock implements BonemealableBlock {
     public static final int MAX_AGE = 4;
     private static final VoxelShape[] SHAPE_BY_AGE = {
             Block.box(0, 0, 0, 16, 5, 16),
@@ -41,7 +41,7 @@ public class DoubleCropBlock extends CropBlock implements BonemealableBlock {
 
     private final int isDoubleAfterAge; // this is inclusive. if set to 2, a plant will become a double plant at age 2. and 3. at 4. but not at 1.
 
-    public DoubleCropBlock(Properties props, int isDoubleAfterAge) {
+    public RoseCropBlock(Properties props, int isDoubleAfterAge) {
         super(props);
         this.isDoubleAfterAge = isDoubleAfterAge;
 
@@ -134,7 +134,7 @@ public class DoubleCropBlock extends CropBlock implements BonemealableBlock {
 
     public static boolean isIllegalState(BlockState state) {
         Block block = state.getBlock();
-        if (block instanceof DoubleCropBlock crop) {
+        if (block instanceof RoseCropBlock crop) {
             return state.getValue(AGE) < crop.isDoubleAfterAge && state.getValue(HALF) == UPPER;
         }
         return false;

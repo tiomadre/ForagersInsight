@@ -1,7 +1,7 @@
 package com.doltandtio.foragersinsight.data.server;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
-import com.doltandtio.foragersinsight.common.block.DoubleCropBlock;
+import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
@@ -88,7 +88,7 @@ public class FILoot extends LootTableProvider {
                         .withPool(LootPool.lootPool().when(lower())
                                 .add(LootItem.lootTableItem(FIItems.ROSE_HIP.get()))
                                         .when(lower())
-                                        .when(stateCond(FIBlocks.ROSE_HIP, DoubleCropBlock.AGE, DoubleCropBlock.MAX_AGE)))
+                                        .when(stateCond(FIBlocks.ROSE_HIP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower())));
@@ -139,7 +139,7 @@ public class FILoot extends LootTableProvider {
 
         public static LootItemCondition.Builder stateCond(String value) {
             return LootItemBlockStatePropertyCondition.hasBlockStateProperties(((RegistryObject<? extends Block>) FIBlocks.ROSE_HIP).get())
-                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropBlock.HALF, value));
+                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RoseCropBlock.HALF, value));
         }
 
 

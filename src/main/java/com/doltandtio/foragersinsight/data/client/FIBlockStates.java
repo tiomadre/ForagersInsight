@@ -1,7 +1,7 @@
 package com.doltandtio.foragersinsight.data.client;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
-import com.doltandtio.foragersinsight.common.block.DoubleCropBlock;
+import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.world.item.Item;
@@ -107,18 +107,18 @@ public class FIBlockStates extends FIBlockStatesHelper {
     }
 
     private void doubleCrop(RegistryObject<? extends Block> crop) {
-        DoubleCropBlock block = (DoubleCropBlock) crop.get();
+        RoseCropBlock block = (RoseCropBlock) crop.get();
 
         this.getVariantBuilder(block).forAllStates(state -> {
             int age;
             String half;
-            if (DoubleCropBlock.isIllegalState(state)) {
+            if (RoseCropBlock.isIllegalState(state)) {
                 age = 0;
                 half = "lower";
             }
             else {
-                age = state.getValue(DoubleCropBlock.AGE);
-                half = state.getValue(DoubleCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
+                age = state.getValue(RoseCropBlock.AGE);
+                half = state.getValue(RoseCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
 
             return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d_%s".formatted(name(block), age, half), "block/cross")

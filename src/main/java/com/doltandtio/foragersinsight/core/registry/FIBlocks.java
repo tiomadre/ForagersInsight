@@ -32,7 +32,7 @@ public class FIBlocks {
             new PoppyBushBlock(copy(Blocks.BEETROOTS)));
     public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
             new DandelionBushBlock(copy(Blocks.POTATOES)));
-    public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlockNoItem("rose_hip", () -> new DoubleCropBlock(
+    public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlockNoItem("rose_hip", () -> new RoseCropBlock(
             copy(Blocks.WHEAT), 3));
         //Tree
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
