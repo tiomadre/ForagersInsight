@@ -48,7 +48,7 @@ public class FIItems {
     public static final RegistryObject<Item> DANDELION_ROOT = HELPER.createItem("dandelion_root", () ->
             new ItemNameBlockItem(FIBlocks.DANDELION_BUSH.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
     public static final RegistryObject<Item> SUNFLOWER_KERNELS = HELPER.createItem("sunflower_kernels", () ->
-            new Item(new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
+            new ItemNameBlockItem(FIBlocks.SUNFLOWER_KERNELS.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
 
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
             new ItemNameBlockItem(FIBlocks.POPPY_BUSH.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));

@@ -34,7 +34,10 @@ public class FIBlocks {
             new DandelionBushBlock(copy(Blocks.POTATOES)));
     public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlockNoItem("rose_hip", () -> new RoseCropBlock(
             copy(Blocks.WHEAT), 3));
+    public static final RegistryObject<Block> SUNFLOWER_KERNELS = HELPER.createBlockNoItem("sunflower_kernels", () -> new SunflowerCropBlock(
+            copy(Blocks.WHEAT), 3));
         //Tree
+
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakGrower(), copy(Blocks.OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->

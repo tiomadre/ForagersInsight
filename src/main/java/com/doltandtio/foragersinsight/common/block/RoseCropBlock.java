@@ -39,7 +39,7 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
-    private final int isDoubleAfterAge; // this is inclusive. if set to 2, a plant will become a double plant at age 2. and 3. at 4. but not at 1.
+    public final int isDoubleAfterAge; // this is inclusive. if set to 2, a plant will become a double plant at age 2. and 3. at 4. but not at 1.
 
     public RoseCropBlock(Properties props, int isDoubleAfterAge) {
         super(props);

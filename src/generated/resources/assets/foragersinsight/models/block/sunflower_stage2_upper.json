@@ -1,0 +1,57 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "foragersinsight:block/sunflower_lower_stage2",
+    "stem": "foragersinsight:block/sunflower_lower_stage2",
+    "head_back": "foragersinsight:block/sunflower_head_back_stage2",
+    "head_front": "foragersinsight:block/sunflower_head_front_stage2",
+    "upper": "foragersinsight:block/sunflower_upper_stage2"
+  },
+  "elements": [
+    {
+      "from": [0, 16, 8],
+      "to": [16, 32, 8],
+      "rotation": {
+        "origin": [0, 16, 8],
+        "axis": "y",
+        "angle": 0,
+        "rescale": false
+      },
+      "shade": true,
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#upper" },
+        "south": { "uv": [16, 0, 0, 16], "texture": "#upper" }
+      }
+    },
+    {
+      "from": [8, 16, 0],
+      "to": [8, 32, 16],
+      "rotation": {
+        "origin": [8, 16, 16],
+        "axis": "y",
+        "angle": 0,
+        "rescale": false
+      },
+      "shade": true,
+      "faces": {
+        "east": { "uv": [16, 0, 0, 16], "texture": "#upper" },
+        "west": { "uv": [0, 0, 16, 16], "texture": "#upper" }
+      }
+    },
+    {
+      "from": [0, 13, 4],
+      "to": [16, 29, 4],
+      "rotation": {
+        "origin": [0, 13, 4],
+        "axis": "x",
+        "angle": 22.5,
+        "rescale": false
+      },
+      "shade": true,
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#head_front" },
+        "south": { "uv": [16, 0, 0, 16], "texture": "#head_back" }
+      }
+    }
+  ]
+}

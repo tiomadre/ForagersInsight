@@ -81,7 +81,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_BUTTER_JAMWICH.get())
                 .requires(BREAD).requires(SUNFLOWER_BUTTER.get()).requires(SWEET_BERRIES)
                 .requires(SWEET_BERRIES)
-                .unlockedBy("has_sunflower_kernels", has(SUNFLOWER_KERNELS.get())).save(consumer);
+                .unlockedBy("has_sunflower_kernels", has(FIItems.SUNFLOWER_KERNELS.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SWEET_ROASTED_RABBIT_LEG.get(), 2)
                 .requires(COOKED_RABBIT_LEG.get()).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.POPPY_SEEDS)
                 .requires(FITags.ItemTag.POPPY_SEEDS).requires(HONEY_BOTTLE)
