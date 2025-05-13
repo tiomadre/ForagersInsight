@@ -82,5 +82,7 @@
   "effect.foragersinsight.medicinal.desc": "Heals,removes and prevents the application of Poison and Wither.",
   "effect.foragersinsight.vigor.desc": "Grants temporary health that can be regenerated like base health.",
   "effect.foragersinsight.medicinal": "Medicinal",
-  "effect.foragersinsight.vigor": "Vigor"
+  "effect.foragersinsight.vigor": "Vigor",
+
+  "enchantment.foragersinsight.farmhand": "Farmhand"
 }

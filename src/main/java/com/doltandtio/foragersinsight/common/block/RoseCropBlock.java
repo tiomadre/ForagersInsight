@@ -39,12 +39,11 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
-    public final int isDoubleAfterAge; // this is inclusive. if set to 2, a plant will become a double plant at age 2. and 3. at 4. but not at 1.
+    public final int isDoubleAfterAge;
 
     public RoseCropBlock(Properties props, int isDoubleAfterAge) {
         super(props);
         this.isDoubleAfterAge = isDoubleAfterAge;
-
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(HALF, LOWER)
                 .setValue(AGE, 0));
@@ -62,7 +61,6 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         return state.getValue(HALF);
     }
 
-    // randomly ticks
     @Override
     public boolean isRandomlyTicking(@NotNull BlockState state) {
         return super.isRandomlyTicking(state) && getHalf(state) == LOWER;
@@ -81,11 +79,8 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         }
     }
 
-    // Increases the current age of the plant
     private void mature(int stages, Level level, BlockState state, BlockPos pos) {
-        if (this.isMaxAge(state)) {
-            return;
-        }
+        if (this.isMaxAge(state)) return;
 
         if (!canGrow(level, pos) && isDouble(getAge(state) + stages)) {
             int index = stagesBeforeDouble(state);
@@ -106,8 +101,7 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         if (this.isDouble(newAge)) {
             level.setBlock(pos, getStateForAge(newAge), UPDATE_CLIENTS);
             level.setBlock(pos.above(), getStateForAge(newAge).setValue(HALF, UPPER), UPDATE_CLIENTS);
-        }
-        else {
+        } else {
             level.setBlock(pos, getStateForAge(newAge), UPDATE_CLIENTS);
         }
     }
@@ -116,7 +110,6 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         mature(1, level, state, pos);
     }
 
-    // Blockstates stuff
     @Override
     protected @NotNull IntegerProperty getAgeProperty() {
         return AGE;
@@ -140,13 +133,10 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         return false;
     }
 
-    // bone meal
-
     protected int getBonemealAgeIncrease(Level level, BlockPos pos, BlockState state) {
         if (canGrow(level, pos)) {
             return level.getRandom().nextInt(1, 3);
-        }
-        else {
+        } else {
             return Math.min(stagesBeforeDouble(state), level.getRandom().nextInt(1, 3));
         }
     }
@@ -156,26 +146,25 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         mature(getBonemealAgeIncrease(level, pos, state), level, state, pos);
     }
 
-    // shape
-
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, BlockGetter p_52298_, BlockPos p_52299_, CollisionContext p_52300_) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         int age = this.getAge(state);
         if (this.isDouble(age) && state.getValue(HALF) == LOWER) {
-            return Block.box(0,0 ,0, 16, 16, 16);
-        }
-        else {
+            return Block.box(0, 0, 0, 16, 16, 16);
+        } else {
             return SHAPE_BY_AGE[age];
         }
     }
 
-    // double plant stuff
     @Override
     public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState updatedState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos updatePos) {
         if (!isDouble(state)) {
             return super.updateShape(state, direction, updatedState, level, pos, updatePos);
-        }
-        else {
+        } else {
+            if (state.getValue(AGE) == 0 && state.getValue(HALF) == LOWER) {
+                return state;
+            }
+
             DoubleBlockHalf thisHalf = state.getValue(HALF);
             if (direction.getAxis() != Direction.Axis.Y ||
                     thisHalf == LOWER != (direction == Direction.UP) ||
@@ -186,8 +175,7 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
                         !state.canSurvive(level, pos) ?
                         Blocks.AIR.defaultBlockState() :
                         super.updateShape(state, direction, updatedState, level, pos, updatePos);
-            }
-            else {
+            } else {
                 return Blocks.AIR.defaultBlockState();
             }
         }
@@ -198,11 +186,16 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         if (state.getValue(HALF) != UPPER) {
             return super.canSurvive(state, level, pos);
         } else {
-            BlockState blockstate = level.getBlockState(pos.below());
+            BlockState lower = level.getBlockState(pos.below());
+            if (lower.getBlock() == this &&
+                    lower.hasProperty(AGE) &&
+                    lower.getValue(AGE) == 0) {
+                return false;
+            }
             if (state.getBlock() != this) {
                 return super.canSurvive(state, level, pos);
             } else {
-                return blockstate.is(this) && blockstate.getValue(HALF) == LOWER;
+                return lower.is(this) && lower.getValue(HALF) == LOWER;
             }
         }
     }

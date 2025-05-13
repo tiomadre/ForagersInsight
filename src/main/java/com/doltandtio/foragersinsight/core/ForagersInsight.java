@@ -1,5 +1,6 @@
 package com.doltandtio.foragersinsight.core;
 
+import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import com.doltandtio.foragersinsight.core.other.FIClientCompat;
 import com.doltandtio.foragersinsight.core.other.FIDataUtil;
 import com.doltandtio.foragersinsight.core.registry.*;
@@ -44,6 +45,7 @@ public class ForagersInsight {
 		FILootModifiers.LOOT_MODIFIERS.register(bus);
 		FIMobEffects.MOB_EFFECTS.register(bus);
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
+		FIEnchantments.register();
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);

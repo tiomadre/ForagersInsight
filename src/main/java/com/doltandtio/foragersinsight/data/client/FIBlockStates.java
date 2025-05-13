@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.data.client;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
+import com.doltandtio.foragersinsight.common.block.SunflowerCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.world.item.Item;
@@ -27,6 +28,8 @@ public class FIBlockStates extends FIBlockStatesHelper {
     @Override
     protected void registerStatesAndModels() {
         doubleCrop(ROSE_HIP);
+        doubleSunflowerCrop(SUNFLOWER_KERNELS);
+
         this.sackBlock(ROSE_HIP_SACK);
 
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
@@ -106,7 +109,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.itemModels().withExistingParent(name(leavesBlock), concatRL(blockTexture(leavesBlock), "_stage0"));
     }
 
-    private void doubleCrop(RegistryObject<? extends Block> crop) {
+    public void doubleCrop(RegistryObject<? extends Block> crop) {
         RoseCropBlock block = (RoseCropBlock) crop.get();
 
         this.getVariantBuilder(block).forAllStates(state -> {
@@ -119,6 +122,27 @@ public class FIBlockStates extends FIBlockStatesHelper {
             else {
                 age = state.getValue(RoseCropBlock.AGE);
                 half = state.getValue(RoseCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
+            }
+
+            return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d_%s".formatted(name(block), age, half), "block/cross")
+                    .texture("cross", "%s_stage%d_%s".formatted(blockTexture(block), age, half)).renderType("cutout")).build();
+        });
+
+        this.itemModels().basicItem(crop.get().asItem());
+    }
+    public void doubleSunflowerCrop(RegistryObject<? extends Block> crop) {
+        SunflowerCropBlock block = (SunflowerCropBlock) crop.get();
+
+        this.getVariantBuilder(block).forAllStates(state -> {
+            int age;
+            String half;
+            if (SunflowerCropBlock.isIllegalState(state)) {
+                age = 0;
+                half = "lower";
+            }
+            else {
+                age = state.getValue(SunflowerCropBlock.AGE);
+                half = state.getValue(SunflowerCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
 
             return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d_%s".formatted(name(block), age, half), "block/cross")

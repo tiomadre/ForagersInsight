@@ -135,7 +135,7 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 
 public static boolean isIllegalState(BlockState state) {
     Block block = state.getBlock();
-    if (block instanceof RoseCropBlock crop) {
+    if (block instanceof SunflowerCropBlock crop) {
         return state.getValue(AGE) < crop.isDoubleAfterAge && state.getValue(HALF) == UPPER;
     }
     return false;
