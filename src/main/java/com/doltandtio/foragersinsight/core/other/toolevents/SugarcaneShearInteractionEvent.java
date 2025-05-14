@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class ShearInteractionEvent {
+public class SugarcaneShearInteractionEvent {
     @SubscribeEvent
     public static void onShearCrop(RightClickBlock event) {
         Level level = event.getLevel();
@@ -48,40 +48,7 @@ public class ShearInteractionEvent {
                 level.playSound(null, top, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
                 tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             }
-            return;
-        }
-        // Vines
-        if (state.is(Blocks.VINE)) {
-            int count = 1;
-            while (level.getBlockState(pos.above(count)).is(Blocks.VINE)) {
-                count++;
-            }
-            if (count >= 2) {
-                event.setCanceled(true);
-                BlockPos top = pos.above(count - 1);
-                server.setBlock(top, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-                ItemStack drop = new ItemStack(Items.VINE);
-                if (!player.getInventory().add(drop)) player.drop(drop, false);
-                level.playSound(null, top, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-            }
-        }
-        // Cave Vines
-        if (state.is(Blocks.CAVE_VINES) || state.is(Blocks.CAVE_VINES_PLANT)) {
-            int count = 1;
 
-            while (level.getBlockState(pos.below(count)).is(Blocks.CAVE_VINES_PLANT)) {
-                count++;
-            }
-            if (count >= 2) {
-                event.setCanceled(true);
-                BlockPos bottom = pos.below(count - 1);
-                server.setBlock(bottom, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-                ItemStack drop = new ItemStack(Blocks.CAVE_VINES);
-                if (!player.getInventory().add(drop)) player.drop(drop, false);
-                level.playSound(null, bottom, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-            }
         }
     }
 }

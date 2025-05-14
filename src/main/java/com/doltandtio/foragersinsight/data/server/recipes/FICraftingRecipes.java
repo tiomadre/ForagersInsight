@@ -105,14 +105,14 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
                 .requires(FLINT).requires(FLINT);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FLINT_MALLET.get())
-                .pattern("fsf")
-                .pattern("s##")
+                .pattern("fff")
+                .pattern("#s#")
                 .define('f', FLINT)
                 .define('s', STICK)
                 .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(FLINT));
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, IRON_MALLET.get())
-                .pattern("isi")
-                .pattern("s##")
+                .pattern("iii")
+                .pattern("#s#")
                 .define('i', IRON_INGOT)
                 .define('s', STICK)
                 .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
@@ -135,7 +135,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         this.storageRecipes(consumer, RecipeCategory.FOOD, SPRUCE_TIPS.get(), RecipeCategory.DECORATIONS, SPRUCE_TIPS_SACK.get());
 
         FICookingRecipes.buildRecipes(consumer);
-        FICuttingRecipes.buildRecipes(consumer);
+        FICutAndCrushRecipes.buildRecipes(consumer);
     }
 
 
