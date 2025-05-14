@@ -79,6 +79,7 @@ public class FIFoods {
 
         //Medicinal
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
+            .saturationMod(0.2f)
             .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
         public static final FoodProperties FOREST_ELIXIR = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 600), 1)

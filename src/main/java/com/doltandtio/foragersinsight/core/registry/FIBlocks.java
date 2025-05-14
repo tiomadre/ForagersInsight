@@ -87,6 +87,6 @@ public class FIBlocks {
                 .tab(CreativeModeTabs.INGREDIENTS)
                     .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,GREEN_SAUCE,POPPY_SEED_PASTE,SUNFLOWER_BUTTER,ROSE_PETALS,WHEAT_FLOUR)
                 .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .addItemsBefore(of(Items.SHEARS), FLINT_SHEARS);
+                .addItemsBefore(of(Items.SHEARS), FLINT_SHEARS, FLINT_MALLET, IRON_MALLET);
     }
 }

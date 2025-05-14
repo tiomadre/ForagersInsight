@@ -1,20 +1,19 @@
 package com.doltandtio.foragersinsight.core.registry;
 
-import com.doltandtio.foragersinsight.common.item.FlintShearsItem;
+import com.doltandtio.foragersinsight.common.item.MalletItem;
 import com.doltandtio.foragersinsight.common.item.MilkBucketItem;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.other.FIFoods;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.MilkBottleItem;
+import vectorwing.farmersdelight.common.registry.ModMaterials;
+
 import static vectorwing.farmersdelight.common.registry.ModItems.basicItem;
 
 
@@ -137,7 +136,12 @@ public class FIItems {
     //Chilled Pot
 
     //Flint Shears
-    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () -> new FlintShearsItem(
+    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () -> new ShearsItem(
             new Item.Properties().durability(150)));
+    public static final RegistryObject<Item> FLINT_MALLET = HELPER.createItem("flint_mallet", () ->
+            new MalletItem(ModMaterials.FLINT, 1, -2.0F, basicItem()));
+    public static final RegistryObject<Item> IRON_MALLET = HELPER.createItem("iron_mallet", () ->
+            new MalletItem(Tiers.IRON, 1, -2.0F, basicItem()));
+
 
 }

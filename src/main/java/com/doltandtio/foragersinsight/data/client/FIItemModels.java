@@ -54,7 +54,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                 //Other
                 ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
                 //Tools and Workstations
-                FLINT_SHEARS        );
+                FLINT_MALLET, FLINT_SHEARS, IRON_MALLET        );
 
     }
 }

@@ -7,9 +7,12 @@ import static com.doltandtio.foragersinsight.core.registry.FIBlocks.*;
 import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
 import static com.doltandtio.foragersinsight.core.registry.FIItems.ACORN_CARROT_CAKE_ITEM;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import static net.minecraft.world.item.Items.*;
@@ -56,7 +59,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, RABBIT_STEW)
                 .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.ROOTS)
                 .requires(FITags.ItemTag.MUSHROOM).requires(BOWL)
-                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
+                .save(consumer, new ResourceLocation(ForagersInsight.MOD_ID, "stew_from_rabbit_leg"));
         //Nourishment
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FIItems.ROSE_GRANITA.get())
                 .requires(FIItems.ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
@@ -100,6 +104,18 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         //Tools
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
                 .requires(FLINT).requires(FLINT);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FLINT_MALLET.get())
+                .pattern("fsf")
+                .pattern("s##")
+                .define('f', FLINT)
+                .define('s', STICK)
+                .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(FLINT));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, IRON_MALLET.get())
+                .pattern("isi")
+                .pattern("s##")
+                .define('i', IRON_INGOT)
+                .define('s', STICK)
+                .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
 
 
  //BLOCKS

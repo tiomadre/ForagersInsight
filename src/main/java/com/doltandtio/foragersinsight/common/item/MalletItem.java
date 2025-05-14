@@ -1,0 +1,90 @@
+// com.doltandtio.foragersinsight.common.item.MalletItem.java
+
+package com.doltandtio.foragersinsight.common.item;
+
+import com.doltandtio.foragersinsight.core.registry.FIItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MalletItem extends PickaxeItem {
+    /**
+     * Map your “crushable” blocks to the item they should drop.
+     */
+    private static final Map<Block, ItemLike> CRUSH_RESULTS = new HashMap<>();
+
+    static {
+        // Crushable Blocks
+        CRUSH_RESULTS.put(Blocks.ICE, new ItemStack(FIItems.CRUSHED_ICE.get(), 2).getItem());
+        CRUSH_RESULTS.put(Blocks.STONE, Blocks.COBBLESTONE);
+        CRUSH_RESULTS.put(Blocks.SANDSTONE, Blocks.SAND);
+        CRUSH_RESULTS.put(Blocks.GRAVEL, Items.FLINT);
+        CRUSH_RESULTS.put(Blocks.COBBLESTONE, Blocks.GRAVEL);
+        CRUSH_RESULTS.put(Blocks.PUMPKIN, Items.PUMPKIN_SEEDS);
+        CRUSH_RESULTS.put(Blocks.MELON, Items.MELON_SEEDS);
+        CRUSH_RESULTS.put(Blocks.CARVED_PUMPKIN, Items.PUMPKIN_SEEDS);
+    }
+
+    public MalletItem(Tier tier, int attackDamageModifier, float attackSpeedModifier, Properties properties) {
+        super(tier, attackDamageModifier, attackSpeedModifier, properties);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        Block block = state.getBlock();
+        Player player = context.getPlayer();
+        ItemStack stack = context.getItemInHand();
+
+        if (CRUSH_RESULTS.containsKey(block)) {
+            stack.hurtAndBreak(3, player, p -> p.broadcastBreakEvent(context.getHand()));
+
+            //Crushing triggers a cooldown equal to 75% of the normal break time. Why? Because.
+            float hardness     = state.getDestroySpeed(level, pos);
+            int baseTicks      = (int)(hardness * 1.5f * 20f);
+            int longerTicks    = Math.max(1, (int)(baseTicks * 0.75f));
+            player.getCooldowns().addCooldown(this, longerTicks);
+
+            level.destroyBlock(pos, false);
+            ItemLike result = CRUSH_RESULTS.get(block);
+            Block.popResource(level, pos, new ItemStack(result));
+
+            if (block == Blocks.PUMPKIN) {
+                level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);}
+            stack.hurtAndBreak(4, player, p -> p.broadcastBreakEvent(context.getHand()));
+
+            if (block == Blocks.MELON) {
+                level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);}
+            stack.hurtAndBreak(4, player, p -> p.broadcastBreakEvent(context.getHand()));
+
+            if (block == Blocks.CARVED_PUMPKIN) {
+                level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);}
+            stack.hurtAndBreak(4, player, p -> p.broadcastBreakEvent(context.getHand()));
+
+            return InteractionResult.CONSUME;
+        }
+
+        return super.useOn(context);
+    }
+}
