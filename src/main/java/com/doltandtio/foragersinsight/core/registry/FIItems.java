@@ -1,5 +1,6 @@
 package com.doltandtio.foragersinsight.core.registry;
 
+import com.doltandtio.foragersinsight.common.item.FIShearsItem;
 import com.doltandtio.foragersinsight.common.item.MalletItem;
 import com.doltandtio.foragersinsight.common.item.MilkBucketItem;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
@@ -135,9 +136,10 @@ public class FIItems {
 //Workstations & Tools
     //Chilled Pot
 
-    //Flint Shears
-    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () -> new ShearsItem(
+    //Shears
+    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () -> new FIShearsItem(
             new Item.Properties().durability(150)));
+    //Mallets
     public static final RegistryObject<Item> FLINT_MALLET = HELPER.createItem("flint_mallet", () ->
             new MalletItem(ModMaterials.FLINT, 1, -2.0F, basicItem()));
     public static final RegistryObject<Item> IRON_MALLET = HELPER.createItem("iron_mallet", () ->

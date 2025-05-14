@@ -31,11 +31,9 @@
   "item.foragersinsight.steamy_kelp_rice": "Steamy Kelp Rice",
   "item.foragersinsight.sweet_roasted_rabbit_leg": "Sweet Roasted Rabbit Leg",
 
-
   "item.foragersinsight.dandelion_root_tea": "Dandelion Root Tea",
   "item.foragersinsight.rose_cordial": "Rose Cordial",
   "item.foragersinsight.forest_elixir": "Forest's Elixir",
-
 
   "item.foragersinsight.acorn_dough": "Acorn Dough",
   "item.foragersinsight.acorn_meal": "Acorn Meal",
@@ -49,16 +47,16 @@
   "item.foragersinsight.sunflower_butter": "Sunflower Butter",
   "item.foragersinsight.wheat_flour": "Wheat Flour",
 
-  "item.foragersinsight.flint_shears": "Flint Shears",
-  "item.foragersinsight.flint_mallet": "Flint Mallet",
-  "item.foragersinsight.iron_mallet": "Iron Mallet",
-
   "item.foragersinsight.cooked_rabbit_leg": "Cooked Rabbit Leg",
   "item.foragersinsight.raw_rabbit_leg": "Raw Rabbit Leg",
 
   "item.foragersinsight.slice_of_acorn_carrot_cake": "Slice of Acorn Carrot Cake",
   "item.foragersinsight.acorn_carrot_cake_item": "Acorn Carrot Cake",
   "block.foragersinsight.acorn_carrot_cake": "Acorn Carrot Cake",
+
+  "item.foragersinsight.flint_shears": "Flint Shears",
+  "item.foragersinsight.flint_mallet": "Flint Mallet",
+  "item.foragersinsight.iron_mallet": "Iron Mallet",
 
   "block.foragersinsight.bountiful_dark_oak_leaves": "Bountiful Dark Oak Leaves",
   "block.foragersinsight.bountiful_oak_leaves": "Bountiful Oak Leaves",
@@ -80,11 +78,12 @@
   "foragersinsight.flavortext.seed_milk_bucket": "A bucket of milk derived from various seeds.",
 
   "effect.foragersinsight.chilled": "Chilled",
-  "effect.foragersinsight.chilled.desc": "Freeze the duration of beneficial effects.",
-  "effect.foragersinsight.medicinal.desc": "Heals,removes and prevents the application of Poison and Wither.",
-  "effect.foragersinsight.vigor.desc": "Grants temporary health that can be regenerated like base health.",
   "effect.foragersinsight.medicinal": "Medicinal",
   "effect.foragersinsight.vigor": "Vigor",
+
+  "effect.foragersinsight.chilled.desc": "Freeze the duration of beneficial effects.",
+  "effect.foragersinsight.medicinal.desc": "Removes and prevents the application of Poison and Wither. The player is then healed per effect removed.",
+  "effect.foragersinsight.vigor.desc": "Grants a small amount of temporary health that can be regenerated like base health.",
 
   "enchantment.foragersinsight.farmhand": "Farmhand"
 }

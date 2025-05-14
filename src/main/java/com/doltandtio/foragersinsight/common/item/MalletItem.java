@@ -23,9 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MalletItem extends PickaxeItem {
-    /**
-     * Map your “crushable” blocks to the item they should drop.
-     */
+
     private static final Map<Block, ItemLike> CRUSH_RESULTS = new HashMap<>();
 
     static {
@@ -60,7 +58,7 @@ public class MalletItem extends PickaxeItem {
         if (CRUSH_RESULTS.containsKey(block)) {
             stack.hurtAndBreak(3, player, p -> p.broadcastBreakEvent(context.getHand()));
 
-            //Crushing triggers a cooldown equal to 75% of the normal break time. Why? Because.
+            // Crushing triggers a CD equal to 75% of the normal break time
             float hardness     = state.getDestroySpeed(level, pos);
             int baseTicks      = (int)(hardness * 1.5f * 20f);
             int longerTicks    = Math.max(1, (int)(baseTicks * 0.75f));

@@ -1,14 +1,12 @@
 package com.doltandtio.foragersinsight.common.block;
 
+import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -179,6 +177,10 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
                 return Blocks.AIR.defaultBlockState();
             }
         }
+    }
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return FIItems.ROSE_HIP.get();
     }
 
     @Override
