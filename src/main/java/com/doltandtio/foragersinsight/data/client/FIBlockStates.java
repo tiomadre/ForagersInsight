@@ -24,33 +24,21 @@ public class FIBlockStates extends FIBlockStatesHelper {
     public FIBlockStates(GatherDataEvent e) {
         super(e.getGenerator().getPackOutput(), ForagersInsight.MOD_ID, e.getExistingFileHelper());
     }
-
     @Override
     protected void registerStatesAndModels() {
-        doubleCrop(ROSE_HIP);
-        doubleSunflowerCrop(SUNFLOWER_KERNELS);
-
+        doubleCrop(ROSE_CROP);
+        doubleSunflowerCrop(SUNFLOWER_CROP);
         this.sackBlock(ROSE_HIP_SACK);
-
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
-
         this.crossCutout(BOUNTIFUL_DARK_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
         this.sackBlock(BLACK_ACORN_SACK);
-
         this.age5Crop(DANDELION_BUSH, FIItems.DANDELION_ROOT);
         this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
-
         this.sackBlock(SPRUCE_TIPS_SACK);
-
-
-
         this.sackBlock(POPPY_SEEDS_SACK);
         this.age5Crop(POPPY_BUSH, FIItems.POPPY_SEEDS);
-
-
-
     }
 
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
@@ -145,8 +133,17 @@ public class FIBlockStates extends FIBlockStatesHelper {
                 half = state.getValue(SunflowerCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
 
-            return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d_%s".formatted(name(block), age, half), "block/cross")
-                    .texture("cross", "%s_stage%d_%s".formatted(blockTexture(block), age, half)).renderType("cutout")).build();
+            return ConfiguredModel.builder()
+                    .modelFile(
+                            models()
+                                    .withExistingParent(
+                                            "%s_stage%d_%s".formatted(name(block), age, half),
+                                            mcLoc("block/sunflower")
+                                    )
+                                    .texture("cross", modLoc("%s_stage%d_%s".formatted(blockTexture(block), age, half)))
+                                    .renderType("cutout")
+                    )
+                    .build();
         });
 
         this.itemModels().basicItem(crop.get().asItem());

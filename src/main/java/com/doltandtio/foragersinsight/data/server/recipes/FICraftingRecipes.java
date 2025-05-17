@@ -135,7 +135,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         this.storageRecipes(consumer, RecipeCategory.FOOD, SPRUCE_TIPS.get(), RecipeCategory.DECORATIONS, SPRUCE_TIPS_SACK.get());
 
         FICookingRecipes.buildRecipes(consumer);
-        FICutAndCrushRecipes.buildRecipes(consumer);
+        FICrushandCutRecipes.buildRecipes(consumer);
     }
 
 

@@ -32,9 +32,9 @@ public class FIBlocks {
             new PoppyBushBlock(copy(Blocks.BEETROOTS)));
     public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
             new DandelionBushBlock(copy(Blocks.POTATOES)));
-    public static final RegistryObject<Block> ROSE_HIP = HELPER.createBlockNoItem("rose_hip", () -> new RoseCropBlock(
+    public static final RegistryObject<Block> ROSE_CROP = HELPER.createBlockNoItem("rose_crop", () -> new RoseCropBlock(
             copy(Blocks.WHEAT), 3));
-    public static final RegistryObject<Block> SUNFLOWER_KERNELS = HELPER.createBlockNoItem("sunflower_kernels", () -> new SunflowerCropBlock(
+    public static final RegistryObject<Block> SUNFLOWER_CROP = HELPER.createBlockNoItem("sunflower_kernels", () -> new SunflowerCropBlock(
             copy(Blocks.WHEAT), 3));
         //Tree
 
@@ -74,7 +74,7 @@ public class FIBlocks {
                     .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
                     .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
                 .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                    .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSE_HIP,SUNFLOWER_KERNELS,SPRUCE_TIPS)
+                    .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSE_CROP, SUNFLOWER_CROP,SPRUCE_TIPS)
                     .addItemsAfter(of(Items.BREAD), POPPY_SEED_BAGEL,CREAMY_SALMON_BAGEL,JAMMY_BREAKFAST_SANDWICH,KELP_WRAP,SEED_BUTTER_JAMWICH)
                     .addItemsAfter(of(Items.CAKE), ACORN_CARROT_CAKE, SLICE_OF_ACORN_CARROT_CAKE)
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)

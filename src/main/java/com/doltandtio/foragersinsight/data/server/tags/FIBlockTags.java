@@ -27,16 +27,16 @@ public class FIBlockTags extends BlockTagsProvider {
 
 
 
-        this.tag(BlockTags.CROPS).add(FIBlocks.ROSE_HIP.get(), DANDELION_BUSH.get(), POPPY_BUSH.get());
+        this.tag(BlockTags.CROPS).add(ROSE_CROP.get(), DANDELION_BUSH.get(), POPPY_BUSH.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(DANDELION_BUSH.get(), POPPY_BUSH.get());
-        this.tag(BlockTags.TALL_FLOWERS).add(FIBlocks.ROSE_HIP.get());
+        this.tag(BlockTags.TALL_FLOWERS).add(ROSE_CROP.get());
 
         registerForgeTags();
         registerMineables();
     }
 
     protected void registerMineables() {
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(FIBlocks.ROSE_HIP.get(), BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(),
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ROSE_CROP.get(), BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(),
                 DANDELION_ROOTS_CRATE.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get());

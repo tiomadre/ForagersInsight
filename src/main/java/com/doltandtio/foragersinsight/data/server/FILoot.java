@@ -3,7 +3,6 @@ package com.doltandtio.foragersinsight.data.server;
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
-import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
@@ -81,14 +80,14 @@ public class FILoot extends LootTableProvider {
 
         @Override
         protected void generate() {
-            this.add(FIBlocks.ROSE_HIP.get(), this.applyExplosionDecay(FIItems.ROSE_HIP.get(),
+            this.add(ROSE_CROP.get(), this.applyExplosionDecay(FIItems.ROSE_HIP.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool().when(stateCond(DoubleBlockHalf.LOWER.toString()))
                                 .add(LootItem.lootTableItem(FIItems.ROSE_HIP.get())))
                         .withPool(LootPool.lootPool().when(lower())
                                 .add(LootItem.lootTableItem(FIItems.ROSE_HIP.get()))
                                         .when(lower())
-                                        .when(stateCond(FIBlocks.ROSE_HIP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE)))
+                                        .when(stateCond(ROSE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE)))
                                         .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower())));
@@ -105,10 +104,11 @@ public class FILoot extends LootTableProvider {
 
             this.dropOther(TAPPER.get(), ModItems.IRON_KNIFE.get());
 
-            this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.DANDELION);
+            this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.YELLOW_DYE);
             this.dropSelf(DANDELION_ROOTS_CRATE.get());
             this.dropSelf(POPPY_SEEDS_SACK.get());
-            this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.POPPY);
+            this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.RED_DYE);
+            this.createFlowerBushDrops(SUNFLOWER_CROP, SUNFLOWER_KERNELS, Items.YELLOW_DYE);
         }
 
         private void createFlowerBushDrops(RegistryObject<? extends Block> registryBlock, RegistryObject<Item> registrySeed, Item originalFlower) {
@@ -138,7 +138,7 @@ public class FILoot extends LootTableProvider {
         }
 
         public static LootItemCondition.Builder stateCond(String value) {
-            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(((RegistryObject<? extends Block>) FIBlocks.ROSE_HIP).get())
+            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(((RegistryObject<? extends Block>) ROSE_CROP).get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RoseCropBlock.HALF, value));
         }
 

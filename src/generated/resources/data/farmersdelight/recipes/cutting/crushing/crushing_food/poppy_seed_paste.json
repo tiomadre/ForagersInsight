@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:poppy_seeds"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "foragersinsight:poppy_seed_paste"
+    },
+    {
+      "chance": 0.1,
+      "item": "foragersinsight:poppy_seed_paste"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallet"
+  }
+}

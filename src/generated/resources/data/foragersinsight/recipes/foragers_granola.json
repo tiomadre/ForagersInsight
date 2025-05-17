@@ -13,10 +13,12 @@
     },
     {
       "item": "foragersinsight:rose_hip"
+    },
+    {
+      "item": "minecraft:bowl"
     }
   ],
   "result": {
-    "count": 3,
     "item": "foragersinsight:foragers_granola"
   }
 }

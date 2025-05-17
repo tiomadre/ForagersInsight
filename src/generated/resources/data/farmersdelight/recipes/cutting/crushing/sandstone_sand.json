@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:sandstone"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "minecraft:sand"
+    },
+    {
+      "chance": 0.1,
+      "item": "minecraft:sand"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallet"
+  }
+}
