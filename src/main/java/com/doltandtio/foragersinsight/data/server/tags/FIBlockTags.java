@@ -1,7 +1,6 @@
 package com.doltandtio.foragersinsight.data.server.tags;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
-import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
