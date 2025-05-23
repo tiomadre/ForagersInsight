@@ -13,7 +13,7 @@ public class MedicinalEffect extends MobEffect {
     }
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (!entity.getPersistentData().getBoolean("naturesdelight:medicinal_healed")) {
+        if (!entity.getPersistentData().getBoolean("foragersinsight:medicinal_healed")) {
             int removalCount = 0;
             if (entity.hasEffect(MobEffects.POISON)) {
                 removalCount++;
@@ -25,7 +25,7 @@ public class MedicinalEffect extends MobEffect {
             if (heartsToHeal > 0) {
                 entity.heal(heartsToHeal * (2.0F + (amplifier * 1.0F)));//Healing increased by 1/2 Heart per rank.
             }
-            entity.getPersistentData().putBoolean("naturesdelight:medicinal_healed", true);
+            entity.getPersistentData().putBoolean("foragersinsight:medicinal_healed", true);
         }
         entity.removeEffect(MobEffects.POISON);
         entity.removeEffect(MobEffects.WITHER);
@@ -39,6 +39,6 @@ public class MedicinalEffect extends MobEffect {
     @Override
     public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
         super.removeAttributeModifiers(entity, attributeMap, amplifier);
-        entity.getPersistentData().remove("naturesdelight:medicinal_healed");
+        entity.getPersistentData().remove("foragersinsight:medicinal_healed");
     }
 }

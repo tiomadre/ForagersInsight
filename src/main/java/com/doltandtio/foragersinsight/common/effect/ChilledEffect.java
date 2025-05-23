@@ -12,7 +12,7 @@ public class ChilledEffect extends MobEffect {
     public ChilledEffect() {
         super(MobEffectCategory.NEUTRAL, 0xc2ecff);
     }
-    //This effect freezes the duration of any Beneficial effects on the affected target for the length of Chilled.
+    //This effect freezes the duration of any Beneficial effects on the consumer.
     //Chilled is tagged as Neutral to avoid extending itself.
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {

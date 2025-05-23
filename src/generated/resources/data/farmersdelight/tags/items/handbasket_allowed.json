@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dyes",
+    "#forge:eggs",
+    "#forge:feathers",
+    "#forge:leather",
+    "#forge:seeds",
+    "#forge:crops",
+    "#forge:mushrooms",
+    "#forge:raw_fishes",
+    "#forge:vegetables",
+    "#forge:raw_beef",
+    "#forge:raw_chicken",
+    "#forge:raw_pork",
+    "#forge:raw_mutton",
+    "#forge:raw_bacon",
+    "farmersdelight:straw",
+    "farmersdelight:tree_bark",
+    "minecraft:kelp",
+    "minecraft:cocoa_beans",
+    "minecraft:bamboo",
+    "foragersinsight:crushed_ice"
+  ]
+}

@@ -73,19 +73,16 @@ public class FIFoods {
 
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
-            .nutrition(0)
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200), 1).build();
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 250), 1).build();
         //Chilled
 
         //Medicinal
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
-            .saturationMod(0.2f)
-            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
+            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 600), 1).build();
         public static final FoodProperties FOREST_ELIXIR = new FoodProperties.Builder().alwaysEat()
-            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 600), 1)
-            .effect(() -> new MobEffectInstance(FIMobEffects.VIGOR.get(), 600, 0), 1.0F).build();
+            .saturationMod(0.5f)
+            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
     //FEASTS
-
     //Ingredients
     public static final FoodProperties ACORN_DOUGH = new FoodProperties.Builder()
             .nutrition(2).saturationMod(0.3f)
@@ -94,7 +91,6 @@ public class FIFoods {
             .nutrition(2).saturationMod(0.3f).build();
     public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().build();
     public static final FoodProperties SEED_MILK_BUCKET = new FoodProperties.Builder().build();
-
     //Meat
     public static final FoodProperties RAW_RABBIT_LEG = new FoodProperties.Builder().meat()
             .nutrition(2).saturationMod(0.4f).build();

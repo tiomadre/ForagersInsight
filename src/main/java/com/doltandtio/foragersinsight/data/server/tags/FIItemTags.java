@@ -5,8 +5,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import static com.doltandtio.foragersinsight.core.registry.FIBlocks.*;
 import static com.doltandtio.foragersinsight.core.registry.FIItems.CRUSHED_ICE;
@@ -32,14 +35,35 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(COCOA).add(Items.COCOA_BEANS, FIItems.COCOA_POWDER.get());
         this.tag(ROOTS).add(Items.CARROT,Items.BEETROOT, FIItems.DANDELION_ROOT.get());
         this.tag(MUSHROOM).add(Items.RED_MUSHROOM,Items.BROWN_MUSHROOM);
-        //Mallet
-        this.tag(FITags.ItemTag.MALLETS).add(FIItems.FLINT_MALLET.get(),FIItems.IRON_MALLET.get());
+        //Handbasket
+        this.tag(HANDBASKET_ALLOWED).addTags(
+                Tags.Items.DYES,
+                Tags.Items.EGGS,
+                Tags.Items.FEATHERS,
+                Tags.Items.LEATHER,
+                Tags.Items.SEEDS,
+                Tags.Items.CROPS,
+                Tags.Items.MUSHROOMS,
+                //FD Tags
+                ForgeTags.RAW_FISHES,
+                ForgeTags.VEGETABLES,
+                ForgeTags.RAW_BEEF,
+                ForgeTags.RAW_CHICKEN,
+                ForgeTags.RAW_PORK,
+                ForgeTags.RAW_MUTTON,
+                ForgeTags.RAW_BACON)
+                //FD Items
+                .add(ModItems.STRAW.get(),ModItems.TREE_BARK.get())
+                //Vanilla Items
+                .add(Items.KELP,Items.NETHERRACK,Items.BAMBOO)
+                //FI Items
+                .add(CRUSHED_ICE.get());
+        // Mallet
+        this.tag(FITags.ItemTag.MALLETS).add(FIItems.FLINT_MALLET.get(),FIItems.IRON_MALLET.get(),
+        FIItems.GOLD_MALLET.get(),FIItems.DIAMOND_MALLET.get(),FIItems.NETHERITE_MALLET.get());
         //Shears
         //this.tag(Tags.Items.TOOLS_SHEAR).add(FIItems.FLINT_SHEARS.get()); reenable in newer version that has this tag
-
-
     }
-
     protected void registerForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(ROSE_HIP_SACK.get().asItem());
 

@@ -46,6 +46,7 @@ public class ForagersInsight {
 		FIMobEffects.MOB_EFFECTS.register(bus);
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 		FIEnchantments.register();
+		FIMenuTypes.MENUS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);

@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.core.registry;
 
 import com.doltandtio.foragersinsight.common.item.FIShearsItem;
+import com.doltandtio.foragersinsight.common.item.HandbasketItem;
 import com.doltandtio.foragersinsight.common.item.MalletItem;
 import com.doltandtio.foragersinsight.common.item.MilkBucketItem;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
@@ -136,14 +137,22 @@ public class FIItems {
 //Workstations & Tools
     //Chilled Pot
 
-    //Shears
-    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () -> new FIShearsItem(
-            new Item.Properties().durability(150)));
+    //Handbasket
+    public static final RegistryObject<Item> HANDBASKET = HELPER.createItem("handbasket", () ->
+        new HandbasketItem(new Item.Properties().stacksTo(1)));
     //Mallets
     public static final RegistryObject<Item> FLINT_MALLET = HELPER.createItem("flint_mallet", () ->
-            new MalletItem(ModMaterials.FLINT, 1, -2.0F, basicItem()));
+            new MalletItem(ModMaterials.FLINT, 1, -1.5F, basicItem()));
     public static final RegistryObject<Item> IRON_MALLET = HELPER.createItem("iron_mallet", () ->
-            new MalletItem(Tiers.IRON, 1, -2.0F, basicItem()));
-
+            new MalletItem(Tiers.IRON, 1, -1.5F, basicItem()));
+    public static final RegistryObject<Item> GOLD_MALLET = HELPER.createItem("gold_mallet", () ->
+            new MalletItem(Tiers.GOLD, 1, -1.5F,basicItem()));
+    public static final RegistryObject<Item> DIAMOND_MALLET = HELPER.createItem("diamond_mallet", () ->
+            new MalletItem(Tiers.DIAMOND, 2, -1.5F, basicItem()));
+    public static final RegistryObject<Item> NETHERITE_MALLET = HELPER.createItem("netherite_mallet", () ->
+            new MalletItem(Tiers.NETHERITE, 2, -1.5F, basicItem()));
+    //Shears
+    public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () ->
+            new FIShearsItem(new Item.Properties().durability(150)));
 
 }
