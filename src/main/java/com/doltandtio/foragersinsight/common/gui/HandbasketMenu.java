@@ -47,8 +47,7 @@ public class HandbasketMenu extends AbstractContainerMenu {
                 addSlot(new SlotItemHandler(basketInv, index, x, y) {
                     @Override
                     public boolean mayPlace(@NotNull ItemStack stack) {
-                        return !ItemStack.isSameItem(stack, HandbasketMenu.this.basketStack) &&
-                               stack.is(FITags.ItemTag.HANDBASKET_ALLOWED);
+                        return stack.is(FITags.ItemTag.HANDBASKET_ALLOWED);
                     }
                 });
             }
