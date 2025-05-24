@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "item/generated",
   "textures": {
     "layer0": "foragersinsight:item/handbasket"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": { "foragersinsight:full": 1.0 },
+      "model": "foragersinsight:item/full_handbasket"
+    }
+  ]
 }

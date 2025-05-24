@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.core.other.farmhandevents;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
+import com.doltandtio.foragersinsight.common.item.HandbasketItem;
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,11 +23,14 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.IForgeShearable;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.IItemHandler;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
 import java.util.Collection;
@@ -36,6 +40,34 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FarmhandEvents {
+    //checks if player has a handbasket and if item can go in
+    private static boolean tryInsertToHandbasket(Player player, ItemStack drop) {
+        for (ItemStack invStack : player.getInventory().items) {
+            if (invStack.getItem() instanceof HandbasketItem) {
+                LazyOptional<IItemHandler> cap = invStack.getCapability(ForgeCapabilities.ITEM_HANDLER);
+                Optional<IItemHandler> resolved = cap.resolve();
+                if (resolved.isPresent()) {
+                    IItemHandler handler = resolved.get();
+                    ItemStack remainder = drop.copy();
+
+                    for (int slot = 0; slot < handler.getSlots(); slot++) {
+                        remainder = handler.insertItem(slot, remainder, true);
+                        if (remainder.isEmpty()) break;
+                    }
+                    if (remainder.isEmpty()) {
+
+                        ItemStack toInsert = drop.copy();
+                        for (int slot = 0; slot < handler.getSlots(); slot++) {
+                            toInsert = handler.insertItem(slot, toInsert, false);
+                            if (toInsert.isEmpty()) break;
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
     @SubscribeEvent
     public static void onCropBreak(BlockEvent.BreakEvent event) {
         Level level = event.getLevel() instanceof Level ? (Level) event.getLevel() : null;
@@ -63,13 +95,14 @@ public class FarmhandEvents {
         event.setCanceled(true);
 
         ServerLevel server = (ServerLevel) level;
-
         List<ItemStack> drops = Block.getDrops(state, server, pos, server.getBlockEntity(pos));
 
         // *yoinks drops directly into inventory* 👌😊👉🎒
         for (ItemStack drop : drops) {
-            if (!player.getInventory().add(drop)) {
-                player.drop(drop, false);
+            if (!tryInsertToHandbasket(player, drop)) {
+                if (!player.getInventory().add(drop)) {
+                    player.drop(drop, false);
+                }
             }
         }
 
@@ -93,8 +126,7 @@ public class FarmhandEvents {
         // hurts the tool 😞
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
     }
-
-    // Shearable (Left Click)
+    // Shearable on Left Click
     @SubscribeEvent
     public static void onShearLeft(LeftClickBlock event) {
         Player player = event.getEntity();
@@ -118,11 +150,12 @@ public class FarmhandEvents {
 
         server.destroyBlock(pos, false);
         for (ItemStack drop : drops) {
-            if (!player.getInventory().add(drop)) {
-                player.drop(drop, false);
+            if (!tryInsertToHandbasket(player, drop)) {
+                if (!player.getInventory().add(drop)) {
+                    player.drop(drop, false);
+                }
             }
         }
-
         level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0f, 1.0f);
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
     }
@@ -145,7 +178,7 @@ public class FarmhandEvents {
         if (block instanceof BountifulLeavesBlock bountiful && state.getValue(BountifulLeavesBlock.AGE) >= BountifulLeavesBlock.MAX_AGE) {
             event.setCanceled(true);
             ItemStack drop = new ItemStack(bountiful.getBounty());
-            if (!player.getInventory().add(drop)) player.drop(drop, false);
+            if (!tryInsertToHandbasket(player, drop)) player.drop(drop, false);
             level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(BountifulLeavesBlock.AGE, 0), Block.UPDATE_ALL);
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
@@ -158,7 +191,7 @@ public class FarmhandEvents {
             Direction face = event.getFace() != null ? event.getFace() : Direction.NORTH;
             level.setBlock(pos, Blocks.CARVED_PUMPKIN.defaultBlockState().setValue(CarvedPumpkinBlock.FACING, face), Block.UPDATE_ALL);
             ItemStack seeds = new ItemStack(Items.PUMPKIN_SEEDS, 4);
-            if (!player.getInventory().add(seeds)) player.drop(seeds, false);
+            if (!tryInsertToHandbasket(player, seeds)) player.drop(seeds, false);
             level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
             return;
@@ -168,7 +201,7 @@ public class FarmhandEvents {
         if (state.hasProperty(BeehiveBlock.HONEY_LEVEL) && state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5) {
             event.setCanceled(true);
             ItemStack honey = new ItemStack(Items.HONEYCOMB, 3);
-            if (!player.getInventory().add(honey)) player.drop(honey, false);
+            if (!tryInsertToHandbasket(player, honey)) player.drop(honey, false);
             level.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(BeehiveBlock.HONEY_LEVEL, 0), Block.UPDATE_ALL);
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
@@ -178,11 +211,10 @@ public class FarmhandEvents {
         if (block instanceof MushroomColonyBlock colony && state.getValue(MushroomColonyBlock.COLONY_AGE) > 0) {
             event.setCanceled(true);
             ItemStack drop = colony.getCloneItemStack(level, pos, state);
-            if (!player.getInventory().add(drop)) player.drop(drop, false);
+            if (!tryInsertToHandbasket(player, drop)) player.drop(drop, false);
             level.playSound(null, pos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(MushroomColonyBlock.COLONY_AGE, state.getValue(MushroomColonyBlock.COLONY_AGE) - 1), Block.UPDATE_ALL);
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
         }
     }
 }
-

@@ -36,7 +36,7 @@ public class FIItemTags extends ItemTagsProvider {
                 .add(Items.COOKED_RABBIT, Items.RABBIT, Items.CHICKEN, Items.PORKCHOP, Items.BEEF, Items.MUTTON, Items.COD, Items.SALMON, Items.COOKED_BEEF
                 ,Items.COOKED_COD,Items.COOKED_PORKCHOP,Items.COOKED_CHICKEN,Items.COOKED_SALMON,Items.COOKED_MUTTON,ModItems.COD_SLICE.get(),ModItems.SALMON_SLICE.get(),ModItems.CHICKEN_CUTS.get()
                 ,ModItems.MINCED_BEEF.get(),ModItems.BACON.get(),ModItems.MUTTON_CHOPS.get(),ModItems.COOKED_SALMON_SLICE.get(),ModItems.COOKED_BACON.get(),ModItems.COOKED_MUTTON_CHOPS.get()
-                ,ModItems.HAM.get(),ModItems.BEEF_PATTY.get(),Items.INK_SAC,Items.GLOW_INK_SAC)
+                ,ModItems.HAM.get(),ModItems.BEEF_PATTY.get(),Items.INK_SAC,Items.GLOW_INK_SAC,FIItems.RAW_RABBIT_LEG.get(),FIItems.COOKED_RABBIT_LEG.get())
                 //Crops
                 .add(Items.WHEAT,Items.SWEET_BERRIES, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.PUMPKIN, Items.MELON_SLICE, Items.APPLE,Items.KELP,Items.BAMBOO,
                  Items.COCOA_BEANS,Items.PUMPKIN,Items.MELON,Items.SUGAR_CANE,Items.GLOW_BERRIES,Items.CACTUS, Items.RED_MUSHROOM,Items.BROWN_MUSHROOM
@@ -56,7 +56,8 @@ public class FIItemTags extends ItemTagsProvider {
                 .add(Items.OAK_SAPLING,Items.SPRUCE_SAPLING,Items.BIRCH_SAPLING,Items.JUNGLE_SAPLING,Items.ACACIA_SAPLING,Items.DARK_OAK_SAPLING
                 ,Items.AZALEA,Items.FLOWERING_AZALEA, FIBlocks.BOUNTIFUL_DARK_OAK_SAPLING.get().asItem(), FIBlocks.BOUNTIFUL_OAK_SAPLING.get().asItem())
                 //Other
-                .add(ModItems.TREE_BARK.get(),Items.HONEYCOMB,Items.SUGAR,Items.HONEY_BOTTLE,ModItems.MILK_BOTTLE.get(),FIItems.SEED_MILK_BOTTLE.get(),FIItems.CRUSHED_ICE.get())
+                .add(ModItems.TREE_BARK.get(),Items.HONEYCOMB,Items.SUGAR,Items.HONEY_BOTTLE,ModItems.MILK_BOTTLE.get(),FIItems.SEED_MILK_BOTTLE.get(),FIItems.CRUSHED_ICE.get()
+                ,Items.EGG,Items.DRIED_KELP,Items.LEATHER,Items.RABBIT_FOOT,Items.RABBIT_HIDE)
 
                 ;
         // Mallet

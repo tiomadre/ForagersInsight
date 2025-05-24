@@ -118,8 +118,15 @@
     "minecraft:honeycomb",
     "minecraft:sugar",
     "minecraft:honey_bottle",
+    "minecraft:egg",
+    "minecraft:dried_kelp",
     "farmersdelight:milk_bottle",
     "foragersinsight:seed_milk_bottle",
-    "foragersinsight:crushed_ice"
+    "foragersinsight:crushed_ice",
+    "foragersinsight:raw_rabbit_leg",
+    "foragersinsight:cooked_rabbit_leg",
+    "minecraft:leather",
+    "minecraft:rabbit_foot",
+    "minecraft:rabbit_hide"
   ]
 }
