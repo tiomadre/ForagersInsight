@@ -30,7 +30,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:dandelion"
+          "name": "minecraft:yellow_dye"
         }
       ],
       "rolls": 1.0

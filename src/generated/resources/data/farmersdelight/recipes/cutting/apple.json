@@ -9,6 +9,10 @@
     {
       "count": 2,
       "item": "foragersinsight:apple_slice"
+    },
+    {
+      "chance": 0.1,
+      "item": "foragersinsight:apple_slice"
     }
   ],
   "tool": {

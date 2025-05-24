@@ -1,14 +1,8 @@
 {
   "type": "farmersdelight:cooking",
-  "container": {
-    "item": "minecraft:paper"
-  },
   "cookingtime": 100,
   "experience": 0.35,
   "ingredients": [
-    {
-      "item": "foragersinsight:dandelion_root"
-    },
     {
       "item": "foragersinsight:dandelion_root"
     }

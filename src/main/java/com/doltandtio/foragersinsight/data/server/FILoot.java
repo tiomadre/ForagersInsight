@@ -92,6 +92,7 @@ public class FILoot extends LootTableProvider {
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)).when(lower())));
 
+            this.dropSelf(ACORN_CARROT_CAKE.get());
             this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
             this.dropSelf(SPRUCE_TIPS_SACK.get());

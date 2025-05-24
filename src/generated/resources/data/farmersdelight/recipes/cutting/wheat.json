@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "foragersinsight:wheat_flour"
+    },
+    {
+      "chance": 0.1,
+      "item": "foragersinsight:wheat_flour"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallets"
+  }
+}

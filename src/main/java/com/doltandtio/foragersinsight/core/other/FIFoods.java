@@ -32,6 +32,9 @@ public class FIFoods {
 
     //DISHES
         //Comfort
+    public static final FoodProperties CARROT_POPPY_CHOWDER = new FoodProperties.Builder()
+            .nutrition(8).saturationMod(0.7f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 2200, 1), 1).build();
     public static final FoodProperties COD_AND_PUMPKIN_STEW = new FoodProperties.Builder()
             .nutrition(10).saturationMod(0.9f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(),2500),1).build();

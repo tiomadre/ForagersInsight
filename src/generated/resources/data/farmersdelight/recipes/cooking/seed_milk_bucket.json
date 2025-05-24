@@ -1,8 +1,5 @@
 {
   "type": "farmersdelight:cooking",
-  "container": {
-    "item": "minecraft:bucket"
-  },
   "cookingtime": 400,
   "experience": 1.0,
   "ingredients": [
@@ -14,6 +11,9 @@
         "item": "farmersdelight:rice"
       }
     ],
+    {
+      "tag": "forge:seeds"
+    },
     {
       "tag": "forge:seeds"
     },

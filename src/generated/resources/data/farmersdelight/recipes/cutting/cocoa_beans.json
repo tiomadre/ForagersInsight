@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "foragersinsight:cocoa_powder"
+    },
+    {
+      "chance": 0.1,
+      "item": "foragersinsight:cocoa_powder"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallets"
+  }
+}

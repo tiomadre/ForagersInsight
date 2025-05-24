@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "result": [
+    {
+      "item": "minecraft:sand"
+    },
+    {
+      "chance": 0.1,
+      "item": "minecraft:sand"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallets"
+  }
+}

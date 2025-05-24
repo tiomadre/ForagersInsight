@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:ice",
+    "foragersinsight:crushed_ice",
+    {
+      "id": "neapolitan:ice_cubes",
+      "required": false
+    }
+  ]
+}

@@ -16,12 +16,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import static net.minecraft.world.item.Items.*;
+
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.data.event.GatherDataEvent;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class FICraftingRecipes extends BlueprintRecipeProvider {
     public FICraftingRecipes(GatherDataEvent e) {
@@ -36,13 +39,15 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
 
         //ACORN DOUGH
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
-                .requires(FITags.ItemTag.ACORN).requires(FITags.ItemTag.ACORN)
-                .requires(FITags.ItemTag.ACORN).requires(WATER_BUCKET)
-                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
-                .requires(FITags.ItemTag.ACORN).requires(FITags.ItemTag.ACORN)
-                .requires(FITags.ItemTag.ACORN).requires(ForgeTags.EGGS)
-                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
+                .requires(FITags.ItemTag.ACORN)
+                .requires(FITags.ItemTag.ACORN)
+                .requires(FITags.ItemTag.ACORN)
+                .requires(Ingredient.fromValues(Stream.of(
+                        new Ingredient.TagValue(ForgeTags.EGGS),
+                        new Ingredient.ItemValue(new net.minecraft.world.item.ItemStack(Items.WATER_BUCKET))
+                )))
+                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get()))
+                .save(consumer);
     //DISHES
         //Comfort
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FORAGERS_GRANOLA.get())

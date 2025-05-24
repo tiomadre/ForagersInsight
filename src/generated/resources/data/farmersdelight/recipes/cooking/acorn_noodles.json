@@ -7,10 +7,10 @@
       "item": "foragersinsight:acorn_dough"
     },
     {
-      "tag": "forge:crops/acorn"
+      "item": "foragersinsight:black_acorn"
     },
     {
-      "tag": "forge:crops/acorn"
+      "item": "foragersinsight:black_acorn"
     },
     {
       "tag": "forge:milk"
@@ -18,7 +18,6 @@
   ],
   "recipe_book_tab": "meals",
   "result": {
-    "count": 1,
     "item": "foragersinsight:acorn_noodles"
   }
 }

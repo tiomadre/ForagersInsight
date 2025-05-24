@@ -11,9 +11,14 @@
     {
       "tag": "forge:crops/acorn"
     },
-    {
-      "item": "minecraft:water_bucket"
-    }
+    [
+      {
+        "tag": "forge:eggs"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      }
+    ]
   ],
   "result": {
     "count": 3,

@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:gravel"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "minecraft:flint"
+    },
+    {
+      "chance": 0.1,
+      "item": "minecraft:flint"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/mallets"
+  }
+}
