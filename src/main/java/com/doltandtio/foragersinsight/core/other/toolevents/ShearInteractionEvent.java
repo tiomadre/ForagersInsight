@@ -109,7 +109,7 @@ public class ShearInteractionEvent {
         long elapsed = now - last;
         if (elapsed < CHICKEN_SHEAR_COOLDOWN) {
             int secondsLeft = (int) Math.ceil((CHICKEN_SHEAR_COOLDOWN - elapsed) / 20.0);
-            player.sendSystemMessage(Component.literal("You must wait " + secondsLeft + "s to shear this chicken again!"));
+            player.sendSystemMessage(Component.literal("This chicken can be sheared again in " + secondsLeft + "s!"));
             event.setCanceled(true);
             return;
         }

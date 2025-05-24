@@ -57,7 +57,7 @@ public class FIItemTags extends ItemTagsProvider {
                 ,Items.AZALEA,Items.FLOWERING_AZALEA, FIBlocks.BOUNTIFUL_DARK_OAK_SAPLING.get().asItem(), FIBlocks.BOUNTIFUL_OAK_SAPLING.get().asItem())
                 //Other
                 .add(ModItems.TREE_BARK.get(),Items.HONEYCOMB,Items.SUGAR,Items.HONEY_BOTTLE,ModItems.MILK_BOTTLE.get(),FIItems.SEED_MILK_BOTTLE.get(),FIItems.CRUSHED_ICE.get()
-                ,Items.EGG,Items.DRIED_KELP,Items.LEATHER,Items.RABBIT_FOOT,Items.RABBIT_HIDE)
+                ,Items.EGG,Items.DRIED_KELP,Items.LEATHER,Items.RABBIT_FOOT,Items.RABBIT_HIDE,Items.FEATHER)
 
                 ;
         // Mallet

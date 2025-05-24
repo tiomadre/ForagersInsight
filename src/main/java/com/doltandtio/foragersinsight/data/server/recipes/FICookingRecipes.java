@@ -99,6 +99,13 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(ROSE_PETALS.get(), FIItems.ROSE_HIP.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(GLOWING_CARROT_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(Items.GLOW_BERRIES)
+                .addIngredient(Items.GLOW_BERRIES)
+                .addIngredient(Items.CARROT)
+                .unlockedByAnyIngredient(Items.CARROT, Items.GLOW_BERRIES)
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                .build(consumer);
             //Medicinal
         CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_ROOT_TEA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(DANDELION_ROOT.get())
@@ -111,7 +118,7 @@ public class FICookingRecipes {
                 .addIngredient(SPRUCE_TIPS.get())
                 .addIngredient(SPRUCE_TIPS.get())
                 .addIngredient(SPRUCE_TIPS.get())
-                .addIngredient(Items.HONEY_BOTTLE) //Replace with Syrup Bottle when Tree Trapping is added
+                .addIngredient(Items.HONEY_BOTTLE) //Replace with Syrup Bottle when Tree Tapping is added
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);

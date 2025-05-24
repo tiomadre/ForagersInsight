@@ -6,7 +6,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class FIEnchantCategories {
 
-    public static final EnchantmentCategory Harvest_Exclusive = EnchantmentCategory.create("hoe_shears_knife", item -> {
+    public static final EnchantmentCategory Harvest_Exclusive = EnchantmentCategory.create("Forager", item -> {
         // Hoes
         if (item.getDescriptionId().contains("hoe")) return true;
         // Shears

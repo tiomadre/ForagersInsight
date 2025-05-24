@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    ":": {
+      "item": "farmersdelight:straw"
+    },
+    ")": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " ) ",
+    ": :",
+    "):)"
+  ],
+  "result": {
+    "item": "foragersinsight:handbasket"
+  },
+  "show_notification": true
+}

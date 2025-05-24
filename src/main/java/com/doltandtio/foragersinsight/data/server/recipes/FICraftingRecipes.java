@@ -106,20 +106,44 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(FLINT).requires(FLINT);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FLINT_MALLET.get())
                 .pattern("fff")
-                .pattern("#s#")
+                .pattern(" s ")
                 .define('f', FLINT)
                 .define('s', STICK)
                 .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(FLINT));
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, IRON_MALLET.get())
                 .pattern("iii")
-                .pattern("#s#")
+                .pattern(" s ")
                 .define('i', IRON_INGOT)
                 .define('s', STICK)
                 .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, GOLD_MALLET.get())
+                .pattern("iii")
+                .pattern(" s ")
+                .define('i', GOLD_INGOT)
+                .define('s', STICK)
+                .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(GOLD_INGOT));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DIAMOND_MALLET.get())
+                .pattern("iii")
+                .pattern(" s ")
+                .define('i', DIAMOND)
+                .define('s', STICK)
+                .unlockedBy("has_diamond", InventoryChangeTrigger.TriggerInstance.hasItems(DIAMOND));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, NETHERITE_MALLET.get())
+                .pattern("iii")
+                .pattern(" s ")
+                .define('i', NETHERITE_INGOT)
+                .define('s', STICK)
+                .unlockedBy("has_netherite", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HANDBASKET.get())
+                .pattern(" ) ")
+                .pattern(": :")
+                .pattern("):)")
+                .define(':', ModItems.STRAW.get())
+                .define(')', STICK)
+                .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
 
  //BLOCKS
-        //Feats and Cakes
+        //Feasts and Cakes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
                 .requires(SUGAR).requires(ForgeTags.EGGS).requires(SUGAR)

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foragersinsight:item/glowing_carrot_juice"
+  }
+}

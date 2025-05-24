@@ -80,7 +80,7 @@ public class FIBlocks {
                     .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
                     .addItemsBefore(of(Items.COOKIE),ACORN_COOKIE)
                     .addItemsAfter(of(Items.COOKIE),ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
-                    .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,FOREST_ELIXIR,ROSE_GRANITA,ROSE_CORDIAL)
+                    .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,FOREST_ELIXIR,GLOWING_CARROT_JUICE,ROSE_GRANITA,ROSE_CORDIAL)
                     .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
                     .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
                     .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,DANDELION_FRIES,FORAGERS_GRANOLA,KELP_AND_BEET_SALAD,MEADOW_MEDLEY,

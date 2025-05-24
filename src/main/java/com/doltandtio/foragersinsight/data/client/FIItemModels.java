@@ -46,7 +46,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Comfort
                 CREAMY_SALMON_BAGEL,JAMMY_BREAKFAST_SANDWICH,
                 //Drinks
-                ROSE_CORDIAL,
+                GLOWING_CARROT_JUICE,ROSE_CORDIAL,
                     //Chilled
 
                     //Medicinal

@@ -7,7 +7,18 @@ import net.minecraft.world.food.FoodProperties;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class FIFoods {
-
+    public static final FoodProperties ACORN_DOUGH = new FoodProperties.Builder()
+            .nutrition(2).saturationMod(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build();
+    public static final FoodProperties SAUCE_BOWLS = new FoodProperties.Builder()
+            .nutrition(2).saturationMod(0.3f).build();
+    public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().build();
+    public static final FoodProperties SEED_MILK_BUCKET = new FoodProperties.Builder().build();
+    //Cuts
+    public static final FoodProperties RAW_RABBIT_LEG = new FoodProperties.Builder().meat()
+            .nutrition(2).saturationMod(0.4f).build();
+    public static final FoodProperties COOKED_RABBIT_LEG = new FoodProperties.Builder().meat()
+            .nutrition(3).saturationMod(0.6f).build();
     //Crops
             //This is for Apple Slices/Black Acorns
     public static final FoodProperties MID_SAT_MORSELS = new FoodProperties.Builder().fast()
@@ -74,6 +85,7 @@ public class FIFoods {
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 250), 1).build();
+    public static final FoodProperties GLOWING_CARROT_JUICE = new FoodProperties.Builder().alwaysEat().build();
         //Chilled
 
         //Medicinal
@@ -83,17 +95,5 @@ public class FIFoods {
             .saturationMod(0.5f)
             .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
     //FEASTS
-    //Ingredients
-    public static final FoodProperties ACORN_DOUGH = new FoodProperties.Builder()
-            .nutrition(2).saturationMod(0.3f)
-            .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build();
-    public static final FoodProperties SAUCE_BOWLS = new FoodProperties.Builder()
-            .nutrition(2).saturationMod(0.3f).build();
-    public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().build();
-    public static final FoodProperties SEED_MILK_BUCKET = new FoodProperties.Builder().build();
-    //Meat
-    public static final FoodProperties RAW_RABBIT_LEG = new FoodProperties.Builder().meat()
-            .nutrition(2).saturationMod(0.4f).build();
-    public static final FoodProperties COOKED_RABBIT_LEG = new FoodProperties.Builder().meat()
-            .nutrition(3).saturationMod(0.6f).build();
+
 }

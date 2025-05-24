@@ -1,4 +1,4 @@
-package com.doltandtio.foragersinsight.core.other.farmhandevents;
+package com.doltandtio.foragersinsight.core.other.enchantmentevents;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
