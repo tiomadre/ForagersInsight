@@ -3,7 +3,7 @@ package com.doltandtio.foragersinsight.client;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIMenuTypes;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
-import com.doltandtio.foragersinsight.client.screen.HandbasketScreen;
+import com.doltandtio.foragersinsight.client.gui.HandbasketScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;

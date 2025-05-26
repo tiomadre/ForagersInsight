@@ -6,7 +6,9 @@
   "mixins": [
     "DarkOakTreeGrowerMixin",
     "MobEffectInstantMixin",
-    "OakTreeGrowerMixin"
+    "OakTreeGrowerMixin",
+    "shears_fortune.FortuneApplyAnvilMixin",
+    "shears_fortune.ShearsFortuneMixin"
   ],
   "injectors": {
     "defaultRequire": 1

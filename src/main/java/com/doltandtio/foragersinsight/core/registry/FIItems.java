@@ -141,15 +141,15 @@ public class FIItems {
         new HandbasketItem(new Item.Properties().stacksTo(1)));
     //Mallets
     public static final RegistryObject<Item> FLINT_MALLET = HELPER.createItem("flint_mallet", () ->
-            new MalletItem(ModMaterials.FLINT, 1, -3.25F, basicItem()));
+            new MalletItem(ModMaterials.FLINT, 1, -3F, basicItem()));
     public static final RegistryObject<Item> IRON_MALLET = HELPER.createItem("iron_mallet", () ->
-            new MalletItem(Tiers.IRON, 2, -3.25F, basicItem()));
+            new MalletItem(Tiers.IRON, 2, -3F, basicItem()));
     public static final RegistryObject<Item> GOLD_MALLET = HELPER.createItem("gold_mallet", () ->
-            new MalletItem(Tiers.GOLD, 1, -3.25F,basicItem()));
+            new MalletItem(Tiers.GOLD, 1, -3F,basicItem()));
     public static final RegistryObject<Item> DIAMOND_MALLET = HELPER.createItem("diamond_mallet", () ->
-            new MalletItem(Tiers.DIAMOND, 2, -3.25F, basicItem()));
+            new MalletItem(Tiers.DIAMOND, 2, -3F, basicItem()));
     public static final RegistryObject<Item> NETHERITE_MALLET = HELPER.createItem("netherite_mallet", () ->
-            new MalletItem(Tiers.NETHERITE, 3, -3F, basicItem()));
+            new MalletItem(Tiers.NETHERITE, 2, -2.9F, basicItem()));
     //Shears
     public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () ->
             new FIShearsItem(new Item.Properties().durability(119)));

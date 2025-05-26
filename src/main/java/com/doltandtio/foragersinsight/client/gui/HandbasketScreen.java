@@ -1,4 +1,4 @@
-package com.doltandtio.foragersinsight.client.screen;
+package com.doltandtio.foragersinsight.client.gui;
 
 import com.doltandtio.foragersinsight.common.gui.HandbasketMenu;
 import com.mojang.blaze3d.systems.RenderSystem;

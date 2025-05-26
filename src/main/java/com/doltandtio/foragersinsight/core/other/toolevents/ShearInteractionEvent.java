@@ -8,10 +8,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -28,6 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 public class ShearInteractionEvent {
     // 2 minutes (2400 ticks) cooldown per chicken
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L;
+
     @SubscribeEvent
     public static void onShearCrop(RightClickBlock event) {
         Level level = event.getLevel();
@@ -41,6 +41,7 @@ public class ShearInteractionEvent {
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
+    //Crops
         // Sweet Berry Bush (mature)
         if (state.getBlock() instanceof SweetBerryBushBlock bush
                 && state.getValue(SweetBerryBushBlock.AGE) >= SweetBerryBushBlock.MAX_AGE) {
@@ -61,8 +62,8 @@ public class ShearInteractionEvent {
             int resetAge = SweetBerryBushBlock.MAX_AGE - 2;
             level.setBlock(pos, state.setValue(SweetBerryBushBlock.AGE, resetAge), Block.UPDATE_ALL);
 
-            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES,
-                    SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 1.0F);
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             return;
         }
@@ -86,17 +87,25 @@ public class ShearInteractionEvent {
                 if (!player.getInventory().add(drop)) {
                     player.drop(drop, false);
                 }
-                level.playSound(null, top, SoundEvents.CROP_BREAK,
-                        SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.playSound(null, top, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+
                 tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             }
         }
     }
-
+    //Entities
     @SubscribeEvent
     public static void onShearChicken(EntityInteract event) {
         if (event.getLevel().isClientSide()) return;
         if (!(event.getTarget() instanceof Chicken chicken)) return;
+
+        // no snip dee behbeh
+        if (chicken.isBaby()) {
+            event.getEntity().sendSystemMessage(Component.literal("You cannot shear baby chickens!"));
+            event.setCanceled(true);
+            return;
+        }
 
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
@@ -107,6 +116,7 @@ public class ShearInteractionEvent {
         CompoundTag data = chicken.getPersistentData();
         long last = data.getLong("ShearFeatherTime");
         long elapsed = now - last;
+
         if (elapsed < CHICKEN_SHEAR_COOLDOWN) {
             int secondsLeft = (int) Math.ceil((CHICKEN_SHEAR_COOLDOWN - elapsed) / 20.0);
             player.sendSystemMessage(Component.literal("This chicken can be sheared again in " + secondsLeft + "s!"));
@@ -115,16 +125,75 @@ public class ShearInteractionEvent {
         }
         data.putLong("ShearFeatherTime", now);
         event.setCanceled(true);
-        // drop 1-2 feathers
-        int count = 1 + event.getLevel().getRandom().nextInt(2);
-        ItemStack drop = new ItemStack(Items.FEATHER, count);
+
+        int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+        // right click to shear 2 feathers (affected by fortune)
+        int baseCount = 2;
+        int extraFeathers = (fortune > 0) ? event.getLevel().getRandom().nextInt(fortune + 1) : 0;
+        int totalFeathers = baseCount + extraFeathers;
+
+        ItemStack drop = new ItemStack(Items.FEATHER, totalFeathers);
         if (!player.getInventory().add(drop)) {
             player.drop(drop, false);
         }
+        // snip and cluck
         event.getLevel().playSound(null, chicken.blockPosition(),
                 SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS,
                 1.0F, 1.0F);
+        event.getLevel().playSound(null, chicken.blockPosition(),
+                SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS,
+                1.0F, 1.0F);
 
+        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+    }
+
+    private static Item getWoolItemByColor(DyeColor color) {
+        return switch (color) {
+            case WHITE -> Items.WHITE_WOOL;
+            case ORANGE -> Items.ORANGE_WOOL;
+            case MAGENTA -> Items.MAGENTA_WOOL;
+            case LIGHT_BLUE -> Items.LIGHT_BLUE_WOOL;
+            case YELLOW -> Items.YELLOW_WOOL;
+            case LIME -> Items.LIME_WOOL;
+            case PINK -> Items.PINK_WOOL;
+            case GRAY -> Items.GRAY_WOOL;
+            case LIGHT_GRAY -> Items.LIGHT_GRAY_WOOL;
+            case CYAN -> Items.CYAN_WOOL;
+            case PURPLE -> Items.PURPLE_WOOL;
+            case BLUE -> Items.BLUE_WOOL;
+            case BROWN -> Items.BROWN_WOOL;
+            case GREEN -> Items.GREEN_WOOL;
+            case RED -> Items.RED_WOOL;
+            case BLACK -> Items.BLACK_WOOL;
+        };
+    }
+    @SubscribeEvent
+    public static void onShearSheep(EntityInteract event) {
+        if (event.getLevel().isClientSide()) return;
+
+        if (!(event.getTarget() instanceof net.minecraft.world.entity.animal.Sheep sheep)) return;
+
+        Player player = event.getEntity();
+        InteractionHand hand = event.getHand();
+        ItemStack tool = player.getItemInHand(hand);
+
+        if (!(tool.getItem() instanceof ShearsItem)) return;
+        if (!sheep.isAlive() || sheep.isSheared() || sheep.isBaby()) return;
+        event.setCanceled(true);
+
+        // fortune logíco
+        sheep.setSheared(true);
+        Level level = event.getLevel();
+        int baseWoolCount = 2 + level.getRandom().nextInt(3); // 2-3 Wool
+        int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+        int extraWool = (fortuneLevel > 0) ? level.getRandom().nextInt(fortuneLevel + 1) : 0;
+        int totalWool = baseWoolCount + extraWool;
+        // wool drop stuffs
+        DyeColor sheepColor = sheep.getColor();
+        ItemStack woolDrop = new ItemStack(getWoolItemByColor(sheepColor), totalWool);
+        BlockPos sheepPos = sheep.blockPosition();
+        level.addFreshEntity(new ItemEntity(level, sheepPos.getX(), sheepPos.getY(), sheepPos.getZ(), woolDrop));
+        level.playSound(null, sheep, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
     }
 }
