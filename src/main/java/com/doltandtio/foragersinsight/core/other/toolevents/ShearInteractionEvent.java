@@ -22,6 +22,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
 @Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShearInteractionEvent {
@@ -42,6 +43,41 @@ public class ShearInteractionEvent {
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
     //Crops
+        // Handle MushroomColonyBlock
+        if (state.getBlock() instanceof MushroomColonyBlock mushroomColony) {
+            int age = state.getValue(MushroomColonyBlock.COLONY_AGE);
+            if (age > 0) {
+                event.setCanceled(true);
+
+                // Fortune logic
+                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+                int baseDrops = 1; // Base drop for age > 0
+                int extraDrops = 0;
+
+                for (int i = 0; i < fortune; i++) {
+                    if (level.getRandom().nextFloat() < 0.5F) { // Adjust probability as needed
+                        extraDrops++;
+                    }
+                }
+                int totalDrops = baseDrops + extraDrops;
+
+                // Drop the items
+                ItemStack drop = new ItemStack(mushroomColony.mushroomType.get(), totalDrops);
+                if (!player.getInventory().add(drop)) {
+                    player.drop(drop, false);
+                }
+
+                // Update block state
+                level.setBlock(pos, state.setValue(MushroomColonyBlock.COLONY_AGE, age - 1), Block.UPDATE_ALL);
+
+                // Play sound
+                level.playSound(null, pos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                // Damage tool
+                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            }
+            return;
+        }
         // Sweet Berry Bush (mature)
         if (state.getBlock() instanceof SweetBerryBushBlock bush
                 && state.getValue(SweetBerryBushBlock.AGE) >= SweetBerryBushBlock.MAX_AGE) {
@@ -92,6 +128,7 @@ public class ShearInteractionEvent {
 
                 tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             }
+
         }
     }
     //Entities
