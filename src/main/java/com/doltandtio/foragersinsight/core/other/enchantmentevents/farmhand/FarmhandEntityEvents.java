@@ -1,4 +1,4 @@
-package com.doltandtio.foragersinsight.core.other.enchantmentevents;
+package com.doltandtio.foragersinsight.core.other.enchantmentevents.farmhand;
 
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.core.BlockPos;

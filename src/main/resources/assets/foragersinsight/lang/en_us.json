@@ -90,6 +90,8 @@
   "effect.foragersinsight.medicinal.desc": "Removes and prevents the application of Poison and Wither. The player is then healed per effect removed.",
 
   "enchantment.foragersinsight.farmhand": "Farmhand",
-  "enchantment.foragersinsight.concussive": "Concussive"
+  "enchantment.foragersinsight.concussive": "Concussive",
 
+  "farmersdelight.tool_interaction.shears.chicken": "Please wait %s seconds to shear this chicken again.",
+  "farmersdelight.tool_interaction.shears.baby_chicken": "Baby chickens cannot be sheared."
 }
