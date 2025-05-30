@@ -1,5 +1,6 @@
 package com.doltandtio.foragersinsight.core.other.toolevents;
 
+import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +38,7 @@ public class ShearsSnipInteractions {
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
     private static void dropItemInFront(Level level, Player player, ItemStack stack) {
         Vec3 look = player.getLookAngle().normalize();
-        double distance = 2.0;
+        double distance = 2.5;
         double x = player.getX() + look.x * distance;
         double y = player.getY() + 0.5;
         double z = player.getZ() + look.z * distance;
@@ -57,6 +58,36 @@ public class ShearsSnipInteractions {
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
+
+        // Bountiful Leaves
+        if (state.getBlock() instanceof BountifulLeavesBlock leavesBlock) {
+            int age = state.getValue(BountifulLeavesBlock.AGE);
+            if (age >= BountifulLeavesBlock.MAX_AGE) {
+                event.setCanceled(true);
+                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+
+                // snip apple or acorns, plus fortune
+                int extraDrops = 0;
+                for (int i = 0; i < fortune; i++) {
+                    if (level.getRandom().nextFloat() < 0.2F) {
+                        extraDrops++;
+                    }
+                }
+
+                Item bountyItem = leavesBlock.getBounty();
+                ItemStack drop = new ItemStack(bountyItem, 1 + extraDrops);
+                dropItemInFront(level, player, drop);
+
+                BlockState updatedState = state.setValue(BountifulLeavesBlock.AGE, 0);
+                level.setBlock(pos, updatedState, Block.UPDATE_CLIENTS);
+
+                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
+                level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
+                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+
+                return;
+            }
+        }
 
         // Kelp
         if (state.is(Blocks.KELP) || state.is(Blocks.KELP_PLANT)) {
@@ -138,7 +169,6 @@ public class ShearsSnipInteractions {
                 tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             }
         }
-
         // Sweet Berry Bush (mature)
         if (state.getBlock() instanceof SweetBerryBushBlock &&
                 state.getValue(SweetBerryBushBlock.AGE) >= SweetBerryBushBlock.MAX_AGE) {
@@ -158,25 +188,27 @@ public class ShearsSnipInteractions {
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             return;
         }
-
         // Tomatoes
         if (state.getBlock() instanceof TomatoVineBlock tomatoVine) {
             event.setCanceled(true);
             int age = state.getValue(TomatoVineBlock.VINE_AGE);
             if (age == tomatoVine.getMaxAge()) {
                 int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                int extra = 0;
-                for (int i = 0; i < fortune; i++) {
-                    if (level.getRandom().nextFloat() < 0.2F) extra++;
-                }
 
+                int extraDrops = 0;
+                for (int i = 0; i < fortune; i++) {
+                    if (level.getRandom().nextFloat() < 0.2F) {
+                        extraDrops++;
+                    }
+                }
+                // snip 2 tomatoes, plus fortune
                 ItemStack tomatoDrop = new ItemStack(
                         vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(),
-                        2 + extra
+                        2 + extraDrops
                 );
                 dropItemInFront(level, player, tomatoDrop);
 
-                if (level.random.nextFloat() < 0.05) {
+                if (level.getRandom().nextFloat() < 0.05) { // 5% chance
                     ItemStack rotten = new ItemStack(
                             vectorwing.farmersdelight.common.registry.ModItems.ROTTEN_TOMATO.get()
                     );
@@ -196,7 +228,7 @@ public class ShearsSnipInteractions {
         }
     }
 
-    // Entities
+// Entities
     // Chickens
     @SubscribeEvent
     public static void onShearChicken(EntityInteract event) {

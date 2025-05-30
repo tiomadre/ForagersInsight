@@ -73,7 +73,51 @@ public class MalletItem extends PickaxeItem {
         Player player = context.getPlayer();
         ItemStack stack = context.getItemInHand();
 
-        // crush mature wheat and cocoa only
+        // Mending (repair anvil and cracked bricks)
+        if (state.getBlock() == Blocks.ANVIL || state.getBlock() == Blocks.CHIPPED_ANVIL || state.getBlock() == Blocks.DAMAGED_ANVIL) {
+            // Sneak + Right Click
+            if (player != null && player.isShiftKeyDown()) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
+
+                    stack.hurtAndBreak(20, player, p -> p.broadcastBreakEvent(context.getHand()));
+                    BlockState repairedState = Blocks.ANVIL.defaultBlockState();
+                    if (state.getBlock() == Blocks.CHIPPED_ANVIL) {
+                        repairedState = Blocks.ANVIL.defaultBlockState();
+                    } else if (state.getBlock() == Blocks.DAMAGED_ANVIL) {
+                        repairedState = Blocks.CHIPPED_ANVIL.defaultBlockState();
+                    }
+                    level.setBlock(pos, repairedState, 3);
+                    level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
+
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
+        // Right Click for Cracked Bricks
+        if (player != null) {
+            if (state.getBlock() == Blocks.CRACKED_STONE_BRICKS) {
+                stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+                level.setBlock(pos, Blocks.STONE_BRICKS.defaultBlockState(), 3);
+               level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+               return InteractionResult.SUCCESS;
+           } else if (state.getBlock() == Blocks.CRACKED_DEEPSLATE_BRICKS) {
+               stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+               level.setBlock(pos, Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
+               level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+               return InteractionResult.SUCCESS;
+           } else if (state.getBlock() == Blocks.CRACKED_NETHER_BRICKS) {
+               stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+               level.setBlock(pos, Blocks.NETHER_BRICKS.defaultBlockState(), 3);
+               level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+               return InteractionResult.SUCCESS;
+           } else if (state.getBlock() == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS) {
+               stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+               level.setBlock(pos, Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState(), 3);
+               level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+               return InteractionResult.SUCCESS;
+           }
+       }
+        // Crushing Behavior and Logic
         if (block == Blocks.COCOA) {
             int age = state.getValue(CocoaBlock.AGE);
             if (age < 2) {
@@ -86,11 +130,10 @@ public class MalletItem extends PickaxeItem {
                 return super.useOn(context);
             }
         }
-
         if (CRUSH_RESULTS.containsKey(block)) {
             stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
 
-            // cooldown = 75% of normal break time
+            // Right-Click cooldown = 75% of normal break time
             float hardness = state.getDestroySpeed(level, pos);
             int baseTicks = (int) (hardness * 1.5f * 20f);
             int crushTicks = Math.max(1, (int) (baseTicks * 0.75f));
@@ -99,7 +142,7 @@ public class MalletItem extends PickaxeItem {
             level.destroyBlock(pos, false);
             ItemLike result = CRUSH_RESULTS.get(block);
 
-            // Calculate base amount for Cocoa or other items
+            // Calculate base amount of for Cocoa or other items
             int baseAmount = (block == Blocks.COCOA) ? 2 : 1;
 
             // Handles Fortune enchant
@@ -116,7 +159,6 @@ public class MalletItem extends PickaxeItem {
             } else if (block == Blocks.SUGAR_CANE || block == Blocks.WHEAT) {
                 level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
             }
-
             return InteractionResult.CONSUME;
         }
         return super.useOn(context);
@@ -125,8 +167,6 @@ public class MalletItem extends PickaxeItem {
         if (fortuneLevel <= 0) {
             return 0;
         }
-
-        // affect drops con fortuna
         int bonus = 0;
         for (int i = 0; i < fortuneLevel; i++) {
             if (random.nextFloat() < 0.2f) {
