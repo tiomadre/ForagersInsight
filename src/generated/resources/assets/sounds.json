@@ -1,0 +1,9 @@
+{
+  "handbasket.handbasket.pickup": {
+    "subtitle": "foragersinsight.subtitles.handbasket.pickup",
+    "sounds": [
+      "foragersinsight:handbasket/handbasket_pickup1",
+      "foragersinsight:handbasket/handbasket_pickup2"
+    ]
+  }
+}
