@@ -15,12 +15,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CocoaBlock;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.RandomSource;
+import vectorwing.farmersdelight.common.utility.TextUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +28,7 @@ public class MalletItem extends PickaxeItem {
     private static final Map<Block, ItemLike> CRUSH_RESULTS = new HashMap<>();
 
     static {
-        // Crushable
+// Crush Interactions (Mallet Right Click)
         // Ices
         CRUSH_RESULTS.put(Blocks.BLUE_ICE, Blocks.PACKED_ICE);
         CRUSH_RESULTS.put(Blocks.PACKED_ICE, Blocks.ICE);
@@ -47,6 +45,7 @@ public class MalletItem extends PickaxeItem {
         CRUSH_RESULTS.put(Blocks.DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS);
         CRUSH_RESULTS.put(Blocks.NETHER_BRICKS, Blocks.CRACKED_NETHER_BRICKS);
         CRUSH_RESULTS.put(Blocks.POLISHED_BLACKSTONE_BRICKS, Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+        CRUSH_RESULTS.put(Blocks.DEEPSLATE_TILES, Blocks.CRACKED_DEEPSLATE_TILES);
         // Fruit and Grain
         CRUSH_RESULTS.put(Blocks.PUMPKIN, Items.PUMPKIN_SEEDS);
         CRUSH_RESULTS.put(Blocks.MELON, Items.MELON_SEEDS);
@@ -66,7 +65,6 @@ public class MalletItem extends PickaxeItem {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
-
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
@@ -75,17 +73,28 @@ public class MalletItem extends PickaxeItem {
 
         // Mending (repair anvil and cracked bricks)
         if (state.getBlock() == Blocks.ANVIL || state.getBlock() == Blocks.CHIPPED_ANVIL || state.getBlock() == Blocks.DAMAGED_ANVIL) {
-            // Sneak + Right Click
+            // Sneak + Right Click for anvil
             if (player != null && player.isShiftKeyDown()) {
                 if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
 
-                    stack.hurtAndBreak(20, player, p -> p.broadcastBreakEvent(context.getHand()));
-                    BlockState repairedState = Blocks.ANVIL.defaultBlockState();
-                    if (state.getBlock() == Blocks.CHIPPED_ANVIL) {
-                        repairedState = Blocks.ANVIL.defaultBlockState();
-                    } else if (state.getBlock() == Blocks.DAMAGED_ANVIL) {
-                        repairedState = Blocks.CHIPPED_ANVIL.defaultBlockState();
+                    // no fix, if no need
+                    if (state.getBlock() == Blocks.ANVIL) {
+                        if (player != null) {
+                            // Display message to the player
+                            player.displayClientMessage(
+                                    TextUtils.getTranslation("tool_interaction.mallet.anvil_no_repairs"), true
+                            );
+                        }
+                        return InteractionResult.FAIL;
                     }
+                    stack.hurtAndBreak(20, player, p -> p.broadcastBreakEvent(context.getHand()));
+                    BlockState repairedState = Blocks.ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, state.getValue(HorizontalDirectionalBlock.FACING));
+                    if (state.getBlock() == Blocks.CHIPPED_ANVIL) {
+                        repairedState = Blocks.ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, state.getValue(HorizontalDirectionalBlock.FACING));
+                    } else if (state.getBlock() == Blocks.DAMAGED_ANVIL) {
+                        repairedState = Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, state.getValue(HorizontalDirectionalBlock.FACING));
+                    }
+
                     level.setBlock(pos, repairedState, 3);
                     level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
 
@@ -115,6 +124,11 @@ public class MalletItem extends PickaxeItem {
                level.setBlock(pos, Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState(), 3);
                level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
                return InteractionResult.SUCCESS;
+            } else if (state.getBlock() == Blocks.CRACKED_DEEPSLATE_TILES) {
+                stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+                level.setBlock(pos, Blocks.DEEPSLATE_TILES.defaultBlockState(), 3);
+                level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+                return InteractionResult.SUCCESS;
            }
        }
         // Crushing Behavior and Logic
@@ -132,7 +146,11 @@ public class MalletItem extends PickaxeItem {
         }
         if (CRUSH_RESULTS.containsKey(block)) {
             stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
-
+            if (block == Blocks.PUMPKIN || block == Blocks.MELON || block == Blocks.CARVED_PUMPKIN || block == Blocks.COCOA) {
+                level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
+            } else if (block == Blocks.SUGAR_CANE || block == Blocks.WHEAT) {
+                level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+            }
             // Right-Click cooldown = 75% of normal break time
             float hardness = state.getDestroySpeed(level, pos);
             int baseTicks = (int) (hardness * 1.5f * 20f);
@@ -141,25 +159,13 @@ public class MalletItem extends PickaxeItem {
 
             level.destroyBlock(pos, false);
             ItemLike result = CRUSH_RESULTS.get(block);
-
-            // Calculate base amount of for Cocoa or other items
             int baseAmount = (block == Blocks.COCOA) ? 2 : 1;
 
-            // Handles Fortune enchant
+            // Fortune (increase crush drops)
             int fortuneLevel = player != null ? EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, stack) : 0;
             int extraAmount = calculateFortuneBonus(fortuneLevel, level.getRandom());
             int totalAmount = baseAmount + extraAmount;
-
             Block.popResource(level, pos, new ItemStack(result, totalAmount));
-
-            //squish noise when crushing fruits
-            if (block == Blocks.PUMPKIN || block == Blocks.MELON || block == Blocks.CARVED_PUMPKIN || block == Blocks.COCOA) {
-                level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
-            //crop noise for crushing grains
-            } else if (block == Blocks.SUGAR_CANE || block == Blocks.WHEAT) {
-                level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-            }
-            return InteractionResult.CONSUME;
         }
         return super.useOn(context);
     }
