@@ -37,7 +37,6 @@ public class FIBlocks {
     public static final RegistryObject<Block> SUNFLOWER_CROP = HELPER.createBlockNoItem("sunflower_kernels", () -> new SunflowerCropBlock(
             copy(Blocks.WHEAT), 3));
         //Tree
-
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakGrower(), copy(Blocks.OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
@@ -46,7 +45,6 @@ public class FIBlocks {
             new SaplingBlock(new BountifulDarkOakTreeGrower(), copy(Blocks.DARK_OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_DARK_OAK_LEAVES = HELPER.createBlock("bountiful_dark_oak_leaves", () ->
             new BountifulLeavesBlock(copy(Blocks.DARK_OAK_LEAVES), BLACK_ACORN));
-
     //Syrup Tap
     public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
             new TapperBlock(copy(Blocks.IRON_BLOCK)));

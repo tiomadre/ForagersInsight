@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/flower_top",
+  "textures": {
+    "plant": "foragersinsight:block/sunflower_head_front_stage1",
+    "back": "foragersinsight:block/sunflower_head_back_stage1",
+    "stem": "foragersinsight:block/sunflower_upper_stage1"
+  }
+}

@@ -35,6 +35,7 @@ import java.util.List;
 // Drops from snipping are neatly collected and dropped in front of the player.
 @Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShearsSnipInteractions {
+
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
     private static void dropItemInFront(Level level, Player player, ItemStack stack) {
         Vec3 look = player.getLookAngle().normalize();
@@ -58,21 +59,18 @@ public class ShearsSnipInteractions {
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
-
         // Bountiful Leaves
         if (state.getBlock() instanceof BountifulLeavesBlock leavesBlock) {
             int age = state.getValue(BountifulLeavesBlock.AGE);
             if (age >= BountifulLeavesBlock.MAX_AGE) {
                 event.setCanceled(true);
                 int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-
                 // snip apple or acorns, plus fortune
                 int extraDrops = 0;
                 for (int i = 0; i < fortune; i++) {
                     if (level.getRandom().nextFloat() < 0.2F) {
                         extraDrops++;
-                    }
-                }
+                    }}
 
                 Item bountyItem = leavesBlock.getBounty();
                 ItemStack drop = new ItemStack(bountyItem, 1 + extraDrops);
@@ -98,11 +96,11 @@ public class ShearsSnipInteractions {
                     level.getBlockState(cursor).is(Blocks.KELP)) {
                 kelpBlocks.add(cursor.immutable());
                 cursor.move(Direction.UP);
-            }
+            } //dont snip base of crop
             if (kelpBlocks.size() <= 1) return;
             kelpBlocks.remove(0);
             event.setCanceled(true);
-
+            // snip 2 kelp, plus fortune
             int maxBreak = Math.min(2, kelpBlocks.size());
             int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
             int extraDrops = 0;
@@ -128,7 +126,7 @@ public class ShearsSnipInteractions {
             int age = state.getValue(MushroomColonyBlock.COLONY_AGE);
             if (age > 0) {
                 event.setCanceled(true);
-
+                // snip 1 mushroom, plus fortune
                 int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
                 int extraDrops = 0;
                 for (int i = 0; i < fortune; i++) {
@@ -152,7 +150,7 @@ public class ShearsSnipInteractions {
             int count = 1;
             while (level.getBlockState(pos.above(count)).is(Blocks.SUGAR_CANE)) {
                 count++;
-            }
+            } // snip 1 sugar cane, plus fortune
             if (count >= 2) {
                 event.setCanceled(true);
                 BlockPos top = pos.above(count - 1);
@@ -173,7 +171,7 @@ public class ShearsSnipInteractions {
         if (state.getBlock() instanceof SweetBerryBushBlock &&
                 state.getValue(SweetBerryBushBlock.AGE) >= SweetBerryBushBlock.MAX_AGE) {
             event.setCanceled(true);
-
+            // snip max berries (3), plus fortune
             int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
             int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
             ItemStack drop = new ItemStack(Items.SWEET_BERRIES, 3 + extra);
@@ -242,7 +240,6 @@ public class ShearsSnipInteractions {
             event.setCanceled(true);
             return;
         }
-
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
@@ -260,10 +257,9 @@ public class ShearsSnipInteractions {
             event.setCanceled(true);
             return;
         }
-
         data.putLong("ShearFeatherTime", now);
         event.setCanceled(true);
-
+        // snip 2-3 feathers, plus fortune
         int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
         int baseCount = 2 + event.getLevel().getRandom().nextInt(3);
         int extraFeathers = 0;
@@ -279,45 +275,39 @@ public class ShearsSnipInteractions {
         event.getLevel().playSound(
                 null, chicken.blockPosition(), SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS, 1, 1);
 
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-    }
-
+        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));}
     // Sheep
     private static Item getWoolItemByColor(DyeColor color) {
         return switch (color) {
             case WHITE      -> Items.WHITE_WOOL;
+            case LIGHT_GRAY -> Items.LIGHT_GRAY_WOOL;
+            case GRAY       -> Items.GRAY_WOOL;
+            case BLACK      -> Items.BLACK_WOOL;
+            case BROWN      -> Items.BROWN_WOOL;
+            case RED        -> Items.RED_WOOL;
             case ORANGE     -> Items.ORANGE_WOOL;
-            case MAGENTA    -> Items.MAGENTA_WOOL;
-            case LIGHT_BLUE -> Items.LIGHT_BLUE_WOOL;
             case YELLOW     -> Items.YELLOW_WOOL;
             case LIME       -> Items.LIME_WOOL;
-            case PINK       -> Items.PINK_WOOL;
-            case GRAY       -> Items.GRAY_WOOL;
-            case LIGHT_GRAY -> Items.LIGHT_GRAY_WOOL;
-            case CYAN       -> Items.CYAN_WOOL;
-            case PURPLE     -> Items.PURPLE_WOOL;
-            case BLUE       -> Items.BLUE_WOOL;
-            case BROWN      -> Items.BROWN_WOOL;
             case GREEN      -> Items.GREEN_WOOL;
-            case RED        -> Items.RED_WOOL;
-            case BLACK      -> Items.BLACK_WOOL;
-        };
-    }
-
+            case CYAN       -> Items.CYAN_WOOL;
+            case MAGENTA    -> Items.MAGENTA_WOOL;
+            case LIGHT_BLUE -> Items.LIGHT_BLUE_WOOL;
+            case BLUE       -> Items.BLUE_WOOL;
+            case PURPLE     -> Items.PURPLE_WOOL;
+            case PINK       -> Items.PINK_WOOL;
+        };}
     @SubscribeEvent
     public static void onShearSheep(EntityInteract event) {
         if (event.getLevel().isClientSide()) return;
         if (!(event.getTarget() instanceof net.minecraft.world.entity.animal.Sheep sheep)) return;
-
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
         if (!(tool.getItem() instanceof ShearsItem)) return;
         if (!sheep.isAlive() || sheep.isSheared() || sheep.isBaby()) return;
-
         event.setCanceled(true);
         sheep.setSheared(true);
-
+        // snip 2-3 wool, plus fortune
         Level level = event.getLevel();
         int baseWoolCount = 2 + level.getRandom().nextInt(3);
         int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
@@ -325,7 +315,6 @@ public class ShearsSnipInteractions {
         for (int i = 0; i < fortuneLevel; i++) {
             if (level.getRandom().nextFloat() < 0.2F) extraWool++;
         }
-
         ItemStack woolDrop = new ItemStack(
                 getWoolItemByColor(sheep.getColor()), baseWoolCount + extraWool);
         dropItemInFront(level, player, woolDrop);

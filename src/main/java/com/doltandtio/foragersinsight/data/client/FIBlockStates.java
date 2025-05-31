@@ -124,7 +124,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.getVariantBuilder(block).forAllStates(state -> {
             int age;
             String half;
-            if (SunflowerCropBlock.isIllegalState(state)) {
+            if (state.getValue(SunflowerCropBlock.AGE) < 0 || !state.hasProperty(SunflowerCropBlock.HALF)) {
                 age = 0;
                 half = "lower";
             }

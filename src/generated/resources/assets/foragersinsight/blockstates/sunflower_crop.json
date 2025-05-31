@@ -1,28 +1,34 @@
 {
-  "variants": {
-    "age=0,half=lower": {
-      "model": "foragersinsight:block/sunflower_stage0_lower"
-    },
-    "age=1,half=lower": {
-      "model": "foragersinsight:block/sunflower_stage1_lower"
-    },
-    "age=2,half=lower": {
-      "model": "foragersinsight:block/sunflower_stage2_lower"
-    },
-    "age=2,half=upper": {
-      "model": "foragersinsight:block/sunflower_stage2_upper"
-    },
-    "age=3,half=lower": {
-      "model": "foragersinsight:block/sunflower_stage3_lower"
-    },
-    "age=3,half=upper": {
-      "model": "foragersinsight:block/sunflower_stage3_upper"
-    },
-    "age=4,half=lower": {
-      "model": "foragersinsight:block/sunflower_stage4_lower"
-    },
-    "age=4,half=upper": {
-      "model": "foragersinsight:block/sunflower_stage4_upper"
-    }
-  }
+  "multipart": [
+    { "when": { "half": "lower", "age": 0 }, "apply": { "model": "foragersinsight:block/sunflower_stage0_lower" } },
+    { "when": { "half": "lower", "age": 1 }, "apply": { "model": "foragersinsight:block/sunflower_stage1_lower" } },
+    { "when": { "half": "lower", "age": 2 }, "apply": { "model": "foragersinsight:block/sunflower_stage2_lower" } },
+    { "when": { "half": "lower", "age": 3 }, "apply": { "model": "foragersinsight:block/sunflower_stage3_lower" } },
+    { "when": { "half": "lower", "age": 4 }, "apply": { "model": "foragersinsight:block/sunflower_stage4_lower" } },
+
+    { "when": { "half": "upper", "age": 0, "facing": "north" }, "apply": { "model": "foragersinsight:block/sunflower_stage0_upper", "y": 180 } },
+    { "when": { "half": "upper", "age": 0, "facing": "south" }, "apply": { "model": "foragersinsight:block/sunflower_stage0_upper", "y": 0 } },
+    { "when": { "half": "upper", "age": 0, "facing": "west"  }, "apply": { "model": "foragersinsight:block/sunflower_stage0_upper", "y": 270 } },
+    { "when": { "half": "upper", "age": 0, "facing": "east"  }, "apply": { "model": "foragersinsight:block/sunflower_stage0_upper", "y": 90 } },
+
+    { "when": { "half": "upper", "age": 1, "facing": "north" }, "apply": { "model": "foragersinsight:block/sunflower_stage1_upper", "y": 180 } },
+    { "when": { "half": "upper", "age": 1, "facing": "south" }, "apply": { "model": "foragersinsight:block/sunflower_stage1_upper", "y": 0 } },
+    { "when": { "half": "upper", "age": 1, "facing": "west"  }, "apply": { "model": "foragersinsight:block/sunflower_stage1_upper", "y": 270 } },
+    { "when": { "half": "upper", "age": 1, "facing": "east"  }, "apply": { "model": "foragersinsight:block/sunflower_stage1_upper", "y": 90 } },
+
+    { "when": { "half": "upper", "age": 2, "facing": "north" }, "apply": { "model": "foragersinsight:block/sunflower_stage2_upper", "y": 180 } },
+    { "when": { "half": "upper", "age": 2, "facing": "south" }, "apply": { "model": "foragersinsight:block/sunflower_stage2_upper", "y": 0 } },
+    { "when": { "half": "upper", "age": 2, "facing": "west"  }, "apply": { "model": "foragersinsight:block/sunflower_stage2_upper", "y": 270 } },
+    { "when": { "half": "upper", "age": 2, "facing": "east"  }, "apply": { "model": "foragersinsight:block/sunflower_stage2_upper", "y": 90 } },
+
+    { "when": { "half": "upper", "age": 3, "facing": "north" }, "apply": { "model": "foragersinsight:block/sunflower_stage3_upper", "y": 180 } },
+    { "when": { "half": "upper", "age": 3, "facing": "south" }, "apply": { "model": "foragersinsight:block/sunflower_stage3_upper", "y": 0 } },
+    { "when": { "half": "upper", "age": 3, "facing": "west"  }, "apply": { "model": "foragersinsight:block/sunflower_stage3_upper", "y": 270 } },
+    { "when": { "half": "upper", "age": 3, "facing": "east"  }, "apply": { "model": "foragersinsight:block/sunflower_stage3_upper", "y": 90 } },
+
+    { "when": { "half": "upper", "age": 4, "facing": "north" }, "apply": { "model": "foragersinsight:block/sunflower_stage4_upper", "y": 180 } },
+    { "when": { "half": "upper", "age": 4, "facing": "south" }, "apply": { "model": "foragersinsight:block/sunflower_stage4_upper", "y": 0 } },
+    { "when": { "half": "upper", "age": 4, "facing": "west"  }, "apply": { "model": "foragersinsight:block/sunflower_stage4_upper", "y": 270 } },
+    { "when": { "half": "upper", "age": 4, "facing": "east"  }, "apply": { "model": "foragersinsight:block/sunflower_stage4_upper", "y": 90 } }
+  ]
 }
