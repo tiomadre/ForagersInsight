@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.utility.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +54,7 @@ public class MalletItem extends PickaxeItem {
         super(tier, attackDamageModifier, attackSpeedModifier, properties);
     }
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
@@ -120,25 +121,31 @@ public class MalletItem extends PickaxeItem {
     // Crushing Behavior and Logic
         //Sugar Cane
         if (block == Blocks.SUGAR_CANE) {
-            //crush top most block of crop, no crush logic if only one block is left of the crop
             while (level.getBlockState(pos.above()).getBlock() == Blocks.SUGAR_CANE) {
                 pos = pos.above();
             }
             if (level.getBlockState(pos.below()).getBlock() != Blocks.SUGAR_CANE) {
                 return super.useOn(context);
-            }}
+            }
+            stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3); // Update server and client
+            Block.popResource(level, pos, new ItemStack(Items.SUGAR, 2)); // Drop items
+
+            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+
+            level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+            return InteractionResult.SUCCESS;
+        }
         // Cocoa
         if (block == Blocks.COCOA) {
             int age = state.getValue(CocoaBlock.AGE);
             if (age < 2) {
-                return super.useOn(context);
-            }}
+                return super.useOn(context);}}
         // Wheat
         if (block == Blocks.WHEAT) {
             int age = state.getValue(CropBlock.AGE);
             if (age < 7) {
-                return super.useOn(context);
-            }}
+                return super.useOn(context);}}
         // Squish Noises
         if (CRUSH_RESULTS.containsKey(block)) {
             stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));

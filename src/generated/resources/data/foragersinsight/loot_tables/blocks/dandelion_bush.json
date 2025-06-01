@@ -25,6 +25,12 @@
           "properties": {
             "age": "7"
           }
+        },
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "farmersdelight:tools/knives"
+          }
         }
       ],
       "entries": [

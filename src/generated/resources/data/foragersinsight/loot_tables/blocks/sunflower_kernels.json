@@ -1,27 +1,36 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
-      "rolls": 1,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "foragersinsight:sunflower_kernels"
         }
       ],
-      "functions": [
-        {
-          "function": "minecraft:explosion_decay"
-        }
-      ]
+      "rolls": 1.0
     },
     {
-      "rolls": 1,
+      "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:block_state_property",
           "block": "foragersinsight:sunflower_kernels",
-          "properties": { "age": "4" }
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
+        },
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "farmersdelight:tools/knives"
+          }
         }
       ],
       "entries": [
@@ -29,31 +38,39 @@
           "type": "minecraft:item",
           "name": "minecraft:yellow_dye"
         }
-      ]
+      ],
+      "rolls": 1.0
     },
     {
-      "rolls": 1,
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "foragersinsight:sunflower_kernels",
-          "properties": { "age": "4" }
-        }
-      ],
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "foragersinsight:sunflower_kernels",
+          "conditions": [
+            {
+              "block": "foragersinsight:sunflower_kernels",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "7"
+              }
+            }
+          ],
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
-              "parameters": { "extra": 3, "probability": 0.5714285 }
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 3,
+                "probability": 0.5714285
+              }
             }
-          ]
+          ],
+          "name": "foragersinsight:sunflower_kernels"
         }
-      ]
+      ],
+      "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "foragersinsight:blocks/sunflower_kernels"
 }
