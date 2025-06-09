@@ -120,7 +120,6 @@ public class ShearsSnipInteractions {
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             return;
         }
-
         // Mushroom Colonies
         if (state.getBlock() instanceof MushroomColonyBlock mushroomColony) {
             int age = state.getValue(MushroomColonyBlock.COLONY_AGE);
@@ -144,7 +143,6 @@ public class ShearsSnipInteractions {
             }
             return;
         }
-
         // Sugar Cane
         if (state.is(Blocks.SUGAR_CANE)) {
             int count = 1;

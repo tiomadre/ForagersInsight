@@ -1,8 +1,5 @@
 {
-  "item.foragersinsight.acorn_cookie": "Acorn Cookie",
-  "item.foragersinsight.black_forest_muffin": "Black Forest Muffin",
-  "item.foragersinsight.rose_cookie": "Rose Cookie",
-  "item.foragersinsight.red_velvet_cupcake": "Red Velvet Cupcake",
+
 
   "item.foragersinsight.apple_slice": "Apple Slice",
   "item.foragersinsight.black_acorn": "Black Acorn",
@@ -12,7 +9,9 @@
   "item.foragersinsight.spruce_tips": "Spruce Tips",
   "item.foragersinsight.sunflower_kernels": "Sunflower Kernels",
 
+  "item.foragersinsight.acorn_cookie": "Acorn Cookie",
   "item.foragersinsight.acorn_noodles": "Acorn Noodles",
+  "item.foragersinsight.black_forest_muffin": "Black Forest Muffin",
   "item.foragersinsight.carrot_poppy_chowder": "Carrot Poppy Chowder",
   "item.foragersinsight.cod_and_pumpkin_stew": "Cod and Pumpkin Stew",
   "item.foragersinsight.creamy_salmon_bagel": "Creamy Salmon Bagel",
@@ -23,6 +22,8 @@
   "item.foragersinsight.kelp_wrap": "Kelp Wrap",
   "item.foragersinsight.meadow_medley": "Meadow Medley",
   "item.foragersinsight.poppy_seed_bagel": "Poppy Seed Bagel",
+  "item.foragersinsight.red_velvet_cupcake": "Red Velvet Cupcake",
+  "item.foragersinsight.rose_cookie": "Rose Cookie",
   "item.foragersinsight.rose_granita": "Rose Granita",
   "item.foragersinsight.rose_roasted_roots": "Rose Roasted Roots",
   "item.foragersinsight.seed_butter_jamwich": "Seed Butter Jamwich",
@@ -56,7 +57,6 @@
 
   "container.foragersinsight.handbasket": "Handbasket",
   "item.foragersinsight.handbasket": "Handbasket",
-
   "item.foragersinsight.flint_shears": "Flint Shears",
   "item.foragersinsight.flint_mallet": "Flint Mallet",
   "item.foragersinsight.iron_mallet": "Iron Mallet",
@@ -76,8 +76,6 @@
   "block.foragersinsight.rose_hip_sack": "Sack of Rose Hips",
   "block.foragersinsight.spruce_tips_sack": "Sack of Spruce Tips",
 
-  "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
-
   "foragersinsight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",
   "foragersinsight.flavortext.forest_elixir": "A sweetened coniferous drink made of syrup and spruce tips.",
   "foragersinsight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
@@ -92,6 +90,7 @@
   "enchantment.foragersinsight.farmhand": "Farmhand",
   "enchantment.foragersinsight.concussive": "Concussive",
 
+  "farmersdelight.tooltip.seed_milk_bottle": "Clears 1 Effect",
   "farmersdelight.tool_interaction.shears.chicken": "Please wait %s seconds to shear this chicken again.",
   "farmersdelight.tool_interaction.shears.baby_chicken": "Baby chickens cannot be sheared.",
   "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "This anvil is fully repaired."
