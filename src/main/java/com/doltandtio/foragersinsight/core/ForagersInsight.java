@@ -45,7 +45,6 @@ public class ForagersInsight {
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 		FIEnchantments.register();
 		FIMenuTypes.MENUS.register(bus);
-		FISounds.SOUNDS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
