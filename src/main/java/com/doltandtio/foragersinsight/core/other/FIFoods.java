@@ -29,7 +29,6 @@ public class FIFoods {
             //This is for Poppy Seeds/Rose Hips/Spruce Tips
     public static final FoodProperties NO_SAT_MORSELS= new FoodProperties.Builder().fast()
             .nutrition( 1).build();
-
     //DISHES
         //Comfort
     public static final FoodProperties CARROT_POPPY_CHOWDER = new FoodProperties.Builder()

@@ -1,5 +1,5 @@
 {
-  "type": "farmersdelight:add_item",
+  "type": "foragersinsight:replace_item",
   "conditions": [
     { "condition": "minecraft:killed_by_player" },
     {
@@ -14,9 +14,14 @@
     {
       "condition": "minecraft:entity_properties",
       "entity": "this",
-      "predicate": { "type": "minecraft:rabbit" }
+      "predicate": {
+        "flags": {
+          "is_on_fire": true
+        },
+        "type": "minecraft:rabbit"
+      }
     }
   ],
-  "item": "foragersinsight:raw_rabbit_leg",
-  "count": 2
+  "new": "foragersinsight:cooked_rabbit_leg",
+  "replace": "minecraft:cooked_rabbit"
 }

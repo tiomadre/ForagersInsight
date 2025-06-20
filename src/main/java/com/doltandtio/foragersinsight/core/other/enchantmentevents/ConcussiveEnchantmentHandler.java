@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.core.other.enchantmentevents;
 
 import com.doltandtio.foragersinsight.common.item.MalletItem;
+import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
@@ -18,7 +19,7 @@ import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ConcussiveEnchantmentHandler {
     private static final String TAG_LAST_STUN = "ConcussiveLastStun";
     private static final float DAMAGE_MULTIPLIER = 1.1f;

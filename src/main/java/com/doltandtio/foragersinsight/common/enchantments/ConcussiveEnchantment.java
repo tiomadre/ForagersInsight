@@ -7,9 +7,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 // Mallet and Shovel only.
-// I: +10% Critical damage, 1s stun, 12s target cooldown
-// II: +10% Critical damage, 1.5s stun, 11s target cooldown
-// III: +10% Critical damage, 2s stun, 10s target cooldown
+// I: +10% Critical damage, 2s stun, 12s target cooldown
+// II: +10% Critical damage, 2.5s stun, 11s target cooldown
+// III: +10% Critical damage, 3s stun, 10s target cooldown
 
 public class ConcussiveEnchantment extends Enchantment {
     public ConcussiveEnchantment(Rarity rarity, EquipmentSlot... slots) {

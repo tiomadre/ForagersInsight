@@ -1,9 +1,10 @@
 package com.doltandtio.foragersinsight.core.other.toolevents;
 
 import com.doltandtio.foragersinsight.common.item.HandbasketItem;
+import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
+import com.doltandtio.foragersinsight.core.registry.FISounds;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.*;
 import net.minecraft.sounds.SoundSource;
 
-@Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandbasketItemPickup {
     @SubscribeEvent
     public static void onItemPickup(EntityItemPickupEvent ev) {
@@ -45,7 +46,7 @@ public class HandbasketItemPickup {
             ev.setCanceled(true);
             entity.discard();
             player.getCommandSenderWorld().playSound(null, player.blockPosition(),
-                    SoundEvents.AZALEA_LEAVES_PLACE,
+                    FISounds.HANDBASKET_PICK_UP.get(),
                     SoundSource.PLAYERS,
                     1.0F,1.0F
             );
@@ -53,7 +54,7 @@ public class HandbasketItemPickup {
             entity.setItem(rem);
             ev.setCanceled(true);
             player.getCommandSenderWorld().playSound(null, player.blockPosition(),
-                    SoundEvents.AZALEA_LEAVES_PLACE,
+                    FISounds.HANDBASKET_PICK_UP.get(),
                     SoundSource.PLAYERS,
                     1.0F,
                     1.0F

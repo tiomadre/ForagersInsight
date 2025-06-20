@@ -8,10 +8,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class FISounds {
-    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, "foragersinsight");
+    public static final DeferredRegister<SoundEvent> SOUNDS =
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ForagersInsight.MOD_ID);
 
     //Handbasket
-    public static final RegistryObject<SoundEvent> HANDBASKET_PICK_UP = SOUNDS.register("item.handbasket.pickup",
-            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ForagersInsight.MOD_ID, "handbasket.handbasket.pickup1")));
+    public static final RegistryObject<SoundEvent> HANDBASKET_PICK_UP = SOUNDS.register("handbasket.handbasket.pickup",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ForagersInsight.MOD_ID, "handbasket.handbasket.pickup")));
     //Mallet
 }

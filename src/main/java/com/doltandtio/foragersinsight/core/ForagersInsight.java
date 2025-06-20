@@ -13,7 +13,6 @@ import com.doltandtio.foragersinsight.data.server.recipes.FICraftingRecipes;
 import com.doltandtio.foragersinsight.data.server.tags.FIBiomeTags;
 import com.doltandtio.foragersinsight.data.server.tags.FIBlockTags;
 import com.doltandtio.foragersinsight.data.server.tags.FIItemTags;
-import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -28,12 +27,11 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 
 @Mod(ForagersInsight.MOD_ID)
 public class ForagersInsight {
 	public static final String MOD_ID = "foragersinsight";
-	public static final Logger LOGGER = LogUtils.getLogger();
+
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public ForagersInsight() {
@@ -47,6 +45,7 @@ public class ForagersInsight {
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 		FIEnchantments.register();
 		FIMenuTypes.MENUS.register(bus);
+		FISounds.SOUNDS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);

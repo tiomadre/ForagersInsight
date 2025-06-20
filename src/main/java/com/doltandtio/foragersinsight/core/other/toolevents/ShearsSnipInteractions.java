@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.core.other.toolevents;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
+import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -33,7 +34,7 @@ import java.util.List;
 
 // Snip Interactions (Shears Right Click)
 // Drops from snipping are neatly collected and dropped in front of the player.
-@Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShearsSnipInteractions {
 
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
@@ -86,7 +87,6 @@ public class ShearsSnipInteractions {
                 return;
             }
         }
-
         // Kelp
         if (state.is(Blocks.KELP) || state.is(Blocks.KELP_PLANT)) {
             List<BlockPos> kelpBlocks = new ArrayList<>();

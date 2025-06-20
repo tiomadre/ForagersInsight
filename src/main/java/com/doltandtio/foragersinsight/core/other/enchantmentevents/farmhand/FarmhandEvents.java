@@ -3,6 +3,7 @@ package com.doltandtio.foragersinsight.core.other.enchantmentevents.farmhand;
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
 import com.doltandtio.foragersinsight.common.item.HandbasketItem;
+import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = "foragersinsight", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FarmhandEvents {
     //checks if player has a handbasket and if item can go in
     private static boolean tryInsertToHandbasket(Player player, ItemStack drop) {
