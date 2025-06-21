@@ -23,7 +23,8 @@ public class FIClientCompat {
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
         List<RegistryObject<Block>> foliageColors = Arrays.asList(
-                FIBlocks.BOUNTIFUL_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES
+                FIBlocks.BOUNTIFUL_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES,
+                FIBlocks.BOUNTIFUL_SPRUCE_LEAVES
         );
 
         DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.get(0.5D, 1.0D), foliageColors);

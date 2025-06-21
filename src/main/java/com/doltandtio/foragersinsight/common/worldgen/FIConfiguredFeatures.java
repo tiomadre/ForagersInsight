@@ -29,13 +29,14 @@ import java.util.function.Supplier;
 public class FIConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_TREE_KEY = registerKey("apple_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ACORN_TREE_KEY = registerKey("acorn_dark_oak");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_TIP_TREE_KEY = registerKey("spruce_tip_tree");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ForagersInsight.rl(name));
     }
 
     public static void bootstap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        register(context, APPLE_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, APPLE_TREE_KEY, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 bountifulLeafStateProvider(Blocks.OAK_LEAVES, FIBlocks.BOUNTIFUL_OAK_LEAVES),
@@ -43,19 +44,27 @@ public class FIConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 1)
         ).build());
 
-        register(context, ACORN_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, ACORN_TREE_KEY, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.DARK_OAK_LOG),
                 new DarkOakTrunkPlacer(6, 2, 1),
                 bountifulLeafStateProvider(Blocks.DARK_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES),
                 new DarkOakFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
                 new ThreeLayersFeatureSize(1, 1, 0, 1,2, OptionalInt.empty())
         ).ignoreVines().build());
+
+        register(context, SPRUCE_TIP_TREE_KEY, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.SPRUCE_LOG),
+                new StraightTrunkPlacer(5, 2, 1),
+                bountifulLeafStateProvider(Blocks.SPRUCE_LEAVES, FIBlocks.BOUNTIFUL_SPRUCE_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)
+        ).build());
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
                                                                                           ResourceKey<ConfiguredFeature<?, ?>> key,
-                                                                                          F feature, FC configuration) {
-        context.register(key, new ConfiguredFeature<>(feature, configuration));
+                                                                                          FC configuration) {
+        context.register(key, new ConfiguredFeature<>((F) Feature.TREE, configuration));
     }
 
     private static WeightedStateProvider bountifulLeafStateProvider(Block leaf, Supplier<Block> bountifulLeaf) {

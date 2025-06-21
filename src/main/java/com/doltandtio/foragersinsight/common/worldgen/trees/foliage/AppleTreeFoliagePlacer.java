@@ -37,7 +37,7 @@ public class AppleTreeFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected void createFoliage(@NotNull LevelSimulatedReader level, @NotNull FoliageSetter blockSetter, @NotNull RandomSource rand, @NotNull TreeConfiguration config,
-                                 int pMaxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
+                                 int pMaxFreeTreeHeight, @NotNull FoliageAttachment attachment, int height, int radius, int offset) {
 
         for (int i = offset; i >= offset - height; --i) {
             int j = Math.max(radius + attachment.radiusOffset() - 1 - i / 2, 0);
@@ -46,7 +46,7 @@ public class AppleTreeFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void placeLeavesRow(LevelSimulatedReader pLevel, FoliagePlacer.FoliageSetter pFoliageSetter, RandomSource pRandom, TreeConfiguration pTreeConfiguration, BlockPos pPos, int pRange, int pLocalY, boolean pLarge) {
+    protected void placeLeavesRow(@NotNull LevelSimulatedReader pLevel, FoliagePlacer.@NotNull FoliageSetter pFoliageSetter, @NotNull RandomSource pRandom, @NotNull TreeConfiguration pTreeConfiguration, @NotNull BlockPos pPos, int pRange, int pLocalY, boolean pLarge) {
         int i = pLarge ? 1 : 0;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 

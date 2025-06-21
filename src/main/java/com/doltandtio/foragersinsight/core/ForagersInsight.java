@@ -45,6 +45,7 @@ public class ForagersInsight {
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 		FIEnchantments.register();
 		FIMenuTypes.MENUS.register(bus);
+		FITabs.TABS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
@@ -60,15 +61,11 @@ public class ForagersInsight {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			FIDataUtil.registerCompat();
-		});
+		event.enqueueWork(FIDataUtil::registerCompat);
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			FIClientCompat.registerCompat();
-		});
+		event.enqueueWork(FIClientCompat::registerCompat);
 	}
 
 	private void dataSetup(GatherDataEvent event) {

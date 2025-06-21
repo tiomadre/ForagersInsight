@@ -1,7 +1,9 @@
 package com.doltandtio.foragersinsight.core.other.toolevents;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
+import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
+import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -85,6 +87,23 @@ public class ShearsSnipInteractions {
                 tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
 
                 return;
+            }
+            // Spruce Tips
+            if (state.getBlock() instanceof SpruceTipBlock tip && tip.isRandomlyTicking(state)) {
+                age = state.getValue(SpruceTipBlock.AGE);
+                if (age >= SpruceTipBlock.MAX_AGE) {
+                    event.setCanceled(true);
+                    //snip spruce tips plus fortune
+                    int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+                    int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
+                    ItemStack drop = new ItemStack(FIItems.SPRUCE_TIPS.get(), 1 + extra);
+                    dropItemInFront(level, player, drop);
+                    level.setBlock(pos, state.setValue(SpruceTipBlock.AGE, 0), Block.UPDATE_ALL);
+                    level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
+                    level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
+                    tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                    return;
+                }
             }
         }
         // Kelp

@@ -12,20 +12,22 @@ public class FIDataUtil {
     }
 
     private static void registerCompostable() {
-       //Leaves
+        //Leaves
         DataUtil.registerCompostable(BOUNTIFUL_OAK_LEAVES.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_OAK_SAPLING.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_DARK_OAK_LEAVES.get(), 0.3f);
         DataUtil.registerCompostable(BOUNTIFUL_DARK_OAK_SAPLING.get(), 0.3f);
+        DataUtil.registerCompostable(BOUNTIFUL_SPRUCE_LEAVES.get(), 0.3f);
+        DataUtil.registerCompostable(BOUNTIFUL_SPRUCE_SAPLING.get(), 0.3f);
 
-       //Storage
+        //Storage
         DataUtil.registerCompostable(BLACK_ACORN_SACK.get(), 1.0f);
         DataUtil.registerCompostable(DANDELION_ROOTS_CRATE.get(), 1.0f);
 
         DataUtil.registerCompostable(POPPY_SEEDS_SACK.get(), 1.0f);
         DataUtil.registerCompostable(ROSE_HIP_SACK.get(), 1.0f);
         DataUtil.registerCompostable(SPRUCE_TIPS_SACK.get(), 1.0f);
-       //Food
+        //Food
         DataUtil.registerCompostable(APPLE_SLICE.get(), 0.3f);
         DataUtil.registerCompostable(BLACK_ACORN.get(), 0.65f);
         DataUtil.registerCompostable(DANDELION_ROOT.get(), 0.3f);

@@ -23,6 +23,8 @@ public class FIBlockTags extends BlockTagsProvider {
 
         this.tag(BlockTags.SAPLINGS).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_OAK_LEAVES.get());
+        this.tag(BlockTags.SAPLINGS).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(), BOUNTIFUL_SPRUCE_SAPLING.get());
+        this.tag(BlockTags.LEAVES).add(BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_SPRUCE_LEAVES.get());
 
 
 
@@ -39,6 +41,8 @@ public class FIBlockTags extends BlockTagsProvider {
                 DANDELION_ROOTS_CRATE.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get());
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_SPRUCE_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_SPRUCE_LEAVES.get());
         this.tag(ModTags.MINEABLE_WITH_KNIFE).add(ROSE_HIP_SACK.get(), POPPY_SEEDS_SACK.get(), SPRUCE_TIPS_SACK.get(), BLACK_ACORN_SACK.get());
     }
 

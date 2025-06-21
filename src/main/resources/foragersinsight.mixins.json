@@ -5,8 +5,9 @@
   "refmap": "foragersinsight.refmap.json",
   "mixins": [
     "DarkOakTreeGrowerMixin",
-    "MobEffectInstantMixin",
     "OakTreeGrowerMixin",
+    "SpruceTreeGrowerMixin",
+    "MobEffectInstantMixin",
     "shears_fortune.FortuneApplyAnvilMixin",
     "shears_fortune.ShearsFortuneMixin"
   ],

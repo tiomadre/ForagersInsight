@@ -70,7 +70,6 @@
   "block.foragersinsight.bountiful_dark_oak_sapling": "Bountiful Dark Oak Sapling",
   "block.foragersinsight.bountiful_oak_sapling": "Bountiful Oak Sapling",
 
-
   "block.foragersinsight.dandelion_roots_crate": "Crate of Dandelion Roots",
   "block.foragersinsight.black_acorn_sack": "Sack of Black Acorns",
   "block.foragersinsight.poppy_seeds_sack": "Sack of Poppy Seeds",
@@ -95,6 +94,7 @@
 
   "farmersdelight.tool_interaction.shears.chicken": "Please wait %s seconds to shear this chicken again.",
   "farmersdelight.tool_interaction.shears.baby_chicken": "Baby chickens cannot be sheared.",
-  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "This anvil is fully repaired."
+  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "This anvil is fully repaired.",
 
+  "itemGroup.foragersinsight": "Forager's Insight"
 }
