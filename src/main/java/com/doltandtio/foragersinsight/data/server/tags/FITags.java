@@ -63,6 +63,7 @@ public class FITags {
     public static class BiomeTag {
         public static final TagKey<Biome> HAS_APPLE_TREES = hasFeature("apple_trees");
         public static final TagKey<Biome> HAS_ACORN_TREES = hasFeature("acorn_trees");
+        public static final TagKey<Biome> HAS_SPRUCE_TIP_TREES = hasFeature("spruce_tip_trees");
 
         private static TagKey<Biome> modTag(String namespace) {
             return TagUtil.biomeTag(ForagersInsight.MOD_ID, namespace);

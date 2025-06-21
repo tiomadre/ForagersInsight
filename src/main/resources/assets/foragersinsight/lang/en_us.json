@@ -1,6 +1,4 @@
 {
-
-
   "item.foragersinsight.apple_slice": "Apple Slice",
   "item.foragersinsight.black_acorn": "Black Acorn",
   "item.foragersinsight.dandelion_root": "Dandelion Root",
@@ -69,6 +67,9 @@
   "block.foragersinsight.bountiful_oak_leaves": "Bountiful Oak Leaves",
   "block.foragersinsight.bountiful_dark_oak_sapling": "Bountiful Dark Oak Sapling",
   "block.foragersinsight.bountiful_oak_sapling": "Bountiful Oak Sapling",
+  "block.foragersinsight.bountiful_spruce_leaves": "Bountiful Spruce Leaves",
+  "block.foragersinsight.bountiful_spruce_sapling": "Bountiful Spruce Sapling",
+  "block.foragersinsight.bountiful_spruce_tips": "Bountiful Spruce Tips",
 
   "block.foragersinsight.dandelion_roots_crate": "Crate of Dandelion Roots",
   "block.foragersinsight.black_acorn_sack": "Sack of Black Acorns",

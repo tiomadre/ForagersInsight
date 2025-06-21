@@ -15,5 +15,6 @@ public class FIBiomeTags extends BiomeTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         this.tag(FITags.BiomeTag.HAS_APPLE_TREES).add(Biomes.FOREST, Biomes.FLOWER_FOREST);
         this.tag(FITags.BiomeTag.HAS_ACORN_TREES).add(Biomes.DARK_FOREST);
+        this.tag(FITags.BiomeTag.HAS_SPRUCE_TIP_TREES).add(Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA,Biomes.SNOWY_TAIGA);
     }
 }

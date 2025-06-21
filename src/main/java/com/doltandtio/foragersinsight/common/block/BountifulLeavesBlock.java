@@ -94,22 +94,19 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
 
         if (!isFullGrown && pPlayer.getItemInHand(pHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
-        } else if (isFullGrown && playerHasShears) {
+        } else if (isFullGrown && !playerHasShears) {
             popResource(pLevel, pPos, new ItemStack(this.bounty.get()));
 
-            pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, entity -> entity.broadcastBreakEvent(pHand));
-
             pLevel.playSound(null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
-            pLevel.playSound(null, pPos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
 
             BlockState blockstate = pState.setValue(AGE, 0);
             pLevel.setBlock(pPos, blockstate, Block.UPDATE_CLIENTS);
 
             pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos, GameEvent.Context.of(pPlayer, blockstate));
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
-        } else {
-            return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
+
+        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
 

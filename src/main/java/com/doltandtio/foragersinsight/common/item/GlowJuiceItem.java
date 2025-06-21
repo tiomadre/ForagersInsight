@@ -10,7 +10,7 @@ import vectorwing.farmersdelight.common.item.DrinkableItem;
 public class GlowJuiceItem extends DrinkableItem {
 
     public GlowJuiceItem(Properties properties) {
-        super(properties, false, true);
+        super(properties, true, false);
     }
     @Override
     public void affectConsumer(ItemStack stack, Level level, LivingEntity consumer) {

@@ -24,7 +24,7 @@ public class FIClientCompat {
 
         List<RegistryObject<Block>> foliageColors = Arrays.asList(
                 FIBlocks.BOUNTIFUL_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES,
-                FIBlocks.BOUNTIFUL_SPRUCE_LEAVES
+                FIBlocks.BOUNTIFUL_SPRUCE_LEAVES, FIBlocks.BOUNTIFUL_SPRUCE_TIPS
         );
 
         DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.get(0.5D, 1.0D), foliageColors);

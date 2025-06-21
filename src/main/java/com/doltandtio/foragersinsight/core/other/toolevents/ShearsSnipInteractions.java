@@ -62,13 +62,14 @@ public class ShearsSnipInteractions {
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
-        // Bountiful Leaves
+        //Bountiful Crops
+            // Bountiful Dark Oak and Oak Leaves
         if (state.getBlock() instanceof BountifulLeavesBlock leavesBlock) {
             int age = state.getValue(BountifulLeavesBlock.AGE);
             if (age >= BountifulLeavesBlock.MAX_AGE) {
                 event.setCanceled(true);
                 int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                // snip apple or acorns, plus fortune
+                    // snip 2 apple or acorns, plus fortune
                 int extraDrops = 0;
                 for (int i = 0; i < fortune; i++) {
                     if (level.getRandom().nextFloat() < 0.2F) {
@@ -76,7 +77,7 @@ public class ShearsSnipInteractions {
                     }}
 
                 Item bountyItem = leavesBlock.getBounty();
-                ItemStack drop = new ItemStack(bountyItem, 1 + extraDrops);
+                ItemStack drop = new ItemStack(bountyItem, 2 + extraDrops);
                 dropItemInFront(level, player, drop);
 
                 BlockState updatedState = state.setValue(BountifulLeavesBlock.AGE, 0);
@@ -88,15 +89,15 @@ public class ShearsSnipInteractions {
 
                 return;
             }
-            // Spruce Tips
+                // Bountiful Spruce Tips
             if (state.getBlock() instanceof SpruceTipBlock tip && tip.isRandomlyTicking(state)) {
                 age = state.getValue(SpruceTipBlock.AGE);
                 if (age >= SpruceTipBlock.MAX_AGE) {
                     event.setCanceled(true);
-                    //snip spruce tips plus fortune
+                    //snip 2 spruce tips plus fortune
                     int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
                     int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
-                    ItemStack drop = new ItemStack(FIItems.SPRUCE_TIPS.get(), 1 + extra);
+                    ItemStack drop = new ItemStack(FIItems.SPRUCE_TIPS.get(), 2 + extra);
                     dropItemInFront(level, player, drop);
                     level.setBlock(pos, state.setValue(SpruceTipBlock.AGE, 0), Block.UPDATE_ALL);
                     level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);

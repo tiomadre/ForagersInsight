@@ -33,7 +33,7 @@ public class FIBiomeModifiers {
         );
 
         context.register(ADD_SPRUCE_TIP_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(FITags.BiomeTag.HAS_ACORN_TREES),
+                biomes.getOrThrow(FITags.BiomeTag.HAS_SPRUCE_TIP_TREES),
                 HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.SPRUCE_TIP_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
