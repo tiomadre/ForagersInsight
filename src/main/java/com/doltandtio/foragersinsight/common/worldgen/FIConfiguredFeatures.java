@@ -57,8 +57,8 @@ public class FIConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.SPRUCE_LOG),
                 new StraightTrunkPlacer(5, 2, 1),
                 bountifulLeafStateProvider(Blocks.SPRUCE_LEAVES, FIBlocks.BOUNTIFUL_SPRUCE_LEAVES),
-                new SpruceTipTreeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
-                new TwoLayersFeatureSize(1, 0, 1)
+                new SpruceTipTreeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 3),
+                new TwoLayersFeatureSize(2, 0, 2)
         ).build());
     }
 
