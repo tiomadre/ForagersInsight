@@ -68,7 +68,6 @@ public class FITags {
         private static TagKey<Biome> modTag(String namespace) {
             return TagUtil.biomeTag(ForagersInsight.MOD_ID, namespace);
         }
-
         private static TagKey<Biome> hasFeature(String feature) {
             return modTag("has_feature/" + feature);
         }

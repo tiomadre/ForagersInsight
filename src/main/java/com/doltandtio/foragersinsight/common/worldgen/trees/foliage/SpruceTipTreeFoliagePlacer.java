@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpruceTipTreeFoliagePlacer extends FoliagePlacer {
     protected final int height;
+    private transient int bottomRowY = Integer.MAX_VALUE;
 
     public static final Codec<SpruceTipTreeFoliagePlacer> CODEC = RecordCodecBuilder
             .create(instance -> foliagePlacerParts(instance)
@@ -37,7 +38,11 @@ public class SpruceTipTreeFoliagePlacer extends FoliagePlacer {
     @Override
     protected void createFoliage(@NotNull LevelSimulatedReader level, @NotNull FoliageSetter blockSetter, @NotNull RandomSource rand, @NotNull TreeConfiguration config,
                                  int pMaxFreeTreeHeight, @NotNull FoliageAttachment attachment, int height, int radius, int offset) {
-        for (int i = offset; i >= offset - height; --i) {
+        int bottom = offset - height;
+        if (bottom < this.bottomRowY) {
+            this.bottomRowY = bottom;
+        }
+        for (int i = offset; i >= bottom; --i) {
             int j = Math.max(radius + attachment.radiusOffset() - 1 - i / 2, 0);
             this.placeLeavesRow(level, blockSetter, rand, config, attachment.pos(), j, i, attachment.doubleTrunk());
         }
@@ -51,7 +56,8 @@ public class SpruceTipTreeFoliagePlacer extends FoliagePlacer {
             for (int k = -range; k <= range + i; ++k) {
                 if (!this.shouldSkipLocationSigned(rand, j, localY, k, range, large)) {
                     mutable.setWithOffset(pos, j, localY, k);
-                    tryPlaceLeaf(level, setter, rand, config, mutable);
+                    boolean bottom = localY == this.bottomRowY;
+                    tryPlaceLeaf(level, setter, rand, config, mutable, bottom);
                 }
             }
         }
@@ -67,11 +73,18 @@ public class SpruceTipTreeFoliagePlacer extends FoliagePlacer {
         return localX == range && localZ == range && (rand.nextInt(2) == 0 || localY == 0);
     }
 
-    protected static boolean tryPlaceLeaf(LevelSimulatedReader level, @NotNull FoliageSetter setter, @NotNull RandomSource rand, @NotNull TreeConfiguration config, @NotNull BlockPos pos) {
+    protected static boolean tryPlaceLeaf(LevelSimulatedReader level, @NotNull FoliageSetter setter, @NotNull RandomSource rand, @NotNull TreeConfiguration config, @NotNull BlockPos pos, boolean bottom) {
         if (!TreeFeature.validTreePos(level, pos)) {
             return false;
         } else {
-            BlockState blockstate = rand.nextBoolean() ? Blocks.SPRUCE_LEAVES.defaultBlockState() : FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get().defaultBlockState();
+            BlockState blockstate;
+            if (bottom) {
+                blockstate = rand.nextBoolean()
+                        ? FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get().defaultBlockState()
+                        : Blocks.SPRUCE_LEAVES.defaultBlockState();
+            } else {
+                blockstate = Blocks.SPRUCE_LEAVES.defaultBlockState();
+            }
             if (blockstate.hasProperty(BlockStateProperties.WATERLOGGED)) {
                 blockstate = blockstate.setValue(BlockStateProperties.WATERLOGGED, level.isFluidAtPosition(pos, f -> f.isSourceOfType(Fluids.WATER)));
             }

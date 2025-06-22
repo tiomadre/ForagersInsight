@@ -7,7 +7,7 @@
       "state": { "Name": "minecraft:dirt" }
     },
     "foliage_placer": {
-      "type": "minecraft:blob_foliage_placer",
+      "type": "foragersinsight:spruce_tip_tree_foliage_placer",
       "height": 3,
       "offset": 0,
       "radius": 2
@@ -19,6 +19,18 @@
           "data": {
             "Name": "minecraft:spruce_leaves",
             "Properties": {
+              "distance": "7",
+              "persistent": "false",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "foragersinsight:bountiful_spruce_leaves",
+            "Properties": {
+              "age": "0",
               "distance": "7",
               "persistent": "false",
               "waterlogged": "false"

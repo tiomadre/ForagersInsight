@@ -49,8 +49,7 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         super.randomTick(state, level, pos, rand);
 
-        if (rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean()
-                && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean() && rand.nextBoolean()) {
+        if (rand.nextInt(256) == 0) {
 
             if (!level.isAreaLoaded(pos, 1)) return;
             if (level.getRawBrightness(pos, 0) < 9) return;
