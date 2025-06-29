@@ -87,7 +87,9 @@ public class FIFoods {
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 250), 1).build();
-    public static final FoodProperties GLOWING_CARROT_JUICE = new FoodProperties.Builder().alwaysEat().build();
+    public static final FoodProperties GLOWING_CARROT_JUICE = new FoodProperties.Builder().alwaysEat()
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 600), 1).build();
+
         //Chilled
 
         //Medicinal

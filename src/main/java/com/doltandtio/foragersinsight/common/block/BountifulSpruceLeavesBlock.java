@@ -1,7 +1,6 @@
 package com.doltandtio.foragersinsight.common.block;
 
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
-import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;

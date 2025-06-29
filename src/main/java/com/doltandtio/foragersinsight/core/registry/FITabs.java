@@ -19,20 +19,22 @@ public class FITabs {
                     .icon(() -> new ItemStack(FIItems.HANDBASKET.get()))
                     .displayItems((params, output) -> {
                         // Blocks
-                        output.accept(FIBlocks.BOUNTIFUL_OAK_SAPLING.get());
-                        output.accept(FIBlocks.BOUNTIFUL_OAK_LEAVES.get());
                         output.accept(FIBlocks.BOUNTIFUL_DARK_OAK_SAPLING.get());
                         output.accept(FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES.get());
+                        output.accept(FIBlocks.BOUNTIFUL_OAK_SAPLING.get());
+                        output.accept(FIBlocks.BOUNTIFUL_OAK_LEAVES.get());
+                        output.accept(FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get());
+                        output.accept(FIBlocks.BOUNTIFUL_SPRUCE_TIPS.get());
+                        output.accept(FIBlocks.BLACK_ACORN_SACK.get());
                         output.accept(FIBlocks.DANDELION_ROOTS_CRATE.get());
                         output.accept(FIBlocks.POPPY_SEEDS_SACK.get());
                         output.accept(FIBlocks.ROSE_HIP_SACK.get());
-                        output.accept(FIBlocks.BLACK_ACORN_SACK.get());
                         output.accept(FIBlocks.SPRUCE_TIPS_SACK.get());
                         // Items
                             // Cuts and Crushed
                         output.accept(FIItems.APPLE_SLICE.get());
-                        output.accept(FIItems.RAW_RABBIT_LEG.get());
                         output.accept(FIItems.COOKED_RABBIT_LEG.get());
+                        output.accept(FIItems.RAW_RABBIT_LEG.get());
 
                         output.accept(FIItems.ACORN_MEAL.get());
                         output.accept(FIItems.COCOA_POWDER.get());
@@ -70,8 +72,8 @@ public class FITabs {
                         output.accept(FIItems.MEADOW_MEDLEY.get());
                         output.accept(FIItems.ROSE_GRANITA.get());
                         output.accept(FIItems.ROSE_ROASTED_ROOTS.get());
-                        output.accept(FIItems.STEAMY_KELP_RICE.get());
                         output.accept(FIItems.SEASIDE_SIZZLER.get());
+                        output.accept(FIItems.STEAMY_KELP_RICE.get());
                             //Sandwiches and Finger Foods
                         output.accept(FIItems.CREAMY_SALMON_BAGEL.get());
                         output.accept(FIItems.DANDELION_FRIES.get());

@@ -28,7 +28,7 @@ public class FIBlocks {
     // Chiller
 
     //Crops
-    //Flower
+        //Flower
     public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
             new PoppyBushBlock(copy(Blocks.BEETROOTS)));
     public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
@@ -37,7 +37,7 @@ public class FIBlocks {
             copy(Blocks.WHEAT), 3));
     public static final RegistryObject<Block> SUNFLOWER_CROP = HELPER.createBlockNoItem("sunflower_kernels", () -> new SunflowerCropBlock(
             copy(Blocks.WHEAT), 3));
-    //Tree
+        //Trees
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
             new SaplingBlock(new BountifulOakTreeGrower(), copy(Blocks.OAK_SAPLING)), 100);
     public static final RegistryObject<Block> BOUNTIFUL_OAK_LEAVES = HELPER.createBlock("bountiful_oak_leaves", () ->
@@ -52,12 +52,17 @@ public class FIBlocks {
             new BountifulSpruceLeavesBlock(copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> BOUNTIFUL_SPRUCE_TIPS = HELPER.createBlockNoItem("bountiful_spruce_tips", () ->
             new SpruceTipBlock(copy(Blocks.SWEET_BERRY_BUSH).noCollission()));
-    //Syrup Tap
+        //Syrup Tap
     public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
             new TapperBlock(copy(Blocks.IRON_BLOCK)));
-
-    //Storage
-    //Crop Crates and Sacks
+    //DECORATIVE
+        //Foliage Mats
+    public static final RegistryObject<Block> SCATTERED_ROSE_PETAL_MAT = HELPER.createBlock("scattered_rose_petal_mat", FoliageMatBlock::new);
+    public static final RegistryObject<Block> SCATTERED_SPRUCE_TIP_MAT = HELPER.createBlock("scattered_spruce_tip_mat", FoliageMatBlock::new);
+    public static final RegistryObject<Block> DENSE_SPRUCE_TIP_MAT = HELPER.createBlock("dense_spruce_tip_mat", FoliageMatBlock::new);
+    public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petal_mat", FoliageMatBlock::new);
+    //STORAGE
+        //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
             new Block(copy(ModBlocks.CABBAGE_CRATE.get())));
     public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->

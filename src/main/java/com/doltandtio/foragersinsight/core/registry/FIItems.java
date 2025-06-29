@@ -111,7 +111,7 @@ public class FIItems {
     public static final RegistryObject<Item> KELP_WRAP = HELPER.createItem("kelp_wrap", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.KELP_WRAP)));
     public static final RegistryObject<Item> DANDELION_FRIES = HELPER.createItem("dandelion_fries", () -> new ConsumableItem(
-            new Item.Properties().food(FIFoods.DANDELION_FRIES)));
+            new Item.Properties().food(FIFoods.DANDELION_FRIES).craftRemainder(Items.PAPER)));
     public static final RegistryObject<Item> SEED_BUTTER_JAMWICH = HELPER.createItem("seed_butter_jamwich", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SEED_BUTTER_JAMWICH)));
     public static final RegistryObject<Item> SWEET_ROASTED_RABBIT_LEG = HELPER.createItem("sweet_roasted_rabbit_leg", () -> new ConsumableItem(
@@ -119,7 +119,7 @@ public class FIItems {
     //Drinks
     public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
             .food(FIFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> GLOWING_CARROT_JUICE = HELPER.createItem("glowing_carrot_juice", () -> new GlowJuiceItem(new Item.Properties()
+    public static final RegistryObject<Item> GLOWING_CARROT_JUICE = HELPER.createItem("glowing_carrot_juice", () -> new DrinkableItem(new Item.Properties()
             .food(FIFoods.GLOWING_CARROT_JUICE).craftRemainder(Items.GLASS_BOTTLE)));
         //Chilled
 
