@@ -1,7 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "wool": "foragersinsight:block/dense_rose_petals"
+    "wool": "foragersinsight:block/scattered_spruce_tips"
   },
   "elements": [
     {

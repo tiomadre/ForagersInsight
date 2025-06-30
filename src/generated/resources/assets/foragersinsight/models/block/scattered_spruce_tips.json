@@ -1,6 +1,20 @@
 {
-  "parent": "minecraft:block/carpet",
+  "parent": "block/block",
   "textures": {
     "wool": "foragersinsight:block/scattered_spruce_tips"
-  }
+  },
+  "elements": [
+    {
+      "from": [0, 8, 0],
+      "to": [16, 9, 16],
+      "faces": {
+        "down": { "texture": "#wool", "cullface": "down" },
+        "up":   { "texture": "#wool" },
+        "north":{ "texture": "#wool", "cullface": "north" },
+        "south":{ "texture": "#wool", "cullface": "south" },
+        "west": { "texture": "#wool", "cullface": "west" },
+        "east": { "texture": "#wool", "cullface": "east" }
+      }
+    }
+  ]
 }
