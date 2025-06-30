@@ -59,7 +59,7 @@ public class FoliageMatBlock extends CarpetBlock {
         BlockPos belowPos = pos.below();
         BlockState belowState = level.getBlockState(belowPos);
         if (belowState.getBlock() instanceof SlabBlock && belowState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) {
-            return Block.box(0, -8, 0, 16, -7, 16);
+            return Block.box(0, 8, 0, 16, 9, 16);
         }
         return Block.box(0, 0, 0, 16, 1, 16);
     }

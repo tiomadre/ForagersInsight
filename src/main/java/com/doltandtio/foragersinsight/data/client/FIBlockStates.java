@@ -155,7 +155,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
     public void matBlock(RegistryObject<? extends Block> block, String texture) {
         this.simpleBlock(block.get(),
                 models().withExistingParent(name(block.get()), mcLoc("block/carpet"))
-                        .texture("foliage", modTexture(texture))
+                        .texture("wool", modTexture(texture))
                         .renderType("cutout"));
         this.blockItem(block.get());
     }

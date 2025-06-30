@@ -77,6 +77,11 @@
   "block.foragersinsight.rose_hip_sack": "Sack of Rose Hips",
   "block.foragersinsight.spruce_tips_sack": "Sack of Spruce Tips",
 
+  "block.foragersinsight.dense_rose_petals": "Dense Rose Petals",
+  "block.foragersinsight.dense_spruce_tips": "Dense Spruce Tips",
+  "block.foragersinsight.scattered_rose_petals": "Scattered Rose Petals",
+  "block.foragersinsight.scattered_spruce_tips": "Scattered Spruce Tips",
+
   "foragersinsight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",
   "foragersinsight.flavortext.forest_elixir": "A sweetened coniferous drink made of syrup and spruce tips.",
   "foragersinsight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
