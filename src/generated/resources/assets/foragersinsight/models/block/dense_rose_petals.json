@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/carpet",
   "textures": {
-    "foliage": "foragersinsight:block/dense_rose_petals"
+    "wool": "foragersinsight:block/dense_rose_petals"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/carpet",
   "textures": {
-    "foliage": "foragersinsight:block/scattered_spruce_tips"
+    "wool": "foragersinsight:block/scattered_spruce_tips"
   }
 }

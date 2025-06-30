@@ -54,7 +54,9 @@ public class FIItemModels extends BlueprintItemModelProvider {
                 //Other
                 ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
                 //Tools and Workstations
-                HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET   );
+                HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET
+                //Decoratives
+                );
 
     }
 }
