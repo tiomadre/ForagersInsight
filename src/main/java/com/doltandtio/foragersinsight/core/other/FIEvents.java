@@ -75,4 +75,4 @@ public class FIEvents {
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
     }
 
-            }
+}

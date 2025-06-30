@@ -16,11 +16,9 @@ import com.doltandtio.foragersinsight.data.server.tags.FIItemTags;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -52,8 +50,6 @@ public class ForagersInsight {
 		bus.addListener(this::dataSetup);
 
 		context.registerConfig(ModConfig.Type.COMMON, FIConfig.COMMON_SPEC);
-
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> FIBlocks::setupTabEditors);
 	}
 
 	public static ResourceLocation rl(String namespace) {

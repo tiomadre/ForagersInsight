@@ -23,19 +23,24 @@ public class FITabs {
                         output.accept(FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES.get());
                         output.accept(FIBlocks.BOUNTIFUL_OAK_SAPLING.get());
                         output.accept(FIBlocks.BOUNTIFUL_OAK_LEAVES.get());
+                        output.accept(FIBlocks.BOUNTIFUL_SPRUCE_SAPLING.get());
                         output.accept(FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get());
-                        output.accept(FIBlocks.BOUNTIFUL_SPRUCE_TIPS.get());
                         output.accept(FIBlocks.BLACK_ACORN_SACK.get());
                         output.accept(FIBlocks.DANDELION_ROOTS_CRATE.get());
                         output.accept(FIBlocks.POPPY_SEEDS_SACK.get());
                         output.accept(FIBlocks.ROSE_HIP_SACK.get());
                         output.accept(FIBlocks.SPRUCE_TIPS_SACK.get());
+                        output.accept(FIBlocks.DENSE_ROSE_PETAL_MAT.get());
+                        output.accept(FIBlocks.DENSE_SPRUCE_TIP_MAT.get());
+                        output.accept(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get());
+                        output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
                         // Items
                             // Cuts and Crushed
+                                //Cuts
                         output.accept(FIItems.APPLE_SLICE.get());
                         output.accept(FIItems.COOKED_RABBIT_LEG.get());
                         output.accept(FIItems.RAW_RABBIT_LEG.get());
-
+                                //Crushed
                         output.accept(FIItems.ACORN_MEAL.get());
                         output.accept(FIItems.COCOA_POWDER.get());
                         output.accept(FIItems.CRUSHED_ICE.get());
@@ -61,8 +66,8 @@ public class FITabs {
                         output.accept(FIItems.BLACK_FOREST_MUFFIN.get());
                         output.accept(FIItems.RED_VELVET_CUPCAKE.get());
                         output.accept(FIItems.POPPY_SEED_BAGEL.get());
-                        output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get());
-                        output.accept(FIItems.SLICE_OF_ACORN_CARROT_CAKE.get());
+                        output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get().getDefaultInstance());
+                        output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get().getDefaultInstance());
                             // Dishes
                         output.accept(FIItems.ACORN_NOODLES.get());
                         output.accept(FIItems.CARROT_POPPY_CHOWDER.get());

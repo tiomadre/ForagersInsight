@@ -5,17 +5,13 @@ import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulDark
 import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulOakTreeGrower;
 import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulSpruceTreeGrower;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
-import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
-
 import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
-import static net.minecraft.world.item.crafting.Ingredient.of;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -25,8 +21,6 @@ public class FIBlocks {
     //Cakes and Feasts
     public static final RegistryObject<Block> ACORN_CARROT_CAKE = HELPER.createBlockNoItem("acorn_carrot_cake",
             () -> new SliceableCakeBlock(copy(Blocks.CAKE), FIItems.SLICE_OF_ACORN_CARROT_CAKE));
-    // Chiller
-
     //Crops
         //Flower
     public static final RegistryObject<Block> POPPY_BUSH = HELPER.createBlockNoItem("poppy_bush", () ->
@@ -57,10 +51,10 @@ public class FIBlocks {
             new TapperBlock(copy(Blocks.IRON_BLOCK)));
     //DECORATIVE
         //Foliage Mats
-    public static final RegistryObject<Block> SCATTERED_ROSE_PETAL_MAT = HELPER.createBlock("scattered_rose_petal_mat", FoliageMatBlock::new);
-    public static final RegistryObject<Block> SCATTERED_SPRUCE_TIP_MAT = HELPER.createBlock("scattered_spruce_tip_mat", FoliageMatBlock::new);
-    public static final RegistryObject<Block> DENSE_SPRUCE_TIP_MAT = HELPER.createBlock("dense_spruce_tip_mat", FoliageMatBlock::new);
-    public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petal_mat", FoliageMatBlock::new);
+    public static final RegistryObject<Block> SCATTERED_ROSE_PETAL_MAT = HELPER.createBlock("scattered_rose_petals", FoliageMatBlock::new);
+    public static final RegistryObject<Block> SCATTERED_SPRUCE_TIP_MAT = HELPER.createBlock("scattered_spruce_tips", FoliageMatBlock::new);
+    public static final RegistryObject<Block> DENSE_SPRUCE_TIP_MAT = HELPER.createBlock("dense_spruce_tips", FoliageMatBlock::new);
+    public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petals", FoliageMatBlock::new);
     //STORAGE
         //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
@@ -73,35 +67,4 @@ public class FIBlocks {
             copy(ModBlocks.RICE_BAG.get())));
     public static final RegistryObject<Block> SPRUCE_TIPS_SACK = HELPER.createBlock("spruce_tips_sack", () -> new Block(
             copy(ModBlocks.RICE_BAG.get())));
-
-
-    public static void setupTabEditors() {
-        CreativeModeTabContentsPopulator.mod(ForagersInsight.MOD_ID)
-                .tab(CreativeModeTabs.NATURAL_BLOCKS)
-                .addItemsAfter(of(Items.OAK_SAPLING), BOUNTIFUL_OAK_SAPLING)
-                .addItemsAfter(of(Items.OAK_LEAVES), BOUNTIFUL_OAK_LEAVES)
-                .addItemsAfter(of(Items.DARK_OAK_SAPLING), BOUNTIFUL_DARK_OAK_SAPLING)
-                .addItemsAfter(of(Items.DARK_OAK_LEAVES), BOUNTIFUL_DARK_OAK_LEAVES)
-                .addItemsAfter(of(Items.SPRUCE_SAPLING), BOUNTIFUL_SPRUCE_SAPLING)
-                .addItemsAfter(of(Items.SPRUCE_LEAVES), BOUNTIFUL_SPRUCE_LEAVES)
-                .addItemsAfter(of(Items.HAY_BLOCK), DANDELION_ROOTS_CRATE, ROSE_HIP_SACK, POPPY_SEEDS_SACK, SPRUCE_TIPS_SACK, BLACK_ACORN_SACK)
-                .tab(CreativeModeTabs.FOOD_AND_DRINKS)
-                .addItemsAfter(of(Items.APPLE),APPLE_SLICE,BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSE_HIP, SUNFLOWER_CROP,SPRUCE_TIPS)
-                .addItemsAfter(of(Items.BREAD), POPPY_SEED_BAGEL,CREAMY_SALMON_BAGEL,JAMMY_BREAKFAST_SANDWICH,KELP_WRAP,SEED_BUTTER_JAMWICH)
-                .addItemsAfter(of(Items.CAKE), ACORN_CARROT_CAKE, SLICE_OF_ACORN_CARROT_CAKE)
-                .addItemsAfter(of(Items.COOKED_RABBIT), COOKED_RABBIT_LEG)
-                .addItemsBefore(of(Items.COOKIE),ACORN_COOKIE)
-                .addItemsAfter(of(Items.COOKIE),ROSE_COOKIE,BLACK_FOREST_MUFFIN,RED_VELVET_CUPCAKE)
-                .addItemsAfter(of(Items.HONEY_BOTTLE), DANDELION_ROOT_TEA,FOREST_ELIXIR,GLOWING_CARROT_JUICE,ROSE_GRANITA,ROSE_CORDIAL)
-                .addItemsAfter(of(Items.MILK_BUCKET), SEED_MILK_BOTTLE, SEED_MILK_BUCKET)
-                .addItemsAfter(of(Items.RABBIT), RAW_RABBIT_LEG)
-                .addItemsAfter(of(Items.RABBIT_STEW),ACORN_NOODLES,DANDELION_FRIES,FORAGERS_GRANOLA,KELP_AND_BEET_SALAD,MEADOW_MEDLEY,
-                        ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,STEAMY_KELP_RICE,SWEET_ROASTED_RABBIT_LEG)
-                .tab(CreativeModeTabs.INGREDIENTS)
-                .addItemsAfter(of(Items.WHEAT),ACORN_DOUGH,ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,GREEN_SAUCE,POPPY_SEED_PASTE,SUNFLOWER_BUTTER,
-                        ROSE_PETALS,WHEAT_FLOUR)
-                .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .addItemsBefore(of(Items.SHEARS), HANDBASKET, FLINT_SHEARS)
-                .addItemsAfter(of(Items.NETHERITE_PICKAXE),FLINT_MALLET,IRON_MALLET,GOLD_MALLET,DIAMOND_MALLET,NETHERITE_MALLET);
-    }
 }

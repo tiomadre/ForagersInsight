@@ -146,8 +146,32 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define(':', ModItems.STRAW.get())
                 .define(')', STICK)
                 .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
-
  //BLOCKS
+        //Decorative
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get(), 4)
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', FIItems.ROSE_PETALS.get())
+                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, SCATTERED_SPRUCE_TIP_MAT.get(), 4)
+                .pattern("TT")
+                .pattern("TT")
+                .define('T', FIItems.SPRUCE_TIPS.get())
+                .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, DENSE_ROSE_PETAL_MAT.get(), 4)
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', FIItems.ROSE_PETALS.get())
+                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
+                .save(consumer, ForagersInsight.rl("dense_rose_petal_mat"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, DENSE_SPRUCE_TIP_MAT.get(), 4)
+                .pattern("TT")
+                .pattern("TT")
+                .define('T', FIItems.SPRUCE_TIPS.get())
+                .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
+                .save(consumer, ForagersInsight.rl("dense_spruce_tip_mat"));
         //Feasts and Cakes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
@@ -156,10 +180,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
         //Storage
         this.storageRecipes(consumer, RecipeCategory.FOOD, FIItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
-
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, DANDELION_ROOT.get(), RecipeCategory.DECORATIONS, DANDELION_ROOTS_CRATE.get());
-
         this.storageRecipes(consumer, RecipeCategory.FOOD, BLACK_ACORN.get(), RecipeCategory.DECORATIONS, BLACK_ACORN_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, SPRUCE_TIPS.get(), RecipeCategory.DECORATIONS, SPRUCE_TIPS_SACK.get());
 

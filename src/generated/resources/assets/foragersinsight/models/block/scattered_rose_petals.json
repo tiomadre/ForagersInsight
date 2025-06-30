@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "foliage": "foragersinsight:block/scattered_rose_petals"
+  }
+}

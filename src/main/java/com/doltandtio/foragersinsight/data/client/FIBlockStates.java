@@ -26,8 +26,8 @@ public class FIBlockStates extends FIBlockStatesHelper {
     }
     @Override
     protected void registerStatesAndModels() {
-        doubleCrop(ROSE_CROP);
-        doubleSunflowerCrop(SUNFLOWER_CROP);
+        this.doubleCrop(ROSE_CROP);
+        this.doubleSunflowerCrop(SUNFLOWER_CROP);
         this.sackBlock(ROSE_HIP_SACK);
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
@@ -39,6 +39,10 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.sackBlock(SPRUCE_TIPS_SACK);
         this.sackBlock(POPPY_SEEDS_SACK);
         this.age5Crop(POPPY_BUSH, FIItems.POPPY_SEEDS);
+        this.matBlock(SCATTERED_ROSE_PETAL_MAT, "scattered_rose_petals");
+        this.matBlock(SCATTERED_SPRUCE_TIP_MAT, "scattered_spruce_tips");
+        this.matBlock(DENSE_SPRUCE_TIP_MAT, "dense_spruce_tips");
+        this.matBlock(DENSE_ROSE_PETAL_MAT, "dense_rose_petals");
     }
 
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
@@ -147,5 +151,11 @@ public class FIBlockStates extends FIBlockStatesHelper {
         });
 
         this.itemModels().basicItem(crop.get().asItem());
+    }
+    public void matBlock(RegistryObject<? extends Block> block, String texture) {
+        this.simpleBlock(block.get(),
+                models().withExistingParent(name(block.get()), mcLoc("block/carpet"))
+                        .texture("foliage", modTexture(texture)));
+        this.blockItem(block.get());
     }
 }
