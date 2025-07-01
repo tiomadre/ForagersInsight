@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "foragersinsight:scattered_spruce_tips" },
+    { "item": "foragersinsight:scattered_spruce_tips" }
+  ],
+  "result": {
+    "item": "foragersinsight:dense_spruce_tips"
+  }
+}

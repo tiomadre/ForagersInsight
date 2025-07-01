@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.data.server.recipes;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
+import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import static com.doltandtio.foragersinsight.core.registry.FIBlocks.*;
@@ -148,29 +149,21 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
  //BLOCKS
         //Decorative
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get(), 4)
-                .pattern("PP")
-                .pattern("PP")
-                .define('P', FIItems.ROSE_PETALS.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get())
+                .requires(FIItems.ROSE_PETALS.get(), 4)
                 .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, SCATTERED_SPRUCE_TIP_MAT.get(), 4)
-                .pattern("TT")
-                .pattern("TT")
-                .define('T', FIItems.SPRUCE_TIPS.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_SPRUCE_TIP_MAT.get())
+                .requires(FIItems.SPRUCE_TIPS.get(), 4)
                 .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, DENSE_ROSE_PETAL_MAT.get(), 4)
-                .pattern("PP")
-                .pattern("PP")
-                .define('P', FIItems.ROSE_PETALS.get())
-                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_ROSE_PETAL_MAT.get())
+                .requires(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get(), 2)
+                .unlockedBy("has_scattered_rose_petals", has(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get()))
                 .save(consumer, ForagersInsight.rl("dense_rose_petal_mat"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, DENSE_SPRUCE_TIP_MAT.get(), 4)
-                .pattern("TT")
-                .pattern("TT")
-                .define('T', FIItems.SPRUCE_TIPS.get())
-                .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_SPRUCE_TIP_MAT.get())
+                .requires(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get(), 2)
+                .unlockedBy("has_scattered_spruce_tips", has(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get()))
                 .save(consumer, ForagersInsight.rl("dense_spruce_tip_mat"));
         //Feasts and Cakes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
