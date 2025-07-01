@@ -15,10 +15,34 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class FortuneApplyAnvilMixin {
     @Inject(method = "onTake", at = @At("HEAD"), cancellable = true)
     private void allowFortuneBooks(Player player, ItemStack stack, CallbackInfo ci) {
-        if (stack.getItem() instanceof ShearsItem &&
-                EnchantmentHelper.getEnchantments(stack).containsKey(Enchantments.BLOCK_FORTUNE)) {
-            // Implement conditional logic for applying enchantments here.
-            // Customize behavior if needed.
+        AnvilMenu menu = (AnvilMenu) (Object) this;
+        ItemStack leftStack = menu.getSlot(0).getItem();
+        ItemStack rightStack = menu.getSlot(1).getItem();
+
+        ItemStack shears = ItemStack.EMPTY;
+        ItemStack book = ItemStack.EMPTY;
+
+        if (leftStack.getItem() instanceof ShearsItem &&
+                EnchantmentHelper.getEnchantments(rightStack).containsKey(Enchantments.BLOCK_FORTUNE)) {
+            shears = leftStack;
+            book = rightStack;
+        } else if (rightStack.getItem() instanceof ShearsItem &&
+                EnchantmentHelper.getEnchantments(leftStack).containsKey(Enchantments.BLOCK_FORTUNE)) {
+            shears = rightStack;
+            book = leftStack;
+        }
+
+        if (!shears.isEmpty() && !book.isEmpty()) {
+            int shearsLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, shears);
+            int bookLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, book);
+            int newLevel = (shearsLevel == bookLevel) ? shearsLevel + 1 : Math.max(shearsLevel, bookLevel);
+            newLevel = Math.min(newLevel, Enchantments.BLOCK_FORTUNE.getMaxLevel());
+
+            var enchantments = EnchantmentHelper.getEnchantments(stack);
+            enchantments.put(Enchantments.BLOCK_FORTUNE, newLevel);
+            EnchantmentHelper.setEnchantments(enchantments, stack);
+
+            ci.cancel();
         }
     }
 }

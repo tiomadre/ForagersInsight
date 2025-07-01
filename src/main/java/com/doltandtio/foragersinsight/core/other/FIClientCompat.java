@@ -26,14 +26,8 @@ public class FIClientCompat {
                 FIBlocks.BOUNTIFUL_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES
         );
 
-        List<RegistryObject<Block>> spruceFoliage = Arrays.asList(
-                FIBlocks.BOUNTIFUL_SPRUCE_LEAVES, FIBlocks.BOUNTIFUL_SPRUCE_TIPS
-        );
-
         DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.get(0.5D, 1.0D), genericFoliage);
         DataUtil.registerBlockItemColor(itemColors, (color, items) -> FoliageColor.get(0.5D, 1.0D), genericFoliage);
 
-        DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> FoliageColor.getEvergreenColor(), spruceFoliage);
-        DataUtil.registerBlockItemColor(itemColors, (color, items) -> FoliageColor.getEvergreenColor(), spruceFoliage);
     }
 }

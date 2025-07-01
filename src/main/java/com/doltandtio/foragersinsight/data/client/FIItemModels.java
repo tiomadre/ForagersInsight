@@ -52,10 +52,10 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Medicinal
                     DANDELION_ROOT_TEA, FOREST_ELIXIR,
                 //Other
-                ACORN_DOUGH,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
+                ACORN_DOUGH,BIRCH_SAP_BUCKET,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
                 //Tools and Workstations
                 HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET
-                //Decoratives
+
                 );
 
     }

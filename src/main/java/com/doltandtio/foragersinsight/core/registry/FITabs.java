@@ -99,6 +99,8 @@ public class FITabs {
                         output.accept(FIItems.DIAMOND_MALLET.get());
                         output.accept(FIItems.NETHERITE_MALLET.get());
                         output.accept(FIItems.FLINT_SHEARS.get());
+                            //Other
+                        output.accept(FIItems.BIRCH_SAP_BUCKET.get());
                     })
                     .build());
 

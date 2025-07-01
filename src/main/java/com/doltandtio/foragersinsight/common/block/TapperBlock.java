@@ -1,13 +1,20 @@
 package com.doltandtio.foragersinsight.common.block;
 
+import com.doltandtio.foragersinsight.core.registry.FIItems;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -41,13 +48,13 @@ public class TapperBlock extends HorizontalDirectionalBlock {
         builder.add(FACING, FILL, HAS_BUCKET);
     }
 
-    private boolean canPlace(BlockPlaceContext context, BlockState state, Player player) {
-        // only allow placing on birch logs if the player is sneaking
-        return state.is(FITags.BlockTag.TAPPABLE) && player.isCrouching() && context.canPlace();
+    private boolean canPlace(BlockPlaceContext context, BlockState state) {
+        // only allow placing on birch logs
+        return state.is(FITags.BlockTag.TAPPABLE) && context.canPlace();
     }
 
     public boolean placeTapper(Level level, BlockPlaceContext context, Player player, BlockState state) {
-        if (!canPlace(context, state, player)) {
+        if (!canPlace(context, state)) {
             return false;
         }
 
@@ -77,6 +84,52 @@ public class TapperBlock extends HorizontalDirectionalBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean isRandomlyTicking(@NotNull BlockState state) {
+        return state.getValue(HAS_BUCKET) && state.getValue(FILL) < 3;
+    }
+
+    @Override
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (!state.getValue(HAS_BUCKET)) return;
+        int fill = state.getValue(FILL);
+        if (fill < 3) {
+            level.setBlock(pos, state.setValue(FILL, fill + 1), Block.UPDATE_CLIENTS);
+        }
+    }
+
+    @Override
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
+                                          @NotNull Player player, @NotNull InteractionHand hand, @NotNull net.minecraft.world.phys.BlockHitResult hit) {
+        ItemStack held = player.getItemInHand(hand);
+
+        if (!state.getValue(HAS_BUCKET) && held.is(Items.BUCKET)) {
+            if (!level.isClientSide) {
+                level.setBlock(pos, state.setValue(HAS_BUCKET, true).setValue(FILL, 0), Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
+                if (!player.getAbilities().instabuild) {
+                    held.shrink(1);
+                }
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+
+        if (state.getValue(HAS_BUCKET) && state.getValue(FILL) == 3) {
+            if (!level.isClientSide) {
+                ItemStack result = new ItemStack(FIItems.BIRCH_SAP_BUCKET.get());
+                if (!player.addItem(result)) {
+                    player.drop(result, false);
+                }
+                BlockState newState = state.setValue(HAS_BUCKET, false).setValue(FILL, 0);
+                level.setBlock(pos, newState, Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+
+        return InteractionResult.PASS;
     }
 
 }
