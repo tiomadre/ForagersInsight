@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foragersinsight:item/hearty_spruce_pilaf"
+  }
+}

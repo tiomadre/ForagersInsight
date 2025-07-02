@@ -4,10 +4,15 @@
     {
       "bonus_rolls": 0.0,
       "conditions": [
-        { "condition": "minecraft:survives_explosion" }
+        {
+          "condition": "minecraft:survives_explosion"
+        }
       ],
       "entries": [
-        { "type": "minecraft:item", "name": "foragersinsight:scattered_rose_petals" }
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:scattered_rose_petals"
+        }
       ],
       "rolls": 1.0
     }

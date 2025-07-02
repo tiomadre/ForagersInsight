@@ -2,10 +2,18 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "foragersinsight:rose_petals" },
-    { "item": "foragersinsight:rose_petals" },
-    { "item": "foragersinsight:rose_petals" },
-    { "item": "foragersinsight:rose_petals" }
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "foragersinsight:rose_petals"
+    }
   ],
   "result": {
     "item": "foragersinsight:scattered_rose_petals"

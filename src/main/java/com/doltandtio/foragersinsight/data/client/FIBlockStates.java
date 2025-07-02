@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.data.client;
 
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
+import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.SunflowerCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
@@ -36,6 +37,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.sackBlock(BLACK_ACORN_SACK);
         this.age5Crop(DANDELION_BUSH, FIItems.DANDELION_ROOT);
         this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
+        this.crossCutout(BOUNTIFUL_SPRUCE_SAPLING);
         this.sackBlock(SPRUCE_TIPS_SACK);
         this.sackBlock(POPPY_SEEDS_SACK);
         this.age5Crop(POPPY_BUSH, FIItems.POPPY_SEEDS);
@@ -43,6 +45,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.matBlock(SCATTERED_SPRUCE_TIP_MAT, "scattered_spruce_tips");
         this.matBlock(DENSE_SPRUCE_TIP_MAT, "dense_spruce_tips");
         this.matBlock(DENSE_ROSE_PETAL_MAT, "dense_rose_petals");
+        this.spruceTipBlock();
     }
 
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
@@ -115,9 +118,8 @@ public class FIBlockStates extends FIBlockStatesHelper {
                 age = state.getValue(RoseCropBlock.AGE);
                 half = state.getValue(RoseCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
-
-            return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d_%s".formatted(name(block), age, half), "block/cross")
-                    .texture("cross", "%s_stage%d_%s".formatted(blockTexture(block), age, half)).renderType("cutout")).build();
+            return ConfiguredModel.builder().modelFile(models().withExistingParent("rose_hip_stage%d_%s".formatted(age, half), "block/cross")
+                    .texture("cross", concatRL(modTexture("rose_hip"), "_stage%d_%s".formatted(age, half))).renderType("cutout")).build();
         });
 
         this.itemModels().basicItem(crop.get().asItem());
@@ -128,29 +130,42 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.getVariantBuilder(block).forAllStates(state -> {
             int age;
             String half;
-            if (state.getValue(SunflowerCropBlock.AGE) < 0 || !state.hasProperty(SunflowerCropBlock.HALF)) {
+
+            if (SunflowerCropBlock.isIllegalState(state)) {
                 age = 0;
                 half = "lower";
-            }
-            else {
+            } else {
                 age = state.getValue(SunflowerCropBlock.AGE);
                 half = state.getValue(SunflowerCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
 
+            if ("upper".equals(half)) {
+                return ConfiguredModel.builder()
+                        .modelFile(
+                                models()
+                                        .withExistingParent(
+                                                "%s_stage%d_%s".formatted(name(block), age, half),
+                                                modLoc("flower_top")
+                                        )
+                                        .texture("plant", modLoc("%s_head_front_stage%d".formatted(blockTexture(block), age)))
+                                        .texture("back", modLoc("%s_head_back_stage%d".formatted(blockTexture(block), age)))
+                                        .texture("stem", modLoc("%s_upper_stage%d".formatted(blockTexture(block), age)))
+                                        .renderType("cutout"))
+                        .build();
+            }
             return ConfiguredModel.builder()
                     .modelFile(
                             models()
                                     .withExistingParent(
                                             "%s_stage%d_%s".formatted(name(block), age, half),
-                                            mcLoc("block/sunflower")
+                                            mcLoc("block/cross")
                                     )
-                                    .texture("cross", modLoc("%s_stage%d_%s".formatted(blockTexture(block), age, half)))
-                                    .renderType("cutout")
-                    )
+                                    .texture("cross", modLoc("%s_lower_stage%d".formatted(blockTexture(block), age)))
+                                    .renderType("cutout"))
                     .build();
         });
-
         this.itemModels().basicItem(crop.get().asItem());
+
     }
     public void matBlock(RegistryObject<? extends Block> block, String texture) {
         this.simpleBlock(block.get(),
@@ -158,5 +173,13 @@ public class FIBlockStates extends FIBlockStatesHelper {
                         .texture("wool", modTexture(texture))
                         .renderType("cutout"));
         this.blockItem(block.get());
+    }
+
+    private void spruceTipBlock() {
+        Block tip = ((RegistryObject<? extends Block>) com.doltandtio.foragersinsight.core.registry.FIBlocks.BOUNTIFUL_SPRUCE_TIPS).get();
+        this.getVariantBuilder(tip).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(models().cross("%s_stage%d".formatted(name(tip), state.getValue(SpruceTipBlock.AGE)),
+                                concatRL(blockTexture(tip), "_stage%d".formatted(state.getValue(SpruceTipBlock.AGE))))
+                        .renderType("cutout")).build());
     }
 }

@@ -7,9 +7,6 @@
       "item": "foragersinsight:dandelion_root"
     }
   ],
-  "container": {
-    "item": "minecraft:paper"
-  },
   "recipe_book_tab": "meals",
   "result": {
     "item": "foragersinsight:dandelion_fries"

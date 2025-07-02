@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_scattered_rose_petals": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "foragersinsight:scattered_rose_petals"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:dense_rose_petal_mat"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_scattered_rose_petals",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:dense_rose_petal_mat"
+    ]
+  },
+  "sends_telemetry_event": false
+}

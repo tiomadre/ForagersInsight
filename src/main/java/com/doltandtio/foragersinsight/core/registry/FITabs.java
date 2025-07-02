@@ -73,12 +73,14 @@ public class FITabs {
                         output.accept(FIItems.CARROT_POPPY_CHOWDER.get());
                         output.accept(FIItems.COD_AND_PUMPKIN_STEW.get());
                         output.accept(FIItems.FORAGERS_GRANOLA.get());
+                        output.accept(FIItems.HEARTY_SPRUCE_PILAF.get());
                         output.accept(FIItems.KELP_AND_BEET_SALAD.get());
                         output.accept(FIItems.MEADOW_MEDLEY.get());
                         output.accept(FIItems.ROSE_GRANITA.get());
                         output.accept(FIItems.ROSE_ROASTED_ROOTS.get());
                         output.accept(FIItems.SEASIDE_SIZZLER.get());
                         output.accept(FIItems.STEAMY_KELP_RICE.get());
+                        output.accept(FIItems.WOODLAND_PASTA.get());
                             //Sandwiches and Finger Foods
                         output.accept(FIItems.CREAMY_SALMON_BAGEL.get());
                         output.accept(FIItems.DANDELION_FRIES.get());

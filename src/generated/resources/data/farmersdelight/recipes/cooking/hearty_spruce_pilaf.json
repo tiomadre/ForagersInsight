@@ -1,0 +1,39 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:green_sauce"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    [
+      {
+        "item": "foragersinsight:black_acorn"
+      },
+      {
+        "item": "foragersinsight:acorn_meal"
+      }
+    ],
+    [
+      {
+        "item": "foragersinsight:black_acorn"
+      },
+      {
+        "item": "foragersinsight:acorn_meal"
+      }
+    ],
+    {
+      "item": "farmersdelight:pumpkin_slice"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "foragersinsight:hearty_spruce_pilaf"
+  }
+}

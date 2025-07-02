@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foragersinsight:has_feature/spruce_tip_trees",
+  "features": "foragersinsight:spruce_tip_tree_placed",
+  "step": "vegetal_decoration"
+}

@@ -24,7 +24,6 @@ public class FoliageMatBlock extends CarpetBlock {
                 .mapColor(MapColor.PLANT)
                 .isValidSpawn((state, level, pos, entityType) -> false));
     }
-
     @Override
     public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         BlockPos belowPos = pos.below();

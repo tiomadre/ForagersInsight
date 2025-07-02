@@ -39,6 +39,16 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(Items.KELP, ModItems.RICE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(HEARTY_SPRUCE_PILAF.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(GREEN_SAUCE.get())
+                .addIngredient(ModItems.RICE.get())
+                .addIngredient(Ingredient.of(BLACK_ACORN.get(), ACORN_MEAL.get()))
+                .addIngredient(Ingredient.of(BLACK_ACORN.get(), ACORN_MEAL.get()))
+                .addIngredient(ModItems.PUMPKIN_SLICE.get())
+                .addIngredient(SPRUCE_TIPS.get())
+                .unlockedByAnyIngredient(SPRUCE_TIPS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(BLACK_FOREST_MUFFIN.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ACORN_DOUGH.get())
                 .addIngredient(FITags.ItemTag.COCOA)
@@ -88,6 +98,15 @@ public class FICookingRecipes {
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(ModItems.RICE.get())
                 .unlockedByAnyIngredient(Items.KELP, Items.BEETROOT)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(WOODLAND_PASTA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(GREEN_SAUCE.get())
+                .addIngredient(ModItems.RAW_PASTA.get())
+                .addIngredient(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
+                .addIngredient(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
+                .addIngredient(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
+                .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
 

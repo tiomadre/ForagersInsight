@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_spruce_tips": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "foragersinsight:spruce_tips"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:scattered_spruce_tips"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_spruce_tips",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:scattered_spruce_tips"
+    ]
+  },
+  "sends_telemetry_event": false
+}

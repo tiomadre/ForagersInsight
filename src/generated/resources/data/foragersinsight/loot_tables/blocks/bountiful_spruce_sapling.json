@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "foragersinsight:scattered_spruce_tips"
+          "name": "foragersinsight:bountiful_spruce_sapling"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "foragersinsight:blocks/scattered_spruce_tips"
+  "random_sequence": "foragersinsight:blocks/bountiful_spruce_sapling"
 }

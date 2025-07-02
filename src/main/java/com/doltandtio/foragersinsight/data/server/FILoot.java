@@ -44,6 +44,7 @@ import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -96,7 +97,7 @@ public class FILoot extends LootTableProvider {
             //Sunflower
             this.createFlowerBushDrops(SUNFLOWER_CROP, SUNFLOWER_KERNELS, Items.YELLOW_DYE);
 
-         //BLOCK LOOT STUFF
+            //BLOCK LOOT STUFF
             this.dropSelf(ACORN_CARROT_CAKE.get());
             this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
@@ -109,9 +110,12 @@ public class FILoot extends LootTableProvider {
 
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
             this.dropSelf(BOUNTIFUL_DARK_OAK_SAPLING.get());
+            this.dropSelf(BOUNTIFUL_SPRUCE_SAPLING.get());
+            this.add(BOUNTIFUL_SPRUCE_TIPS.get(), LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK));
 
             this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, BOUNTIFUL_OAK_SAPLING.get()));
             this.add(BOUNTIFUL_DARK_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_DARK_OAK_LEAVES, BOUNTIFUL_DARK_OAK_SAPLING.get()));
+            this.add(BOUNTIFUL_SPRUCE_LEAVES.get(), this.createSpruceLeavesDrops(BOUNTIFUL_SPRUCE_LEAVES.get(), BOUNTIFUL_SPRUCE_SAPLING.get()));
 
             this.dropOther(TAPPER.get(), ModItems.IRON_KNIFE.get());
 
@@ -134,7 +138,7 @@ public class FILoot extends LootTableProvider {
             BountifulLeavesBlock block = (BountifulLeavesBlock) leafBlock.get();
             return createSilkTouchOrShearsDispatchTable(block,
                     this.applyExplosionCondition(block,
-                            LootItem.lootTableItem(sapling))
+                                    LootItem.lootTableItem(sapling))
                             .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, VanillaBlockLoot.NORMAL_LEAVES_SAPLING_CHANCES)))
                     .withPool(LootPool.lootPool()
                             .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
@@ -144,6 +148,18 @@ public class FILoot extends LootTableProvider {
                     .withPool(LootPool.lootPool()
                             .when(HAS_NO_SHEARS_OR_SILK_TOUCH).when(stateCond(leafBlock, BountifulLeavesBlock.AGE, BountifulLeavesBlock.MAX_AGE))
                             .add(this.applyExplosionCondition(block, LootItem.lootTableItem(block.getBounty()))));
+        }
+
+        private LootTable.Builder createSpruceLeavesDrops(Block leaves, ItemLike sapling) {
+            return createSilkTouchOrShearsDispatchTable(leaves,
+                    this.applyExplosionCondition(leaves,
+                                    LootItem.lootTableItem(sapling))
+                            .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, VanillaBlockLoot.NORMAL_LEAVES_SAPLING_CHANCES)))
+                    .withPool(LootPool.lootPool()
+                            .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                            .add(this.applyExplosionDecay(leaves, LootItem.lootTableItem(Items.STICK)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                                    .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_LEAVES_STICK_CHANCES))));
         }
 
         public static LootItemCondition.Builder stateCond(String value) {
@@ -160,7 +176,6 @@ public class FILoot extends LootTableProvider {
             return isUpper().or(isLower());
         }
 
-
         private static LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<Integer> property, int value) {
             return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
@@ -172,7 +187,7 @@ public class FILoot extends LootTableProvider {
 
         @Override
         public @NotNull Iterable<Block> getKnownBlocks() {
-            return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(ForagersInsight.MOD_ID)).collect(Collectors.toSet());
+            return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getNamespace().equals(ForagersInsight.MOD_ID)).collect(Collectors.toSet());
         }
     }
 }

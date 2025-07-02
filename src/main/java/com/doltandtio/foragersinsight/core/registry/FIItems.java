@@ -91,6 +91,8 @@ public class FIItems {
             new Item.Properties().food(FIFoods.FORAGERS_GRANOLA).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> JAMMY_BREAKFAST_SANDWICH = HELPER.createItem("jammy_breakfast_sandwich", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.JAMMY_BREAKFAST_SANDWICH)));
+    public static final RegistryObject<Item> HEARTY_SPRUCE_PILAF = HELPER.createItem("hearty_spruce_pilaf", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.HEARTY_SPRUCE_PILAF)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
         //Medicinal
@@ -102,6 +104,9 @@ public class FIItems {
             new Item.Properties().food(FIFoods.ROSE_ROASTED_ROOTS).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> SEASIDE_SIZZLER = HELPER.createItem("seaside_sizzler", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SEASIDE_SIZZLER).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> WOODLAND_PASTA = HELPER.createItem("woodland_pasta", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.WOODLAND_PASTA).craftRemainder(Items.BOWL)));
+
     //Salads
     public static final RegistryObject<Item> KELP_AND_BEET_SALAD = HELPER.createItem("kelp_and_beet_salad", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SALAD).craftRemainder(Items.BOWL)));
