@@ -37,6 +37,9 @@ minecraft {
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             arg "-mixin.config=" + project.modId + ".mixins.json"
+            jvmArgs '--add-opens', 'java.base/jdk.internal.misc=ALL-UNNAMED',
+                    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+                    '-Dio.netty.tryReflectionSetAccessible=true'
             mods {
                 foragersinsight {
                     source sourceSets.main
@@ -50,6 +53,9 @@ minecraft {
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             arg "-mixin.config=" + project.modId + ".mixins.json"
+            jvmArgs '--add-opens', 'java.base/jdk.internal.misc=ALL-UNNAMED',
+                    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+                    '-Dio.netty.tryReflectionSetAccessible=true'
             mods {
                 foragersinsight {
                     source sourceSets.main
@@ -64,6 +70,9 @@ minecraft {
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             property "blueprint.indev", "true"
             args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources")
+            jvmArgs '--add-opens', 'java.base/jdk.internal.misc=ALL-UNNAMED',
+                    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+                    '-Dio.netty.tryReflectionSetAccessible=true'
             mods {
                 foragersinsight {
                     source sourceSets.main

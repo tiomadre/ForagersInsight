@@ -161,5 +161,8 @@ public class FIItems {
     //Shears
     public static final RegistryObject<Item> FLINT_SHEARS = HELPER.createItem("flint_shears", () ->
             new FIShearsItem(new Item.Properties().durability(119)));
+    //Tapper
+    public static final RegistryObject<Item> TAPPER = HELPER.createItem("tapper", () ->
+            new TapperItem(new Item.Properties()));
 
 }

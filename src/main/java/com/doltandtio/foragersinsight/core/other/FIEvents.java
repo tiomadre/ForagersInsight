@@ -4,15 +4,16 @@ import com.doltandtio.foragersinsight.common.block.TapperBlock;
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
+import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,7 +24,6 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
 
@@ -32,19 +32,37 @@ public class FIEvents {
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         Level level = event.getLevel();
-        BlockHitResult result = event.getHitVec();
+        BlockHitResult hit = event.getHitVec();
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
-        BlockPos pos = event.getPos();
-        BlockState state = level.getBlockState(pos);
-        ItemStack stack = player.getItemInHand(hand);
+        BlockPos clickedPos = event.getPos();
+        BlockState clickedState = level.getBlockState(clickedPos);
+        ItemStack heldStack = player.getItemInHand(hand);
 
-        if (player.getItemInHand(hand).is(ModItems.IRON_KNIFE.get())) {
-            BlockPlaceContext placeContext = new BlockPlaceContext(player, hand, stack, result);
-            if (((TapperBlock) FIBlocks.TAPPER.get()).placeTapper(level, placeContext, player, state)) {
-                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
-                event.setCanceled(true);
-                event.setResult(Event.Result.DENY);
+        if (heldStack.is(FIItems.TAPPER.get())) {
+            if (clickedState.is(FIBlocks.SAPPY_BIRCH_LOG.get())) {
+                BlockPos placePos = clickedPos.relative(hit.getDirection());
+
+                if (level.getBlockState(placePos).canBeReplaced()) {
+                    BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
+                            .setValue(TapperBlock.FACING, hit.getDirection().getOpposite())
+                            .setValue(TapperBlock.HAS_TAPPER, false)
+                            .setValue(TapperBlock.FILL, 0);
+
+                    if (!level.isClientSide) {
+                        level.setBlock(placePos, tapperState, 3);
+                        level.playSound(null, placePos,
+                                clickedState.getSoundType().getPlaceSound(),
+                                SoundSource.BLOCKS, 1.0F, 1.0F);
+                        if (!player.getAbilities().instabuild) {
+                            heldStack.shrink(1);
+                        }
+                    }
+
+                    event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
+                    event.setCanceled(true);
+                    event.setResult(Event.Result.DENY);
+                }
             }
         }
     }

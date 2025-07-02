@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "foragersinsight:block/sappy_birch_log" },
+    "axis=z":  { "model": "foragersinsight:block/sappy_birch_log", "x": 90 },
+    "axis=x":  { "model": "foragersinsight:block/sappy_birch_log", "x": 90, "y": 90 }
+  }
+}

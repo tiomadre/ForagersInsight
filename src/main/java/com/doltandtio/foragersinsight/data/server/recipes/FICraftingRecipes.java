@@ -108,8 +108,10 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
         //Tools
+            //Flint Shears
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
                 .requires(FLINT).requires(FLINT);
+            //Mallets
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FLINT_MALLET.get())
                 .pattern("fff")
                 .pattern(" s ")
@@ -140,6 +142,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('i', NETHERITE_INGOT)
                 .define('s', STICK)
                 .unlockedBy("has_netherite", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
+            //Handbasket
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HANDBASKET.get())
                 .pattern(" ) ")
                 .pattern(": :")
@@ -147,6 +150,9 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define(':', ModItems.STRAW.get())
                 .define(')', STICK)
                 .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
+            //Tapper
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FIItems.TAPPER.get())
+                .requires(ModItems.FLINT_KNIFE.get()).requires(BUCKET);
  //BLOCKS
         //Decorative
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get())
