@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "tools",
+  "ingredients": [
+    { "item": "farmersdelight:flint_knife" },
+    { "item": "minecraft:bucket" }
+  ],
+  "result": { "item": "foragersinsight:tapper" }
+}

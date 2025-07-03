@@ -19,7 +19,8 @@ public class FIBlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        this.tag(TAPPABLE).addTags(BlockTags.BIRCH_LOGS);
+        this.tag(BlockTags.LOGS).add(SAPPY_BIRCH_LOG.get());
+        this.tag(BlockTags.BIRCH_LOGS).add(SAPPY_BIRCH_LOG.get());
 
         this.tag(BlockTags.SAPLINGS).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_OAK_LEAVES.get());
@@ -38,7 +39,7 @@ public class FIBlockTags extends BlockTagsProvider {
 
     protected void registerMineables() {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ROSE_CROP.get(), BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(),
-                DANDELION_ROOTS_CRATE.get());
+                DANDELION_ROOTS_CRATE.get(), SAPPY_BIRCH_LOG.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get());
         this.tag(BlockTags.LEAVES).add(BOUNTIFUL_OAK_LEAVES.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(), BOUNTIFUL_DARK_OAK_LEAVES.get(), BOUNTIFUL_SPRUCE_LEAVES.get());

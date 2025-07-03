@@ -27,9 +27,6 @@ public class FITags {
         public static final TagKey<net.minecraft.world.item.Item> MUSHROOM = TagUtil.itemTag("forge", "crops/mushroom");
         //Handbasket
         public static final TagKey<Item> HANDBASKET_ALLOWED = TagKey.create(Registries.ITEM, new ResourceLocation("foragersinsight","handbasket_allowed"));
-        private static TagKey<Item> modTag(String namespace) {
-            return TagUtil.itemTag("ForagersInsight", namespace);
-        }
 
         public static final TagKey<Item> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
         public static final TagKey<Item> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
@@ -43,7 +40,7 @@ public class FITags {
     }
 
     public static class BlockTag {
-        public static final TagKey<Block> TAPPABLE = blockTag("tappable");
+
 
         public static final TagKey<Block> STORAGE_BLOCK_ROSE_HIP = storageTag("rose_hip");
         public static final TagKey<Block> STORAGE_BLOCK_SPRUCE_TIPS = storageTag("spruce_tips");
@@ -64,6 +61,7 @@ public class FITags {
         public static final TagKey<Biome> HAS_APPLE_TREES = hasFeature("apple_trees");
         public static final TagKey<Biome> HAS_ACORN_TREES = hasFeature("acorn_trees");
         public static final TagKey<Biome> HAS_SPRUCE_TIP_TREES = hasFeature("spruce_tip_trees");
+        public static final TagKey<Biome> HAS_SAPPY_BIRCH_TREES = hasFeature("sappy_birch_trees");
 
         private static TagKey<Biome> modTag(String namespace) {
             return TagUtil.biomeTag(ForagersInsight.MOD_ID, namespace);

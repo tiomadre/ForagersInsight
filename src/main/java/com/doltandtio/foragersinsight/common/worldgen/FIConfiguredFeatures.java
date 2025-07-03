@@ -31,6 +31,7 @@ public class FIConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_TREE_KEY = registerKey("apple_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ACORN_TREE_KEY = registerKey("acorn_dark_oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_TIP_TREE_KEY = registerKey("spruce_tip_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPY_BIRCH_TREE_KEY = registerKey("sappy_birch_tree");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ForagersInsight.rl(name));
@@ -60,7 +61,16 @@ public class FIConfiguredFeatures {
                 new SpruceTipTreeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 3),
                 new TwoLayersFeatureSize(2, 0, 2)
         ).build());
+
+        register(context, SAPPY_BIRCH_TREE_KEY, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(FIBlocks.SAPPY_BIRCH_LOG.get()),
+                new StraightTrunkPlacer(5, 2, 0),
+                BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
+                new TwoLayersFeatureSize(1, 0, 2)
+        ).build());
     }
+
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
                                                                                           ResourceKey<ConfiguredFeature<?, ?>> key,

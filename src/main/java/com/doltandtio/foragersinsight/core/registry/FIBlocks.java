@@ -9,12 +9,11 @@ import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.BirchTreeGrower;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
-import java.util.function.Supplier;
+
 
 import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy;
@@ -52,7 +51,7 @@ public class FIBlocks {
     public static final RegistryObject<Block> BOUNTIFUL_SPRUCE_TIPS = HELPER.createBlockNoItem("bountiful_spruce_tips", () ->
             new SpruceTipBlock(copy(Blocks.SWEET_BERRY_BUSH).noCollission()));
     public static final RegistryObject<Block> SAPPY_BIRCH_LOG = HELPER.createFuelBlock("sappy_birch_log", () ->
-            new LogBlock((Supplier<Block>) new BirchTreeGrower(), copy(Blocks.BIRCH_LOG)), 300);
+            new LogBlock(() -> Blocks.STRIPPED_BIRCH_LOG, copy(Blocks.BIRCH_LOG)), 300);
         //Syrup Tap
     public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
             new TapperBlock(copy(Blocks.IRON_BLOCK)));

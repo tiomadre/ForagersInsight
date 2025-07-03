@@ -9,11 +9,17 @@ public class FIConfig {
     public static class Common {
         @ConfigKey("config")
         public final ForgeConfigSpec.DoubleValue chanceToGrowBountifulTree;
+        public final ForgeConfigSpec.DoubleValue chanceToGrowSappyBirch;
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Bountiful Trees");
             this.chanceToGrowBountifulTree = builder.comment("Chance for a tree's vanilla saplings to grow into its bountiful version. -1 to disable")
                     .defineInRange("Bountiful Mutations", 0.025d, -1.5, 1);
+            builder.pop();
+
+            builder.push("Sappy Birch");
+            this.chanceToGrowSappyBirch = builder.comment("Chance for birch saplings to grow into sappy birch logs. -1 to disable")
+                    .defineInRange("Sappy Birch Mutations", 0.025d, -1.5, 1);
             builder.pop();
         }
     }
@@ -29,6 +35,12 @@ public class FIConfig {
 
     public static boolean shouldGrowBountifulTree(RandomSource rand) {
         double chance = COMMON.chanceToGrowBountifulTree.get();
+        if (chance < 0) return false;
+        return rand.nextDouble() < chance;
+    }
+
+    public static boolean shouldGrowSappyBirch(RandomSource rand) {
+        double chance = COMMON.chanceToGrowSappyBirch.get();
         if (chance < 0) return false;
         return rand.nextDouble() < chance;
     }

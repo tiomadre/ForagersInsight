@@ -152,7 +152,11 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
             //Tapper
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FIItems.TAPPER.get())
-                .requires(ModItems.FLINT_KNIFE.get()).requires(BUCKET);
+                .requires(ModItems.FLINT_KNIFE.get())
+                .requires(BUCKET)
+                .unlockedBy("has_flint_knife", has(ModItems.FLINT_KNIFE.get()))
+                .unlockedBy("has_bucket", has(BUCKET))
+                .save(consumer);
  //BLOCKS
         //Decorative
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get())
@@ -187,7 +191,6 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         FICookingRecipes.buildRecipes(consumer);
         FICrushandCutRecipes.buildRecipes(consumer);
     }
-
 
     private void cookie(Supplier<Item> cookie, Supplier<? extends ItemLike> ingred, Consumer<FinishedRecipe> consumer) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, cookie.get(), 8)

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "foragersinsight:tapper"
+          "name": "foragersinsight:sappy_birch_log"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "foragersinsight:blocks/tapper"
+  "random_sequence": "foragersinsight:blocks/sappy_birch_log"
 }

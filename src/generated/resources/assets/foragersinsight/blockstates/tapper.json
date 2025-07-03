@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "fill=0": { "model": "foragersinsight:block/tapper_stage0" },
+    "fill=1": { "model": "foragersinsight:block/tapper_stage1" },
+    "fill=2": { "model": "foragersinsight:block/tapper_stage2" },
+    "fill=3": { "model": "foragersinsight:block/tapper_stage3" },
+    "fill=4": { "model": "foragersinsight:block/tapper_stage4" }
+  }
+}

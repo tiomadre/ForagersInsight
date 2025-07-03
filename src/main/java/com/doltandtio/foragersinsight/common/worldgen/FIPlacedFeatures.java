@@ -19,6 +19,7 @@ public class FIPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_TREE_PLACED_KEY = registerKey("apple_tree_placed");
     public static final ResourceKey<PlacedFeature> ACORN_DARK_OAK_TREE_PLACED_KEY = registerKey("acorn_dark_oak_placed");
     public static final ResourceKey<PlacedFeature> SPRUCE_TIP_TREE_PLACED_KEY = registerKey("spruce_tip_tree_placed");
+    public static final ResourceKey<PlacedFeature> SAPPY_BIRCH_TREE_PLACED_KEY = registerKey("sappy_birch_tree_placed");
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, ForagersInsight.rl(name));
@@ -32,6 +33,8 @@ public class FIPlacedFeatures {
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.DARK_OAK_SAPLING));
         register(context, SPRUCE_TIP_TREE_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.SPRUCE_TIP_TREE_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.SPRUCE_SAPLING));
+        register(context, SAPPY_BIRCH_TREE_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.SAPPY_BIRCH_TREE_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.BIRCH_SAPLING));
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,

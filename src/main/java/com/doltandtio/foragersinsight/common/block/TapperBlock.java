@@ -63,7 +63,7 @@ public class TapperBlock extends HorizontalDirectionalBlock {
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         ItemStack held = player.getItemInHand(hand);
 
-        // place tapepr to start collecting sap
+        // place tapper to start collecting sap
         if (!state.getValue(HAS_TAPPER) && held.is(FIItems.TAPPER.get())) {
             if (!level.isClientSide) {
                 level.setBlock(pos, state.setValue(HAS_TAPPER, true).setValue(FILL, 0), Block.UPDATE_ALL);
@@ -98,7 +98,7 @@ public class TapperBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState oldState, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
         if (oldState.getBlock() != newState.getBlock() && oldState.getValue(HAS_TAPPER)) {
             // drop tapper item on  break
             Block.popResource(level, pos, new ItemStack(FIItems.TAPPER.get()));
