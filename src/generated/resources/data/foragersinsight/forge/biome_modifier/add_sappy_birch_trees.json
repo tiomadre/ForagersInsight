@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foragersinsight:has_feature/sappy_birch_trees",
+  "features": "foragersinsight:sappy_birch_tree_placed",
+  "step": "vegetal_decoration"
+}

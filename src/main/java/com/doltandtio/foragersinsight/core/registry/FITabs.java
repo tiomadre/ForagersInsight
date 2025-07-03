@@ -34,6 +34,7 @@ public class FITabs {
                         output.accept(FIBlocks.DENSE_SPRUCE_TIP_MAT.get());
                         output.accept(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get());
                         output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
+                        output.accept(FIBlocks.SAPPY_BIRCH_LOG.get());
                         // Items
                             // Cuts and Crushed
                                 //Cuts
@@ -104,6 +105,7 @@ public class FITabs {
                         output.accept(FIItems.TAPPER.get());
                             //Other
                         output.accept(FIItems.BIRCH_SAP_BUCKET.get());
+
                     })
                     .build());
 

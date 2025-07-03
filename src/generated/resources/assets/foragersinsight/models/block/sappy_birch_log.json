@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "end": "minecraft:block/birch_log_top",
-    "side": "foragersinsight:block/sappy_birch_log_side"
+    "side": "foragersinsight:block/sappy_birch_log"
   }
 }
