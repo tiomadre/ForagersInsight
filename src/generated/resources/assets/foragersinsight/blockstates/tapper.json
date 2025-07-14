@@ -1,9 +1,28 @@
 {
   "variants": {
-    "fill=0": { "model": "foragersinsight:block/tapper" },
-    "fill=1": { "model": "foragersinsight:block/tapper_stage1" },
-    "fill=2": { "model": "foragersinsight:block/tapper_stage2" },
-    "fill=3": { "model": "foragersinsight:block/tapper_stage3" },
-    "fill=4": { "model": "foragersinsight:block/tapper_stage4" }
+    "facing=north,fill=0": { "model": "foragersinsight:block/tapper" },
+    "facing=east,fill=0":  { "model": "foragersinsight:block/tapper", "y": 90 },
+    "facing=south,fill=0": { "model": "foragersinsight:block/tapper", "y": 180 },
+    "facing=west,fill=0":  { "model": "foragersinsight:block/tapper", "y": 270 },
+
+    "facing=north,fill=1": { "model": "foragersinsight:block/tapper_stage1" },
+    "facing=east,fill=1":  { "model": "foragersinsight:block/tapper_stage1", "y": 90 },
+    "facing=south,fill=1": { "model": "foragersinsight:block/tapper_stage1", "y": 180 },
+    "facing=west,fill=1":  { "model": "foragersinsight:block/tapper_stage1", "y": 270 },
+
+    "facing=north,fill=2": { "model": "foragersinsight:block/tapper_stage2" },
+    "facing=east,fill=2":  { "model": "foragersinsight:block/tapper_stage2", "y": 90 },
+    "facing=south,fill=2": { "model": "foragersinsight:block/tapper_stage2", "y": 180 },
+    "facing=west,fill=2":  { "model": "foragersinsight:block/tapper_stage2", "y": 270 },
+
+    "facing=north,fill=3": { "model": "foragersinsight:block/tapper_stage3" },
+    "facing=east,fill=3":  { "model": "foragersinsight:block/tapper_stage3", "y": 90 },
+    "facing=south,fill=3": { "model": "foragersinsight:block/tapper_stage3", "y": 180 },
+    "facing=west,fill=3":  { "model": "foragersinsight:block/tapper_stage3", "y": 270 },
+
+    "facing=north,fill=4": { "model": "foragersinsight:block/tapper_stage4" },
+    "facing=east,fill=4":  { "model": "foragersinsight:block/tapper_stage4", "y": 90 },
+    "facing=south,fill=4": { "model": "foragersinsight:block/tapper_stage4", "y": 180 },
+    "facing=west,fill=4":  { "model": "foragersinsight:block/tapper_stage4", "y": 270 }
   }
 }
