@@ -45,7 +45,6 @@ public class FIEvents {
 
                 if (level.getBlockState(placePos).canBeReplaced()) {
                     BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
-                            .setValue(TapperBlock.FACING, hit.getDirection().getOpposite())
                             .setValue(TapperBlock.HAS_TAPPER, false)
                             .setValue(TapperBlock.FILL, 0);
 

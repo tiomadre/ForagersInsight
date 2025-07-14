@@ -32,7 +32,6 @@ public class TapperItem extends Item {
         if (!level.getBlockState(placePos).canBeReplaced()) return InteractionResult.FAIL;
 
         BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
-                .setValue(TapperBlock.FACING, face.getOpposite())
                 .setValue(TapperBlock.HAS_TAPPER, false)
                 .setValue(TapperBlock.FILL, 0);
 
