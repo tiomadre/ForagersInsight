@@ -38,11 +38,13 @@ public class ForagersInsight {
 		MinecraftForge.EVENT_BUS.register(this);
 
 		REGISTRY_HELPER.register(bus);
+		FITreeDecoratorTypes.TREE_DECORATOR_TYPES.register(bus);
 		FILootModifiers.LOOT_MODIFIERS.register(bus);
 		FIMobEffects.MOB_EFFECTS.register(bus);
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(bus);
 		FIEnchantments.register();
 		FIMenuTypes.MENUS.register(bus);
+
 		FITabs.TABS.register(bus);
 
 		bus.addListener(this::commonSetup);

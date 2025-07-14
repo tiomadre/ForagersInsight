@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ShearsFortuneMixin {
     @Inject(method = "canEnchant", at = @At("HEAD"), cancellable = true)
     private void allowFortuneOnShears(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        // Check if  Fortune enchanted ShearsItem
+
         if ((Object) this == Enchantments.BLOCK_FORTUNE && stack.getItem() instanceof ShearsItem) {
-            cir.setReturnValue(true); // Allow enchanting
+            cir.setReturnValue(true); // allows enchanting
         }
     }
 }

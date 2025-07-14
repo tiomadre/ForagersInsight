@@ -1,5 +1,6 @@
 package com.doltandtio.foragersinsight.common.block;
 
+import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TapperBlock extends HorizontalDirectionalBlock {
     public static final BooleanProperty HAS_TAPPER = BooleanProperty.create("has_tapper");
-    public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 3);
+    public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 4); // Now supports 5 stages
 
     public TapperBlock(Properties props) {
         super(props);
@@ -37,24 +38,50 @@ public class TapperBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, FILL, HAS_TAPPER);
     }
 
     @Override
+    public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+        Direction face = context.getClickedFace();
+        if (face.getAxis().isVertical()) {
+            return null; // prevent placement on top or bottom of log
+        }
+
+        Direction opposite = face.getOpposite();
+        BlockPos attachedPos = context.getClickedPos().relative(opposite);
+        BlockState attached = context.getLevel().getBlockState(attachedPos);
+
+        if (attached.is(FIBlocks.SAPPY_BIRCH_LOG.get())) {
+            return defaultBlockState()
+                    .setValue(FACING, face)
+                    .setValue(HAS_TAPPER, false)
+                    .setValue(FILL, 0);
+        }
+
+        return null;
+    }
+
+    public boolean canSurvive(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        Direction facing = state.getValue(FACING);
+        BlockPos attachedPos = pos.relative(facing.getOpposite());
+        BlockState attachedState = level.getBlockState(attachedPos);
+        return attachedState.is(FIBlocks.SAPPY_BIRCH_LOG.get());
+    }
+
+    @Override
     public boolean isRandomlyTicking(@NotNull BlockState state) {
-        return state.getValue(HAS_TAPPER) && state.getValue(FILL) < 3;
+        return state.getValue(HAS_TAPPER) && state.getValue(FILL) < 4;
     }
 
     @Override
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        if (state.getValue(HAS_TAPPER) && state.getValue(FILL) < 3) {
-            level.setBlock(pos, state.setValue(FILL, state.getValue(FILL) + 1), Block.UPDATE_CLIENTS);
+        if (state.getValue(HAS_TAPPER)) {
+            int currentFill = state.getValue(FILL);
+            if (currentFill < 4) {
+                level.setBlock(pos, state.setValue(FILL, currentFill + 1), Block.UPDATE_CLIENTS);
+            }
         }
     }
 
@@ -63,7 +90,7 @@ public class TapperBlock extends HorizontalDirectionalBlock {
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         ItemStack held = player.getItemInHand(hand);
 
-        // place tapper to start collecting sap
+        // Place tapper to start collecting sap
         if (!state.getValue(HAS_TAPPER) && held.is(FIItems.TAPPER.get())) {
             if (!level.isClientSide) {
                 level.setBlock(pos, state.setValue(HAS_TAPPER, true).setValue(FILL, 0), Block.UPDATE_ALL);
@@ -76,14 +103,14 @@ public class TapperBlock extends HorizontalDirectionalBlock {
         }
 
         // Harvest with a bucket
-        if (state.getValue(HAS_TAPPER) && state.getValue(FILL) == 3 && held.is(Items.BUCKET)) {
+        if (state.getValue(HAS_TAPPER) && state.getValue(FILL) == 4 && held.is(Items.BUCKET)) {
             if (!level.isClientSide) {
                 ItemStack sapBucket = new ItemStack(FIItems.BIRCH_SAP_BUCKET.get());
                 if (!player.addItem(sapBucket)) {
                     player.drop(sapBucket, false);
                 }
 
-                // reset stage
+                // Reset stage
                 level.setBlock(pos, state.setValue(HAS_TAPPER, false).setValue(FILL, 0), Block.UPDATE_ALL);
                 level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
 
@@ -100,7 +127,7 @@ public class TapperBlock extends HorizontalDirectionalBlock {
     @Override
     public void onRemove(BlockState oldState, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
         if (oldState.getBlock() != newState.getBlock() && oldState.getValue(HAS_TAPPER)) {
-            // drop tapper item on  break
+            // Drop tapper item on break
             Block.popResource(level, pos, new ItemStack(FIItems.TAPPER.get()));
         }
         super.onRemove(oldState, level, pos, newState, isMoving);

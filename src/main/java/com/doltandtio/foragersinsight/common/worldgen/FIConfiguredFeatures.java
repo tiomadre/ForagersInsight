@@ -2,6 +2,8 @@ package com.doltandtio.foragersinsight.common.worldgen;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
+import com.doltandtio.foragersinsight.core.registry.FIConfig;
+import com.doltandtio.foragersinsight.common.worldgen.trees.decorator.SappyBirchLogDecorator;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
@@ -25,6 +27,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlace
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
 import java.util.OptionalInt;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class FIConfiguredFeatures {
@@ -68,7 +71,7 @@ public class FIConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
                 new TwoLayersFeatureSize(1, 0, 2)
-        ).build());
+        ).decorators(List.of(new SappyBirchLogDecorator(FIConfig.COMMON.chanceToGrowSappyBirch.get().floatValue()))).build());
     }
 
 

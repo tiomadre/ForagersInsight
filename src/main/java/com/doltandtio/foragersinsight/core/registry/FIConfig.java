@@ -19,7 +19,7 @@ public class FIConfig {
 
             builder.push("Sappy Birch");
             this.chanceToGrowSappyBirch = builder.comment("Chance for birch saplings to grow into sappy birch logs. -1 to disable")
-                    .defineInRange("Sappy Birch Mutations", 0.025d, -1.5, 1);
+                    .defineInRange("Sappy Birch Mutations", 0.15d, -1.5, 1);
             builder.pop();
         }
     }
