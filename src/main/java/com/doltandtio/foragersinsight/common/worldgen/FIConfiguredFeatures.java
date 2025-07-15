@@ -23,6 +23,8 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import com.doltandtio.foragersinsight.common.worldgen.trees.decorator.SappyBirchLogDecorator;
+import java.util.List;
 
 import java.util.OptionalInt;
 import java.util.function.Supplier;
@@ -63,12 +65,12 @@ public class FIConfiguredFeatures {
         ).build());
 
         register(context, SAPPY_BIRCH_TREE_KEY, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(FIBlocks.SAPPY_BIRCH_LOG.get()),
+                BlockStateProvider.simple(Blocks.BIRCH_LOG),
                 new StraightTrunkPlacer(5, 2, 0),
                 BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
                 new TwoLayersFeatureSize(1, 0, 2)
-        ).build());
+        ).decorators(List.of(new SappyBirchLogDecorator(0.25F))).build());
     }
 
 

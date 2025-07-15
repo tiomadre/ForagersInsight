@@ -54,7 +54,7 @@ public class FIBlocks {
             new LogBlock(() -> Blocks.STRIPPED_BIRCH_LOG, copy(Blocks.BIRCH_LOG)), 300);
         //Syrup Tap
     public static final RegistryObject<Block> TAPPER = HELPER.createBlockNoItem("tapper", () ->
-            new TapperBlock(copy(Blocks.IRON_BLOCK)));
+            new TapperBlock(copy(Blocks.IRON_BLOCK).noOcclusion()));
     //DECORATIVE
         //Foliage Mats
     public static final RegistryObject<Block> SCATTERED_ROSE_PETAL_MAT = HELPER.createBlock("scattered_rose_petals", FoliageMatBlock::new);

@@ -14,16 +14,15 @@ public class FIConfig {
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Bountiful Trees");
             this.chanceToGrowBountifulTree = builder.comment("Chance for a tree's vanilla saplings to grow into its bountiful version. -1 to disable")
-                    .defineInRange("Bountiful Mutations", 0.025d, -1.5, 1);
+                    .defineInRange("Bountiful Mutations", 0.025d, -1.5, 1); //Default 2.5% Chance
             builder.pop();
 
             builder.push("Sappy Birch");
-            this.chanceToGrowSappyBirch = builder.comment("Chance for birch saplings to grow into sappy birch logs. -1 to disable")
-                    .defineInRange("Sappy Birch Mutations", 0.025d, -1.5, 1);
+            this.chanceToGrowSappyBirch = builder.comment("Chance for birch saplings to grow into Sappy Variant. -1 to disable")
+                    .defineInRange("Sappy Birch Mutations", 0.15d, -1.5, 1); //Default 15% chance
             builder.pop();
         }
     }
-
     public static final ForgeConfigSpec COMMON_SPEC;
     public static final Common COMMON;
 

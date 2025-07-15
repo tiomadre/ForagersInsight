@@ -24,14 +24,26 @@ public class TapperItem extends Item {
         Level level = context.getLevel();
         BlockPos clickedPos = context.getClickedPos();
         Direction face = context.getClickedFace();
+        Direction oppositeFace = face.getOpposite();
         BlockPos placePos = clickedPos.relative(face);
         BlockState clickedState = level.getBlockState(clickedPos);
 
-        // only usable on Sappy Birch Logs
+        // Only usable on Sappy Birch Logs
         if (!clickedState.is(FIBlocks.SAPPY_BIRCH_LOG.get())) return InteractionResult.PASS;
         if (!level.getBlockState(placePos).canBeReplaced()) return InteractionResult.FAIL;
 
+        // check sides for existing Tapper blocks
+        for (Direction dir : Direction.values()) {
+            BlockPos neighborPos = clickedPos.relative(dir);
+            BlockState neighborState = level.getBlockState(neighborPos);
+            if (neighborState.is(FIBlocks.TAPPER.get()) &&
+                    neighborState.getValue(TapperBlock.FACING) == dir.getOpposite()) {
+                return InteractionResult.FAIL;
+            }
+        }
+
         BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
+                .setValue(TapperBlock.FACING, oppositeFace)
                 .setValue(TapperBlock.HAS_TAPPER, false)
                 .setValue(TapperBlock.FILL, 0);
 

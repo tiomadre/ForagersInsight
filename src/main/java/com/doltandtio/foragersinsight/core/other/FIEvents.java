@@ -6,6 +6,7 @@ import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -42,9 +43,11 @@ public class FIEvents {
         if (heldStack.is(FIItems.TAPPER.get())) {
             if (clickedState.is(FIBlocks.SAPPY_BIRCH_LOG.get())) {
                 BlockPos placePos = clickedPos.relative(hit.getDirection());
+                Direction oppositeFace = hit.getDirection().getOpposite();
 
                 if (level.getBlockState(placePos).canBeReplaced()) {
                     BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
+                            .setValue(TapperBlock.FACING, oppositeFace)
                             .setValue(TapperBlock.HAS_TAPPER, false)
                             .setValue(TapperBlock.FILL, 0);
 
@@ -65,6 +68,7 @@ public class FIEvents {
             }
         }
     }
+
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {

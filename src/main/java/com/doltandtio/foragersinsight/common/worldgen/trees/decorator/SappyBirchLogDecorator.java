@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.ArrayList;
 
 public class SappyBirchLogDecorator extends TreeDecorator {
     public static final Codec<SappyBirchLogDecorator> CODEC = RecordCodecBuilder.create(
@@ -43,13 +44,17 @@ public class SappyBirchLogDecorator extends TreeDecorator {
 
         logs.sort(Comparator.comparingInt(BlockPos::getY));
         BlockPos base = logs.get(0);
-        int replaced = 0;
+
+        List<BlockPos> trunk = new ArrayList<>();
         for (BlockPos pos : logs) {
             if (pos.getX() == base.getX() && pos.getZ() == base.getZ() && pos.getY() > base.getY()) {
-                BlockState state = FIBlocks.SAPPY_BIRCH_LOG.get().defaultBlockState();
-                context.setBlock(pos, state);
-                if (++replaced >= 2) break;
+                trunk.add(pos);
             }
         }
+
+        if (trunk.isEmpty()) return;
+        BlockPos chosen = trunk.get(random.nextInt(trunk.size()));
+        BlockState state = FIBlocks.SAPPY_BIRCH_LOG.get().defaultBlockState();
+        context.setBlock(chosen, state);
     }
 }
