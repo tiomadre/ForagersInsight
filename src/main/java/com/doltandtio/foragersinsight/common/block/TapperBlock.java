@@ -14,26 +14,68 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.stream.Stream;
 
 public class TapperBlock extends HorizontalDirectionalBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty HAS_TAPPER = BooleanProperty.create("has_tapper");
     public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 4);
 
+    // hit box
+    private static final VoxelShape NORTH_SHAPE = Stream.of(
+            Block.box(7.5, 12,  0,   8.5, 15,  6),
+            Block.box(7.5, 13,  6,   8.5, 15, 11),
+            Block.box(3.5,  2,   1,  12.5, 11, 10),
+            Block.box(11.5,11,   5,  11.5,15,  6),
+            Block.box(4.5, 11,   5,   4.5,15,  6),
+            Block.box(4.5, 15,   5,  11.5,15,  6)
+    ).reduce(Shapes.empty(), Shapes::or);
+    private static final VoxelShape EAST_SHAPE = Stream.of(
+            Block.box(10, 12,  7.5, 16, 15,  8.5),
+            Block.box( 5, 13,  7.5, 10, 15,  8.5),
+            Block.box( 6,  2,  3.5, 15, 11, 12.5),
+            Block.box(10, 11, 11.5, 11, 15, 11.5),
+            Block.box(10, 11,  4.5, 11, 15,  4.5),
+            Block.box(10, 15,  4.5, 11, 15, 11.5)
+    ).reduce(Shapes.empty(), Shapes::or);
+    private static final VoxelShape SOUTH_SHAPE = Stream.of(
+            Block.box( 7.5, 12, 10,  8.5, 15, 16),
+            Block.box( 7.5, 13,  5,  8.5, 15, 10),
+            Block.box( 3.5,  2,   6, 12.5, 11, 15),
+            Block.box( 4.5, 11, 10,  4.5, 15, 11),
+            Block.box(11.5, 11, 10, 11.5, 15, 11),
+            Block.box( 4.5, 15, 10, 11.5, 15, 11)
+    ).reduce(Shapes.empty(), Shapes::or);
+    private static final VoxelShape WEST_SHAPE = Stream.of(
+            Block.box( 0, 12,  7.5,  6, 15,  8.5),
+            Block.box( 6, 13,  7.5, 11, 15,  8.5),
+            Block.box( 1,  2,  3.5, 10, 11, 12.5),
+            Block.box( 5, 11,  4.5,  6, 15,  4.5),
+            Block.box( 5, 11, 11.5,  6, 15, 11.5),
+            Block.box( 5, 15,  4.5,  6, 15, 11.5)
+    ).reduce(Shapes.empty(), Shapes::or);
+
     public TapperBlock(Properties props) {
         super(props);
-        this.registerDefaultState(this.stateDefinition.any()
+        registerDefaultState(getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(HAS_TAPPER, false)
                 .setValue(FILL, 0));
@@ -45,94 +87,64 @@ public class TapperBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world,
+                                        @NotNull BlockPos pos, @NotNull CollisionContext ctx) {
+        return switch (state.getValue(FACING)) {
+            case EAST  -> EAST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST  -> WEST_SHAPE;
+            default    -> NORTH_SHAPE;
+        };
+    }
+    @Override
     public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+        Direction face = context.getClickedFace();
+        if (face.getAxis().isVertical()) return null;
         Level level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        Direction clickedFace = context.getClickedFace();
+        BlockPos logPos = context.getClickedPos().relative(face);
+        BlockState logState = level.getBlockState(logPos);
 
-        // Only place on sides (not top or bottom)
-        if (clickedFace.getAxis().isVertical()) return null;
-
-        Direction facing = clickedFace; // Face toward the log (same direction as placement surface)
-        BlockPos attachedPos = pos.relative(facing);
-        BlockState attachedState = level.getBlockState(attachedPos);
-
-        // Must attach to vertical sappy birch log
-        if (!attachedState.is(FIBlocks.SAPPY_BIRCH_LOG.get()) ||
-                attachedState.getProperties().stream().noneMatch(p ->
-                        p.getName().equals("axis") && attachedState.getValue(p).toString().equals("y"))) {
+        // place on any valid Sappy Birch Log to being harvest
+        if (!logState.is(FIBlocks.SAPPY_BIRCH_LOG.get()) ||
+                logState.getValue(RotatedPillarBlock.AXIS) != Direction.Axis.Y) {
             return null;
         }
-
-        // Disallow if another tapper is already attached to the same log
-        for (Direction dir : Direction.values()) {
-            if (dir.getAxis().isHorizontal()) {
-                BlockPos check = attachedPos.relative(dir);
-                BlockState neighbor = level.getBlockState(check);
-                if (neighbor.getBlock() instanceof TapperBlock) {
-                    return null;
-                }
-            }
-        }
-
         return defaultBlockState()
-                .setValue(FACING, facing.getOpposite()) // Face away from the log
-                .setValue(HAS_TAPPER, false)
+                .setValue(FACING, face.getOpposite())
+                .setValue(HAS_TAPPER, true)
                 .setValue(FILL, 0);
     }
-
-    public boolean canSurvive(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
-        Direction facing = state.getValue(FACING).getOpposite();
-        BlockPos attachedPos = pos.relative(facing);
-        BlockState attachedState = level.getBlockState(attachedPos);
-
-        return attachedState.is(FIBlocks.SAPPY_BIRCH_LOG.get()) &&
-                attachedState.getProperties().stream().anyMatch(p ->
-                        p.getName().equals("axis") && attachedState.getValue(p).toString().equals("y"));
+    @Override
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader world, @NotNull BlockPos pos) {
+        Direction attachDir = state.getValue(FACING).getOpposite();
+        BlockState logState = world.getBlockState(pos.relative(attachDir));
+        return logState.is(FIBlocks.SAPPY_BIRCH_LOG.get()) &&
+                logState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y;
     }
-
     @Override
     public boolean isRandomlyTicking(@NotNull BlockState state) {
         return state.getValue(HAS_TAPPER) && state.getValue(FILL) < 4;
     }
-
     @Override
-    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        if (state.getValue(HAS_TAPPER) && state.getValue(FILL) < 4) {
-            level.setBlock(pos, state.setValue(FILL, state.getValue(FILL) + 1), Block.UPDATE_CLIENTS);
-        }
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level,
+                           @NotNull BlockPos pos, @NotNull RandomSource random) {
+        level.setBlock(pos, state.setValue(FILL, state.getValue(FILL) + 1), Block.UPDATE_CLIENTS);
     }
-
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
-                                          @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        ItemStack held = player.getItemInHand(hand);
-
-        // Place tapper
-        if (!state.getValue(HAS_TAPPER) && held.is(FIItems.TAPPER.get())) {
-            if (!level.isClientSide) {
-                level.setBlock(pos, state.setValue(HAS_TAPPER, true).setValue(FILL, 0), Block.UPDATE_ALL);
-                level.playSound(null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1F, 1F);
-                if (!player.getAbilities().instabuild) {
-                    held.shrink(1);
-                }
-            }
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        // Harvest sap
+    @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {ItemStack held = player.getItemInHand(hand);
+        // harvest only when full w/ bucket
         if (state.getValue(HAS_TAPPER) && state.getValue(FILL) == 4 && held.is(Items.BUCKET)) {
             if (!level.isClientSide) {
-                ItemStack sapBucket = new ItemStack(FIItems.BIRCH_SAP_BUCKET.get());
-                if (!player.addItem(sapBucket)) {
-                    player.drop(sapBucket, false);
-                }
-
-                level.setBlock(pos, state.setValue(HAS_TAPPER, false).setValue(FILL, 0), Block.UPDATE_ALL);
+                ItemStack sap = new ItemStack(FIItems.BIRCH_SAP_BUCKET.get());
+                if (!player.addItem(sap)) player.drop(sap, false);
+                // reset stage
+                level.setBlock(pos,
+                        state.setValue(FILL, 0).setValue(HAS_TAPPER, true),
+                        Block.UPDATE_ALL);
+                // sounds
                 level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
-                if (!player.getAbilities().instabuild) {
-                    held.shrink(1);
-                }
+                if (!player.getAbilities().instabuild) held.shrink(1);
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -144,7 +156,7 @@ public class TapperBlock extends HorizontalDirectionalBlock {
     public void onRemove(BlockState oldState, @NotNull Level level, @NotNull BlockPos pos,
                          BlockState newState, boolean isMoving) {
         if (oldState.getBlock() != newState.getBlock() && oldState.getValue(HAS_TAPPER)) {
-            Block.popResource(level, pos, new ItemStack(FIItems.TAPPER.get()));
+            popResource(level, pos, new ItemStack(FIItems.TAPPER.get()));
         }
         super.onRemove(oldState, level, pos, newState, isMoving);
     }

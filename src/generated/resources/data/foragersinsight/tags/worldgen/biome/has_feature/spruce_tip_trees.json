@@ -2,6 +2,8 @@
   "values": [
     "minecraft:taiga",
     "minecraft:old_growth_spruce_taiga",
-    "minecraft:snowy_taiga"
+    "minecraft:snowy_taiga",
+    "minecraft:windswept_forest",
+    "minecraft:grove"
   ]
 }

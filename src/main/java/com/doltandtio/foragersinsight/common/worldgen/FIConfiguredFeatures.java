@@ -68,9 +68,9 @@ public class FIConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.BIRCH_LOG),
                 new StraightTrunkPlacer(5, 2, 0),
                 BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
-                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 3),
                 new TwoLayersFeatureSize(1, 0, 2)
-        ).decorators(List.of(new SappyBirchLogDecorator(0.25F))).build());
+        ).decorators(List.of(new SappyBirchLogDecorator(0.5F))).build());
     }
 
 

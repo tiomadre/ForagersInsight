@@ -4,7 +4,7 @@
     "decorators": [
       {
         "type": "foragersinsight:sappy_birch_log_decorator",
-        "probability": 0.25
+        "probability": 0.5
       }
     ],
     "dirt_provider": {
@@ -15,8 +15,8 @@
     },
     "foliage_placer": {
       "type": "minecraft:blob_foliage_placer",
-      "height": 4,
-      "offset": 0,
+      "height": 3,
+      "offset": 1,
       "radius": 2
     },
     "foliage_provider": {

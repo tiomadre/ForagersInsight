@@ -163,6 +163,7 @@ public class FIItems {
             new FIShearsItem(new Item.Properties().durability(119)));
     //Tapper
     public static final RegistryObject<Item> TAPPER = HELPER.createItem("tapper", () ->
-            new TapperItem(new Item.Properties()));
+            new TapperItem(
+            new Item.Properties().stacksTo(1)));
 
 }
