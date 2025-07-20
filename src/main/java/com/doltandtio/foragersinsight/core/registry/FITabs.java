@@ -67,7 +67,7 @@ public class FITabs {
                         output.accept(FIItems.BLACK_FOREST_MUFFIN.get());
                         output.accept(FIItems.RED_VELVET_CUPCAKE.get());
                         output.accept(FIItems.POPPY_SEED_BAGEL.get());
-                        output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get().getDefaultInstance());
+                        output.accept(FIItems.SLICE_OF_ACORN_CARROT_CAKE.get().getDefaultInstance());
                         output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get().getDefaultInstance());
                             // Dishes
                         output.accept(FIItems.ACORN_NOODLES.get());

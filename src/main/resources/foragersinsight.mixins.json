@@ -8,7 +8,6 @@
     "DarkOakTreeGrowerMixin",
     "OakTreeGrowerMixin",
     "SpruceTreeGrowerMixin",
-    "MobEffectInstantMixin",
     "shears_fortune.FortuneApplyAnvilMixin",
     "shears_fortune.ShearsFortuneMixin"
   ],

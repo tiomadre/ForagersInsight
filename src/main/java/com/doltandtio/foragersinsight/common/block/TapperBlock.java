@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.common.block;
 
 import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
+import com.doltandtio.foragersinsight.core.registry.FIParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -130,6 +131,29 @@ public class TapperBlock extends HorizontalDirectionalBlock {
                            @NotNull BlockPos pos, @NotNull RandomSource random) {
         level.setBlock(pos, state.setValue(FILL, state.getValue(FILL) + 1), Block.UPDATE_CLIENTS);
     }
+    //drips
+    @Override
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
+                            @NotNull RandomSource random) {
+        if (state.getValue(FILL) == 4 && state.getValue(HAS_TAPPER)) {
+            if (random.nextInt(5) == 0) {
+                Direction facing = state.getValue(FACING);
+                double x = pos.getX() + 0.5D;
+                double y = pos.getY() + 0.8D;
+                double z = pos.getZ() + 0.5D;
+
+                switch (facing) {
+                    case NORTH -> z -= 0.35D;
+                    case SOUTH -> z += 0.35D;
+                    case WEST  -> x -= 0.35D;
+                    case EAST  -> x += 0.35D;
+                }
+                level.addParticle(FIParticleTypes.DRIPPING_SAP.get(), x, y, z, 0.0D, -0.05D, 0.0D);
+                level.playLocalSound(x, y, z, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS,
+                        0.5F, 1.0F, false);
+            }
+        }
+    }
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
     @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {ItemStack held = player.getItemInHand(hand);
@@ -143,7 +167,8 @@ public class TapperBlock extends HorizontalDirectionalBlock {
                         state.setValue(FILL, 0).setValue(HAS_TAPPER, true),
                         Block.UPDATE_ALL);
                 // sounds
-                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
+                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.9F, 0.9F);
+                level.playSound(null, pos, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 1.1F, 0.5F);
                 if (!player.getAbilities().instabuild) held.shrink(1);
             }
             return InteractionResult.sidedSuccess(level.isClientSide);

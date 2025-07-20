@@ -23,11 +23,18 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
-
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 5.0D, 14.0D),
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D),
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D),
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)
+    };
     public SpruceTipBlock(Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
@@ -95,5 +102,10 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
+    }
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level,
+                                        @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return SHAPE_BY_AGE[state.getValue(AGE)];
     }
 }

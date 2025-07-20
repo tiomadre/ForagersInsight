@@ -89,7 +89,7 @@ public class ShearsSnipInteractions {
 
                 return;
             }
-                // Bountiful Spruce Tips
+            // Bountiful Spruce Tips
             if (state.getBlock() instanceof SpruceTipBlock tip && tip.isRandomlyTicking(state)) {
                 age = state.getValue(SpruceTipBlock.AGE);
                 if (age >= SpruceTipBlock.MAX_AGE) {
