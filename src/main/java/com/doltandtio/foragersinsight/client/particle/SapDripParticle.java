@@ -14,8 +14,6 @@ public class SapDripParticle extends TextureSheetParticle {
         this.setSize(0.02F, 0.02F);
         this.pickSprite(sprite);
     }
-
-
     @Override
     public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
