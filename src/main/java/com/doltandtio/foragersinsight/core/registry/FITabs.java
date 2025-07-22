@@ -61,6 +61,9 @@ public class FITabs {
                         output.accept(FIItems.SUNFLOWER_BUTTER.get());
                         output.accept(FIItems.SEED_MILK_BOTTLE.get());
                         output.accept(FIItems.SEED_MILK_BUCKET.get());
+                        output.accept(FIItems.BIRCH_SYRUP_BUCKET.get());
+                        output.accept(FIItems.BIRCH_SYRUP_BOTTLE.get());
+
                             // Baked Goods, Cakes and Cookies
                         output.accept(FIItems.ACORN_COOKIE.get());
                         output.accept(FIItems.ROSE_COOKIE.get());
@@ -73,14 +76,16 @@ public class FITabs {
                         output.accept(FIItems.ACORN_NOODLES.get());
                         output.accept(FIItems.CARROT_POPPY_CHOWDER.get());
                         output.accept(FIItems.COD_AND_PUMPKIN_STEW.get());
+                        output.accept(FIItems.GLAZED_PORKCHOP_AND_ACORN_GRITS.get());
                         output.accept(FIItems.FORAGERS_GRANOLA.get());
                         output.accept(FIItems.HEARTY_SPRUCE_PILAF.get());
                         output.accept(FIItems.KELP_AND_BEET_SALAD.get());
                         output.accept(FIItems.MEADOW_MEDLEY.get());
-                        output.accept(FIItems.ROSE_GRANITA.get());
+                        output.accept(FIItems.ROSE_HIP_SOUP.get());
                         output.accept(FIItems.ROSE_ROASTED_ROOTS.get());
                         output.accept(FIItems.SEASIDE_SIZZLER.get());
                         output.accept(FIItems.STEAMY_KELP_RICE.get());
+                        output.accept(FIItems.SYRUP_TOAST_STACKS.get());
                         output.accept(FIItems.WOODLAND_PASTA.get());
                             //Sandwiches and Finger Foods
                         output.accept(FIItems.CREAMY_SALMON_BAGEL.get());
@@ -105,6 +110,8 @@ public class FITabs {
                         output.accept(FIItems.TAPPER.get());
                             //Other
                         output.accept(FIItems.BIRCH_SAP_BUCKET.get());
+                        output.accept(FIItems.BIRCH_SAP_BOTTLE.get());
+
 
                     })
                     .build());

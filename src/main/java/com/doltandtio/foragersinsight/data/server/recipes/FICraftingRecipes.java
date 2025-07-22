@@ -9,10 +9,7 @@ import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
 import static com.doltandtio.foragersinsight.core.registry.FIItems.ACORN_CARROT_CAKE_ITEM;
 import com.teamabnormals.blueprint.core.data.server.BlueprintRecipeProvider;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -68,10 +65,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
                 .save(consumer, new ResourceLocation(ForagersInsight.MOD_ID, "stew_from_rabbit_leg"));
         //Nourishment
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FIItems.ROSE_GRANITA.get())
-                .requires(FIItems.ROSE_HIP.get()).requires(ROSE_PETALS.get()).requires(MELON_SLICE)
-                .requires(FITags.ItemTag.ICE).requires(GLASS_BOTTLE)
-                .unlockedBy("has_rose_hip", has(FIItems.ROSE_HIP.get())).save(consumer);
+
         //Salads
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_AND_BEET_SALAD.get())
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
@@ -107,6 +101,28 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BUCKET).requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BOTTLE.get()).requires(SEED_MILK_BOTTLE.get())
                 .unlockedBy("has_seed_milk_bottle", has(SEED_MILK_BOTTLE.get())).save(consumer);
+        //Sap and Syrup
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get())
+                .requires(BIRCH_SYRUP_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .unlockedBy("has_birch_syrup_bucket", has(BIRCH_SYRUP_BUCKET.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get())
+                .requires(BUCKET).requires(BIRCH_SYRUP_BOTTLE.get()).requires(BIRCH_SYRUP_BOTTLE.get())
+                .requires(BIRCH_SYRUP_BOTTLE.get()).requires(BIRCH_SYRUP_BOTTLE.get())
+                .unlockedBy("has_birch_sap_bottle", has(BIRCH_SAP_BOTTLE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BIRCH_SAP_BOTTLE.get())
+                .requires(BIRCH_SAP_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BIRCH_SAP_BUCKET.get())
+                .requires(BUCKET).requires(BIRCH_SYRUP_BOTTLE.get()).requires(BIRCH_SYRUP_BOTTLE.get())
+                .requires(BIRCH_SYRUP_BOTTLE.get()).requires(BIRCH_SYRUP_BOTTLE.get())
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get())).save(consumer);
+        // Sap to Syrup Furnace Recipe
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BUCKET.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get(), 1.0F, 200)
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BOTTLE.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get(), 1.0F, 200)
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()));
         //Tools
             //Flint Shears
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())

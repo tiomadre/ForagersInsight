@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "foragersinsight:birch_syrup_bottle"
+    },
+    {
+      "item": "foragersinsight:birch_syrup_bottle"
+    },
+    {
+      "item": "foragersinsight:birch_syrup_bottle"
+    },
+    {
+      "item": "foragersinsight:birch_syrup_bottle"
+    }
+  ],
+  "result": {
+    "item": "foragersinsight:birch_sap_bucket"
+  }
+}

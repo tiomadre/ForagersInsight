@@ -31,14 +31,12 @@ public class FIItemModels extends BlueprintItemModelProvider {
                 //Crushed + Ingredients
                 ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,GREEN_SAUCE,POPPY_SEED_PASTE,SUNFLOWER_BUTTER,WHEAT_FLOUR,
                 //Dishes
-                    //Chilled
-                ROSE_GRANITA,
                     //Comfort
-                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,
+                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,ROSE_HIP_SOUP,
                     //Medicinal
 
                     //Nourishment
-                ACORN_NOODLES,ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,
+                ACORN_NOODLES,GLAZED_PORKCHOP_AND_ACORN_GRITS,ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,SYRUP_TOAST_STACKS,
                 //Salad
                 KELP_AND_BEET_SALAD,MEADOW_MEDLEY,
                 //Sandwiches + Finger Foods

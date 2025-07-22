@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.common.block;
 
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,20 +23,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 5.0D, 14.0D),
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D),
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D),
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)
+            Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 13.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 11.0D, 0.0D, 16.0D, 16.0D, 16.0D)
     };
-    public SpruceTipBlock(Properties props) {
+    public SpruceTipBlock(@NotNull Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
@@ -53,7 +54,7 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return state.getBlock() instanceof BountifulSpruceLeavesBlock;
     }
 
@@ -64,8 +65,8 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull net.minecraft.core.Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
-        if (direction == net.minecraft.core.Direction.UP && !canSurvive(state, level, pos)) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+        if (direction == Direction.UP && !canSurvive(state, level, pos)) {
             return Blocks.AIR.defaultBlockState();
         }
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
@@ -77,14 +78,16 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
         if (age >= MAX_AGE) {
             popResource(level, pos, new ItemStack(FIItems.SPRUCE_TIPS.get()));
             level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_ALL);
-            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
+            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES,
+                    SoundSource.BLOCKS, 1, 1);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state,
+                                         boolean isClient) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
@@ -100,12 +103,12 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level,
-                                        @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE_BY_AGE[state.getValue(AGE)];
     }
 }

@@ -24,6 +24,14 @@ public class FICookingRecipes {
 
     public static void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         //Comfort
+        CookingPotRecipeBuilder.cookingPotRecipe(CARROT_POPPY_CHOWDER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
+                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
+                .addIngredient(Items.CARROT)
+                .addIngredient(SUNFLOWER_BUTTER.get())
+                .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.CARROT, SUNFLOWER_KERNELS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.RAW_FISHES_COD)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
@@ -82,6 +90,17 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(BLACK_ACORN.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(GLAZED_PORKCHOP_AND_ACORN_GRITS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(BIRCH_SYRUP_BOTTLE.get())
+                .addIngredient(Items.PORKCHOP)
+                .addIngredient(FITags.ItemTag.ACORN)
+                .addIngredient(FITags.ItemTag.ACORN)
+                .addIngredient(ForgeTags.MILK)
+                .addIngredient(SPRUCE_TIPS.get())
+                .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get())
+                .unlockedByAnyIngredient(BIRCH_SYRUP_BUCKET.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_ROASTED_ROOTS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(DANDELION_ROOT.get())
                 .addIngredient(Items.BEETROOT)
@@ -100,6 +119,14 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(Items.KELP, Items.BEETROOT)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(SYRUP_TOAST_STACKS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(BIRCH_SYRUP_BOTTLE.get())
+                .addIngredient(Items.BREAD)
+                .addIngredient(Items.EGG)
+                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(WOODLAND_PASTA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(GREEN_SAUCE.get())
                 .addIngredient(ModItems.RAW_PASTA.get())
@@ -109,18 +136,17 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
-
         //Drinks
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_PETALS.get())
-                .addIngredient(ROSE_PETALS.get())
+                .addIngredient(Items.SUGAR)
                 .addIngredient(FIItems.ROSE_HIP.get())
                 .unlockedByAnyIngredient(ROSE_PETALS.get(), FIItems.ROSE_HIP.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(GLOWING_CARROT_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Items.GLOW_BERRIES)
-                .addIngredient(Items.GLOW_BERRIES)
+                .addIngredient(Items.SUGAR)
                 .addIngredient(Items.CARROT)
                 .unlockedByAnyIngredient(Items.CARROT, Items.GLOW_BERRIES)
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
@@ -136,9 +162,8 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(FOREST_ELIXIR.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(SPRUCE_TIPS.get())
                 .addIngredient(SPRUCE_TIPS.get())
-                .addIngredient(SPRUCE_TIPS.get())
-                .addIngredient(Items.HONEY_BOTTLE) //Replace with Syrup Bottle when Tree Tapping is added
-                .unlockedByAnyIngredient(SPRUCE_TIPS.get())
+                .addIngredient(BIRCH_SYRUP_BOTTLE.get())
+                .unlockedByAnyIngredient(SPRUCE_TIPS.get(), BIRCH_SYRUP_BUCKET.get(), BIRCH_SYRUP_BOTTLE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
             //Seed Milk
