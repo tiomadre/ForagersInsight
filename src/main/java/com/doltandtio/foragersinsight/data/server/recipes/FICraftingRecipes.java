@@ -120,52 +120,61 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get())).save(consumer);
         // Sap to Syrup Furnace Recipe
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BUCKET.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get(), 1.0F, 200)
-                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()));
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
+                .save(consumer);
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BOTTLE.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get(), 1.0F, 200)
-                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()));
+                .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
+                .save(consumer);
         //Tools
-            //Flint Shears
+        //Flint Shears
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FLINT_SHEARS.get())
-                .requires(FLINT).requires(FLINT);
-            //Mallets
+                .requires(FLINT).requires(FLINT)
+                .save(consumer);
+        //Mallets
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FLINT_MALLET.get())
                 .pattern("fff")
                 .pattern(" s ")
                 .define('f', FLINT)
                 .define('s', STICK)
-                .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(FLINT));
+                .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(FLINT))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, IRON_MALLET.get())
                 .pattern("iii")
                 .pattern(" s ")
                 .define('i', IRON_INGOT)
                 .define('s', STICK)
-                .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
+                .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, GOLD_MALLET.get())
                 .pattern("iii")
                 .pattern(" s ")
                 .define('i', GOLD_INGOT)
                 .define('s', STICK)
-                .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(GOLD_INGOT));
+                .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(GOLD_INGOT))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DIAMOND_MALLET.get())
                 .pattern("iii")
                 .pattern(" s ")
                 .define('i', DIAMOND)
                 .define('s', STICK)
-                .unlockedBy("has_diamond", InventoryChangeTrigger.TriggerInstance.hasItems(DIAMOND));
+                .unlockedBy("has_diamond", InventoryChangeTrigger.TriggerInstance.hasItems(DIAMOND))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, NETHERITE_MALLET.get())
                 .pattern("iii")
                 .pattern(" s ")
                 .define('i', NETHERITE_INGOT)
                 .define('s', STICK)
-                .unlockedBy("has_netherite", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT));
-            //Handbasket
+                .unlockedBy("has_netherite", InventoryChangeTrigger.TriggerInstance.hasItems(IRON_INGOT))
+                .save(consumer);
+        //Handbasket
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HANDBASKET.get())
                 .pattern(" ) ")
                 .pattern(": :")
                 .pattern("):)")
                 .define(':', ModItems.STRAW.get())
                 .define(')', STICK)
-                .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()));
+                .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()))
+                .save(consumer);
             //Tapper
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FIItems.TAPPER.get())
                 .requires(ModItems.FLINT_KNIFE.get())

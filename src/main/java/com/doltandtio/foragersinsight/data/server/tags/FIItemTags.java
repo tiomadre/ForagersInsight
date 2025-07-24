@@ -32,19 +32,19 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(MUSHROOM).add(Items.RED_MUSHROOM,Items.BROWN_MUSHROOM);
         //Handbasket
         this.tag(HANDBASKET_ALLOWED)
-                //Meat,Cuts and Animal Drops
+                //Animal Drops, Meat, Meat Cuts
                 .add(Items.COOKED_RABBIT, Items.RABBIT, Items.CHICKEN, Items.PORKCHOP, Items.BEEF, Items.MUTTON, Items.COD, Items.SALMON, Items.COOKED_BEEF
-                ,Items.COOKED_COD,Items.COOKED_PORKCHOP,Items.COOKED_CHICKEN,Items.COOKED_SALMON,Items.COOKED_MUTTON,ModItems.COD_SLICE.get(),ModItems.SALMON_SLICE.get(),ModItems.CHICKEN_CUTS.get()
+                ,Items.COOKED_COD,Items.COOKED_PORKCHOP,Items.COOKED_CHICKEN,Items.COOKED_SALMON,Items.COOKED_MUTTON,ModItems.COD_SLICE.get(),ModItems.COOKED_COD_SLICE.get(),ModItems.SALMON_SLICE.get(),ModItems.CHICKEN_CUTS.get()
                 ,ModItems.MINCED_BEEF.get(),ModItems.BACON.get(),ModItems.MUTTON_CHOPS.get(),ModItems.COOKED_SALMON_SLICE.get(),ModItems.COOKED_BACON.get(),ModItems.COOKED_MUTTON_CHOPS.get()
-                ,ModItems.HAM.get(),ModItems.BEEF_PATTY.get(),Items.INK_SAC,Items.GLOW_INK_SAC,FIItems.RAW_RABBIT_LEG.get(),FIItems.COOKED_RABBIT_LEG.get())
+                ,ModItems.HAM.get(),ModItems.BEEF_PATTY.get(),Items.INK_SAC,Items.GLOW_INK_SAC,FIItems.RAW_RABBIT_LEG.get(),FIItems.COOKED_RABBIT_LEG.get(),Items.EGG,Items.LEATHER,Items.RABBIT_FOOT,Items.RABBIT_HIDE,Items.FEATHER)
                 //Crops
                 .add(Items.WHEAT,Items.SWEET_BERRIES, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.PUMPKIN, Items.MELON_SLICE, Items.APPLE,Items.KELP,Items.BAMBOO,
                  Items.COCOA_BEANS,Items.PUMPKIN,Items.MELON,Items.SUGAR_CANE,Items.GLOW_BERRIES,Items.CACTUS, Items.RED_MUSHROOM,Items.BROWN_MUSHROOM
                 ,Items.NETHER_WART, FIItems.ROSE_HIP.get(),FIItems.BLACK_ACORN.get(),FIItems.DANDELION_ROOT.get(),FIItems.POPPY_SEEDS.get(),FIItems.SPRUCE_TIPS.get()
                 ,FIItems.SUNFLOWER_KERNELS.get(),ModItems.ONION.get(),ModItems.TOMATO.get(),ModItems.RICE.get())
                 //Crop Cuts and Crushes
-                .add(ModItems.STRAW.get(),ModItems.PUMPKIN_SLICE.get(),ModItems.CABBAGE_LEAF.get(),ModItems.COOKED_COD_SLICE.get()
-                 ,ModItems.RICE_PANICLE.get(),FIItems.ROSE_PETALS.get(),FIItems.COCOA_POWDER.get(),FIItems.WHEAT_FLOUR.get(),FIItems.POPPY_SEED_PASTE.get())
+                .add(ModItems.STRAW.get(),ModItems.PUMPKIN_SLICE.get(),ModItems.CABBAGE_LEAF.get(),ModItems.RICE_PANICLE.get(),FIItems.ROSE_PETALS.get()
+                ,FIItems.APPLE_SLICE.get(),FIItems.ACORN_MEAL.get(),FIItems.COCOA_POWDER.get(),FIItems.WHEAT_FLOUR.get(),FIItems.POPPY_SEED_PASTE.get(),FIItems.CRUSHED_ICE.get())
                 //Seeds
                 .add(Items.WHEAT_SEEDS,Items.PUMPKIN_SEEDS,Items.MELON_SEEDS,Items.BEETROOT_SEEDS,Items.TORCHFLOWER_SEEDS,Items.PITCHER_POD,ModItems.TOMATO_SEEDS.get())
                 //Flower,Plants and Vines
@@ -54,17 +54,18 @@ public class FIItemTags extends ItemTagsProvider {
                  ModItems.WILD_POTATOES.get(),ModItems.WILD_TOMATOES.get(),ModItems.WILD_CARROTS.get(),ModItems.WILD_POTATOES.get())
                 //Saplings
                 .add(Items.OAK_SAPLING,Items.SPRUCE_SAPLING,Items.BIRCH_SAPLING,Items.JUNGLE_SAPLING,Items.ACACIA_SAPLING,Items.DARK_OAK_SAPLING
-                ,Items.AZALEA,Items.FLOWERING_AZALEA, FIBlocks.BOUNTIFUL_DARK_OAK_SAPLING.get().asItem(), FIBlocks.BOUNTIFUL_OAK_SAPLING.get().asItem())
+                ,Items.AZALEA,Items.FLOWERING_AZALEA, FIBlocks.BOUNTIFUL_DARK_OAK_SAPLING.get().asItem(), FIBlocks.BOUNTIFUL_OAK_SAPLING.get().asItem(),
+                FIBlocks.BOUNTIFUL_SPRUCE_SAPLING.get().asItem())
                 //Other
-                .add(ModItems.TREE_BARK.get(),Items.HONEYCOMB,Items.SUGAR,Items.HONEY_BOTTLE,ModItems.MILK_BOTTLE.get(),FIItems.SEED_MILK_BOTTLE.get(),FIItems.CRUSHED_ICE.get()
-                ,Items.EGG,Items.DRIED_KELP,Items.LEATHER,Items.RABBIT_FOOT,Items.RABBIT_HIDE,Items.FEATHER)
+                .add(ModItems.TREE_BARK.get(),Items.HONEYCOMB,Items.SUGAR,Items.HONEY_BOTTLE,ModItems.MILK_BOTTLE.get(),FIItems.SEED_MILK_BOTTLE.get(),Items.DRIED_KELP
+                ,FIItems.BIRCH_SAP_BOTTLE.get(),FIItems.BIRCH_SYRUP_BOTTLE.get())
 
                 ;
         // Mallet
         this.tag(FITags.ItemTag.MALLETS).add(FIItems.FLINT_MALLET.get(),FIItems.IRON_MALLET.get(),
         FIItems.GOLD_MALLET.get(),FIItems.DIAMOND_MALLET.get(),FIItems.NETHERITE_MALLET.get());
         //Shears
-        //this.tag(Tags.Items.TOOLS_SHEAR).add(FIItems.FLINT_SHEARS.get()); reenable in newer version that has this tag
+        //this.tag(Tags.Items.TOOLS_SHEAR).add(FIItems.FLINT_SHEARS.get()); reenable when using newer FD version that uses tag
     }
     protected void registerForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(FIBlocks.ROSE_HIP_SACK.get().asItem());

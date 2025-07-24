@@ -81,8 +81,6 @@ public class FIItems {
         public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CAKE_SLICE)));
         //Chilled
-    public static final RegistryObject<Item> ROSE_HIP_SOUP = HELPER.createItem("rose_granita", () -> new DrinkableItem(new Item.Properties()
-            .food(FIFoods.ROSE_HIP_SOUP).craftRemainder(Items.GLASS_BOTTLE)));
         //Comfort
     public static final RegistryObject<Item> CARROT_POPPY_CHOWDER = HELPER.createItem("carrot_poppy_chowder", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CARROT_POPPY_CHOWDER).craftRemainder(Items.BOWL)));
@@ -98,6 +96,8 @@ public class FIItems {
             new Item.Properties().food(FIFoods.HEARTY_SPRUCE_PILAF)));
     public static final RegistryObject<Item> STEAMY_KELP_RICE = HELPER.createItem("steamy_kelp_rice", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> ROSE_HIP_SOUP = HELPER.createItem("rose_hip_soup", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.ROSE_HIP_SOUP).craftRemainder(Items.BOWL)));
         //Medicinal
 
         //Nourishment

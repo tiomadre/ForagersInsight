@@ -19,7 +19,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Baked Goods
                 BLACK_FOREST_MUFFIN,POPPY_SEED_BAGEL,RED_VELVET_CUPCAKE,
                     //Cake and Pie Slices
-                SLICE_OF_ACORN_CARROT_CAKE,
+                SLICE_OF_ACORN_CARROT_CAKE,ACORN_CARROT_CAKE_ITEM,
                     //Cookies
                 ACORN_COOKIE,ROSE_COOKIE,
                     //Sweets
@@ -50,9 +50,11 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Medicinal
                     DANDELION_ROOT_TEA, FOREST_ELIXIR,
                 //Other
-                ACORN_DOUGH,BIRCH_SAP_BUCKET,SEED_MILK_BOTTLE,SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,
+                ACORN_DOUGH, BIRCH_SAP_BUCKET,BIRCH_SAP_BOTTLE, BIRCH_SYRUP_BUCKET,BIRCH_SYRUP_BOTTLE, SEED_MILK_BOTTLE,
+                SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG
+                ,CARROT_POPPY_CHOWDER,HEARTY_SPRUCE_PILAF,WOODLAND_PASTA,
                 //Tools and Workstations
-                HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET
+                HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET, FLINT_SHEARS, TAPPER
 
                 );
 

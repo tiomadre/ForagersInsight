@@ -9,22 +9,12 @@
     {
       "item": "farmersdelight:rice"
     },
-    [
-      {
-        "item": "foragersinsight:black_acorn"
-      },
-      {
-        "item": "foragersinsight:acorn_meal"
-      }
-    ],
-    [
-      {
-        "item": "foragersinsight:black_acorn"
-      },
-      {
-        "item": "foragersinsight:acorn_meal"
-      }
-    ],
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
     {
       "item": "farmersdelight:pumpkin_slice"
     },
