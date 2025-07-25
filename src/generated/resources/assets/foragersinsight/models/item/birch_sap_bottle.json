@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foragersinsight:item/birch_sap_bottle"
+  }
+}

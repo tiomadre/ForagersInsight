@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "foragersinsight:item/rose_granita"
+    "layer0": "foragersinsight:item/syrup_toast_stacks"
   }
 }

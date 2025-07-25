@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foragersinsight:item/glazed_porkchop_and_acorn_grits"
+  }
+}
