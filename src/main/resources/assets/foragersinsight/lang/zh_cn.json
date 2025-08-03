@@ -29,6 +29,11 @@
   "item.foragersinsight.seaside_sizzler": "海滨时时乐",
   "item.foragersinsight.steamy_kelp_rice": "海带蒸饭",
   "item.foragersinsight.sweet_roasted_rabbit_leg": "甜味熟兔腿",
+  "item.foragersinsight.syrup_toast_stacks": "叠层糖浆吐司",
+  "item.foragersinsight.woodland_pasta": "林地意大利面",
+  "item.foragersinsight.hearty_spruce_pilaf": "丰盛云杉肉饭",
+  "item.foragersinsight.glazed_porkchop_and_acorn_grits": "裹粉糖醋猪排",
+  "item.foragersinsight.rose_hip_soup": "玫瑰果汤",
 
   "item.foragersinsight.dandelion_root_tea": "蒲公英根茶",
   "item.foragersinsight.rose_cordial": "玫瑰甜浆",
@@ -46,6 +51,10 @@
   "item.foragersinsight.seed_milk_bucket": "种子奶桶",
   "item.foragersinsight.sunflower_butter": "葵花籽黄油",
   "item.foragersinsight.wheat_flour": "小麦面粉",
+  "item.foragersinsight.birch_sap_bottle": "桦树汁瓶",
+  "item.foragersinsight.birch_sap_bucket": "桦树汁桶",
+  "item.foragersinsight.birch_syrup_bottle": "桦树糖浆瓶",
+  "item.foragersinsight.birch_syrup_bucket": "桦树糖浆桶",
 
   "item.foragersinsight.cooked_rabbit_leg": "熟兔腿",
   "item.foragersinsight.raw_rabbit_leg": "生兔腿",
@@ -63,12 +72,19 @@
   "item.foragersinsight.gold_mallet": "金槌",
   "item.foragersinsight.diamond_mallet": "钻石槌",
   "item.foragersinsight.netherite_mallet": "下界合金槌",
+  "item.foragersinsight.tapper": "开孔套具",
 
   "block.foragersinsight.bountiful_dark_oak_leaves": "丰茂的深色橡树树叶",
   "block.foragersinsight.bountiful_oak_leaves": "丰茂的橡树树叶",
-
   "block.foragersinsight.bountiful_dark_oak_sapling": "丰茂的深色橡树树苗",
   "block.foragersinsight.bountiful_oak_sapling": "丰茂的橡树树苗",
+  "block.foragersinsight.bountiful_spruce_leaves": "丰茂的云杉树叶",
+  "block.foragersinsight.bountiful_spruce_sapling": "丰茂的云杉树苗",
+  "block.foragersinsight.sappy_birch_log": "多汁白桦原木",
+  "block.foragersinsight.dense_rose_petals": "密铺的玫瑰花簇",
+  "block.foragersinsight.dense_spruce_tips": "密铺的云杉针叶簇",
+  "block.foragersinsight.scattered_rose_petals": "散落的玫瑰花簇",
+  "block.foragersinsight.scattered_spruce_tips": "散落的云杉针叶簇",
 
   "block.foragersinsight.dandelion_roots_crate": "箱装蒲公英根",
   "block.foragersinsight.black_acorn_sack": "袋装黑橡子",
@@ -95,5 +111,7 @@
 
   "farmersdelight.tool_interaction.shears.chicken": "请再等待 %s 秒后再剪这只鸡",
   "farmersdelight.tool_interaction.shears.baby_chicken": "你不能剪鸡雏",
-  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "这个铁砧已经完全修好了"
+  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "这个铁砧已经完全修好了",
+
+  "itemGroup.foragersinsight": "巧思巧食"
 }
