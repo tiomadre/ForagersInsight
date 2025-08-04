@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_hip"
+    },
+    {
+      "item": "foragersinsight:rose_hip"
+    },
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "foragersinsight:rose_hip_soup"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "foragersinsight:block/flower_top",
-  "textures": {
-    "plant": "foragersinsight:block/sunflower_head_front_stage3",
-    "back": "foragersinsight:block/sunflower_head_back_stage3",
-    "stem": "foragersinsight:block/sunflower_upper_stage3"
-  }
-}

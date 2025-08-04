@@ -103,7 +103,7 @@
   "effect.foragersinsight.medicinal": "Medicinal",
 
   "effect.foragersinsight.chilled.desc": "Freeze the duration of beneficial effects.",
-  "effect.foragersinsight.medicinal.desc": "Removes and prevents the application of Poison and Wither. The player is then healed per effect removed.",
+  "effect.foragersinsight.medicinal.desc": "Removes and prevents the application of Poison and Wither. The player is also healed per effect removed.",
 
   "enchantment.foragersinsight.farmhand": "Farmhand",
   "enchantment.foragersinsight.concussive": "Concussive",

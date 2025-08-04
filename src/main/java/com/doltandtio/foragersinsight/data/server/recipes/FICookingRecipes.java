@@ -40,6 +40,13 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(ModItems.PUMPKIN_SLICE.get(), Items.COD)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(ROSE_HIP_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ROSE_HIP.get())
+                .addIngredient(ROSE_HIP.get())
+                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .unlockedByAnyIngredient(ROSE_HIP.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(STEAMY_KELP_RICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ModItems.RICE.get())
                 .addIngredient(Items.DRIED_KELP)
@@ -122,7 +129,7 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(SYRUP_TOAST_STACKS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Ingredient.of(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get()))
                 .addIngredient(Items.BREAD)
-                .addIngredient(Items.EGG)
+                .addIngredient(ForgeTags.EGGS)
                 .addIngredient(FITags.ItemTag.MILK_BOTTLE)
                 .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)

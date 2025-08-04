@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    [
+      {
+        "item": "foragersinsight:birch_syrup_bottle"
+      },
+      {
+        "item": "foragersinsight:birch_syrup_bucket"
+      }
+    ],
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "tag": "forge:crops/acorn"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "foragersinsight:glazed_porkchop_and_acorn_grits"
+  }
+}

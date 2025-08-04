@@ -138,35 +138,19 @@ public class FIBlockStates extends FIBlockStatesHelper {
                 age = state.getValue(SunflowerCropBlock.AGE);
                 half = state.getValue(SunflowerCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
             }
+            String modelName = "%s_stage%d".formatted(name(block), age);
 
-            if ("upper".equals(half)) {
-                return ConfiguredModel.builder()
-                        .modelFile(
-                                models()
-                                        .withExistingParent(
-                                                "%s_stage%d_%s".formatted(name(block), age, half),
-                                                modLoc("flower_top")
-                                        )
-                                        .texture("plant", modLoc("%s_head_front_stage%d".formatted(blockTexture(block), age)))
-                                        .texture("back", modLoc("%s_head_back_stage%d".formatted(blockTexture(block), age)))
-                                        .texture("stem", modLoc("%s_upper_stage%d".formatted(blockTexture(block), age)))
-                                        .renderType("cutout"))
-                        .build();
-            }
             return ConfiguredModel.builder()
                     .modelFile(
                             models()
-                                    .withExistingParent(
-                                            "%s_stage%d_%s".formatted(name(block), age, half),
-                                            mcLoc("block/cross")
-                                    )
-                                    .texture("cross", modLoc("%s_lower_stage%d".formatted(blockTexture(block), age)))
-                                    .renderType("cutout"))
-                    .build();
+                                    .withExistingParent(modelName, modLoc(modelName))
+                                    .renderType("cutout")
+                    ).build();
         });
-        this.itemModels().basicItem(crop.get().asItem());
 
+        this.itemModels().basicItem(crop.get().asItem());
     }
+
     public void matBlock(RegistryObject<? extends Block> block, String texture) {
         this.simpleBlock(block.get(),
                 models().withExistingParent(name(block.get()), mcLoc("block/carpet"))

@@ -3,217 +3,154 @@ package com.doltandtio.foragersinsight.common.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.RenderShape;
+
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 
-import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
-import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER;
+public class SunflowerCropBlock extends CropBlock {
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
+    public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
-public class SunflowerCropBlock extends CropBlock implements BonemealableBlock {
-    public static final int MAX_AGE = 4;
-    private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
-            Block.box(0, 0, 0, 16, 4, 16),
-            Block.box(0, 0, 0, 16, 8, 16),
-            Block.box(0, 0, 0, 16, 12, 16),
-            Block.box(0, 0, 0, 16, 16, 16),
-            Block.box(0, 0, 0, 16, 16, 16)
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+            Block.box(2, 0, 2, 14, 10, 14),
+            Block.box(2, 0, 2, 14, 14, 14),
+            Block.box(2, 0, 2, 14, 16, 14),
+            Block.box(2, 0, 2, 14, 16, 14),
+            Block.box(2, 0, 2, 14, 16, 14)
     };
 
-    public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
-
-    private final int isDoubleAfterAge; // if set to 2, a plant will become a double plant at age 2.
-
-    public SunflowerCropBlock(BlockBehaviour.Properties props, int isDoubleAfterAge) {
-        super(props);
-        this.isDoubleAfterAge = isDoubleAfterAge;
-
-        this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(HALF, LOWER)
-                .setValue(AGE, 0));
-    }
-
-    public boolean isDouble(BlockState state) {
-        return this.getAge(state) >= isDoubleAfterAge;
-    }
-
-    public boolean isDouble(int age) {
-        return age >= isDoubleAfterAge;
-    }
-
-    public DoubleBlockHalf getHalf(BlockState state) {
-        return state.getValue(HALF);
-    }
-
-    // randomly ticks
-    @Override
-    public boolean isRandomlyTicking(@NotNull BlockState state) {
-        return super.isRandomlyTicking(state) && getHalf(state) == LOWER;
+    public SunflowerCropBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(this.getAgeProperty(), 0)
+                .setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
-    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
-        if (this.isMaxAge(state) || !level.isAreaLoaded(pos, 1) || level.getRawBrightness(pos, 0) < 9) {
-            return;
-        }
-
-        float growthSpeed = getGrowthSpeed(this, level, pos);
-        if (ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt((int) (25 / growthSpeed)) == 0)) {
-            this.mature(level, state, pos);
-            ForgeHooks.onCropsGrowPost(level, pos, state);
-        }
-    }
-
-    // Increases the current age of the plant
-    private void mature(int stages, Level level, BlockState state, BlockPos pos) {
-        if (this.isMaxAge(state)) {
-            return;
-        }
-
-        if (!canGrow(level, pos) && isDouble(getAge(state) + stages)) {
-            int index = stagesBeforeDouble(state);
-            if (index != 0) {
-                mature(index, level, state, pos);
-            }
-            return;
-        }
-
-        if (this.getHalf(state) == UPPER) {
-            if (level.getBlockState(pos.below()).is(this)) {
-                mature(stages, level, level.getBlockState(pos.below()), pos.below());
-            }
-            return;
-        }
-
-        int newAge = Math.min(this.getAge(state) + stages, MAX_AGE);
-        if (this.isDouble(newAge)) {
-            level.setBlock(pos, getStateForAge(newAge), UPDATE_CLIENTS);
-            level.setBlock(pos.above(), getStateForAge(newAge).setValue(HALF, UPPER), UPDATE_CLIENTS);
-        }
-        else {
-            level.setBlock(pos, getStateForAge(newAge), UPDATE_CLIENTS);
-        }
-    }
-
-    private void mature(Level level, BlockState state, BlockPos pos) {
-        mature(1, level, state, pos);
-    }
-
-    // Blockstates stuff
-    @Override
-    protected @NotNull IntegerProperty getAgeProperty() {
+    public @NotNull IntegerProperty getAgeProperty() {
         return AGE;
     }
 
     @Override
     public int getMaxAge() {
-        return MAX_AGE;
+        return 4;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDef) {
-        stateDef.add(HALF, AGE);
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(AGE, 0).setValue(HALF, DoubleBlockHalf.LOWER);
     }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(AGE, HALF);
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return state.getValue(HALF) == DoubleBlockHalf.UPPER
+                ? Block.box(2, 0, 2, 14, 16, 14)
+                : SHAPE_BY_AGE[state.getValue(getAgeProperty())];
+    }
     public static boolean isIllegalState(BlockState state) {
-        Block block = state.getBlock();
-        if (block instanceof SunflowerCropBlock crop) {
-            return state.getValue(AGE) < crop.isDoubleAfterAge && state.getValue(HALF) == UPPER;
-        }
-        return false;
-    }
-
-// bone meal
-
-    protected int getBonemealAgeIncrease(Level level, BlockPos pos, BlockState state) {
-        if (canGrow(level, pos)) {
-            return level.getRandom().nextInt(1, 3);
-        }
-        else {
-            return Math.min(stagesBeforeDouble(state), level.getRandom().nextInt(1, 3));
-        }
+        return !state.hasProperty(AGE) || !state.hasProperty(HALF);
     }
 
     @Override
-    public void growCrops(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        mature(getBonemealAgeIncrease(level, pos, state), level, state, pos);
+    public boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(HALF) == DoubleBlockHalf.LOWER && !isMaxAge(state);
     }
 
-// shape
-
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, BlockGetter p_52298_, BlockPos p_52299_, CollisionContext p_52300_) {
-        int age = this.getAge(state);
-        if (this.isDouble(age) && state.getValue(HALF) == LOWER) {
-            return Block.box(0,0 ,0, 16, 16, 16);
-        }
-        else {
-            return AGE_TO_SHAPE[age];
-        }
-    }
-
-    // double plant stuff
-    @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState updatedState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos updatePos) {
-        if (!isDouble(state)) {
-            return super.updateShape(state, direction, updatedState, level, pos, updatePos);
-        }
-        else {
-            DoubleBlockHalf thisHalf = state.getValue(HALF);
-            if (direction.getAxis() != Direction.Axis.Y ||
-                    thisHalf == LOWER != (direction == Direction.UP) ||
-                    updatedState.is(this) && updatedState.getValue(HALF) != thisHalf) {
-
-                return thisHalf == LOWER &&
-                        direction == Direction.DOWN &&
-                        !state.canSurvive(level, pos) ?
-                        Blocks.AIR.defaultBlockState() :
-                        super.updateShape(state, direction, updatedState, level, pos, updatePos);
+    public void randomTick(@NotNull BlockState state, ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (!world.isAreaLoaded(pos, 1)) return;
+        if (world.getRawBrightness(pos.above(), 0) >= 9) {
+            int age = this.getAge(state);
+            if (age < this.getMaxAge() && random.nextInt(5) == 0) {
+                growCrop(world, pos, state, age + 1);
             }
-            else {
-                return Blocks.AIR.defaultBlockState();
+        }
+    }
+
+    protected void growCrop(ServerLevel world, BlockPos pos, BlockState state, int newAge) {
+        if (newAge <= getMaxAge()) {
+            BlockState newState = state.setValue(AGE, newAge);
+            world.setBlock(pos, newState, 2);
+
+            if (newAge >= 2) {
+                BlockPos above = pos.above();
+                if (world.getBlockState(above).isAir()) {
+                    world.setBlock(above, newState.setValue(HALF, DoubleBlockHalf.UPPER), 2);
+                }
             }
         }
     }
 
     @Override
-    public boolean canSurvive(BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-        if (state.getValue(HALF) != UPPER) {
-            return super.canSurvive(state, level, pos);
-        } else {
-            BlockState blockstate = level.getBlockState(pos.below());
-            if (state.getBlock() != this) {
-                return super.canSurvive(state, level, pos);
+    public void onRemove(BlockState oldState, @NotNull Level world, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
+        if (oldState.getBlock() != newState.getBlock()) {
+            DoubleBlockHalf half = oldState.getValue(HALF);
+            if (half == DoubleBlockHalf.LOWER) {
+                BlockPos above = pos.above();
+                BlockState aboveState = world.getBlockState(above);
+                if (aboveState.getBlock() == this && aboveState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                    world.removeBlock(above, false);
+                }
             } else {
-                return blockstate.is(this) && blockstate.getValue(HALF) == LOWER;
+                BlockPos below = pos.below();
+                BlockState belowState = world.getBlockState(below);
+                if (belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                    world.removeBlock(below, false);
+                }
             }
+        }
+        super.onRemove(oldState, world, pos, newState, isMoving);
+    }
+
+    @Override
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, @NotNull LevelReader world, @NotNull BlockPos pos) {
+        DoubleBlockHalf half = state.getValue(HALF);
+        if (half == DoubleBlockHalf.UPPER) {
+            BlockState below = world.getBlockState(pos.below());
+            return below.getBlock() == this && below.getValue(HALF) == DoubleBlockHalf.LOWER;
+        } else {
+            return super.canSurvive(state, world, pos);
         }
     }
 
-    public boolean canGrow(Level level, BlockPos pos) {
-        BlockState aboveState = level.getBlockState(pos.above());
-        return aboveState.is(BlockTags.REPLACEABLE) || aboveState.is(this);
-    }
-
-    public int stagesBeforeDouble(BlockState state) {
-        return this.isDoubleAfterAge - 1 - getAge(state);
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState fromState, @NotNull LevelAccessor world, @NotNull BlockPos pos, @NotNull BlockPos fromPos) {
+        DoubleBlockHalf half = state.getValue(HALF);
+        if (dir == Direction.UP && half == DoubleBlockHalf.LOWER) {
+            if (fromState.getBlock() == this && fromState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                return state;
+            }
+        } else if (dir == Direction.DOWN && half == DoubleBlockHalf.UPPER) {
+            if (fromState.getBlock() == this && fromState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                return state;
+            }
+        }
+        return super.updateShape(state, dir, fromState, world, pos, fromPos);
     }
 }
