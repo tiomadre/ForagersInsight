@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
+      "tag": "forge:crops/wheat"
+    },
+    {
       "item": "foragersinsight:black_acorn"
     },
     {
-      "item": "minecraft:wheat"
-    },
-    {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   ],
   "result": {

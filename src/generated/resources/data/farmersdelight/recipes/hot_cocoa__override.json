@@ -1,0 +1,36 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cooking",
+        "cookingtime": 200,
+        "experience": 1.0,
+        "ingredients": [
+          {
+            "tag": "forge:milk"
+          },
+          {
+            "item": "minecraft:sugar"
+          },
+          {
+            "tag": "forge:crops/cocoa"
+          },
+          {
+            "tag": "forge:crops/cocoa"
+          }
+        ],
+        "recipe_book_tab": "drinks",
+        "result": {
+          "item": "farmersdelight:hot_cocoa"
+        }
+      }
+    }
+  ]
+}

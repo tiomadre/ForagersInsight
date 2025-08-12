@@ -7,10 +7,10 @@
       "item": "foragersinsight:acorn_dough"
     },
     {
-      "item": "foragersinsight:black_acorn"
+      "tag": "forge:crops/acorn"
     },
     {
-      "item": "foragersinsight:black_acorn"
+      "tag": "forge:crops/acorn"
     },
     {
       "tag": "forge:milk"

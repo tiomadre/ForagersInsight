@@ -6,7 +6,9 @@
         "items": [
           {
             "items": [
-              "foragersinsight:spruce_tips"
+              "foragersinsight:spruce_tips",
+              "foragersinsight:birch_syrup_bucket",
+              "foragersinsight:birch_syrup_bottle"
             ]
           }
         ]

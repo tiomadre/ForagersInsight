@@ -3,6 +3,7 @@ package com.doltandtio.foragersinsight.data.server.recipes;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
@@ -104,8 +105,7 @@ public class FICookingRecipes {
                 .addIngredient(FITags.ItemTag.ACORN)
                 .addIngredient(ForgeTags.MILK)
                 .addIngredient(SPRUCE_TIPS.get())
-                .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get())
-                .unlockedByAnyIngredient(BIRCH_SYRUP_BUCKET.get())
+                .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_ROASTED_ROOTS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
@@ -211,5 +211,31 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
 
+        // Override FD Recipes
+        //Hot Cocoa
+        net.minecraftforge.common.crafting.ConditionalRecipe.builder()
+                .addCondition(new net.minecraftforge.common.crafting.conditions.ModLoadedCondition("farmersdelight"))
+                .addRecipe(r -> CookingPotRecipeBuilder.cookingPotRecipe(ModItems.HOT_COCOA.get(), 1,NORMAL_COOKING,MEDIUM_EXP)
+                        .addIngredient(ForgeTags.MILK)
+                        .addIngredient(Items.SUGAR)
+                        .addIngredient(FITags.ItemTag.COCOA)
+                        .addIngredient(FITags.ItemTag.COCOA)
+                        .unlockedByAnyIngredient(Items.COCOA_BEANS)
+                        .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                        .build(r, new ResourceLocation("farmersdelight", "hot_cocoa")))
+                .build(consumer, new ResourceLocation("farmersdelight", "hot_cocoa__override"));
+        //Apple Cider
+        net.minecraftforge.common.crafting.ConditionalRecipe.builder()
+                .addCondition(new net.minecraftforge.common.crafting.conditions.ModLoadedCondition("farmersdelight"))
+                .addRecipe(r -> CookingPotRecipeBuilder.cookingPotRecipe(ModItems.HOT_COCOA.get(), 1,NORMAL_COOKING,MEDIUM_EXP)
+                        .addIngredient(FITags.ItemTag.APPLE)
+                        .addIngredient(FITags.ItemTag.APPLE)
+                        .addIngredient(Items.SUGAR)
+                        .unlockedByAnyIngredient(Items.APPLE)
+                        .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                        .build(r, new ResourceLocation("farmersdelight", "apple_cider")))
+                .build(consumer, new ResourceLocation("farmersdelight", "apple_cider__override"));
+
     }
+
 }

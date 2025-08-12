@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "foragersinsight:block/scattered_spruce_tips" }
+    "": {
+      "model": "foragersinsight:block/scattered_spruce_tips"
+    }
   }
 }

@@ -1,19 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "FFF",
-    " S "
-  ],
+  "category": "equipment",
   "key": {
-    "F": {
+    "f": {
       "item": "minecraft:flint"
     },
-    "S": {
+    "s": {
       "item": "minecraft:stick"
     }
   },
+  "pattern": [
+    "fff",
+    " s "
+  ],
   "result": {
-    "item": "foragersinsight:flint_mallet",
-    "count": 1
-  }
+    "item": "foragersinsight:flint_mallet"
+  },
+  "show_notification": true
 }

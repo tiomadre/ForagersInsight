@@ -9,12 +9,14 @@
     {
       "item": "foragersinsight:spruce_tips"
     },
-    {
-      "item": "foragersinsight:spruce_tips"
-    },
-    {
-      "item": "minecraft:honey_bottle"
-    }
+    [
+      {
+        "item": "foragersinsight:birch_syrup_bottle"
+      },
+      {
+        "item": "foragersinsight:birch_syrup_bucket"
+      }
+    ]
   ],
   "recipe_book_tab": "drinks",
   "result": {

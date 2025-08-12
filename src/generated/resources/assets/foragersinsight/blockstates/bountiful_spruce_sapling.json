@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "foragersinsight:block/bountiful_spruce_sapling" }
+    "": {
+      "model": "foragersinsight:block/bountiful_spruce_sapling"
+    }
   }
 }

@@ -1,6 +1,11 @@
 {
   "values": [
     "foragersinsight:dandelion_bush",
-    "foragersinsight:poppy_bush"
+    "foragersinsight:poppy_bush",
+    "foragersinsight:rose_crop",
+    "foragersinsight:bountiful_dark_oak_leaves",
+    "foragersinsight:bountiful_oak_leaves",
+    "foragersinsight:bountiful_spruce_tips",
+    "foragersinsight:rose_crop"
   ]
 }

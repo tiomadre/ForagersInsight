@@ -1,0 +1,40 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "A": {
+            "tag": "forge:crops/apple"
+          },
+          "C": {
+            "item": "farmersdelight:pie_crust"
+          },
+          "S": {
+            "item": "minecraft:sugar"
+          },
+          "W": {
+            "tag": "forge:crops/wheat"
+          }
+        },
+        "pattern": [
+          "WWW",
+          "AAA",
+          "SCS"
+        ],
+        "result": {
+          "item": "farmersdelight:apple_pie"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

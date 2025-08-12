@@ -96,7 +96,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.getVariantBuilder(leavesBlock).forAllStatesExcept(state -> {
             int age = leavesBlock.getAge(state);
 
-             return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d".formatted(name(leavesBlock), age), "ForagersInsight:block/leaves_with_overlay")
+             return ConfiguredModel.builder().modelFile(models().withExistingParent("%s_stage%d".formatted(name(leavesBlock), age), "foragersinsight:block/leaves_with_overlay")
                      .texture("all", blockTexture(base)).texture("overlay", "%s_stage%d".formatted(blockTexture(leavesBlock), age))).build();
 
         }, LeavesBlock.DISTANCE, LeavesBlock.PERSISTENT, LeavesBlock.WATERLOGGED);

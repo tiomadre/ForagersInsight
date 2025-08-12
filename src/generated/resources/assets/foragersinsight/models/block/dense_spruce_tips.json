@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/carpet",
+  "render_type": "minecraft:cutout",
   "textures": {
     "wool": "foragersinsight:block/dense_spruce_tips"
   }

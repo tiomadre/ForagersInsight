@@ -1,0 +1,33 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "M": {
+            "tag": "forge:milk"
+          },
+          "W": {
+            "tag": "forge:crops/wheat"
+          }
+        },
+        "pattern": [
+          "WMW",
+          " W "
+        ],
+        "result": {
+          "item": "farmersdelight:pie_crust"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

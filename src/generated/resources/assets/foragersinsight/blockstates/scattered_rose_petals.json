@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "foragersinsight:block/scattered_rose_petals" }
+    "": {
+      "model": "foragersinsight:block/scattered_rose_petals"
+    }
   }
 }

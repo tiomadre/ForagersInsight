@@ -1,0 +1,34 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    [
+      {
+        "item": "foragersinsight:birch_sap_bottle"
+      },
+      {
+        "item": "foragersinsight:birch_sap_bucket"
+      }
+    ],
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    [
+      {
+        "item": "minecraft:bone"
+      },
+      {
+        "item": "minecraft:bone_meal"
+      }
+    ]
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "count": 4,
+    "item": "minecraft:slime_ball"
+  }
+}

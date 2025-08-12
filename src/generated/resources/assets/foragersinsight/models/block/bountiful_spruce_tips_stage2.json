@@ -1,5 +1,5 @@
 {
-  "parent": "foragersinsight:block/tinted_cross",
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
     "cross": "foragersinsight:block/bountiful_spruce_tips_stage2"

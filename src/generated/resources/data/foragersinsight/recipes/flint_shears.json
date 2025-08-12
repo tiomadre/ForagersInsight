@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "tools",
+  "category": "equipment",
   "ingredients": [
     {
       "item": "minecraft:flint"

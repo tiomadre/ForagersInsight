@@ -1,19 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III",
-    " S "
-  ],
+  "category": "equipment",
   "key": {
-    "I": {
+    "i": {
       "item": "minecraft:iron_ingot"
     },
-    "S": {
+    "s": {
       "item": "minecraft:stick"
     }
   },
+  "pattern": [
+    "iii",
+    " s "
+  ],
   "result": {
-    "item": "foragersinsight:iron_mallet",
-    "count": 1
-  }
+    "item": "foragersinsight:iron_mallet"
+  },
+  "show_notification": true
 }

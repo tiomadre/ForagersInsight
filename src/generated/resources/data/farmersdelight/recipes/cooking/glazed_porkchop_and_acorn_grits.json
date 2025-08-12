@@ -21,6 +21,9 @@
       "tag": "forge:crops/acorn"
     },
     {
+      "tag": "forge:milk"
+    },
+    {
       "item": "foragersinsight:spruce_tips"
     }
   ],

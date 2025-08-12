@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "equipment",
   "key": {
-    ":": {
-      "item": "farmersdelight:straw"
-    },
     ")": {
       "item": "minecraft:stick"
+    },
+    ":": {
+      "item": "farmersdelight:straw"
     }
   },
   "pattern": [

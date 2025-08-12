@@ -3,11 +3,20 @@
     "age=0,half=lower": {
       "model": "foragersinsight:block/rose_hip_stage0_lower"
     },
+    "age=0,half=upper": {
+      "model": "foragersinsight:block/rose_hip_stage0_lower"
+    },
     "age=1,half=lower": {
       "model": "foragersinsight:block/rose_hip_stage1_lower"
     },
+    "age=1,half=upper": {
+      "model": "foragersinsight:block/rose_hip_stage0_lower"
+    },
     "age=2,half=lower": {
       "model": "foragersinsight:block/rose_hip_stage2_lower"
+    },
+    "age=2,half=upper": {
+      "model": "foragersinsight:block/rose_hip_stage0_lower"
     },
     "age=3,half=lower": {
       "model": "foragersinsight:block/rose_hip_stage3_lower"
