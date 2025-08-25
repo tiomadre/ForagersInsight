@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "foragersinsight:block/poppy_bush_stage2"
+    "cross": "foragersinsight:block/poppy_bush_stage4"
   }
 }

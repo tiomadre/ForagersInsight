@@ -39,30 +39,6 @@
       "when": {
         "age": "4"
       }
-    },
-    {
-      "apply": {
-        "model": "foragersinsight:block/poppy_bush_stage5"
-      },
-      "when": {
-        "age": "5"
-      }
-    },
-    {
-      "apply": {
-        "model": "foragersinsight:block/poppy_bush_stage6"
-      },
-      "when": {
-        "age": "6"
-      }
-    },
-    {
-      "apply": {
-        "model": "foragersinsight:block/poppy_bush_stage7"
-      },
-      "when": {
-        "age": "7"
-      }
     }
   ]
 }

@@ -12,9 +12,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
-
-
-
 import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy;
 

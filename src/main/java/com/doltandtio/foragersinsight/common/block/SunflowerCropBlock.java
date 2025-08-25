@@ -12,7 +12,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.RenderShape;
-
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -28,11 +27,11 @@ public class SunflowerCropBlock extends CropBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(2, 0, 2, 14, 10, 14),
-            Block.box(2, 0, 2, 14, 14, 14),
-            Block.box(2, 0, 2, 14, 16, 14),
-            Block.box(2, 0, 2, 14, 16, 14),
-            Block.box(2, 0, 2, 14, 16, 14)
+            Block.box(2, 0, 2, 14, 10, 14),  // AGE 0
+            Block.box(2, 0, 2, 14, 14, 14),  // AGE 1
+            Block.box(2, 0, 2, 14, 16, 14),  // AGE 2 LOWER
+            Block.box(2, 0, 2, 14, 16, 14),  // AGE 3 LOWER
+            Block.box(2, 0, 2, 14, 16, 14)   // AGE 4 LOWER
     };
 
     public SunflowerCropBlock(Properties properties) {
@@ -40,6 +39,9 @@ public class SunflowerCropBlock extends CropBlock {
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(this.getAgeProperty(), 0)
                 .setValue(HALF, DoubleBlockHalf.LOWER));
+    }
+    public static boolean isIllegalState(BlockState ignoredState) {
+        return false;
     }
 
     @Override
@@ -67,9 +69,6 @@ public class SunflowerCropBlock extends CropBlock {
         return state.getValue(HALF) == DoubleBlockHalf.UPPER
                 ? Block.box(2, 0, 2, 14, 16, 14)
                 : SHAPE_BY_AGE[state.getValue(getAgeProperty())];
-    }
-    public static boolean isIllegalState(BlockState state) {
-        return !state.hasProperty(AGE) || !state.hasProperty(HALF);
     }
 
     @Override

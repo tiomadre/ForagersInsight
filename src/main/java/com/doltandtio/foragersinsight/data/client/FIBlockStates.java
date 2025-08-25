@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -27,8 +28,8 @@ public class FIBlockStates extends FIBlockStatesHelper {
     }
     @Override
     protected void registerStatesAndModels() {
-        this.doubleCrop(ROSE_CROP);
-        this.doubleSunflowerCrop(SUNFLOWER_CROP);
+        this.RoseCrop(ROSE_CROP);
+        this.SunflowerCrop(SUNFLOWER_CROP);
         this.sackBlock(ROSE_HIP_SACK);
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
@@ -47,16 +48,18 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.matBlock(DENSE_ROSE_PETAL_MAT, "dense_rose_petals");
         this.spruceTipBlock();
     }
-
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
         Block cropBlock = crop.get();
-        MultiPartBlockStateBuilder builder = this.getMultipartBuilder(cropBlock);
+        VariantBlockStateBuilder builder = this.getVariantBuilder(cropBlock);
 
         Predicate<Integer> shouldIncValue = i -> i != 1 && i != 3 && i != 5;
         int currentAge = 0;
         for (int i = 0; i < 8; i++) {
-            builder.part().modelFile(models().cross("%s_stage%d".formatted(name(cropBlock), i), concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
-                    .addModel().condition(CropBlock.AGE, i).end();
+            builder.partialState().with(CropBlock.AGE, i)
+                    .modelForState()
+                    .modelFile(models().cross("%s_stage%d".formatted(name(cropBlock), i),
+                            concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
+                    .addModel();
             if (shouldIncValue.test(i)) {
                 currentAge += 1;
             }
@@ -64,7 +67,6 @@ public class FIBlockStates extends FIBlockStatesHelper {
 
         this.itemModels().basicItem(seeds.get());
     }
-
     public void crossCutout(RegistryObject<? extends Block> cross) {
         this.simpleBlock(cross.get(), this.models().cross(name(cross.get()), this.blockTexture(cross.get()))
                 .renderType("cutout"));
@@ -104,7 +106,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.itemModels().withExistingParent(name(leavesBlock), concatRL(blockTexture(leavesBlock), "_stage0"));
     }
 
-    public void doubleCrop(RegistryObject<? extends Block> crop) {
+    public void RoseCrop(RegistryObject<? extends Block> crop) {
         RoseCropBlock block = (RoseCropBlock) crop.get();
 
         this.getVariantBuilder(block).forAllStates(state -> {
@@ -124,21 +126,17 @@ public class FIBlockStates extends FIBlockStatesHelper {
 
         this.itemModels().basicItem(crop.get().asItem());
     }
-    public void doubleSunflowerCrop(RegistryObject<? extends Block> crop) {
+    public void SunflowerCrop(RegistryObject<? extends Block> crop) {
         SunflowerCropBlock block = (SunflowerCropBlock) crop.get();
+        String baseName = "sunflower_crop";
 
         this.getVariantBuilder(block).forAllStates(state -> {
-            int age;
-            String half;
+            int age = SunflowerCropBlock.isIllegalState(state)
+                    ? 0
+                    : state.getValue(SunflowerCropBlock.AGE);
 
-            if (SunflowerCropBlock.isIllegalState(state)) {
-                age = 0;
-                half = "lower";
-            } else {
-                age = state.getValue(SunflowerCropBlock.AGE);
-                half = state.getValue(SunflowerCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
-            }
-            String modelName = "%s_stage%d".formatted(name(block), age);
+            String modelName = "%s_%d".formatted(baseName, age);
+
 
             return ConfiguredModel.builder()
                     .modelFile(

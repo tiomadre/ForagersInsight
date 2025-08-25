@@ -145,7 +145,7 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         int age = this.getAge(state);
         if (this.isDouble(age) && state.getValue(HALF) == LOWER) {
             return Block.box(0, 0, 0, 16, 16, 16);
@@ -179,7 +179,7 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
         }
     }
     @Override
-    protected ItemLike getBaseSeedId() {
+    protected @NotNull ItemLike getBaseSeedId() {
         return FIItems.ROSE_HIP.get();
     }
 
