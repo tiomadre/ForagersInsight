@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "foragersinsight:sunflower_kernels"
+              "minecraft:wheat_seeds"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:cooking/sunflower_butter"
+        "recipe": "farmersdelight:cooking/seed_butter"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:cooking/sunflower_butter"
+      "farmersdelight:cooking/seed_butter"
     ]
   },
   "sends_telemetry_event": true

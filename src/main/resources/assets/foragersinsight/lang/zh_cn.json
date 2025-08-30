@@ -10,7 +10,6 @@
   "item.foragersinsight.poppy_seeds": "虞美人籽",
   "item.foragersinsight.rose_hip": "玫瑰果",
   "item.foragersinsight.spruce_tips": "云杉针叶",
-  "item.foragersinsight.sunflower_kernels": "向日葵籽",
 
   "item.foragersinsight.acorn_noodles": "橡子面条",
   "item.foragersinsight.carrot_poppy_chowder": "胡萝卜与虞美人浓汤",
@@ -23,7 +22,6 @@
   "item.foragersinsight.kelp_wrap": "海带包卷",
   "item.foragersinsight.meadow_medley": "草甸拼盘",
   "item.foragersinsight.poppy_seed_bagel": "虞美人籽贝果",
-  "item.foragersinsight.rose_granita": "意式玫瑰冰沙",
   "item.foragersinsight.rose_roasted_roots": "焙烤玫瑰根",
   "item.foragersinsight.seed_butter_jamwich": "黄油果酱三明治",
   "item.foragersinsight.seaside_sizzler": "海滨时时乐",
@@ -49,7 +47,7 @@
   "item.foragersinsight.rose_petals": "玫瑰花瓣",
   "item.foragersinsight.seed_milk_bottle": "种子奶瓶",
   "item.foragersinsight.seed_milk_bucket": "种子奶桶",
-  "item.foragersinsight.sunflower_butter": "葵花籽黄油",
+  "item.foragersinsight.seed_butter": "Seed Butter",
   "item.foragersinsight.wheat_flour": "小麦面粉",
   "item.foragersinsight.birch_sap_bottle": "桦树汁瓶",
   "item.foragersinsight.birch_sap_bucket": "桦树汁桶",
@@ -80,6 +78,7 @@
   "block.foragersinsight.bountiful_oak_sapling": "丰茂的橡树树苗",
   "block.foragersinsight.bountiful_spruce_leaves": "丰茂的云杉树叶",
   "block.foragersinsight.bountiful_spruce_sapling": "丰茂的云杉树苗",
+  "block.foragersinsight.bountiful_spruce_tips": "Bountiful Spruce Tips",
   "block.foragersinsight.sappy_birch_log": "多汁白桦原木",
   "block.foragersinsight.dense_rose_petals": "密铺的玫瑰花簇",
   "block.foragersinsight.dense_spruce_tips": "密铺的云杉针叶簇",
@@ -93,6 +92,7 @@
   "block.foragersinsight.spruce_tips_sack": "袋装云杉针叶",
 
   "farmersdelight.tooltip.seed_milk_bottle": "清除1个效果",
+
 
   "foragersinsight.flavortext.dandelion_root_tea": "一种由蒲公英根制成的治疗剂",
   "foragersinsight.flavortext.forest_elixir": "一种由糖浆与云杉针叶制成的甜味饮品",
@@ -114,4 +114,5 @@
   "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "这个铁砧已经完全修好了",
 
   "itemGroup.foragersinsight": "巧觅巧食"
+
 }

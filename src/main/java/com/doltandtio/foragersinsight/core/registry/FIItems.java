@@ -33,7 +33,7 @@ public class FIItems {
             new Item.Properties().food((FIFoods.COOKED_RABBIT_LEG))));
     public static final RegistryObject<Item> ROSE_PETALS = HELPER.createItem("rose_petals", () -> new Item(new Item.Properties()));
 
-    //Crushed
+    //Crushed & Mallet Drops
     public static final RegistryObject<Item> CRUSHED_ICE = HELPER.createItem("crushed_ice", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> POPPY_SEED_PASTE = HELPER.createItem("poppy_seed_paste", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ACORN_MEAL = HELPER.createItem("acorn_meal", () -> new Item(new Item.Properties()));
@@ -46,8 +46,6 @@ public class FIItems {
 
     public static final RegistryObject<Item> DANDELION_ROOT = HELPER.createItem("dandelion_root", () ->
             new ItemNameBlockItem(FIBlocks.DANDELION_BUSH.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
-    public static final RegistryObject<Item> SUNFLOWER_KERNELS = HELPER.createItem("sunflower_kernels", () ->
-            new ItemNameBlockItem(FIBlocks.SUNFLOWER_CROP.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
 
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
             new ItemNameBlockItem(FIBlocks.POPPY_BUSH.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));
@@ -58,7 +56,7 @@ public class FIItems {
     //Ingredients
     public static final RegistryObject<Item> GREEN_SAUCE = HELPER.createItem("green_sauce", () -> new Item(new Item.Properties()
             .food(FIFoods.SAUCE_BOWLS)));
-    public static final RegistryObject<Item> SUNFLOWER_BUTTER = HELPER.createItem("sunflower_butter", () -> new Item(new Item.Properties()
+    public static final RegistryObject<Item> SEED_BUTTER = HELPER.createItem("seed_butter", () -> new Item(new Item.Properties()
             .food(FIFoods.SAUCE_BOWLS)));
     public static final RegistryObject<Item> BIRCH_SYRUP_BUCKET = HELPER.createItem("birch_syrup_bucket", () -> new Item(new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
     public static final RegistryObject<Item> BIRCH_SYRUP_BOTTLE = HELPER.createItem("birch_syrup_bottle",

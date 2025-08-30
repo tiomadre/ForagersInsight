@@ -94,8 +94,6 @@ public class FILoot extends LootTableProvider {
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.YELLOW_DYE);
             //Poppy
             this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.RED_DYE);
-            //Sunflower
-            this.createFlowerBushDrops(SUNFLOWER_CROP, SUNFLOWER_KERNELS, Items.YELLOW_DYE);
 
             //BLOCK LOOT STUFF
             this.dropSelf(ACORN_CARROT_CAKE.get());

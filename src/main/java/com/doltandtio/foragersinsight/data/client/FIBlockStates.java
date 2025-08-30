@@ -3,7 +3,6 @@ package com.doltandtio.foragersinsight.data.client;
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.RoseCropBlock;
 import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
-import com.doltandtio.foragersinsight.common.block.SunflowerCropBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.world.item.Item;
@@ -13,7 +12,6 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,7 +27,6 @@ public class FIBlockStates extends FIBlockStatesHelper {
     @Override
     protected void registerStatesAndModels() {
         this.RoseCrop(ROSE_CROP);
-        this.SunflowerCrop(SUNFLOWER_CROP);
         this.sackBlock(ROSE_HIP_SACK);
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
@@ -126,28 +123,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
 
         this.itemModels().basicItem(crop.get().asItem());
     }
-    public void SunflowerCrop(RegistryObject<? extends Block> crop) {
-        SunflowerCropBlock block = (SunflowerCropBlock) crop.get();
-        String baseName = "sunflower_crop";
 
-        this.getVariantBuilder(block).forAllStates(state -> {
-            int age = SunflowerCropBlock.isIllegalState(state)
-                    ? 0
-                    : state.getValue(SunflowerCropBlock.AGE);
-
-            String modelName = "%s_%d".formatted(baseName, age);
-
-
-            return ConfiguredModel.builder()
-                    .modelFile(
-                            models()
-                                    .withExistingParent(modelName, modLoc(modelName))
-                                    .renderType("cutout")
-                    ).build();
-        });
-
-        this.itemModels().basicItem(crop.get().asItem());
-    }
 
     public void matBlock(RegistryObject<? extends Block> block, String texture) {
         this.simpleBlock(block.get(),

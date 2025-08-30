@@ -29,8 +29,8 @@ public class FICookingRecipes {
                 .addIngredient(FITags.ItemTag.POPPY_SEEDS)
                 .addIngredient(FITags.ItemTag.POPPY_SEEDS)
                 .addIngredient(Items.CARROT)
-                .addIngredient(SUNFLOWER_BUTTER.get())
-                .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.CARROT, SUNFLOWER_KERNELS.get())
+                .addIngredient(SEED_BUTTER.get())
+                .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.CARROT)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
@@ -175,11 +175,11 @@ public class FICookingRecipes {
                 .build(consumer);
             //Seed Milk
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
-                .addIngredient(Ingredient.of(SUNFLOWER_KERNELS.get(), ModItems.RICE.get()))
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
-                .unlockedByAnyIngredient(SUNFLOWER_KERNELS.get(), ModItems.RICE.get())
+                .addIngredient(ForgeTags.SEEDS)
+                .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
         //Other
@@ -195,11 +195,11 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
-        CookingPotRecipeBuilder.cookingPotRecipe(SUNFLOWER_BUTTER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(SUNFLOWER_KERNELS.get())
-                .addIngredient(SUNFLOWER_KERNELS.get())
-                .addIngredient(SUNFLOWER_KERNELS.get())
-                .unlockedByAnyIngredient(SUNFLOWER_KERNELS.get())
+        CookingPotRecipeBuilder.cookingPotRecipe(SEED_BUTTER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ForgeTags.SEEDS)
+                .addIngredient(ForgeTags.SEEDS)
+                .addIngredient(ForgeTags.SEEDS)
+                .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(Items.SLIME_BALL, 4, NORMAL_COOKING, MEDIUM_EXP)

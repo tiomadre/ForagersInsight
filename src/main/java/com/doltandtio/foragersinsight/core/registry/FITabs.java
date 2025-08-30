@@ -53,12 +53,11 @@ public class FITabs {
                         output.accept(FIItems.POPPY_SEEDS.get());
                         output.accept(FIItems.ROSE_HIP.get());
                         output.accept(FIItems.SPRUCE_TIPS.get());
-                        output.accept(FIItems.SUNFLOWER_KERNELS.get());
                             // Ingredients
                         output.accept(FIItems.ACORN_DOUGH.get());
                         output.accept(FIItems.GREEN_SAUCE.get());
                         output.accept(FIItems.ROSE_PETALS.get());
-                        output.accept(FIItems.SUNFLOWER_BUTTER.get());
+                        output.accept(FIItems.SEED_BUTTER.get());
                         output.accept(FIItems.SEED_MILK_BOTTLE.get());
                         output.accept(FIItems.SEED_MILK_BUCKET.get());
                         output.accept(FIItems.BIRCH_SYRUP_BUCKET.get());
