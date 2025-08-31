@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=lower": { "model": "foragersinsight:block/roselle_bush_lower" },
+    "half=upper": { "model": "foragersinsight:block/roselle_bush_upper" }
+  }
+}

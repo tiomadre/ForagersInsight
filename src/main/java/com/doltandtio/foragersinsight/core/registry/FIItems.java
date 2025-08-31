@@ -147,6 +147,10 @@ public class FIItems {
             new Item.Properties().food(FIFoods.SEED_MILK_BOTTLE)));
     public static final RegistryObject<Item> SEED_MILK_BUCKET = HELPER.createItem("seed_milk_bucket", () -> new MilkBucketItem(
             new Item.Properties().food(FIFoods.SEED_MILK_BUCKET)));
+    //Wildflowers
+    public static final RegistryObject<Item> ROSELLE_BUSH = HELPER.createItem("roselle_bush", () ->
+            new ItemNameBlockItem(FIBlocks.ROSELLE_BUSH.get(), basicItem()));
+
 //Workstations & Tools
     //Chilled Pot
     //Handbasket

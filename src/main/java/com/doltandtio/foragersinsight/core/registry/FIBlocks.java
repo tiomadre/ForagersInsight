@@ -7,6 +7,7 @@ import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulSpru
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.fml.common.Mod;
@@ -56,6 +57,9 @@ public class FIBlocks {
     public static final RegistryObject<Block> SCATTERED_SPRUCE_TIP_MAT = HELPER.createBlock("scattered_spruce_tips", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_SPRUCE_TIP_MAT = HELPER.createBlock("dense_spruce_tips", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petals", FoliageMatBlock::new);
+        //Wildflowers
+    public static final RegistryObject<Block> ROSELLE_BUSH = HELPER.createBlock("roselle_bush", () ->
+           new FlowerBlock(() -> MobEffects.HEAL, 1, copy(Blocks.LILAC)));
     //STORAGE
         //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->

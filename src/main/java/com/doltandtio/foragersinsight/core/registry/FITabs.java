@@ -107,6 +107,8 @@ public class FITabs {
                         output.accept(FIItems.NETHERITE_MALLET.get());
                         output.accept(FIItems.FLINT_SHEARS.get());
                         output.accept(FIItems.TAPPER.get());
+                            //Wildflowers + Plants
+                        output.accept(FIItems.ROSELLE_BUSH.get());
                             //Other
                         output.accept(FIItems.BIRCH_SAP_BUCKET.get());
                         output.accept(FIItems.BIRCH_SAP_BOTTLE.get());

@@ -20,7 +20,8 @@ public class FIItemTags extends ItemTagsProvider {
         //Other
         this.tag(FITags.ItemTag.ICE).add(Items.ICE, FIItems.CRUSHED_ICE.get())
                 .addOptional(new ResourceLocation("neapolitan", "ice_cubes"));
-        this.tag(FITags.ItemTag.SEEDS).add(FIItems.BLACK_ACORN.get(), FIItems.POPPY_SEEDS.get(), FIItems.SUNFLOWER_KERNELS.get());
+        this.tag(FITags.ItemTag.NUTS).add(FIItems.BLACK_ACORN.get());
+        this.tag(FITags.ItemTag.SEEDS).add(FIItems.BLACK_ACORN.get(), FIItems.POPPY_SEEDS.get());
         this.tag(FITags.ItemTag.MILK_BUCKET).add(FIItems.SEED_MILK_BUCKET.get());
         this.tag(FITags.ItemTag.MILK_BOTTLE).add(FIItems.SEED_MILK_BOTTLE.get());
         //Crops
@@ -42,7 +43,7 @@ public class FIItemTags extends ItemTagsProvider {
                 .add(Items.WHEAT,Items.SWEET_BERRIES, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.PUMPKIN, Items.MELON_SLICE, Items.APPLE,Items.KELP,Items.BAMBOO,
                  Items.COCOA_BEANS,Items.PUMPKIN,Items.MELON,Items.SUGAR_CANE,Items.GLOW_BERRIES,Items.CACTUS, Items.RED_MUSHROOM,Items.BROWN_MUSHROOM
                 ,Items.NETHER_WART, FIItems.ROSE_HIP.get(),FIItems.BLACK_ACORN.get(),FIItems.DANDELION_ROOT.get(),FIItems.POPPY_SEEDS.get(),FIItems.SPRUCE_TIPS.get()
-                ,FIItems.SUNFLOWER_KERNELS.get(),ModItems.ONION.get(),ModItems.TOMATO.get(),ModItems.RICE.get())
+                ,ModItems.ONION.get(),ModItems.TOMATO.get(),ModItems.RICE.get())
                     //Crop Cuts and Crushed
                      .add(ModItems.STRAW.get(),ModItems.PUMPKIN_SLICE.get(),ModItems.CABBAGE_LEAF.get(),ModItems.RICE_PANICLE.get(),FIItems.ROSE_PETALS.get()
                      ,FIItems.APPLE_SLICE.get(),FIItems.ACORN_MEAL.get(),FIItems.COCOA_POWDER.get(),FIItems.WHEAT_FLOUR.get(),FIItems.POPPY_SEED_PASTE.get(),FIItems.CRUSHED_ICE.get())
