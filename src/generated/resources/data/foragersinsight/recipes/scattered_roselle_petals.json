@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:roselle_petals"
+    },
+    {
+      "item": "foragersinsight:roselle_petals"
+    },
+    {
+      "item": "foragersinsight:roselle_petals"
+    },
+    {
+      "item": "foragersinsight:roselle_petals"
+    }
+  ],
+  "result": {
+    "item": "foragersinsight:scattered_roselle_petals"
+  }
+}

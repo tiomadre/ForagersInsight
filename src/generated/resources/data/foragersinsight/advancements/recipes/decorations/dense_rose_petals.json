@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sweet_berries": {
+    "has_scattered_rose_petals": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:sweet_berries"
+              "foragersinsight:scattered_rose_petals"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:seed_butter_jamwich"
+        "recipe": "foragersinsight:dense_rose_petals"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_sweet_berries",
+      "has_scattered_rose_petals",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:seed_butter_jamwich"
+      "foragersinsight:dense_rose_petals"
     ]
   },
   "sends_telemetry_event": false

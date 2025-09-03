@@ -31,6 +31,7 @@ public class FIItems {
             new Item.Properties().food((FIFoods.RAW_RABBIT_LEG))));
     public static final RegistryObject<Item> COOKED_RABBIT_LEG = HELPER.createItem("cooked_rabbit_leg", () -> new ConsumableItem(
             new Item.Properties().food((FIFoods.COOKED_RABBIT_LEG))));
+    public static final RegistryObject<Item> ROSELLE_PETALS = HELPER.createItem("roselle_petals", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ROSE_PETALS = HELPER.createItem("rose_petals", () -> new Item(new Item.Properties()));
 
     //Crushed & Mallet Drops
@@ -43,12 +44,12 @@ public class FIItems {
     //Crops
     public static final RegistryObject<Item> BLACK_ACORN = HELPER.createItem("black_acorn", () ->
             new Item(new Item.Properties().food(FIFoods.MID_SAT_MORSELS)));
-
     public static final RegistryObject<Item> DANDELION_ROOT = HELPER.createItem("dandelion_root", () ->
             new ItemNameBlockItem(FIBlocks.DANDELION_BUSH.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
-
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
             new ItemNameBlockItem(FIBlocks.POPPY_BUSH.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));
+    public static final RegistryObject<Item> ROSELLE_CALYX = HELPER.createItem("roselle_calyx", () ->
+            new Item(new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
     public static final RegistryObject<Item> ROSE_HIP = HELPER.createItem("rose_hip", () ->
             new ItemNameBlockItem(FIBlocks.ROSE_CROP.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> SPRUCE_TIPS = HELPER.createItem("spruce_tips", () ->
@@ -74,9 +75,9 @@ public class FIItems {
     public static final RegistryObject<Item> POPPY_SEED_BAGEL = HELPER.createItem("poppy_seed_bagel", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.BAKED_GOOD)));
         //Cakes and Slices
-        public static final RegistryObject<Item> ACORN_CARROT_CAKE_ITEM = HELPER.createItem("acorn_carrot_cake",
-                () -> new BlockItem(FIBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
-        public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
+    public static final RegistryObject<Item> ACORN_CARROT_CAKE_ITEM = HELPER.createItem("acorn_carrot_cake", () ->
+            new BlockItem(FIBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
+    public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CAKE_SLICE)));
         //Chilled
         //Comfort
@@ -149,7 +150,7 @@ public class FIItems {
             new Item.Properties().food(FIFoods.SEED_MILK_BUCKET)));
     //Wildflowers
     public static final RegistryObject<Item> ROSELLE_BUSH = HELPER.createItem("roselle_bush", () ->
-            new ItemNameBlockItem(FIBlocks.ROSELLE_BUSH.get(), basicItem()));
+            new BlockItem(FIBlocks.ROSELLE_BUSH.get(),basicItem()));
 
 //Workstations & Tools
     //Chilled Pot

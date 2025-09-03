@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foragersinsight:has_feature/roselle_bushes",
+  "features": "foragersinsight:roselle_patch_placed",
+  "step": "vegetal_decoration"
+}

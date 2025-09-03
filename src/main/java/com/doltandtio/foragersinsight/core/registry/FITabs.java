@@ -34,6 +34,7 @@ public class FITabs {
                         output.accept(FIBlocks.DENSE_SPRUCE_TIP_MAT.get());
                         output.accept(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get());
                         output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
+                        output.accept(FIBlocks.ROSELLE_BUSH.get());
                         output.accept(FIBlocks.SAPPY_BIRCH_LOG.get());
                         // Items
                             // Cuts and Crushed
@@ -41,6 +42,8 @@ public class FITabs {
                         output.accept(FIItems.APPLE_SLICE.get());
                         output.accept(FIItems.COOKED_RABBIT_LEG.get());
                         output.accept(FIItems.RAW_RABBIT_LEG.get());
+                        output.accept(FIItems.ROSE_PETALS.get());
+                        output.accept(FIItems.ROSELLE_PETALS.get());
                                 //Crushed
                         output.accept(FIItems.ACORN_MEAL.get());
                         output.accept(FIItems.COCOA_POWDER.get());
@@ -52,11 +55,11 @@ public class FITabs {
                         output.accept(FIItems.DANDELION_ROOT.get());
                         output.accept(FIItems.POPPY_SEEDS.get());
                         output.accept(FIItems.ROSE_HIP.get());
+                        output.accept(FIItems.ROSELLE_CALYX.get());
                         output.accept(FIItems.SPRUCE_TIPS.get());
                             // Ingredients
                         output.accept(FIItems.ACORN_DOUGH.get());
                         output.accept(FIItems.GREEN_SAUCE.get());
-                        output.accept(FIItems.ROSE_PETALS.get());
                         output.accept(FIItems.SEED_BUTTER.get());
                         output.accept(FIItems.SEED_MILK_BOTTLE.get());
                         output.accept(FIItems.SEED_MILK_BUCKET.get());
@@ -107,8 +110,6 @@ public class FITabs {
                         output.accept(FIItems.NETHERITE_MALLET.get());
                         output.accept(FIItems.FLINT_SHEARS.get());
                         output.accept(FIItems.TAPPER.get());
-                            //Wildflowers + Plants
-                        output.accept(FIItems.ROSELLE_BUSH.get());
                             //Other
                         output.accept(FIItems.BIRCH_SAP_BUCKET.get());
                         output.accept(FIItems.BIRCH_SAP_BOTTLE.get());

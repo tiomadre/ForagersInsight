@@ -4,6 +4,7 @@
   "item.foragersinsight.dandelion_root": "Dandelion Root",
   "item.foragersinsight.poppy_seeds": "Poppy Seeds",
   "item.foragersinsight.rose_hip": "Rose Hips",
+  "item.foragersinsight.roselle_calyx": "Roselle Calyx",
   "item.foragersinsight.spruce_tips": "Spruce Tips",
 
   "item.foragersinsight.acorn_cookie": "Acorn Cookie",
@@ -54,6 +55,7 @@
   "item.foragersinsight.cooked_rabbit_leg": "Cooked Rabbit Leg",
   "item.foragersinsight.raw_rabbit_leg": "Raw Rabbit Leg",
   "item.foragersinsight.rose_petals": "Rose Petals",
+  "item.foragersinsight.roselle_petals": "Roselle Petals",
 
   "item.foragersinsight.slice_of_acorn_carrot_cake": "Slice of Acorn Carrot Cake",
   "item.foragersinsight.acorn_carrot_cake_item": "Acorn Carrot Cake",
@@ -91,8 +93,10 @@
   "block.foragersinsight.spruce_tips_sack": "Sack of Spruce Tips",
 
   "block.foragersinsight.dense_rose_petals": "Dense Rose Petals",
+  "block.foragersinsight.dense_roselle_petals": "Dense Roselle Petals",
   "block.foragersinsight.dense_spruce_tips": "Dense Spruce Tips",
   "block.foragersinsight.scattered_rose_petals": "Scattered Rose Petals",
+  "block.foragersinsight.scattered_roselle_petals": "Scattered Roselle Petals",
   "block.foragersinsight.scattered_spruce_tips": "Scattered Spruce Tips",
 
   "foragersinsight.flavortext.dandelion_root_tea": "A curative tisane made from dandelion roots.",

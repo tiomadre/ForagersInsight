@@ -94,6 +94,19 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
 
         //OTHER
+        //Dyes
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RED_DYE, 1)
+                .requires(FIItems.ROSE_PETALS.get())
+                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
+                .save(consumer, ForagersInsight.rl("red_dye_from_rose_petals"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PINK_DYE, 1)
+                .requires(FIItems.ROSELLE_PETALS.get())
+                .unlockedBy("has_roseLLR_petals", has(FIItems.ROSELLE_PETALS.get()))
+                .save(consumer, ForagersInsight.rl("pink_dye_from_roselle_petals"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PINK_DYE, 2)
+                .requires(FIItems.ROSELLE_BUSH.get())
+                .unlockedBy("has_roselle_bush", has(FIItems.ROSELLE_BUSH.get()))
+                .save(consumer, ForagersInsight.rl("pink_dye_from_roselle_bush"));
         //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)
@@ -196,6 +209,10 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(FIItems.ROSE_PETALS.get(), 4)
                 .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
                 .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_ROSELLE_PETAL_MAT.get())
+                .requires(FIItems.ROSELLE_PETALS.get(), 4)
+                .unlockedBy("has_roselle_petals", has(FIItems.ROSELLE_PETALS.get()))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_SPRUCE_TIP_MAT.get())
                 .requires(FIItems.SPRUCE_TIPS.get(), 4)
                 .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
@@ -203,11 +220,15 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_ROSE_PETAL_MAT.get())
                 .requires(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get(), 2)
                 .unlockedBy("has_scattered_rose_petals", has(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get()))
-                .save(consumer, ForagersInsight.rl("dense_rose_petal_mat"));
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_ROSELLE_PETAL_MAT.get())
+                .requires(FIBlocks.SCATTERED_ROSELLE_PETAL_MAT.get(), 2)
+                .unlockedBy("has_scattered_roselle_petals", has(FIBlocks.SCATTERED_ROSELLE_PETAL_MAT.get()))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_SPRUCE_TIP_MAT.get())
                 .requires(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get(), 2)
                 .unlockedBy("has_scattered_spruce_tips", has(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get()))
-                .save(consumer, ForagersInsight.rl("dense_spruce_tip_mat"));
+                .save(consumer);
         //Feasts and Cakes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)

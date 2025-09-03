@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_petals"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:red_dye"
+  }
+}

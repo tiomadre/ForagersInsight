@@ -16,6 +16,7 @@ public class FIBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_ACORN_TREES = registerKey("add_acorn_trees");
     public static final ResourceKey<BiomeModifier> ADD_SPRUCE_TIP_TREES = registerKey("add_spruce_tip_trees");
     public static final ResourceKey<BiomeModifier> ADD_SAPPY_BIRCH_TREES = registerKey("add_sappy_birch_trees");
+    public static final ResourceKey<BiomeModifier> ADD_ROSELLE_BUSHES = registerKey("add_roselle_bushes");
 
     public static void bootstap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -42,6 +43,11 @@ public class FIBiomeModifiers {
         context.register(ADD_SAPPY_BIRCH_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(FITags.BiomeTag.HAS_SAPPY_BIRCH_TREES),
                 HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.SAPPY_BIRCH_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION)
+        );
+        context.register(ADD_ROSELLE_BUSHES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(FITags.BiomeTag.HAS_ROSELLE_BUSHES),
+                HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.ROSELLE_PATCH_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
     }

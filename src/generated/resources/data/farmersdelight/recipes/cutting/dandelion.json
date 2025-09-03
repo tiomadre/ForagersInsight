@@ -1,0 +1,12 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    { "item": "minecraft:dandelion" }
+  ],
+  "tool": { "tag": "forge:tools/knives" },
+  "result": [
+    { "item": "foragersinsight:dandelion_root", "count": 1 },
+    { "item": "foragersinsight:dandelion_root", "chance": 0.1 },
+    { "item": "minecraft:yellow_dye", "count": 2, "chance": 1.0 }
+  ]
+}

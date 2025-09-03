@@ -42,10 +42,10 @@ public class FIItemTags extends ItemTagsProvider {
                 //Crops
                 .add(Items.WHEAT,Items.SWEET_BERRIES, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.PUMPKIN, Items.MELON_SLICE, Items.APPLE,Items.KELP,Items.BAMBOO,
                  Items.COCOA_BEANS,Items.PUMPKIN,Items.MELON,Items.SUGAR_CANE,Items.GLOW_BERRIES,Items.CACTUS, Items.RED_MUSHROOM,Items.BROWN_MUSHROOM
-                ,Items.NETHER_WART, FIItems.ROSE_HIP.get(),FIItems.BLACK_ACORN.get(),FIItems.DANDELION_ROOT.get(),FIItems.POPPY_SEEDS.get(),FIItems.SPRUCE_TIPS.get()
+                ,Items.NETHER_WART, FIItems.ROSE_HIP.get(),FIItems.ROSELLE_CALYX.get(),FIItems.BLACK_ACORN.get(),FIItems.DANDELION_ROOT.get(),FIItems.POPPY_SEEDS.get(),FIItems.SPRUCE_TIPS.get()
                 ,ModItems.ONION.get(),ModItems.TOMATO.get(),ModItems.RICE.get())
                     //Crop Cuts and Crushed
-                     .add(ModItems.STRAW.get(),ModItems.PUMPKIN_SLICE.get(),ModItems.CABBAGE_LEAF.get(),ModItems.RICE_PANICLE.get(),FIItems.ROSE_PETALS.get()
+                     .add(ModItems.STRAW.get(),ModItems.PUMPKIN_SLICE.get(),ModItems.CABBAGE_LEAF.get(),ModItems.RICE_PANICLE.get(),FIItems.ROSE_PETALS.get(),FIItems.ROSELLE_PETALS.get()
                      ,FIItems.APPLE_SLICE.get(),FIItems.ACORN_MEAL.get(),FIItems.COCOA_POWDER.get(),FIItems.WHEAT_FLOUR.get(),FIItems.POPPY_SEED_PASTE.get(),FIItems.CRUSHED_ICE.get())
                 //Seeds
                 .add(Items.WHEAT_SEEDS,Items.PUMPKIN_SEEDS,Items.MELON_SEEDS,Items.BEETROOT_SEEDS,Items.TORCHFLOWER_SEEDS,Items.PITCHER_POD,ModItems.TOMATO_SEEDS.get())

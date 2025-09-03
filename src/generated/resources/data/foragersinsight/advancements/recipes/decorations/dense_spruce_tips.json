@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sweet_berries": {
+    "has_scattered_spruce_tips": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:sweet_berries"
+              "foragersinsight:scattered_spruce_tips"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:seed_butter_jamwich"
+        "recipe": "foragersinsight:dense_spruce_tips"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_sweet_berries",
+      "has_scattered_spruce_tips",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:seed_butter_jamwich"
+      "foragersinsight:dense_spruce_tips"
     ]
   },
   "sends_telemetry_event": false

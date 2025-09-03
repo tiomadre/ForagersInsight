@@ -100,11 +100,15 @@ public class FILoot extends LootTableProvider {
             this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
             this.dropSelf(SPRUCE_TIPS_SACK.get());
+            this.dropSelf(ROSELLE_CALYX_SACK.get());
+            this.dropSelf(FIBlocks.ROSELLE_BUSH.get());
 
             this.dropSelf(SCATTERED_ROSE_PETAL_MAT.get());
+            this.dropSelf(SCATTERED_ROSELLE_PETAL_MAT.get());
             this.dropSelf(SCATTERED_SPRUCE_TIP_MAT.get());
             this.dropSelf(DENSE_SPRUCE_TIP_MAT.get());
             this.dropSelf(DENSE_ROSE_PETAL_MAT.get());
+            this.dropSelf(DENSE_ROSELLE_PETAL_MAT.get());
 
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
             this.dropSelf(BOUNTIFUL_DARK_OAK_SAPLING.get());
