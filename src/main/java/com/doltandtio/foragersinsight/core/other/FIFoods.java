@@ -27,7 +27,7 @@ public class FIFoods {
             //This is for Apple Slices/Black Acorns
     public static final FoodProperties MID_SAT_MORSELS = new FoodProperties.Builder().fast()
             .nutrition(2).saturationMod(0.3f).build();
-            //This is for Sunflower Kernels/Dandelion Root
+            //This is for Dandelion Root/Roselle Calyx
     public static final FoodProperties LOW_SAT_MORSELS = new FoodProperties.Builder().fast()
             .nutrition(1).saturationMod(0.1f).build();
             //This is for Poppy Seeds/Rose Hips/Spruce Tips
@@ -102,7 +102,8 @@ public class FIFoods {
             .nutrition(8).saturationMod(0.7F).build();
         public static final FoodProperties SWEET_ROASTED_RABBIT_LEG = (new FoodProperties.Builder()
             .nutrition(5).saturationMod(0.6f)).build();
-
+        public static final FoodProperties CANDIED_CALYCES = new FoodProperties.Builder().fast()
+                .nutrition(2).saturationMod(0.2f).build();
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 250), 1).build();

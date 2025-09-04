@@ -28,6 +28,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
     protected void registerStatesAndModels() {
         this.RoseCrop(ROSE_CROP);
         this.sackBlock(ROSE_HIP_SACK);
+        this.RoselleCrop(ROSELLE_CROP);
         this.sackBlock(ROSELLE_CALYX_SACK);
         this.crossCutout(BOUNTIFUL_OAK_SAPLING);
         this.bountifulLeaves(BOUNTIFUL_OAK_LEAVES, Blocks.OAK_LEAVES);
@@ -123,6 +124,26 @@ public class FIBlockStates extends FIBlockStatesHelper {
             }
             return ConfiguredModel.builder().modelFile(models().withExistingParent("rose_hip_stage%d_%s".formatted(age, half), "block/cross")
                     .texture("cross", concatRL(modTexture("rose_hip"), "_stage%d_%s".formatted(age, half))).renderType("cutout")).build();
+        });
+
+        this.itemModels().basicItem(crop.get().asItem());
+    }
+    public void RoselleCrop(RegistryObject<? extends Block> crop) {
+        RoseCropBlock block = (RoseCropBlock) crop.get();
+
+        this.getVariantBuilder(block).forAllStates(state -> {
+            int age;
+            String half;
+            if (RoseCropBlock.isIllegalState(state)) {
+                age = 0;
+                half = "lower";
+            }
+            else {
+                age = state.getValue(RoseCropBlock.AGE);
+                half = state.getValue(RoseCropBlock.HALF) == DoubleBlockHalf.UPPER ? "upper" : "lower";
+            }
+            return ConfiguredModel.builder().modelFile(models().withExistingParent("roselle_crop_stage%d_%s".formatted(age, half), "block/cross")
+                    .texture("cross", concatRL(modTexture("roselle_crop"), "_stage%d_%s".formatted(age, half))).renderType("cutout")).build();
         });
 
         this.itemModels().basicItem(crop.get().asItem());

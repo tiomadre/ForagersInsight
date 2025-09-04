@@ -101,11 +101,11 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .save(consumer, ForagersInsight.rl("red_dye_from_rose_petals"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PINK_DYE, 1)
                 .requires(FIItems.ROSELLE_PETALS.get())
-                .unlockedBy("has_roseLLR_petals", has(FIItems.ROSELLE_PETALS.get()))
+                .unlockedBy("has_roseLle_petals", has(FIItems.ROSELLE_PETALS.get()))
                 .save(consumer, ForagersInsight.rl("pink_dye_from_roselle_petals"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PINK_DYE, 2)
-                .requires(FIItems.ROSELLE_BUSH.get())
-                .unlockedBy("has_roselle_bush", has(FIItems.ROSELLE_BUSH.get()))
+                .requires(FIItems.ROSELLE_BUSH_ITEM.get())
+                .unlockedBy("has_roselle_bush", has(FIItems.ROSELLE_BUSH_ITEM.get()))
                 .save(consumer, ForagersInsight.rl("pink_dye_from_roselle_bush"));
         //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())

@@ -14,6 +14,7 @@ public class FITags {
         public static final TagKey<net.minecraft.world.item.Item> ICE = TagUtil.itemTag("forge", "ice");
         public static final TagKey<net.minecraft.world.item.Item> SEEDS = TagUtil.itemTag("forge", "seeds");
         public static final TagKey<net.minecraft.world.item.Item> NUTS = TagUtil.itemTag("forge", "nuts");
+        public static final TagKey<net.minecraft.world.item.Item> NUTS_ACORN = TagUtil.itemTag("forge", "nuts/acorn");
         //Mallet
         public static final TagKey<net.minecraft.world.item.Item> MALLETS = TagUtil.itemTag("forge", "tools/mallets");
         //Milk

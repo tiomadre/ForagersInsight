@@ -29,10 +29,13 @@ public class FITabs {
                         output.accept(FIBlocks.DANDELION_ROOTS_CRATE.get());
                         output.accept(FIBlocks.POPPY_SEEDS_SACK.get());
                         output.accept(FIBlocks.ROSE_HIP_SACK.get());
+                        output.accept(FIBlocks.ROSELLE_CALYX_SACK.get());
                         output.accept(FIBlocks.SPRUCE_TIPS_SACK.get());
                         output.accept(FIBlocks.DENSE_ROSE_PETAL_MAT.get());
+                        output.accept(FIBlocks.DENSE_ROSELLE_PETAL_MAT.get());
                         output.accept(FIBlocks.DENSE_SPRUCE_TIP_MAT.get());
                         output.accept(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get());
+                        output.accept(FIBlocks.SCATTERED_ROSELLE_PETAL_MAT.get());
                         output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
                         output.accept(FIBlocks.ROSELLE_BUSH.get());
                         output.accept(FIBlocks.SAPPY_BIRCH_LOG.get());
@@ -66,7 +69,7 @@ public class FITabs {
                         output.accept(FIItems.BIRCH_SYRUP_BUCKET.get());
                         output.accept(FIItems.BIRCH_SYRUP_BOTTLE.get());
 
-                            // Baked Goods, Cakes and Cookies
+                            // Baked Goods, Cakes, Cookies and Sweets
                         output.accept(FIItems.ACORN_COOKIE.get());
                         output.accept(FIItems.ROSE_COOKIE.get());
                         output.accept(FIItems.BLACK_FOREST_MUFFIN.get());
@@ -74,6 +77,7 @@ public class FITabs {
                         output.accept(FIItems.POPPY_SEED_BAGEL.get());
                         output.accept(FIItems.SLICE_OF_ACORN_CARROT_CAKE.get().getDefaultInstance());
                         output.accept(FIItems.ACORN_CARROT_CAKE_ITEM.get().getDefaultInstance());
+                        output.accept(FIItems.CANDIED_CALYCES.get());
                             // Dishes
                         output.accept(FIItems.ACORN_NOODLES.get());
                         output.accept(FIItems.CARROT_POPPY_CHOWDER.get());

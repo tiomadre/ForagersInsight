@@ -18,7 +18,7 @@ public class FICrushandCutRecipes {
             //Crop Cuts
         CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.APPLE), of(ForgeTags.TOOLS_KNIVES), FIItems.APPLE_SLICE.get(), 2).addResultWithChance(FIItems.APPLE_SLICE.get(),0.1f).build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.ROSE_BUSH), of(ForgeTags.TOOLS_KNIVES), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.1f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 2).build(consumer);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ROSELLE_BUSH.get()), of(ForgeTags.TOOLS_KNIVES), FIItems.ROSELLE_CALYX.get(), 1).addResultWithChance(FIItems.ROSELLE_CALYX.get(),0.1f).addResultWithChance(FIItems.ROSELLE_PETALS.get(), 1f, 2).build(consumer);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ROSELLE_BUSH_ITEM.get()), of(ForgeTags.TOOLS_KNIVES), FIItems.ROSELLE_CALYX.get(), 1).addResultWithChance(FIItems.ROSELLE_CALYX.get(),0.1f).addResultWithChance(FIItems.ROSELLE_PETALS.get(), 1f, 2).build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.DANDELION), of(ForgeTags.TOOLS_KNIVES), FIItems.DANDELION_ROOT.get(), 1).addResultWithChance(FIItems.DANDELION_ROOT.get(),0.1f).addResultWithChance(Items.YELLOW_DYE,1f, 2).build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.POPPY), of(ForgeTags.TOOLS_KNIVES), FIItems.POPPY_SEEDS.get(), 1).addResultWithChance(FIItems.POPPY_SEEDS.get(),0.1f).addResultWithChance(Items.RED_DYE,1f, 2).build(consumer);
              //Meat Cuts

@@ -83,6 +83,7 @@ public class FILoot extends LootTableProvider {
             //Rose
         @Override
         protected void generate() {
+            //Rose
             this.add(ROSE_CROP.get(), this.applyExplosionDecay(FIItems.ROSE_HIP.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool().when(isUpperOrLower())
@@ -90,6 +91,14 @@ public class FILoot extends LootTableProvider {
                                 .when(stateCond(ROSE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE))
                                 .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
                         .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)))));
+            //Roselle
+            this.add(ROSELLE_CROP.get(), this.applyExplosionDecay(ROSELLE_CALYX.get(),
+                    LootTable.lootTable()
+                            .withPool(LootPool.lootPool().when(isUpperOrLower())
+                                    .add(LootItem.lootTableItem(ROSELLE_CALYX.get()))
+                                    .when(stateCond(ROSELLE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE))
+                                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
+                            .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSELLE_PETALS.get()).when(HAS_KNIFE)))));
             //Dandelion
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.YELLOW_DYE);
             //Poppy

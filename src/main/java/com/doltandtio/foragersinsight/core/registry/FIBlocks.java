@@ -7,7 +7,6 @@ import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulSpru
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -31,6 +30,8 @@ public class FIBlocks {
     public static final RegistryObject<Block> DANDELION_BUSH = HELPER.createBlockNoItem("dandelion_bush", () ->
             new DandelionBushBlock(copy(Blocks.POTATOES)));
     public static final RegistryObject<Block> ROSE_CROP = HELPER.createBlockNoItem("rose_crop", () -> new RoseCropBlock(
+            copy(Blocks.WHEAT), 3));
+    public static final RegistryObject<Block> ROSELLE_CROP = HELPER.createBlockNoItem("roselle_crop", () -> new RoseCropBlock(
             copy(Blocks.WHEAT), 3));
         //Trees
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
@@ -61,8 +62,9 @@ public class FIBlocks {
     public static final RegistryObject<Block> DENSE_ROSELLE_PETAL_MAT = HELPER.createBlock("dense_roselle_petals", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petals", FoliageMatBlock::new);
         //Wildflowers
-    public static final RegistryObject<Block> ROSELLE_BUSH = HELPER.createBlock("roselle_bush", () ->
-           new TallFlowerBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
+    public static final RegistryObject<Block> ROSELLE_BUSH = HELPER.createBlockNoItem("roselle_bush", () ->
+          new TallFlowerBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
+
     //STORAGE
         //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->

@@ -49,7 +49,7 @@ public class FIItems {
     public static final RegistryObject<Item> POPPY_SEEDS = HELPER.createItem("poppy_seeds", () ->
             new ItemNameBlockItem(FIBlocks.POPPY_BUSH.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> ROSELLE_CALYX = HELPER.createItem("roselle_calyx", () ->
-            new Item(new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
+            new ItemNameBlockItem(FIBlocks.ROSELLE_CROP.get(), new Item.Properties().food(FIFoods.LOW_SAT_MORSELS)));
     public static final RegistryObject<Item> ROSE_HIP = HELPER.createItem("rose_hip", () ->
             new ItemNameBlockItem(FIBlocks.ROSE_CROP.get(), new Item.Properties().food(FIFoods.NO_SAT_MORSELS)));
     public static final RegistryObject<Item> SPRUCE_TIPS = HELPER.createItem("spruce_tips", () ->
@@ -74,6 +74,8 @@ public class FIItems {
             new Item.Properties().food(FIFoods.BAKED_GOOD)));
     public static final RegistryObject<Item> POPPY_SEED_BAGEL = HELPER.createItem("poppy_seed_bagel", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.BAKED_GOOD)));
+    public static final RegistryObject<Item> CANDIED_CALYCES = HELPER.createItem("candied_calyces", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.CANDIED_CALYCES)));
         //Cakes and Slices
     public static final RegistryObject<Item> ACORN_CARROT_CAKE_ITEM = HELPER.createItem("acorn_carrot_cake", () ->
             new BlockItem(FIBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
@@ -149,7 +151,7 @@ public class FIItems {
     public static final RegistryObject<Item> SEED_MILK_BUCKET = HELPER.createItem("seed_milk_bucket", () -> new MilkBucketItem(
             new Item.Properties().food(FIFoods.SEED_MILK_BUCKET)));
     //Wildflowers
-    public static final RegistryObject<Item> ROSELLE_BUSH = HELPER.createItem("roselle_bush", () ->
+    public static final RegistryObject<Item> ROSELLE_BUSH_ITEM = HELPER.createItem("roselle_bush", () ->
             new BlockItem(FIBlocks.ROSELLE_BUSH.get(),basicItem()));
 
 //Workstations & Tools
