@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "foragersinsight:block/roselle_bush"
-  }
+"parent": "minecraft:item/generated",
+"textures": {
+"layer0": "foragersinsight:item/roselle_bush"
+}
 }

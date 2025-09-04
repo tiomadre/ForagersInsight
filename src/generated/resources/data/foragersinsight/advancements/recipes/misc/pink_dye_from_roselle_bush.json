@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_roseLle_petals": {
+    "has_roselle_bush": {
       "conditions": {
         "items": [
           {
             "items": [
-              "foragersinsight:roselle_petals"
+              "foragersinsight:roselle_bush"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:pink_dye_from_roselle_petals"
+        "recipe": "foragersinsight:pink_dye_from_roselle_bush"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_roseLle_petals",
+      "has_roselle_bush",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:pink_dye_from_roselle_petals"
+      "foragersinsight:pink_dye_from_roselle_bush"
     ]
   },
   "sends_telemetry_event": false

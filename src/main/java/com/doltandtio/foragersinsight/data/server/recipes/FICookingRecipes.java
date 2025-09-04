@@ -183,6 +183,14 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
         //Other
+        CookingPotRecipeBuilder.cookingPotRecipe(CANDIED_CALYCES.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(ROSELLE_CALYX.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_FRIES.get(), 1, FAST_COOKING, SMALL_EXP)
                 .addIngredient(DANDELION_ROOT.get())
                 .unlockedByAnyIngredient(DANDELION_ROOT.get())

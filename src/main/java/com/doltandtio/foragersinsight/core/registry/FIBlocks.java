@@ -63,7 +63,7 @@ public class FIBlocks {
     public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petals", FoliageMatBlock::new);
         //Wildflowers
     public static final RegistryObject<Block> ROSELLE_BUSH = HELPER.createBlockNoItem("roselle_bush", () ->
-          new TallFlowerBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
+          new TallFlowerBlock(copy(Blocks.LILAC)));
 
     //STORAGE
         //Crop Crates and Sacks
