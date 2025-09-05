@@ -11,12 +11,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Predicate;
 
 import static com.doltandtio.foragersinsight.core.registry.FIBlocks.*;
 
@@ -51,20 +50,15 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.spruceTipBlock();
     }
     private void age5Crop(RegistryObject<Block> crop, RegistryObject<Item> seeds) {
-        Block cropBlock = crop.get();
+        CropBlock cropBlock = (CropBlock) crop.get();
         VariantBlockStateBuilder builder = this.getVariantBuilder(cropBlock);
+        IntegerProperty age = (IntegerProperty) cropBlock.getStateDefinition().getProperty("age");
 
-        Predicate<Integer> shouldIncValue = i -> i != 1 && i != 3 && i != 5;
-        int currentAge = 0;
-        for (int i = 0; i < 8; i++) {
-            builder.partialState().with(CropBlock.AGE, i)
+        for (int i = 0; i <= cropBlock.getMaxAge(); i++) {
+            builder.partialState().with(age, i)
                     .modelForState()
                     .modelFile(models().cross("%s_stage%d".formatted(name(cropBlock), i),
-                            concatRL(blockTexture(cropBlock), "_stage%d".formatted(currentAge))).renderType("cutout"))
-                    .addModel();
-            if (shouldIncValue.test(i)) {
-                currentAge += 1;
-            }
+                            concatRL(blockTexture(cropBlock), "_stage%d".formatted(i))).renderType("cutout"));
         }
 
         this.itemModels().basicItem(seeds.get());
@@ -90,6 +84,7 @@ public class FIBlockStates extends FIBlockStatesHelper {
                 models().cubeBottomTop(name(block.get()), modTexture(cropName + "_crate_side"),
                         modTexture("crate_bottom"),
                         modTexture(cropName + "_crate_top")));
+
 
         this.blockItem(block.get());
     }
