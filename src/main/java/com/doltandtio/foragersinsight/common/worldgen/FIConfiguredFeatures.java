@@ -42,6 +42,7 @@ import java.util.function.Supplier;
 public class FIConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_TREE_KEY = registerKey("apple_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ACORN_TREE_KEY = registerKey("acorn_dark_oak");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> YOUNG_ACORN_TREE_KEY = registerKey("young_acorn_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_TIP_TREE_KEY = registerKey("spruce_tip_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPY_BIRCH_TREE_KEY = registerKey("sappy_birch_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROSELLE_BUSH_PATCH_KEY = registerKey("patch_roselle_bush");
@@ -55,6 +56,13 @@ public class FIConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 bountifulLeafStateProvider(Blocks.OAK_LEAVES, FIBlocks.BOUNTIFUL_OAK_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)
+        ).build());
+        register(context, YOUNG_ACORN_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.DARK_OAK_LOG),
+                new StraightTrunkPlacer(4, 2, 0),
+                bountifulLeafStateProvider(Blocks.DARK_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)
         ).build());
