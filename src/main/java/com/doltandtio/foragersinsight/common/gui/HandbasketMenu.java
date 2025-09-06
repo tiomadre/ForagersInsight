@@ -32,6 +32,7 @@ public class HandbasketMenu extends AbstractContainerMenu {
     private static final int HOTBAR_Y     = INV_START_Y + 3 * SLOT_SIZE + 4; // 142
 
     public HandbasketMenu(int id, Inventory playerInv, ItemStack basketStack) {
+
         super(FIMenuTypes.HANDBASKET_MENU.get(), id);
         this.basketStack = basketStack;
         this.basketInv = basketStack
@@ -57,12 +58,12 @@ public class HandbasketMenu extends AbstractContainerMenu {
                 int slotIndex = col + row * 9 + 9;
                 int x = INV_START_X + col * SLOT_SIZE;
                 int y = INV_START_Y + row * SLOT_SIZE;
-                addSlot(new Slot(playerInv, slotIndex, x, y));
+                addSlot(createPlayerSlot(playerInv, slotIndex, x, y));
             }
         }
         for (int col = 0; col < 9; col++) {
             int x = INV_START_X + col * SLOT_SIZE;
-            addSlot(new Slot(playerInv, col, x, HOTBAR_Y));
+            addSlot(createPlayerSlot(playerInv, col, x, HOTBAR_Y));
         }
     }
     public HandbasketMenu(int id, Inventory inv, FriendlyByteBuf buf) {
@@ -92,7 +93,7 @@ public class HandbasketMenu extends AbstractContainerMenu {
             }
         } else {
             if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED) ||
-                !this.moveItemStackTo(sourceStack, 0, BASKET_ROWS * BASKET_COLS, false)) {
+                    !this.moveItemStackTo(sourceStack, 0, BASKET_ROWS * BASKET_COLS, false)) {
                 return ItemStack.EMPTY;
             }
         }
@@ -112,27 +113,28 @@ public class HandbasketMenu extends AbstractContainerMenu {
     // prevent moving
     private int findBasketSlot(Inventory playerInv, ItemStack basketStack) {
         for (int i = 0; i < playerInv.getContainerSize(); i++) {
-if (ItemStack.isSameItemSameTags(playerInv.getItem(i), basketStack)) {
+            if (ItemStack.isSameItemSameTags(playerInv.getItem(i), basketStack)) {
                 return i;
             }
         }
         return -1;
     }
-    private Slot createPlayerSlot(Inventory playerInv, int index) {
-        return new Slot(playerInv, index, 0, 0) {
+    private Slot createPlayerSlot(Inventory playerInv, int index, int x, int y) {
+        return new Slot(playerInv, index, x, y) {
             @Override
             public boolean mayPickup(@NotNull Player player) {
-if (index == HandbasketMenu.this.basketSlotIndex) {
-    return false;
-}
-    return super.mayPickup(player);
+                if (index == HandbasketMenu.this.basketSlotIndex) {
+                    return false;
+                }
+                return super.mayPickup(player);
             }
+
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-if (index == HandbasketMenu.this.basketSlotIndex) {
-    return false;
-}
-return super.mayPlace(stack);
+                if (index == HandbasketMenu.this.basketSlotIndex) {
+                    return false;
+                }
+                return super.mayPlace(stack);
             }
         };
     }
