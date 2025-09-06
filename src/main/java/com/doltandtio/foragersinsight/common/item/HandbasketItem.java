@@ -1,6 +1,6 @@
-
 package com.doltandtio.foragersinsight.common.item;
 
+import com.doltandtio.foragersinsight.common.gui.HandbasketMenu;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.item.Item;
@@ -17,13 +18,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
-import com.doltandtio.foragersinsight.common.gui.HandbasketMenu;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 
 public class HandbasketItem extends Item {
     public HandbasketItem(Properties properties) {
@@ -42,7 +41,7 @@ public class HandbasketItem extends Item {
                 }
 
                 @Override
-                public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                public @NotNull ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
                     // no basketception
                     if (stack.getItem() instanceof HandbasketItem) {
                         return stack;
@@ -96,9 +95,9 @@ public class HandbasketItem extends Item {
                 finalTag.put("HandbasketInv", handler.serializeNBT());
             }
         });
-        tag = finalTag;
         return tag;
     }
+
     @Override
     public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
         super.readShareTag(stack, tag);
@@ -110,19 +109,27 @@ public class HandbasketItem extends Item {
             });
         }
     }
+
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player player, @NotNull InteractionHand hand) {
         ItemStack held = player.getItemInHand(hand);
         if (!world.isClientSide() && player instanceof ServerPlayer server) {
+            int slotIndex = hand == InteractionHand.MAIN_HAND
+                    ? player.getInventory().selected
+                    : Inventory.SLOT_OFFHAND;
+
             NetworkHooks.openScreen(
                     server,
                     new SimpleMenuProvider(
-                            (id, inv, p) -> new HandbasketMenu(id, inv, held),
+                            (id, inv, p) -> new HandbasketMenu(id, inv, held, slotIndex),
                             Component.translatable("container.foragersinsight.handbasket")
                     ),
-                    buf -> buf.writeItem(held)
+                    buf -> {
+                        buf.writeItem(held);
+                        buf.writeVarInt(slotIndex);
+                    }
             );
         }
-        return InteractionResultHolder.success(held);
+        return InteractionResultHolder.sidedSuccess(held, world.isClientSide());
     }
 }
