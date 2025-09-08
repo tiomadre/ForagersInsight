@@ -83,6 +83,9 @@ public class FIFoods {
         public static final FoodProperties GLAZED_PORKCHOP_AND_ACORN_GRITS = new FoodProperties.Builder()
             .nutrition(12).saturationMod(1.1f)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 3000), 1).build();
+        public static final FoodProperties TART_WHEAT_PILAF = new FoodProperties.Builder()
+            .nutrition(6).saturationMod(0.6f)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 1000), 1).build();
 
         //Other
         public static final FoodProperties BAKED_GOOD = new FoodProperties.Builder()

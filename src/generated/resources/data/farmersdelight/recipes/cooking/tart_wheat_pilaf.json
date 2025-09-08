@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:wheat_seeds"
+    },
+    {
+      "item": "foragersinsight:roselle_calyx"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    },
+    {
+      "item": "foragersinsight:roselle_calyx"
+    },
+    {
+      "tag": "forge:milk/milk_bottle"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "foragersinsight:tart_wheat_pilaf"
+  }
+}

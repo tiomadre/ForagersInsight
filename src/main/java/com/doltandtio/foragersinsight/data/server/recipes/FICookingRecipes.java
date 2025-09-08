@@ -143,6 +143,15 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(TART_WHEAT_PILAF.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(Items.WHEAT_SEEDS)
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(Items.WHEAT_SEEDS)
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .unlockedByAnyIngredient(ROSELLE_CALYX.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         //Drinks
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_PETALS.get())
