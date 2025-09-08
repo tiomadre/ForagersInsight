@@ -11,7 +11,7 @@
   "item.foragersinsight.acorn_noodles": "Желудевая лапша",
   "item.foragersinsight.black_forest_muffin": "Маффин «Черный Лес»",
   "item.foragersinsight.candied_calyces": "Карамельные чашечки розеллы",
-  "item.foragersinsight.carrot_poppy_chowder": "Морковно маковый Чаудер",
+  "item.foragersinsight.carrot_poppy_chowder": "Морковно-маковый чаудер",
   "item.foragersinsight.cod_and_pumpkin_stew": "Тушёная треска с тыквой",
   "item.foragersinsight.creamy_salmon_bagel": "Сливочный багель с лососем",
   "item.foragersinsight.dandelion_fries": "Жареные корни одуванчика",
@@ -28,14 +28,15 @@
   "item.foragersinsight.rose_roasted_roots": "Запечённые корнеплоды с розой",
   "item.foragersinsight.seed_butter_jamwich": "Сэндвич с пастой из семян и джемом",
   "item.foragersinsight.seaside_sizzler": "Морское жаркое",
-  "item.foragersinsight.steamy_kelp_rice": "Рис с водорослями на пару",
+  "item.foragersinsight.steamy_kelp_rice": "Горячий рис с водорослями",
   "item.foragersinsight.sweet_roasted_rabbit_leg": "Сладкая жареная кроличья нога",
   "item.foragersinsight.syrup_toast_stacks": "Стопки тостов с сиропом",
   "item.foragersinsight.woodland_pasta": "Лесная паста",
   "item.foragersinsight.hearty_spruce_pilaf": "Сытный еловый плов",
+  "item.foragersinsight.tart_wheat_pilaf": "Терпкий плов из пшеничных зёрен",
 
   "item.foragersinsight.dandelion_root_tea": "Чай из корня одуванчика",
-  "item.foragersinsight.rose_cordial": "Розовый ликер",
+  "item.foragersinsight.rose_cordial": "Розовый настой",
   "item.foragersinsight.forest_elixir": "Лесной эликсир",
   "item.foragersinsight.glowing_carrot_juice": "Сияющий морковный сок",
 
@@ -85,9 +86,9 @@
   "block.foragersinsight.bountiful_spruce_leaves": "Плодородная листва ели",
   "block.foragersinsight.bountiful_spruce_sapling": "Плодородный саженец ели",
   "block.foragersinsight.bountiful_spruce_tips": "Плодородные еловые почки",
-  "block.foragersinsight.sappy_birch_log": "Сочное берёзовое бревно",
+  "block.foragersinsight.sappy_birch_log": "Берёзовое бревно с соком",
 
-  "block.foragersinsight.dandelion_roots_crate": "Ящик с корнями одуванчика",
+  "block.foragersinsight.dandelion_root_sack": "Мешок корней одуванчика",
   "block.foragersinsight.black_acorn_sack": "Мешок чёрных желудей",
   "block.foragersinsight.poppy_seeds_sack": "Мешок маковых семян",
   "block.foragersinsight.rose_hip_sack": "Мешок шиповника",
@@ -97,6 +98,8 @@
   "block.foragersinsight.dense_rose_petals": "Куча лепестков роз",
   "block.foragersinsight.dense_roselle_petals": "Куча лепестков розеллы",
   "block.foragersinsight.dense_spruce_tips": "Куча еловых почек",
+  "block.foragersinsight.dense_straw": "Куча соломы",
+  "block.foragersinsight.scattered_straw": "Разбросанная солома",
   "block.foragersinsight.scattered_rose_petals": "Разбросанные лепестки роз",
   "block.foragersinsight.scattered_roselle_petals": "Разбросанные лепестки розеллы",
   "block.foragersinsight.scattered_spruce_tips": "Разбросанные еловые почки",
@@ -119,7 +122,7 @@
 
   "farmersdelight.tool_interaction.shears.chicken": "Пожалуйста, подождите %s секунд, чтобы снова подстричь эту курицу.",
   "farmersdelight.tool_interaction.shears.baby_chicken": "Молодых куриц нельзя стричь.",
-  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "Этот верстак полностью отремонтирован.",
+  "farmersdelight.tool_interaction.mallet.anvil_no_repairs": "Эта наковальня полностью отремонтирована.",
 
   "itemGroup.foragersinsight": "Forager's Insight"
 }
