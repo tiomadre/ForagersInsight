@@ -33,7 +33,7 @@ public class FIBlockTags extends BlockTagsProvider {
     }
 
     protected void registerMineables() {
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(),DANDELION_ROOTS_CRATE.get(), SAPPY_BIRCH_LOG.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BOUNTIFUL_OAK_SAPLING.get(), BOUNTIFUL_DARK_OAK_SAPLING.get(), DANDELION_ROOT_SACK.get(), SAPPY_BIRCH_LOG.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(BOUNTIFUL_OAK_LEAVES.get(),BOUNTIFUL_DARK_OAK_LEAVES.get(),BOUNTIFUL_SPRUCE_LEAVES.get());
         this.tag(ModTags.MINEABLE_WITH_KNIFE).add(ROSE_HIP_SACK.get(), POPPY_SEEDS_SACK.get(), SPRUCE_TIPS_SACK.get(), BLACK_ACORN_SACK.get());
     }
@@ -42,7 +42,7 @@ public class FIBlockTags extends BlockTagsProvider {
     protected void registerForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(ROSE_HIP_SACK.get());
         tag(STORAGE_BLOCK_POPPY_SEEDS).add(POPPY_SEEDS_SACK.get());
-        tag(STORAGE_BLOCK_DANDELION_ROOT).add(DANDELION_ROOTS_CRATE.get());
+        tag(STORAGE_BLOCK_DANDELION_ROOT).add(DANDELION_ROOT_SACK.get());
         tag(STORAGE_BLOCK_SPRUCE_TIPS).add(SPRUCE_TIPS_SACK.get());
         tag(STORAGE_BLOCK_BLACK_ACORNS).add(BLACK_ACORN_SACK.get());
     }

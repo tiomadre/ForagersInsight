@@ -1,0 +1,6 @@
+{
+  "parent": "foragersinsight:block",
+  "textures": {
+    "all": "foragersinsight:block/bountiful_spruce_leaves"
+  }
+}

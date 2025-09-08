@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dandelion_root_sack": {
+    "has_roselle_calyx": {
       "conditions": {
         "items": [
           {
             "items": [
-              "foragersinsight:dandelion_root_sack"
+              "foragersinsight:roselle_calyx"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:dandelion_root"
+        "recipe": "foragersinsight:roselle_calyx_sack"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_dandelion_root_sack",
+      "has_roselle_calyx",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:dandelion_root"
+      "foragersinsight:roselle_calyx_sack"
     ]
   },
   "sends_telemetry_event": false

@@ -9,7 +9,6 @@ import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -31,7 +30,7 @@ public class FIBlocks {
             new DandelionBushBlock(copy(Blocks.POTATOES)));
     public static final RegistryObject<Block> ROSE_CROP = HELPER.createBlockNoItem("rose_crop", () -> new RoseCropBlock(
             copy(Blocks.WHEAT), 3));
-    public static final RegistryObject<Block> ROSELLE_CROP = HELPER.createBlockNoItem("roselle_crop", () -> new RoseCropBlock(
+    public static final RegistryObject<Block> ROSELLE_CROP = HELPER.createBlockNoItem("roselle_crop", () -> new RoselleCropBlock(
             copy(Blocks.WHEAT), 3));
         //Trees
     public static final RegistryObject<Block> BOUNTIFUL_OAK_SAPLING = HELPER.createFuelBlock("bountiful_oak_sapling", () ->
@@ -58,6 +57,8 @@ public class FIBlocks {
     public static final RegistryObject<Block> SCATTERED_ROSE_PETAL_MAT = HELPER.createBlock("scattered_rose_petals", FoliageMatBlock::new);
     public static final RegistryObject<Block> SCATTERED_ROSELLE_PETAL_MAT = HELPER.createBlock("scattered_roselle_petals", FoliageMatBlock::new);
     public static final RegistryObject<Block> SCATTERED_SPRUCE_TIP_MAT = HELPER.createBlock("scattered_spruce_tips", FoliageMatBlock::new);
+    public static final RegistryObject<Block> SCATTERED_STRAW_MAT = HELPER.createBlock("scattered_straw", FoliageMatBlock::new);
+    public static final RegistryObject<Block> DENSE_STRAW_MAT = HELPER.createBlock("dense_straw", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_SPRUCE_TIP_MAT = HELPER.createBlock("dense_spruce_tips", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_ROSELLE_PETAL_MAT = HELPER.createBlock("dense_roselle_petals", FoliageMatBlock::new);
     public static final RegistryObject<Block> DENSE_ROSE_PETAL_MAT = HELPER.createBlock("dense_rose_petals", FoliageMatBlock::new);
@@ -67,7 +68,7 @@ public class FIBlocks {
 
     //STORAGE
         //Crop Crates and Sacks
-    public static final RegistryObject<Block> DANDELION_ROOTS_CRATE = HELPER.createBlock("dandelion_roots_crate", () ->
+    public static final RegistryObject<Block> DANDELION_ROOT_SACK = HELPER.createBlock("dandelion_root_sack", () ->
             new Block(copy(ModBlocks.CABBAGE_CRATE.get())));
     public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->
             new Block(copy(ModBlocks.RICE_BAG.get())));

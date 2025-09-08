@@ -26,7 +26,7 @@ public class FITabs {
                         output.accept(FIBlocks.BOUNTIFUL_SPRUCE_SAPLING.get());
                         output.accept(FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get());
                         output.accept(FIBlocks.BLACK_ACORN_SACK.get());
-                        output.accept(FIBlocks.DANDELION_ROOTS_CRATE.get());
+                        output.accept(FIBlocks.DANDELION_ROOT_SACK.get());
                         output.accept(FIBlocks.POPPY_SEEDS_SACK.get());
                         output.accept(FIBlocks.ROSE_HIP_SACK.get());
                         output.accept(FIBlocks.ROSELLE_CALYX_SACK.get());

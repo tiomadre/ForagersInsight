@@ -6,10 +6,7 @@ import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -35,7 +32,10 @@ public class FIBlockStates extends FIBlockStatesHelper {
         this.bountifulLeaves(BOUNTIFUL_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
         this.sackBlock(BLACK_ACORN_SACK);
         this.age5Crop(DANDELION_BUSH, FIItems.DANDELION_ROOT);
-        this.crateBlock(DANDELION_ROOTS_CRATE, "dandelion_root");
+        this.crateBlock(DANDELION_ROOT_SACK, "dandelion_root");
+        this.axisBlock((RotatedPillarBlock) SAPPY_BIRCH_LOG.get(),
+                modTexture("sappy_birch_log"), mcLoc("block/birch_log_top"));
+        this.blockItem(SAPPY_BIRCH_LOG.get());
         this.crossCutout(BOUNTIFUL_SPRUCE_SAPLING);
         this.sackBlock(SPRUCE_TIPS_SACK);
         this.sackBlock(POPPY_SEEDS_SACK);

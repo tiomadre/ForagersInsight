@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "foragersinsight:block/dandelion_root_sack_bottom",
+    "east": "foragersinsight:block/dandelion_root_sack_side",
+    "north": "foragersinsight:block/dandelion_root_sack_side",
+    "particle": "foragersinsight:block/dandelion_root_sack_top",
+    "south": "foragersinsight:block/dandelion_root_sack_side_special",
+    "up": "foragersinsight:block/dandelion_root_sack_top",
+    "west": "foragersinsight:block/dandelion_root_sack_side"
+  }
+}

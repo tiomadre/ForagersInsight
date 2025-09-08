@@ -205,6 +205,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .save(consumer);
         //BLOCKS
         //Decorative
+            //Foliage Mats
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_ROSE_PETAL_MAT.get())
                 .requires(FIItems.ROSE_PETALS.get(), 4)
                 .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
@@ -216,6 +217,14 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_SPRUCE_TIP_MAT.get())
                 .requires(FIItems.SPRUCE_TIPS.get(), 4)
                 .unlockedBy("has_spruce_tips", has(FIItems.SPRUCE_TIPS.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SCATTERED_STRAW_MAT.get())
+                .requires(ModItems.STRAW.get(), 4)
+                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_STRAW_MAT.get())
+                .requires(FIBlocks.SCATTERED_STRAW_MAT.get(), 2)
+                .unlockedBy("has_rose_petals", has(FIItems.ROSE_PETALS.get()))
                 .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, DENSE_ROSE_PETAL_MAT.get())
                 .requires(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get(), 2)
@@ -236,11 +245,12 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(ForgeTags.MILK).requires(ForgeTags.MILK).requires(ForgeTags.MILK)
                 .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
         //Storage
-        this.storageRecipes(consumer, RecipeCategory.FOOD, FIItems.ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());
-        this.storageRecipes(consumer, RecipeCategory.FOOD, DANDELION_ROOT.get(), RecipeCategory.DECORATIONS, DANDELION_ROOTS_CRATE.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, DANDELION_ROOT.get(), RecipeCategory.DECORATIONS, DANDELION_ROOT_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, BLACK_ACORN.get(), RecipeCategory.DECORATIONS, BLACK_ACORN_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, SPRUCE_TIPS.get(), RecipeCategory.DECORATIONS, SPRUCE_TIPS_SACK.get());
+        this.storageRecipes(consumer, RecipeCategory.FOOD, ROSELLE_CALYX.get(), RecipeCategory.DECORATIONS, ROSELLE_CALYX_SACK.get());
 
         FICookingRecipes.buildRecipes(consumer);
         FICrushandCutRecipes.buildRecipes(consumer);

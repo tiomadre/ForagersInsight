@@ -22,7 +22,7 @@ public class FIDataUtil {
 
         //Storage
         DataUtil.registerCompostable(BLACK_ACORN_SACK.get(), 1.0f);
-        DataUtil.registerCompostable(DANDELION_ROOTS_CRATE.get(), 1.0f);
+        DataUtil.registerCompostable(DANDELION_ROOT_SACK.get(), 1.0f);
 
         DataUtil.registerCompostable(POPPY_SEEDS_SACK.get(), 1.0f);
         DataUtil.registerCompostable(ROSE_HIP_SACK.get(), 1.0f);
