@@ -69,7 +69,7 @@ public class FIBlocks {
     //STORAGE
         //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOT_SACK = HELPER.createBlock("dandelion_root_sack", () ->
-            new Block(copy(ModBlocks.CABBAGE_CRATE.get())));
+            new Block(copy(ModBlocks.RICE_BAG.get())));
     public static final RegistryObject<Block> POPPY_SEEDS_SACK = HELPER.createBlock("poppy_seeds_sack", () ->
             new Block(copy(ModBlocks.RICE_BAG.get())));
     public static final RegistryObject<Block> ROSE_HIP_SACK = HELPER.createBlock("rose_hip_sack", () -> new Block(
