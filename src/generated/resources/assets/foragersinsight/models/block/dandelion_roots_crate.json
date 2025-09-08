@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "foragersinsight:block/crate_bottom",
-    "side": "foragersinsight:block/dandelion_root_crate_side",
-    "top": "foragersinsight:block/dandelion_root_crate_top"
-  }
-}

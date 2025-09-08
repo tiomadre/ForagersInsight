@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "foragersinsight:dandelion_root_sack"
+      "item": "foragersinsight:roselle_calyx_sack"
     }
   ],
   "result": {
     "count": 9,
-    "item": "foragersinsight:dandelion_root"
+    "item": "foragersinsight:roselle_calyx"
   }
 }

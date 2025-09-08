@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dandelion_root_sack": {
+    "has_any_ingredient": {
       "conditions": {
         "items": [
           {
             "items": [
-              "foragersinsight:dandelion_root_sack"
+              "foragersinsight:roselle_calyx"
             ]
           }
         ]
@@ -15,21 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:dandelion_root"
+        "recipe": "farmersdelight:cooking/tart_wheat_pilaf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_dandelion_root_sack",
+      "has_any_ingredient",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:dandelion_root"
+      "farmersdelight:cooking/tart_wheat_pilaf"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

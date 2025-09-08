@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dandelion_root_sack": {
+    "has_rose_petals": {
       "conditions": {
         "items": [
           {
             "items": [
-              "foragersinsight:dandelion_root_sack"
+              "foragersinsight:rose_petals"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "foragersinsight:dandelion_root"
+        "recipe": "foragersinsight:dense_straw"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_dandelion_root_sack",
+      "has_rose_petals",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "foragersinsight:dandelion_root"
+      "foragersinsight:dense_straw"
     ]
   },
   "sends_telemetry_event": false

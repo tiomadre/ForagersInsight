@@ -80,7 +80,6 @@ public class FILoot extends LootTableProvider {
         private static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.KNIVES));
 
         //CROP LOOT STUFF
-            //Rose
         @Override
         protected void generate() {
             //Rose
@@ -105,34 +104,36 @@ public class FILoot extends LootTableProvider {
             this.createFlowerBushDrops(POPPY_BUSH, POPPY_SEEDS, Items.RED_DYE);
 
             //BLOCK LOOT STUFF
+                //Storage
             this.dropSelf(ACORN_CARROT_CAKE.get());
             this.dropSelf(ROSE_HIP_SACK.get());
             this.dropSelf(BLACK_ACORN_SACK.get());
             this.dropSelf(SPRUCE_TIPS_SACK.get());
             this.dropSelf(ROSELLE_CALYX_SACK.get());
+            this.dropSelf(DANDELION_ROOT_SACK.get());
+            this.dropSelf(POPPY_SEEDS_SACK.get());
+                //Wildflower + Plants
             this.dropSelf(FIBlocks.ROSELLE_BUSH.get());
-
+                //Decorative
             this.dropSelf(SCATTERED_ROSE_PETAL_MAT.get());
             this.dropSelf(SCATTERED_ROSELLE_PETAL_MAT.get());
             this.dropSelf(SCATTERED_SPRUCE_TIP_MAT.get());
+            this.dropSelf(SCATTERED_STRAW_MAT.get());
+            this.dropSelf(DENSE_STRAW_MAT.get());
             this.dropSelf(DENSE_SPRUCE_TIP_MAT.get());
             this.dropSelf(DENSE_ROSE_PETAL_MAT.get());
             this.dropSelf(DENSE_ROSELLE_PETAL_MAT.get());
-
+                //Saplings and Tree Stuff
             this.dropSelf(BOUNTIFUL_OAK_SAPLING.get());
             this.dropSelf(BOUNTIFUL_DARK_OAK_SAPLING.get());
             this.dropSelf(BOUNTIFUL_SPRUCE_SAPLING.get());
             this.add(BOUNTIFUL_SPRUCE_TIPS.get(), LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK));
             this.add(FIBlocks.SAPPY_BIRCH_LOG.get(), block -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(Blocks.BIRCH_LOG)));
-
             this.add(BOUNTIFUL_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_OAK_LEAVES, BOUNTIFUL_OAK_SAPLING.get()));
             this.add(BOUNTIFUL_DARK_OAK_LEAVES.get(), this.createBountifulLeavesDrops(BOUNTIFUL_DARK_OAK_LEAVES, BOUNTIFUL_DARK_OAK_SAPLING.get()));
             this.add(BOUNTIFUL_SPRUCE_LEAVES.get(), this.createSpruceLeavesDrops(BOUNTIFUL_SPRUCE_LEAVES.get(), BOUNTIFUL_SPRUCE_SAPLING.get()));
+                //Tools + Workstations
             this.add(FIBlocks.TAPPER.get(), block -> createSingleItemTable(FIItems.TAPPER.get()));
-
-
-            this.dropSelf(DANDELION_ROOTS_CRATE.get());
-            this.dropSelf(POPPY_SEEDS_SACK.get());
 
         }
 

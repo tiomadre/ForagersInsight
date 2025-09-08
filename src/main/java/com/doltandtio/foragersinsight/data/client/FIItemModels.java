@@ -23,7 +23,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Cookies
                 ACORN_COOKIE,ROSE_COOKIE,
                     //Sweets
-
+                CANDIED_CALYCES,
                 //Crops
                 BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSELLE_CALYX,ROSE_HIP,SPRUCE_TIPS,
                 //Cuts + Knife Drops
@@ -32,11 +32,13 @@ public class FIItemModels extends BlueprintItemModelProvider {
                 ACORN_MEAL,COCOA_POWDER,CRUSHED_ICE,GREEN_SAUCE,POPPY_SEED_PASTE, SEED_BUTTER,WHEAT_FLOUR,
                 //Dishes
                     //Comfort
-                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,ROSE_HIP_SOUP,
-                    //Medicinal
-
+                COD_AND_PUMPKIN_STEW,FORAGERS_GRANOLA,STEAMY_KELP_RICE,ROSE_HIP_SOUP,HEARTY_SPRUCE_PILAF,
+                CARROT_POPPY_CHOWDER,
+                    //Finger Foods
+                SWEET_ROASTED_RABBIT_LEG,
                     //Nourishment
                 ACORN_NOODLES,GLAZED_PORKCHOP_AND_ACORN_GRITS,ROSE_ROASTED_ROOTS,SEASIDE_SIZZLER,SYRUP_TOAST_STACKS,
+                TART_WHEAT_PILAF,WOODLAND_PASTA,
                 //Salad
                 KELP_AND_BEET_SALAD,MEADOW_MEDLEY,
                 //Sandwiches + Finger Foods
@@ -48,11 +50,12 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Chilled
 
                     //Medicinal
-                    DANDELION_ROOT_TEA, FOREST_ELIXIR,
-                //Other
+                DANDELION_ROOT_TEA, FOREST_ELIXIR,
+                //Ingredients
                 ACORN_DOUGH, BIRCH_SAP_BUCKET,BIRCH_SAP_BOTTLE, BIRCH_SYRUP_BUCKET,BIRCH_SYRUP_BOTTLE, SEED_MILK_BOTTLE,
-                SEED_MILK_BUCKET, SWEET_ROASTED_RABBIT_LEG,ROSELLE_BUSH_ITEM
-                ,CARROT_POPPY_CHOWDER,HEARTY_SPRUCE_PILAF,WOODLAND_PASTA,
+                SEED_MILK_BUCKET,
+                //Wildflowers + Plants
+                ROSELLE_BUSH_ITEM,
                 //Tools and Workstations
                 HANDBASKET, FLINT_MALLET, IRON_MALLET, GOLD_MALLET, DIAMOND_MALLET, NETHERITE_MALLET, FLINT_SHEARS, TAPPER
 

@@ -26,7 +26,7 @@ public class FITabs {
                         output.accept(FIBlocks.BOUNTIFUL_SPRUCE_SAPLING.get());
                         output.accept(FIBlocks.BOUNTIFUL_SPRUCE_LEAVES.get());
                         output.accept(FIBlocks.BLACK_ACORN_SACK.get());
-                        output.accept(FIBlocks.DANDELION_ROOTS_CRATE.get());
+                        output.accept(FIBlocks.DANDELION_ROOT_SACK.get());
                         output.accept(FIBlocks.POPPY_SEEDS_SACK.get());
                         output.accept(FIBlocks.ROSE_HIP_SACK.get());
                         output.accept(FIBlocks.ROSELLE_CALYX_SACK.get());
@@ -34,9 +34,11 @@ public class FITabs {
                         output.accept(FIBlocks.DENSE_ROSE_PETAL_MAT.get());
                         output.accept(FIBlocks.DENSE_ROSELLE_PETAL_MAT.get());
                         output.accept(FIBlocks.DENSE_SPRUCE_TIP_MAT.get());
+                        output.accept(FIBlocks.DENSE_STRAW_MAT.get());
                         output.accept(FIBlocks.SCATTERED_ROSE_PETAL_MAT.get());
                         output.accept(FIBlocks.SCATTERED_ROSELLE_PETAL_MAT.get());
                         output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
+                        output.accept(FIBlocks.SCATTERED_STRAW_MAT.get());
                         output.accept(FIBlocks.ROSELLE_BUSH.get());
                         output.accept(FIBlocks.SAPPY_BIRCH_LOG.get());
                         // Items
@@ -93,6 +95,7 @@ public class FITabs {
                         output.accept(FIItems.STEAMY_KELP_RICE.get());
                         output.accept(FIItems.SYRUP_TOAST_STACKS.get());
                         output.accept(FIItems.WOODLAND_PASTA.get());
+                        output.accept(FIItems.TART_WHEAT_PILAF.get());
                             //Sandwiches and Finger Foods
                         output.accept(FIItems.CREAMY_SALMON_BAGEL.get());
                         output.accept(FIItems.DANDELION_FRIES.get());
