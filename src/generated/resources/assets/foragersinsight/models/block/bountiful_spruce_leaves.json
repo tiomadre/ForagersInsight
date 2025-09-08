@@ -1,6 +1,7 @@
 {
-  "parent": "foragersinsight:block",
+  "parent": "foragersinsight:block/leaves_with_overlay",
   "textures": {
-    "all": "foragersinsight:block/bountiful_spruce_leaves"
+    "all": "minecraft:block/spruce_leaves",
+    "overlay": "foragersinsight:block/bountiful_spruce_leaves"
   }
 }
