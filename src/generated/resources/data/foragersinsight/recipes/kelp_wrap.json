@@ -14,9 +14,17 @@
     {
       "tag": "forge:crops/onion"
     },
-    {
-      "tag": "forge:cooked_fishes/cod"
-    },
+    [
+      {
+        "item": "minecraft:cooked_cod"
+      },
+      {
+        "item": "farmersdelight:cooked_cod_slice"
+      },
+      {
+        "item": "minecraft:brown_mushroom"
+      }
+    ],
     {
       "item": "minecraft:kelp"
     }

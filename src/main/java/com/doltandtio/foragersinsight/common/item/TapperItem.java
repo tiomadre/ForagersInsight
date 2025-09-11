@@ -8,8 +8,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -20,13 +22,13 @@ public class TapperItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResult useOn(UseOnContext ctx) {
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext ctx) {
         Level level = ctx.getLevel();
         BlockPos clicked = ctx.getClickedPos();
         Direction face = ctx.getClickedFace();
+        BlockState clickedState = level.getBlockState(clicked);
 
         BlockPos logPos;
-        BlockState clickedState = level.getBlockState(clicked);
         if (clickedState.getBlock() instanceof TapperBlock) {
             Direction out = clickedState.getValue(TapperBlock.FACING);
             logPos = clicked.relative(out.getOpposite());
@@ -34,9 +36,8 @@ public class TapperItem extends Item {
             logPos = clicked;
         }
 
-        // tapper place on: sappy birch logs
-        if (!level.getBlockState(logPos).is(FIBlocks.SAPPY_BIRCH_LOG.get())
-                || face.getAxis().isVertical()) {
+        // must click a sappy birch
+        if (!level.getBlockState(logPos).is(FIBlocks.SAPPY_BIRCH_LOG.get()) || face.getAxis().isVertical()) {
             return InteractionResult.PASS;
         }
 
@@ -44,22 +45,23 @@ public class TapperItem extends Item {
         if (!level.isEmptyBlock(targetPos)) {
             return InteractionResult.PASS;
         }
+
         if (!level.isClientSide) {
+            // place the tapper block
             BlockState tapperState = FIBlocks.TAPPER.get().defaultBlockState()
                     .setValue(TapperBlock.FACING, face.getOpposite())
                     .setValue(TapperBlock.HAS_TAPPER, true)
                     .setValue(TapperBlock.FILL, 0);
+            level.setBlock(targetPos, tapperState, Block.UPDATE_ALL);
 
-            level.setBlock(targetPos, tapperState, 3);
-
-            // sounds
+            //sound
             SoundType type = level.getBlockState(logPos).getSoundType();
-            level.playSound(null, targetPos, type.getPlaceSound(), SoundSource.BLOCKS, 1F, 1F);
+            level.playSound(null, targetPos, type.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
 
-            // consoom item on use
             Player player = ctx.getPlayer();
-            if (player != null && !player.isCreative()) {
-                ctx.getItemInHand().shrink(1);
+            if (player != null && !player.getAbilities().instabuild) {
+                ItemStack stack = ctx.getItemInHand();
+                stack.shrink(1);
             }
         }
 

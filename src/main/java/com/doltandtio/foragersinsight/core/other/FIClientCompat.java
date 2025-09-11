@@ -10,7 +10,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FIClientCompat {
@@ -22,11 +22,29 @@ public class FIClientCompat {
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
-        List<RegistryObject<Block>> genericFoliage = Arrays.asList(
-                FIBlocks.BOUNTIFUL_OAK_LEAVES, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES
-        );
 
-        DataUtil.registerBlockColor(blockColors, (x, world, pos, u) -> world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.get(0.5D, 1.0D), genericFoliage);
-        DataUtil.registerBlockItemColor(itemColors, (color, items) -> FoliageColor.get(0.5D, 1.0D), genericFoliage);
+        List<RegistryObject<Block>> genericFoliage = new ArrayList<>();
+        genericFoliage.add(FIBlocks.BOUNTIFUL_OAK_LEAVES);
+        genericFoliage.add(FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES);
+
+        List<RegistryObject<Block>> spruceLeaves = new ArrayList<>();
+        spruceLeaves.add(FIBlocks.BOUNTIFUL_SPRUCE_LEAVES);
+
+        DataUtil.registerBlockColor(blockColors, (state, world, pos, tintIndex) -> 0xFFFFFF, spruceLeaves);
+        DataUtil.registerBlockItemColor(itemColors, (stack, tintIndex) -> 0xFFFFFF, spruceLeaves);
+
+        DataUtil.registerBlockColor(
+                blockColors,
+                (state, world, pos, tintIndex) ->
+                        (world != null && pos != null)
+                                ? BiomeColors.getAverageFoliageColor(world, pos)
+                                : FoliageColor.get(0.5D, 1.0D),
+                genericFoliage
+        );
+        DataUtil.registerBlockItemColor(
+                itemColors,
+                (stack, tintIndex) -> FoliageColor.get(0.5D, 1.0D),
+                genericFoliage
+        );
     }
 }

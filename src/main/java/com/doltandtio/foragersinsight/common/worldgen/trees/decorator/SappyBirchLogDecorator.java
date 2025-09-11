@@ -49,6 +49,9 @@ public class SappyBirchLogDecorator extends TreeDecorator {
         for (BlockPos pos : logs) {
             if (pos.getX() == base.getX() && pos.getZ() == base.getZ() && pos.getY() > base.getY()) {
                 trunk.add(pos);
+                if (trunk.size() >= 2) {
+                    break;
+                }
             }
         }
 

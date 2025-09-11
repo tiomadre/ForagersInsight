@@ -70,8 +70,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
 
         //Salads
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_AND_BEET_SALAD.get())
-                .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
-                .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
+                .requires(KELP).requires(KELP).requires(BEETROOT).requires(BEETROOT)
                 .unlockedBy("has_kelp", has(KELP)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MEADOW_MEDLEY.get())
@@ -82,7 +81,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         //Sandwiches + Finger Foods
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KELP_WRAP.get())
                 .requires(KELP).requires(INK_SAC).requires(ForgeTags.CROPS_TOMATO)
-                .requires(ForgeTags.CROPS_ONION).requires(ForgeTags.COOKED_FISHES_COD).requires(KELP)
+                .requires(ForgeTags.CROPS_ONION).requires(Ingredient.of(COOKED_COD,ModItems.COOKED_COD_SLICE.get(),BROWN_MUSHROOM))
+                .requires(KELP)
                 .unlockedBy("has_kelp", has(KELP)).save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_BUTTER_JAMWICH.get())
                 .requires(BREAD).requires(SEED_BUTTER.get()).requires(SWEET_BERRIES)
@@ -90,7 +90,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .unlockedBy("has_sweet_berries", has(SWEET_BERRIES)).save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SWEET_ROASTED_RABBIT_LEG.get(), 2)
                 .requires(COOKED_RABBIT_LEG.get()).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.POPPY_SEEDS)
-                .requires(FITags.ItemTag.POPPY_SEEDS).requires(HONEY_BOTTLE)
+                .requires(FITags.ItemTag.POPPY_SEEDS) .requires(Ingredient.of(HONEY_BOTTLE, BIRCH_SYRUP_BOTTLE.get()))
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(consumer);
 
         //OTHER
@@ -137,13 +137,21 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BIRCH_SAP_BOTTLE.get()).requires(BIRCH_SAP_BOTTLE.get())
                 .unlockedBy("has_birch_sap_bottle", has(BIRCH_SAP_BOTTLE.get()))
                 .save(consumer, ForagersInsight.rl("birch_sap_bucket_from_bottles"));
-        // Sap to Syrup Smeltin'
+        // Sap to Syrup
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SUGAR,3)
+                .requires(BIRCH_SYRUP_BOTTLE.get())
+                .unlockedBy("has_birch_syrup_bottle", has(BIRCH_SYRUP_BOTTLE.get()))
+                .save(consumer, ForagersInsight.rl("sugar_from_birch_syrup_bottle"));
+            //Cooking
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BUCKET.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bucket_from_smelting"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BOTTLE.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bottle_from_smelting"));
+            //Sap to Sugar
+
+
 
         //Tools
         //Flint Shears

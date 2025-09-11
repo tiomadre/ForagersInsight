@@ -14,9 +14,14 @@
     {
       "tag": "forge:crops/poppy_seeds"
     },
-    {
-      "item": "minecraft:honey_bottle"
-    }
+    [
+      {
+        "item": "minecraft:honey_bottle"
+      },
+      {
+        "item": "foragersinsight:birch_syrup_bottle"
+      }
+    ]
   ],
   "result": {
     "count": 2,
