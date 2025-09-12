@@ -1,11 +1,11 @@
-![image](https://github.com/user-attachments/assets/b539ce73-1d22-4d90-a2e7-f2ad715242a6)
+<img width="1280" height="320" alt="image" src="https://github.com/user-attachments/assets/30cdca84-c2ad-40a7-8829-9e3da1b245fd" />
+
 Forager's Insight is a work-in-progress addon for Farmer's Delight. This aims to add crop or crop-like interactions to some flora and trees, giving uses other than dyes and wood.
 
 Players will be introduced to new tools, enchantments, blocks and dishes to help them on their foraging journeys.
 
-This mod is still early in development but more content will be established once the base crops and blocks are implemented.
+This mod is still in development and more content will be established!
 
+Please refer to https://github.com/tiomadre/ForagersInsight/wiki for some information on things like crops and features unique to the mod!
 
-
-====WIKI PLANNED====
 
