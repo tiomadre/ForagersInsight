@@ -137,19 +137,21 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BIRCH_SAP_BOTTLE.get()).requires(BIRCH_SAP_BOTTLE.get())
                 .unlockedBy("has_birch_sap_bottle", has(BIRCH_SAP_BOTTLE.get()))
                 .save(consumer, ForagersInsight.rl("birch_sap_bucket_from_bottles"));
-        // Sap to Syrup
+            //Syrup to Sugar
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SUGAR,3)
                 .requires(BIRCH_SYRUP_BOTTLE.get())
                 .unlockedBy("has_birch_syrup_bottle", has(BIRCH_SYRUP_BOTTLE.get()))
                 .save(consumer, ForagersInsight.rl("sugar_from_birch_syrup_bottle"));
             //Cooking
+                //Bucket
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BUCKET.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bucket_from_smelting"));
+                //Bottle
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BOTTLE.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bottle_from_smelting"));
-            //Sap to Sugar
+
 
 
 

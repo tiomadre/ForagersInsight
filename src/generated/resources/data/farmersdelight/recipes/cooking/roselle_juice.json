@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:roselle_calyx"
+    },
+    {
+      "item": "foragersinsight:roselle_calyx"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "foragersinsight:roselle_juice"
+  }
+}

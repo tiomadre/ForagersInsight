@@ -76,6 +76,8 @@ public class FIItems {
             new Item.Properties().food(FIFoods.BAKED_GOOD)));
     public static final RegistryObject<Item> CANDIED_CALYCES = HELPER.createItem("candied_calyces", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CANDIED_CALYCES)));
+    public static final RegistryObject<Item> APPLE_DIPPERS = HELPER.createItem("apple_dippers", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.APPLE_DIPPERS)));
         //Cakes and Slices
     public static final RegistryObject<Item> ACORN_CARROT_CAKE_ITEM = HELPER.createItem("acorn_carrot_cake", () ->
             new BlockItem(FIBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
@@ -143,6 +145,8 @@ public class FIItems {
             .food(FIFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> FOREST_ELIXIR = HELPER.createItem("forest_elixir", () -> new DrinkableItem(new Item.Properties()
             .food(FIFoods.FOREST_ELIXIR).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> ROSELLE_JUICE = HELPER.createItem("roselle_juice", () -> new DrinkableItem(new Item.Properties()
+            .food(FIFoods.ROSELLE_JUICE).craftRemainder(Items.GLASS_BOTTLE)));
 
     //Sap Stuff
     public static final RegistryObject<Item> BIRCH_SAP_BUCKET = HELPER.createItem("birch_sap_bucket", () -> new Item(new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));

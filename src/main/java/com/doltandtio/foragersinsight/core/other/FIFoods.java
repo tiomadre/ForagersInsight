@@ -60,10 +60,6 @@ public class FIFoods {
             .nutrition(6).saturationMod(0.5f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 1200), 1).build();
 
-        //Chilled
-
-        //Medicinal
-
         //Nourishment
         public static final FoodProperties ACORN_NOODLES = new FoodProperties.Builder()
                 .nutrition(7).saturationMod(0.6f)
@@ -107,19 +103,23 @@ public class FIFoods {
             .nutrition(5).saturationMod(0.6f)).build();
         public static final FoodProperties CANDIED_CALYCES = new FoodProperties.Builder().fast()
                 .nutrition(2).saturationMod(0.2f).build();
+    public static final FoodProperties APPLE_DIPPERS = new FoodProperties.Builder()
+            .nutrition(3).saturationMod(0.2f).build();
     //DRINKS
     public static final FoodProperties ROSE_CORDIAL = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 250), 1).build();
     public static final FoodProperties GLOWING_CARROT_JUICE = new FoodProperties.Builder().alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 600), 1).build();
 
-        //Chilled
-
         //Medicinal
         public static final FoodProperties DANDELION_ROOT_TEA = new FoodProperties.Builder().alwaysEat()
-            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
+            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1600), 1).build();
         public static final FoodProperties FOREST_ELIXIR = new FoodProperties.Builder().alwaysEat()
-            .effect(() -> new MobEffectInstance( MobEffects.HEALTH_BOOST, 1200, 0), 1.0F).build();
+            .effect(() -> new MobEffectInstance( MobEffects.HEALTH_BOOST, 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
+        public static final FoodProperties ROSELLE_JUICE = new FoodProperties.Builder().alwaysEat()
+            .effect(() -> new MobEffectInstance( MobEffects.HEALTH_BOOST, 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
     //FEASTS
 
 }

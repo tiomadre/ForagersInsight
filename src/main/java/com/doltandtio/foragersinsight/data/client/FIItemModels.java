@@ -23,7 +23,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Cookies
                 ACORN_COOKIE,ROSE_COOKIE,
                     //Sweets
-                CANDIED_CALYCES,
+                CANDIED_CALYCES,APPLE_DIPPERS,
                 //Crops
                 BLACK_ACORN,DANDELION_ROOT,POPPY_SEEDS,ROSELLE_CALYX,ROSE_HIP,SPRUCE_TIPS,
                 //Cuts + Knife Drops
@@ -50,7 +50,7 @@ public class FIItemModels extends BlueprintItemModelProvider {
                     //Chilled
 
                     //Medicinal
-                DANDELION_ROOT_TEA, FOREST_ELIXIR,
+                DANDELION_ROOT_TEA, FOREST_ELIXIR, ROSELLE_JUICE,
                 //Ingredients
                 ACORN_DOUGH, BIRCH_SAP_BUCKET,BIRCH_SAP_BOTTLE, BIRCH_SYRUP_BUCKET,BIRCH_SYRUP_BOTTLE, SEED_MILK_BOTTLE,
                 SEED_MILK_BUCKET,

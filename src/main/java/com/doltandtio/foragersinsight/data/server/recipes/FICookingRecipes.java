@@ -182,6 +182,13 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get(), BIRCH_SYRUP_BUCKET.get(), BIRCH_SYRUP_BOTTLE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(ROSELLE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(ROSELLE_CALYX.get())
+                .addIngredient(Items.HONEY_BOTTLE)
+                .unlockedByAnyIngredient(ROSELLE_CALYX.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                .build(consumer);
             //Seed Milk
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.SEEDS)
@@ -198,6 +205,13 @@ public class FICookingRecipes {
                 .addIngredient(ROSELLE_CALYX.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(ROSELLE_CALYX.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(APPLE_DIPPERS.get(),1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(FITags.ItemTag.APPLE)
+                .addIngredient(Ingredient.of(Items.HONEY_BOTTLE, BIRCH_SYRUP_BOTTLE.get()))
+                .unlockedByAnyIngredient(Items.APPLE)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_FRIES.get(), 1, FAST_COOKING, SMALL_EXP)
