@@ -5,7 +5,10 @@ import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -27,7 +30,7 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid=ForagersInsight.MOD_ID)
 public class FIEvents {
-//Farmhand Enchant logic
+    //Farmhand Enchant logic
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
@@ -54,51 +57,19 @@ public class FIEvents {
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
     }
 
-// Farming XP Gain
-@SubscribeEvent
-public static void onCropHarvest(BlockEvent.BreakEvent event) {
-    if (!(event.getPlayer() instanceof ServerPlayer player)) return;
-
-    Level level = event.getLevel() instanceof Level ? (Level) event.getLevel() : null;
-    if (level == null || level.isClientSide()) return;
-
-    BlockState state = event.getState();
-    if (state.getBlock() instanceof StemGrownBlock) {
-        player.giveExperiencePoints(1);
-        return;
-    }
-
-    Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
-    if (agePropOpt.isEmpty()) return;
-
-    IntegerProperty ageProp = agePropOpt.get();
-    int currentAge = state.getValue(ageProp);
-    Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
-    int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
-    if (currentAge < maxAge) return;
-
-    for (Property<?> property : state.getProperties()) {
-        if (property.getName().equals("half") && property instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> enumProp) {
-            Comparable<?> halfValue = state.getValue(enumProp);
-            if (halfValue.toString().equalsIgnoreCase("upper")) {
-                return;
-            }
-        }
-    }
-
-    player.giveExperiencePoints(1);
-}
-//Farming XP gain on right click
+ // XP GAIN FROM FARMING: Gain 1-2 XP per harvesting of mature crop
     @SubscribeEvent
-    public static void onRightClickHarvest(PlayerInteractEvent.RightClickBlock event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+    public static void onCropHarvest(BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
-        Level level = event.getLevel();
-        if (level.isClientSide()) return;
+        Level level = event.getLevel() instanceof Level ? (Level) event.getLevel() : null;
+        if (level == null || level.isClientSide()) return;
 
-        BlockState state = level.getBlockState(event.getPos());
-        Block block = state.getBlock();
-        if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
+        BlockState state = event.getState();
+        if (state.getBlock() instanceof StemGrownBlock) {
+            player.giveExperiencePoints(1 + player.getRandom().nextInt(2)); // 1–2 XP
+            return;
+        }
 
         Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
         if (agePropOpt.isEmpty()) return;
@@ -109,7 +80,61 @@ public static void onCropHarvest(BlockEvent.BreakEvent event) {
         int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
         if (currentAge < maxAge) return;
 
-        player.giveExperiencePoints(1);
+        for (Property<?> property : state.getProperties()) {
+            if (property.getName().equals("half") && property instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> enumProp) {
+                Comparable<?> halfValue = state.getValue(enumProp);
+                if (halfValue.toString().equalsIgnoreCase("upper")) {
+                    return;
+                }
+            }
+        }
+
+        player.giveExperiencePoints(1 + player.getRandom().nextInt(2)); // 1–2 XP
+    }
+        //Right-Click Harvesting (Empty Hand/Shears)
+        @SubscribeEvent
+        public static void onRightClickHarvest(PlayerInteractEvent.RightClickBlock event) {
+            if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+            Level level = event.getLevel();
+            if (level.isClientSide()) return;
+
+            BlockState state = level.getBlockState(event.getPos());
+            Block block = state.getBlock();
+            if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
+
+            Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
+            if (agePropOpt.isEmpty()) return;
+
+            IntegerProperty ageProp = agePropOpt.get();
+            int currentAge = state.getValue(ageProp);
+            Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
+            int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
+            if (currentAge < maxAge) return;
+
+            player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+    }
+        //Shearing Mobs
+        @SubscribeEvent
+         public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
+            if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+            Level level = event.getLevel();
+            if (level.isClientSide()) return;
+
+            ItemStack tool = player.getItemInHand(event.getHand());
+            if (!(tool.getItem() instanceof ShearsItem)) return;
+
+            if (event.getTarget() instanceof Sheep sheep) {
+                if (sheep.isBaby() || sheep.isSheared()) return;
+                player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+            } else if (event.getTarget() instanceof Chicken chicken) {
+                if (chicken.isBaby()) return;
+                long now = level.getGameTime();
+                long last = chicken.getPersistentData().getLong("ShearFeatherTime");
+                if (now - last < 2400L) return;
+                player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+        }
     }
 
     private static Optional<IntegerProperty> getAgeProperty(BlockState state) {
@@ -118,5 +143,4 @@ public static void onCropHarvest(BlockEvent.BreakEvent event) {
                 .map(p -> (IntegerProperty) p)
                 .findFirst();
     }
-
 }
