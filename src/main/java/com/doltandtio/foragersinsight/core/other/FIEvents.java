@@ -2,6 +2,7 @@ package com.doltandtio.foragersinsight.core.other;
 
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
 import com.doltandtio.foragersinsight.core.registry.FIMobEffects;
+import com.doltandtio.foragersinsight.common.block.TapperBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -9,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -58,7 +60,7 @@ public class FIEvents {
 
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
     }
-    // Bloom effect XP adjustments
+    // Bloom effect XP amp
     @SubscribeEvent
     public static void onXpChange(PlayerXpEvent.XpChange event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -97,7 +99,7 @@ public class FIEvents {
 
         BlockState state = event.getState();
         if (state.getBlock() instanceof StemGrownBlock) {
-            player.giveExperiencePoints(1 + player.getRandom().nextInt(2)); // 1–2 XP
+            player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
             return;
         }
 
@@ -119,7 +121,7 @@ public class FIEvents {
             }
         }
 
-        player.giveExperiencePoints(1 + player.getRandom().nextInt(2)); // 1–2 XP
+        player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
     }
         //Right-Click Harvesting (Empty Hand/Shears)
         @SubscribeEvent
@@ -128,9 +130,19 @@ public class FIEvents {
 
             Level level = event.getLevel();
             if (level.isClientSide()) return;
-
+            ItemStack held = player.getItemInHand(event.getHand());
             BlockState state = level.getBlockState(event.getPos());
             Block block = state.getBlock();
+
+            if (block instanceof TapperBlock &&
+                    state.getValue(TapperBlock.HAS_TAPPER) &&
+                    state.getValue(TapperBlock.FILL) == 4 &&
+                    held.is(Items.BUCKET)) {
+                player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+                return;
+            }
+            state = level.getBlockState(event.getPos());
+            block = state.getBlock();
             if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
 
             Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
