@@ -29,6 +29,8 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.DarkOakFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
@@ -97,7 +99,9 @@ public class FIConfiguredFeatures {
                                 .setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
                         BlockPredicate.replaceable(),
-                        BlockPredicate.replaceable(BlockPos.ZERO.above()))));
+                        BlockPredicate.replaceable(BlockPos.ZERO.above()),
+                        BlockPredicate.not(BlockPredicate.matchesFluids(Fluids.WATER)),
+                        BlockPredicate.matchesTag(BlockPos.ZERO.below(), BlockTags.DIRT))));
         register(context, ROSELLE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(64, 7, 3, roselleBush));
     }
