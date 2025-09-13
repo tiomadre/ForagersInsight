@@ -22,6 +22,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableConditio
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -113,7 +115,16 @@ public class FILoot extends LootTableProvider {
             this.dropSelf(DANDELION_ROOT_SACK.get());
             this.dropSelf(POPPY_SEEDS_SACK.get());
                 //Wildflower + Plants
-            this.dropSelf(FIBlocks.ROSELLE_BUSH.get());
+            this.add(FIBlocks.ROSELLE_BUSH.get(), block ->
+                    LootTable.lootTable().withPool(
+                            this.applyExplosionCondition(block,
+                                            LootPool.lootPool()
+                                                    .setRolls(ConstantValue.exactly(1.0F))
+                                                    .add(LootItem.lootTableItem(block)))
+                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                    .hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))))
+            );
                 //Decorative
             this.dropSelf(SCATTERED_ROSE_PETAL_MAT.get());
             this.dropSelf(SCATTERED_ROSELLE_PETAL_MAT.get());

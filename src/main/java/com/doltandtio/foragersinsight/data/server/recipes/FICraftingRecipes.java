@@ -248,6 +248,15 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get(), 2)
                 .unlockedBy("has_scattered_spruce_tips", has(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get()))
                 .save(consumer);
+        // Alternate Item Frame
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ITEM_FRAME)
+                .pattern("SSS")
+                .pattern("SHS")
+                .pattern("SSS")
+                .define('S', STICK)
+                .define('H', RABBIT_HIDE)
+                .unlockedBy("has_rabbit_hide", has(RABBIT_HIDE))
+                .save(consumer, ForagersInsight.rl("item_frame_from_rabbit_hide"));
         //Feasts and Cakes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
@@ -292,6 +301,16 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('W', FITags.ItemTag.WHEAT)
                 .unlockedBy("has_egg", has(Items.EGG))
                 .save(consumer, new ResourceLocation("minecraft", "cake"));
+        // OG Item Frame Recipe, now gives 2 Frames
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ITEM_FRAME, 2)
+                .pattern("SSS")
+                .pattern("SLS")
+                .pattern("SSS")
+                .define('S', STICK)
+                .define('L', LEATHER)
+                .unlockedBy("has_leather", has(LEATHER))
+                .save(consumer, new ResourceLocation("minecraft", "item_frame"));
+
     }
     private void addFarmersDelightOverrides(Consumer<FinishedRecipe> consumer) {
     //Wheat Dough
