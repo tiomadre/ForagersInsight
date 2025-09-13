@@ -109,9 +109,11 @@
   "foragersinsight.flavortext.rose_cordial": "A healing tea made from floral rose petals.",
   "foragersinsight.flavortext.seed_milk_bucket": "A bucket of milk derived from various seeds.",
 
+  "effect.foragersinsight.bloom": "Bloom",
   "effect.foragersinsight.chilled": "Chilled",
   "effect.foragersinsight.medicinal": "Medicinal",
 
+  "effect.foragersinsight.bloom.desc": "Gain 20% more experience and pay 20% less experience for actions.",
   "effect.foragersinsight.chilled.desc": "Freeze the duration of beneficial effects.",
   "effect.foragersinsight.medicinal.desc": "Removes and prevents the application of Poison and Wither. The player is also healed per effect removed.",
 

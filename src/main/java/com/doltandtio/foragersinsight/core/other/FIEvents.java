@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.core.other;
 
 import com.doltandtio.foragersinsight.core.registry.FIEnchantments;
+import com.doltandtio.foragersinsight.core.registry.FIMobEffects;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -55,6 +57,34 @@ public class FIEvents {
         }
 
         tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
+    }
+    // Bloom effect XP adjustments
+    @SubscribeEvent
+    public static void onXpChange(PlayerXpEvent.XpChange event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!player.hasEffect(FIMobEffects.BLOOM.get())) return;
+
+        int amount = event.getAmount();
+        if (amount > 0) {
+            amount = Math.round(amount * 1.2f);
+        } else if (amount < 0) {
+            amount = Math.round(amount * 0.8f);
+        }
+        event.setAmount(amount);
+    }
+
+    @SubscribeEvent
+    public static void onXpLevelChange(PlayerXpEvent.LevelChange event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!player.hasEffect(FIMobEffects.BLOOM.get())) return;
+
+        int levels = event.getLevels();
+        if (levels > 0) {
+            levels = Math.round(levels * 1.2f);
+        } else if (levels < 0) {
+            levels = Math.round(levels * 0.8f);
+        }
+        event.setLevels(levels);
     }
 
  // XP GAIN FROM FARMING: Gain 1-2 XP per harvesting of mature crop
@@ -114,28 +144,28 @@ public class FIEvents {
 
             player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
     }
-        //Shearing Mobs
-        @SubscribeEvent
-         public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
-            if (!(event.getEntity() instanceof ServerPlayer player)) return;
+            //Shearing Mobs
+            @SubscribeEvent
+             public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
+                if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-            Level level = event.getLevel();
-            if (level.isClientSide()) return;
+                Level level = event.getLevel();
+                if (level.isClientSide()) return;
 
-            ItemStack tool = player.getItemInHand(event.getHand());
-            if (!(tool.getItem() instanceof ShearsItem)) return;
+                ItemStack tool = player.getItemInHand(event.getHand());
+                if (!(tool.getItem() instanceof ShearsItem)) return;
 
-            if (event.getTarget() instanceof Sheep sheep) {
-                if (sheep.isBaby() || sheep.isSheared()) return;
-                player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
-            } else if (event.getTarget() instanceof Chicken chicken) {
-                if (chicken.isBaby()) return;
-                long now = level.getGameTime();
-                long last = chicken.getPersistentData().getLong("ShearFeatherTime");
-                if (now - last < 2400L) return;
-                player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+                if (event.getTarget() instanceof Sheep sheep) {
+                    if (sheep.isBaby() || sheep.isSheared()) return;
+                    player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+                } else if (event.getTarget() instanceof Chicken chicken) {
+                    if (chicken.isBaby()) return;
+                    long now = level.getGameTime();
+                    long last = chicken.getPersistentData().getLong("ShearFeatherTime");
+                    if (now - last < 2400L) return;
+                    player.giveExperiencePoints(1 + player.getRandom().nextInt(2));
+            }
         }
-    }
 
     private static Optional<IntegerProperty> getAgeProperty(BlockState state) {
         return state.getProperties().stream()
