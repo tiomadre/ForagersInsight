@@ -118,7 +118,7 @@ public class FIFoods {
             .effect(() -> new MobEffectInstance( MobEffects.HEALTH_BOOST, 1200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
         public static final FoodProperties ROSELLE_JUICE = new FoodProperties.Builder().alwaysEat()
-            .effect(() -> new MobEffectInstance( MobEffects.HEALTH_BOOST, 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance( FIMobEffects.BLOOM.get(), 1200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(FIMobEffects.MEDICINAL.get(), 1200), 1).build();
     //FEASTS
 
