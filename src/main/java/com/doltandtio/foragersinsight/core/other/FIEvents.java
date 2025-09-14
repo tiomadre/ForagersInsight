@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
+import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -139,6 +141,13 @@ public class FIEvents {
         ItemStack held = player.getItemInHand(event.getHand());
         BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
+        if (block instanceof BeehiveBlock &&
+                state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
+                (held.getItem() instanceof ShearsItem || held.is(Items.GLASS_BOTTLE))) {
+            int xp = 1 + player.getRandom().nextInt(2);
+            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            return;
+        }
 
         if (block instanceof TapperBlock &&
                 state.getValue(TapperBlock.HAS_TAPPER) &&
@@ -164,6 +173,24 @@ public class FIEvents {
         int xp = 1 + player.getRandom().nextInt(2);
         ExperienceOrb.award((ServerLevel) level, player.position(), xp);
     }
+    // Milking Cows
+    @SubscribeEvent
+    public static void onCowMilk(PlayerInteractEvent.EntityInteract event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        Level level = event.getLevel();
+        if (level.isClientSide()) return;
+
+        ItemStack held = player.getItemInHand(event.getHand());
+        if (!held.is(Items.BUCKET)) return;
+
+        if (event.getTarget() instanceof Cow cow) {
+            if (cow.isBaby()) return;
+            int xp = 1 + player.getRandom().nextInt(2);
+            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+        }
+    }
+
 
     // Shearing Mobs
     @SubscribeEvent
