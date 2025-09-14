@@ -141,6 +141,8 @@ public class FIEvents {
         ItemStack held = player.getItemInHand(event.getHand());
         BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
+
+        //Beehive
         if (block instanceof BeehiveBlock &&
                 state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
                 (held.getItem() instanceof ShearsItem || held.is(Items.GLASS_BOTTLE))) {
@@ -148,7 +150,7 @@ public class FIEvents {
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
             return;
         }
-
+        //Tapper
         if (block instanceof TapperBlock &&
                 state.getValue(TapperBlock.HAS_TAPPER) &&
                 state.getValue(TapperBlock.FILL) == 4 &&
