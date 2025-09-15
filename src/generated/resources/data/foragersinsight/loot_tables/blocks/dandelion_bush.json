@@ -25,6 +25,25 @@
           "properties": {
             "age": "7"
           }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:dandelion_root"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "foragersinsight:dandelion_bush",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
         },
         {
           "condition": "minecraft:match_tool",
@@ -36,6 +55,13 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "minecraft:yellow_dye"
         }
       ],

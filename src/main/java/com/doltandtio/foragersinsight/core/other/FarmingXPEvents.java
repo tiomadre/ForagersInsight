@@ -1,5 +1,7 @@
 package com.doltandtio.foragersinsight.core.other;
 
+import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
+import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.TapperBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.server.level.ServerLevel;
@@ -24,13 +26,16 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
 import java.util.Optional;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
-    // XP GAIN FROM FARMING: Gain 1-2 XP per harvesting of mature crop
+    // XP GAIN FROM FARMING
+
+    // Gain 1-2 XP per harvesting of mature crop
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
@@ -58,7 +63,8 @@ public class FarmingXPEvents {
             if (property.getName().equals("half") &&
                     property instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> enumProp) {
                 Comparable<?> halfValue = state.getValue(enumProp);
-                if (halfValue.toString().equalsIgnoreCase("upper")) {
+                BlockState below = level.getBlockState(event.getPos().below());
+                if (!below.is(state.getBlock())) {
                     return;
                 }
             }
@@ -79,21 +85,34 @@ public class FarmingXPEvents {
         BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
 
-        //Beehive
+        //Beehive  2-3 XP
         if (block instanceof BeehiveBlock &&
                 state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
                 (held.getItem() instanceof ShearsItem || held.is(Items.GLASS_BOTTLE))) {
-            int xp = 1 + player.getRandom().nextInt(2);
+            int xp = 2 + player.getRandom().nextInt(2); // 2–3 XP
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
             return;
         }
-        //Tapper
+        //Tapper 1-2 XP
         if (block instanceof TapperBlock &&
                 state.getValue(TapperBlock.HAS_TAPPER) &&
                 state.getValue(TapperBlock.FILL) == 4 &&
                 held.is(Items.BUCKET)) {
             int xp = 1 + player.getRandom().nextInt(2);
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            return;
+
+        }
+        // Mushroom Colonies 0-1 XP
+        if (block instanceof MushroomColonyBlock &&
+                state.getValue(MushroomColonyBlock.COLONY_AGE) > 0) {
+            int xp = player.getRandom().nextInt(2);
+            if (xp > 0) {
+                ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            }
+            return;
+        }
+        if (!(held.isEmpty() || held.getItem() instanceof ShearsItem)) {
             return;
         }
         state = level.getBlockState(event.getPos());
@@ -109,10 +128,17 @@ public class FarmingXPEvents {
         int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
         if (currentAge < maxAge) return;
 
-        int xp = 1 + player.getRandom().nextInt(2);
-        ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+        int xp;
+        if (block instanceof BountifulLeavesBlock || block instanceof SpruceTipBlock) {
+            xp = player.getRandom().nextInt(2);
+        } else {
+            xp = 1 + player.getRandom().nextInt(2);
+        }
+        if (xp > 0) {
+            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+        }
     }
-    // Milking Cows
+    // Milking Cows 1-2 XP
     @SubscribeEvent
     public static void onCowMilk(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -131,7 +157,7 @@ public class FarmingXPEvents {
     }
 
 
-    // Shearing Mobs
+    // Shearing Mobs 1-2 XP
     @SubscribeEvent
     public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;

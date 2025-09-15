@@ -87,19 +87,25 @@ public class FILoot extends LootTableProvider {
             //Rose
             this.add(ROSE_CROP.get(), this.applyExplosionDecay(FIItems.ROSE_HIP.get(),
                 LootTable.lootTable()
-                        .withPool(LootPool.lootPool().when(isUpperOrLower())
-                                .add(LootItem.lootTableItem(FIItems.ROSE_HIP.get()))
-                                .when(stateCond(ROSE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE))
-                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
-                        .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSE_PETALS.get()).when(HAS_KNIFE)))));
+                        .withPool(LootPool.lootPool().when(isUpperOrLower(ROSE_CROP))
+                                .add(LootItem.lootTableItem(FIItems.ROSE_HIP.get())
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))
+                                .when(stateCond(ROSE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE)))
+                        .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSE_PETALS.get())
+                                .when(HAS_KNIFE)
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
             //Roselle
             this.add(ROSELLE_CROP.get(), this.applyExplosionDecay(ROSELLE_CALYX.get(),
                     LootTable.lootTable()
-                            .withPool(LootPool.lootPool().when(isUpperOrLower())
-                                    .add(LootItem.lootTableItem(ROSELLE_CALYX.get()))
-                                    .when(stateCond(ROSELLE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE))
-                                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
-                            .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSELLE_PETALS.get()).when(HAS_KNIFE)))));
+                            .withPool(LootPool.lootPool().when(isUpperOrLower(ROSELLE_CROP))
+                                    .add(LootItem.lootTableItem(ROSELLE_CALYX.get())
+                                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2)))
+                                            .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3)))
+                                    .when(stateCond(ROSELLE_CROP, RoseCropBlock.AGE, RoseCropBlock.MAX_AGE)))
+                            .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ROSELLE_PETALS.get())
+                                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2)))
+                                    .when(HAS_KNIFE)))));
+            //Dandelion
             //Dandelion
             this.createFlowerBushDrops(DANDELION_BUSH, DANDELION_ROOT, Items.YELLOW_DYE);
             //Poppy
@@ -153,7 +159,11 @@ public class FILoot extends LootTableProvider {
             Item seed = registrySeed.get();
             this.add(bush, this.applyExplosionDecay(seed, LootTable.lootTable()
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)))
-                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(originalFlower)).when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).when(HAS_KNIFE))
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed))
+                            .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)))
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(originalFlower)
+                                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))
+                            .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).when(HAS_KNIFE))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(seed)
                             .when(stateCond(registryBlock, CropBlock.AGE, CropBlock.MAX_AGE)).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714285f, 3))))));
         }
@@ -186,27 +196,26 @@ public class FILoot extends LootTableProvider {
                                     .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_LEAVES_STICK_CHANCES))));
         }
 
-        public static LootItemCondition.Builder stateCond(String value) {
-            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(((RegistryObject<? extends Block>) ROSE_CROP).get())
+        public static LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, String value) {
+            return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RoseCropBlock.HALF, value));
         }
-        private static LootItemCondition.Builder isUpper() {
-            return stateCond(DoubleBlockHalf.UPPER.toString());
+
+        private static LootItemCondition.Builder isUpper(RegistryObject<? extends Block> block) {
+            return stateCond(block, DoubleBlockHalf.UPPER.toString());
         }
-        private static LootItemCondition.Builder isLower() {
-            return stateCond(DoubleBlockHalf.LOWER.toString());
+
+        private static LootItemCondition.Builder isLower(RegistryObject<? extends Block> block) {
+            return stateCond(block, DoubleBlockHalf.LOWER.toString());
         }
-        private static LootItemCondition.Builder isUpperOrLower() {
-            return isUpper().or(isLower());
+
+        private static LootItemCondition.Builder isUpperOrLower(RegistryObject<? extends Block> block) {
+            return isUpper(block).or(isLower(block));
         }
 
         private static LootItemCondition.Builder stateCond(RegistryObject<? extends Block> block, Property<Integer> property, int value) {
             return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value));
-        }
-
-        private static LootItemCondition.Builder lower() {
-            return stateCond("lower");
         }
 
         @Override

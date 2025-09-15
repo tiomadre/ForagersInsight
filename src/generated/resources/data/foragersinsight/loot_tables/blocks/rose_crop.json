@@ -39,18 +39,14 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "foragersinsight:rose_hip"
-        }
-      ],
-      "functions": [
-        {
-          "enchantment": "minecraft:fortune",
-          "formula": "minecraft:binomial_with_bonus_count",
-          "function": "minecraft:apply_bonus",
-          "parameters": {
-            "extra": 3,
-            "probability": 0.5714285
-          }
         }
       ],
       "rolls": 1.0
@@ -66,6 +62,13 @@
               "predicate": {
                 "tag": "farmersdelight:tools/knives"
               }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": 2.0,
+              "function": "minecraft:set_count"
             }
           ],
           "name": "foragersinsight:rose_petals"
