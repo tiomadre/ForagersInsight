@@ -152,6 +152,14 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(ROSELLE_CALYX.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(SAVORY_PASTA_ROLL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(ModItems.RAW_PASTA.get())
+                .addIngredient(SEED_BUTTER.get())
+                .addIngredient(ModItems.TOMATO_SAUCE.get())
+                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .unlockedByAnyIngredient(SEED_BUTTER.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
         //Drinks
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_CORDIAL.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_PETALS.get())

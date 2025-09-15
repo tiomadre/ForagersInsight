@@ -82,6 +82,9 @@ public class FIFoods {
         public static final FoodProperties TART_WHEAT_PILAF = new FoodProperties.Builder()
             .nutrition(6).saturationMod(0.6f)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 1000), 1).build();
+    public static final FoodProperties SAVORY_PASTA_ROLL = new FoodProperties.Builder()
+            .nutrition(10).saturationMod(0.9f)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 2500), 1).build();
 
         //Other
         public static final FoodProperties BAKED_GOOD = new FoodProperties.Builder()

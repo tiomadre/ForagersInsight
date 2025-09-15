@@ -91,6 +91,7 @@ public class FITabs {
                         output.accept(FIItems.MEADOW_MEDLEY.get());
                         output.accept(FIItems.ROSE_HIP_SOUP.get());
                         output.accept(FIItems.ROSE_ROASTED_ROOTS.get());
+                        output.accept(FIItems.SAVORY_PASTA_ROLL.get());
                         output.accept(FIItems.SEASIDE_SIZZLER.get());
                         output.accept(FIItems.STEAMY_KELP_RICE.get());
                         output.accept(FIItems.SYRUP_TOAST_STACKS.get());
@@ -108,6 +109,7 @@ public class FITabs {
                         output.accept(FIItems.FOREST_ELIXIR.get());
                         output.accept(FIItems.GLOWING_CARROT_JUICE.get());
                         output.accept(FIItems.ROSE_CORDIAL.get());
+                        output.accept(FIItems.ROSELLE_JUICE.get());
                             //Tools
                         output.accept(FIItems.HANDBASKET.get());
                         output.accept(FIItems.FLINT_MALLET.get());

@@ -118,6 +118,8 @@ public class FIItems {
             new Item.Properties().food(FIFoods.WOODLAND_PASTA).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> TART_WHEAT_PILAF = HELPER.createItem("tart_wheat_pilaf", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.TART_WHEAT_PILAF).craftRemainder(Items.BOWL)));
+    public static final RegistryObject<Item> SAVORY_PASTA_ROLL = HELPER.createItem("savory_pasta_roll", () -> new ConsumableItem(
+            new Item.Properties().food(FIFoods.SAVORY_PASTA_ROLL).craftRemainder(Items.BOWL)));
 
     //Salads
     public static final RegistryObject<Item> KELP_AND_BEET_SALAD = HELPER.createItem("kelp_and_beet_salad", () -> new ConsumableItem(
