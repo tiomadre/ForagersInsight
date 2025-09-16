@@ -5,7 +5,6 @@ import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.TapperBlock;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
-import com.doltandtio.foragersinsight.core.registry.FIConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -42,7 +41,6 @@ public class FarmingXPEvents {
     // Gain 1-2 XP per harvesting of mature crop
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
-        if (FIConfig.farmingXpEventsEnabled()) return;
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = event.getLevel() instanceof Level ? (Level) event.getLevel() : null;
@@ -88,7 +86,6 @@ public class FarmingXPEvents {
     // Right-Click Harvesting (Empty Hand/Shears)
     @SubscribeEvent
     public static void onRightClickHarvest(PlayerInteractEvent.RightClickBlock event) {
-        if (FIConfig.farmingXpEventsEnabled()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         Level level = event.getLevel();
@@ -153,7 +150,6 @@ public class FarmingXPEvents {
     // Milking Cows 1-2 XP
     @SubscribeEvent
     public static void onCowMilk(PlayerInteractEvent.EntityInteract event) {
-        if (FIConfig.farmingXpEventsEnabled()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         Level level = event.getLevel();
@@ -169,11 +165,9 @@ public class FarmingXPEvents {
         }
     }
 
-
     // Shearing Mobs 1-2 XP
     @SubscribeEvent
     public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
-        if (FIConfig.farmingXpEventsEnabled()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         Level level = event.getLevel();
