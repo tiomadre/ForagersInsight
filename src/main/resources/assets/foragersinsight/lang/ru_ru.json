@@ -34,9 +34,11 @@
   "item.foragersinsight.woodland_pasta": "Лесная паста",
   "item.foragersinsight.hearty_spruce_pilaf": "Сытный еловый плов",
   "item.foragersinsight.tart_wheat_pilaf": "Терпкий плов из пшеничных зёрен",
-
+  "item.foragersinsight.savory_pasta_roll": "Пикантный рулет из пасты",
+  
   "item.foragersinsight.dandelion_root_tea": "Чай из корня одуванчика",
   "item.foragersinsight.rose_cordial": "Розовый настой",
+  "item.foragersinsight.roselle_juice": "Сок роззелы",
   "item.foragersinsight.forest_elixir": "Лесной эликсир",
   "item.foragersinsight.glowing_carrot_juice": "Сияющий морковный сок",
 
@@ -109,9 +111,11 @@
   "foragersinsight.flavortext.rose_cordial": "Целебный чай из цветочных лепестков роз.",
   "foragersinsight.flavortext.seed_milk_bucket": "Ведро молока сделанное из разных видов семян.",
 
+  "effect.foragersinsight.bloom": "Расцветающий",
   "effect.foragersinsight.chilled": "Охлаждённый",
   "effect.foragersinsight.medicinal": "Целебный",
 
+  "effect.foragersinsight.bloom.desc": "Ты получаешь на 20% и тратишь на 20% меньше опыта.",
   "effect.foragersinsight.chilled.desc": "Замораживает продолжительность полезных эффектов.",
   "effect.foragersinsight.medicinal.desc": "Удаляет и предотвращает применение яда и ссыхания. Игрок также восстанавливает здоровье за каждый удалённый эффект.",
 
