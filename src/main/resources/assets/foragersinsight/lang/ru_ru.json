@@ -17,7 +17,7 @@
   "item.foragersinsight.dandelion_fries": "Жареные корни одуванчика",
   "item.foragersinsight.foragers_granola": "Гранола собирателя",
   "item.foragersinsight.glazed_porkchop_and_acorn_grits": "Глазированная отбивная с желудями",
-  "item.foragersinsight.jammy_breakfast_sandwich": "Завтрачный сэндвич с джемом",
+  "item.foragersinsight.jammy_breakfast_sandwich": "Утренний сэндвич с джемом",
   "item.foragersinsight.kelp_and_beet_salad": "Салат из водорослей и свеклы",
   "item.foragersinsight.kelp_wrap": "Ролл из водорослей",
   "item.foragersinsight.meadow_medley": "Луговое ассорти",
@@ -38,7 +38,7 @@
   
   "item.foragersinsight.dandelion_root_tea": "Чай из корня одуванчика",
   "item.foragersinsight.rose_cordial": "Розовый настой",
-  "item.foragersinsight.roselle_juice": "Сок роззелы",
+  "item.foragersinsight.roselle_juice": "Сок розеллы",
   "item.foragersinsight.forest_elixir": "Лесной эликсир",
   "item.foragersinsight.glowing_carrot_juice": "Сияющий морковный сок",
 
@@ -111,7 +111,7 @@
   "foragersinsight.flavortext.rose_cordial": "Целебный чай из цветочных лепестков роз.",
   "foragersinsight.flavortext.seed_milk_bucket": "Ведро молока сделанное из разных видов семян.",
 
-  "effect.foragersinsight.bloom": "Расцветающий",
+  "effect.foragersinsight.bloom": "Расцвет",
   "effect.foragersinsight.chilled": "Охлаждённый",
   "effect.foragersinsight.medicinal": "Целебный",
 
