@@ -3,6 +3,7 @@ package com.doltandtio.foragersinsight.core.other;
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.TapperBlock;
+
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,11 +16,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+
 import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -63,10 +66,16 @@ public class FarmingXPEvents {
             if (property.getName().equals("half") &&
                     property instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> enumProp) {
                 Comparable<?> halfValue = state.getValue(enumProp);
-                BlockState below = level.getBlockState(event.getPos().below());
-                if (!below.is(state.getBlock())) {
-                    return;
+                if (halfValue instanceof DoubleBlockHalf half) {
+                    BlockState counterpart = level.getBlockState(
+                            half == DoubleBlockHalf.UPPER
+                                    ? event.getPos().below()
+                                    : event.getPos().above());
+                    if (!counterpart.is(state.getBlock())) {
+                        return;
+                    }
                 }
+                break;
             }
         }
 
@@ -89,7 +98,7 @@ public class FarmingXPEvents {
         if (block instanceof BeehiveBlock &&
                 state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
                 (held.getItem() instanceof ShearsItem || held.is(Items.GLASS_BOTTLE))) {
-            int xp = 2 + player.getRandom().nextInt(2); // 2–3 XP
+            int xp = 2 + player.getRandom().nextInt(2);
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
             return;
         }

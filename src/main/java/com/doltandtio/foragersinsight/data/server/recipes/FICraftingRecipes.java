@@ -248,6 +248,13 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get(), 2)
                 .unlockedBy("has_scattered_spruce_tips", has(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get()))
                 .save(consumer);
+        //Feasts and Cakes
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
+                .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
+                .requires(SUGAR).requires(ForgeTags.EGGS).requires(SUGAR)
+                .requires(ForgeTags.MILK).requires(ForgeTags.MILK).requires(ForgeTags.MILK)
+                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
+        //Other
         // Alternate Item Frame
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ITEM_FRAME)
                 .pattern("SSS")
@@ -257,12 +264,13 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('H', RABBIT_HIDE)
                 .unlockedBy("has_rabbit_hide", has(RABBIT_HIDE))
                 .save(consumer, ForagersInsight.rl("item_frame_from_rabbit_hide"));
-        //Feasts and Cakes
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
-                .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
-                .requires(SUGAR).requires(ForgeTags.EGGS).requires(SUGAR)
-                .requires(ForgeTags.MILK).requires(ForgeTags.MILK).requires(ForgeTags.MILK)
-                .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BOOK)
+                .requires(PAPER)
+                .requires(PAPER)
+                .requires(PAPER)
+                .requires(RABBIT_HIDE)
+                .unlockedBy("has_rabbit_hide", has(RABBIT_HIDE))
+                .save(consumer, ForagersInsight.rl("book_from_rabbit_hide"));
         //Storage
         this.storageRecipes(consumer, RecipeCategory.FOOD, ROSE_HIP.get(), RecipeCategory.DECORATIONS, ROSE_HIP_SACK.get());
         this.storageRecipes(consumer, RecipeCategory.FOOD, POPPY_SEEDS.get(), RecipeCategory.DECORATIONS, POPPY_SEEDS_SACK.get());
@@ -301,7 +309,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('W', FITags.ItemTag.WHEAT)
                 .unlockedBy("has_egg", has(Items.EGG))
                 .save(consumer, new ResourceLocation("minecraft", "cake"));
-        // OG Item Frame Recipe, now gives 2 Frames
+        //Item Frame
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ITEM_FRAME, 2)
                 .pattern("SSS")
                 .pattern("SLS")
@@ -310,6 +318,14 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('L', LEATHER)
                 .unlockedBy("has_leather", has(LEATHER))
                 .save(consumer, new ResourceLocation("minecraft", "item_frame"));
+        //Book
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BOOK, 2)
+                .requires(PAPER)
+                .requires(PAPER)
+                .requires(PAPER)
+                .requires(LEATHER)
+                .unlockedBy("has_leather", has(LEATHER))
+                .save(consumer, new ResourceLocation("minecraft", "book"));
 
     }
     private void addFarmersDelightOverrides(Consumer<FinishedRecipe> consumer) {
