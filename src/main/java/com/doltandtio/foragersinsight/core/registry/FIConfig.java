@@ -10,6 +10,9 @@ public class FIConfig {
         @ConfigKey("config")
         public final ForgeConfigSpec.DoubleValue chanceToGrowBountifulTree;
         public final ForgeConfigSpec.DoubleValue chanceToGrowSappyBirch;
+        public final ForgeConfigSpec.BooleanValue enableFarmingXPEvents;
+        public final ForgeConfigSpec.BooleanValue enableFlavorText;
+
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Bountiful Trees");
@@ -21,6 +24,17 @@ public class FIConfig {
             this.chanceToGrowSappyBirch = builder.comment("Chance for birch saplings to grow into Sappy Variant. -1 to disable")
                     .defineInRange("Sappy Birch Mutations", 0.25d, -1.5, 1); //Default 25% chance
             builder.pop();
+
+            builder.push("Farming XP Events");
+            this.enableFarmingXPEvents = builder.comment("If true, players receive experience from farming-related actions introduced by Forager's Insight.")
+                    .define("Enable Farming Experience Events", true); //Default True
+            builder.pop();
+
+            builder.push("Flavor Text");
+            this.enableFlavorText = builder.comment("Enable Flavor Text tooltips.")
+                    .define("Flavor Text", false); //Default False
+            builder.pop();
+
         }
     }
     public static final ForgeConfigSpec COMMON_SPEC;
@@ -42,5 +56,11 @@ public class FIConfig {
         double chance = COMMON.chanceToGrowSappyBirch.get();
         if (chance < 0) return false;
         return rand.nextDouble() < chance;
+    }
+    public static boolean farmingXpEventsEnabled() {
+        return COMMON.enableFarmingXPEvents.get();
+    }
+    public static boolean isFlavorTextEnabled() {
+        return COMMON.enableFlavorText.get();
     }
 }

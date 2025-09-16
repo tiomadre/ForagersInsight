@@ -62,7 +62,7 @@ public class FIItems {
     public static final RegistryObject<Item> BIRCH_SYRUP_BUCKET = HELPER.createItem("birch_syrup_bucket", () -> new Item(new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
     public static final RegistryObject<Item> BIRCH_SYRUP_BOTTLE = HELPER.createItem("birch_syrup_bottle",
             () -> new HoneyBottleItem(new Item.Properties().stacksTo(16).food(FIFoods.BIRCH_SYRUP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE)));
-    //DISHES
+    //DISHES and FOODSTUFF
         //Baked Goods & Sweets
     public static final RegistryObject<Item> ACORN_COOKIE = HELPER.createItem("acorn_cookie", () -> new Item(new Item.Properties()
             .food(FoodValues.COOKIES)));
@@ -83,7 +83,6 @@ public class FIItems {
             new BlockItem(FIBlocks.ACORN_CARROT_CAKE.get(), basicItem()));
     public static final RegistryObject<Item> SLICE_OF_ACORN_CARROT_CAKE = HELPER.createItem("slice_of_acorn_carrot_cake", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CAKE_SLICE)));
-        //Chilled
         //Comfort
     public static final RegistryObject<Item> CARROT_POPPY_CHOWDER = HELPER.createItem("carrot_poppy_chowder", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.CARROT_POPPY_CHOWDER).craftRemainder(Items.BOWL)));
@@ -101,8 +100,6 @@ public class FIItems {
             new Item.Properties().food(FIFoods.STEAMY_KELP_RICE).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> ROSE_HIP_SOUP = HELPER.createItem("rose_hip_soup", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.ROSE_HIP_SOUP).craftRemainder(Items.BOWL)));
-        //Medicinal
-
         //Nourishment
     public static final RegistryObject<Item> ACORN_NOODLES = HELPER.createItem("acorn_noodles", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.ACORN_NOODLES).craftRemainder(Items.BOWL)));
@@ -120,7 +117,6 @@ public class FIItems {
             new Item.Properties().food(FIFoods.TART_WHEAT_PILAF).craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> SAVORY_PASTA_ROLL = HELPER.createItem("savory_pasta_roll", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SAVORY_PASTA_ROLL).craftRemainder(Items.BOWL)));
-
     //Salads
     public static final RegistryObject<Item> KELP_AND_BEET_SALAD = HELPER.createItem("kelp_and_beet_salad", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SALAD).craftRemainder(Items.BOWL)));
@@ -136,34 +132,33 @@ public class FIItems {
     public static final RegistryObject<Item> SWEET_ROASTED_RABBIT_LEG = HELPER.createItem("sweet_roasted_rabbit_leg", () -> new ConsumableItem(
             new Item.Properties().food(FIFoods.SWEET_ROASTED_RABBIT_LEG)));
     //Drinks
-    public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new DrinkableItem(new Item.Properties()
-            .food(FIFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> GLOWING_CARROT_JUICE = HELPER.createItem("glowing_carrot_juice", () -> new DrinkableItem(new Item.Properties()
-            .food(FIFoods.GLOWING_CARROT_JUICE).craftRemainder(Items.GLASS_BOTTLE)));
-        //Chilled
+        //Seed Milk
+    public static final RegistryObject<Item> SEED_MILK_BOTTLE = HELPER.createItem("seed_milk_bottle", () -> new MilkBottleItem(
+            new Item.Properties().food(FIFoods.SEED_MILK_BOTTLE)));
+    public static final RegistryObject<Item> SEED_MILK_BUCKET = HELPER.createItem("seed_milk_bucket", () -> new MilkBucketItem(
+            new Item.Properties().food(FIFoods.SEED_MILK_BUCKET)));
 
-        //Medicinal
-    public static final RegistryObject<Item> DANDELION_ROOT_TEA = HELPER.createItem("dandelion_root_tea", () -> new DrinkableItem(new Item.Properties()
-            .food(FIFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> FOREST_ELIXIR = HELPER.createItem("forest_elixir", () -> new DrinkableItem(new Item.Properties()
+        //Tonics (Medicinal)
+    public static final RegistryObject<Item> ROSE_CORDIAL = HELPER.createItem("rose_cordial", () -> new TonicItem(new Item.Properties()
+                .food(FIFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> GLOWING_CARROT_JUICE = HELPER.createItem("glowing_carrot_juice", () -> new TonicItem(new Item.Properties()
+            .food(FIFoods.GLOWING_CARROT_JUICE).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> DANDELION_ROOT_TEA = HELPER.createItem("dandelion_root_tea", () -> new TonicItem(new Item.Properties()
+                .food(FIFoods.DANDELION_ROOT_TEA).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> FOREST_ELIXIR = HELPER.createItem("forest_elixir", () -> new TonicItem(new Item.Properties()
             .food(FIFoods.FOREST_ELIXIR).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> ROSELLE_JUICE = HELPER.createItem("roselle_juice", () -> new DrinkableItem(new Item.Properties()
+    public static final RegistryObject<Item> ROSELLE_JUICE = HELPER.createItem("roselle_juice", () -> new TonicItem(new Item.Properties()
             .food(FIFoods.ROSELLE_JUICE).craftRemainder(Items.GLASS_BOTTLE)));
 
     //Sap Stuff
     public static final RegistryObject<Item> BIRCH_SAP_BUCKET = HELPER.createItem("birch_sap_bucket", () -> new Item(new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
     public static final RegistryObject<Item> BIRCH_SAP_BOTTLE = HELPER.createItem("birch_sap_bottle", () -> new Item(new Item.Properties().stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
-    //Seed Milk Stuff
-    public static final RegistryObject<Item> SEED_MILK_BOTTLE = HELPER.createItem("seed_milk_bottle", () -> new MilkBottleItem(
-            new Item.Properties().food(FIFoods.SEED_MILK_BOTTLE)));
-    public static final RegistryObject<Item> SEED_MILK_BUCKET = HELPER.createItem("seed_milk_bucket", () -> new MilkBucketItem(
-            new Item.Properties().food(FIFoods.SEED_MILK_BUCKET)));
+
     //Wildflowers
     public static final RegistryObject<Item> ROSELLE_BUSH_ITEM = HELPER.createItem("roselle_bush", () ->
             new BlockItem(FIBlocks.ROSELLE_BUSH.get(),basicItem()));
 
 //Workstations & Tools
-    //Chilled Pot
     //Handbasket
     public static final RegistryObject<Item> HANDBASKET = HELPER.createItem("handbasket", () ->
         new HandbasketItem(new Item.Properties().stacksTo(1)));
