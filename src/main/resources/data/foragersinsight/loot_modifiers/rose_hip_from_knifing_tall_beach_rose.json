@@ -9,7 +9,7 @@
     },
     {
       "condition": "block_state_property",
-      "block": "rose_bush"
+      "block": "foragersinsight:tall_beach_rose_bush"
     },
     {
       "condition": "random_chance",
@@ -17,5 +17,5 @@
     }
   ],
   "new": "foragersinsight:rose_hip",
-  "replace": "rose_bush"
+  "replace": "foragersinsight:tall_beach_rose_bush"
 }
