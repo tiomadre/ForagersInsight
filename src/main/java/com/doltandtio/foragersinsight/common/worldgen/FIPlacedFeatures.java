@@ -9,11 +9,19 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.HeightmapPlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.tags.BiomeTags;
 
 import java.util.List;
+
+import vectorwing.farmersdelight.common.world.filter.BiomeTagFilter;
 
 public class FIPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_TREE_PLACED_KEY = registerKey("apple_tree_placed");
@@ -38,8 +46,9 @@ public class FIPlacedFeatures {
         register(context, SAPPY_BIRCH_TREE_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.SAPPY_BIRCH_TREE_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.BIRCH_SAPLING));
         //Wild Flower
-        register(context, ROSELLE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.ROSELLE_BUSH_PATCH_KEY),
-                VegetationPlacements.worldSurfaceSquaredWithCount(1));
+        register(context, ROSELLE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.ROSELLE_BUSH_PATCH_KEY), List.of(
+            RarityFilter.onAverageOnceEvery(90), InSquarePlacement.spread(), HeightmapPlacement.
+            onHeightmap(Heightmap.Types.MOTION_BLOCKING), BiomeFilter.biome(), BiomeTagFilter.biomeIsInTag(BiomeTags.IS_OVERWORLD)));
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,

@@ -2,18 +2,22 @@
   "feature": "foragersinsight:patch_roselle_bush",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 1
+      "type": "minecraft:rarity_filter",
+      "chance": 90
     },
     {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG"
+      "heightmap": "MOTION_BLOCKING"
     },
     {
       "type": "minecraft:biome"
+    },
+    {
+      "type": "farmersdelight:biome_tag",
+      "tag": "minecraft:is_overworld"
     }
   ]
 }
