@@ -36,7 +36,7 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
     // XP GAIN FROM FARMING & FORAGING
-    // Foraging wild crops, wild flowers and grass with a Knife grants 0-1 XP
+    // Foraging wild crops, wild flowers and grasses with a Knife grants 0-1 XP
     @SubscribeEvent
     public static void onKnifeHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) {

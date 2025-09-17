@@ -157,6 +157,10 @@ public class FIItems {
     //Wildflowers
     public static final RegistryObject<Item> ROSELLE_BUSH_ITEM = HELPER.createItem("roselle_bush", () ->
             new BlockItem(FIBlocks.ROSELLE_BUSH.get(),basicItem()));
+    public static final RegistryObject<Item> STOUT_BEACH_ROSE_BUSH_ITEM = HELPER.createItem("stout_beach_rose_bush", () ->
+            new BlockItem(FIBlocks.STOUT_BEACH_ROSE_BUSH.get(),basicItem()));
+    public static final RegistryObject<Item> TALL_BEACH_ROSE_BUSH_ITEM = HELPER.createItem("tall_beach_rose_bush", () ->
+            new BlockItem(FIBlocks.TALL_BEACH_ROSE_BUSH.get(),basicItem()));
 
 //Workstations & Tools
     //Handbasket

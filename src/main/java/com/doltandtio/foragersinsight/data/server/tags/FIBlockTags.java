@@ -37,7 +37,7 @@ public class FIBlockTags extends BlockTagsProvider {
         //Grasses
         ModBlocks.SANDY_SHRUB.get(),Blocks.TALL_GRASS,Blocks.GRASS,
         //Vanilla & Forager Wild Flowers
-        Blocks.ROSE_BUSH,Blocks.DANDELION,Blocks.POPPY,FIBlocks.ROSELLE_BUSH.get());
+        Blocks.ROSE_BUSH,Blocks.DANDELION,Blocks.POPPY,STOUT_BEACH_ROSE_BUSH.get(), TALL_BEACH_ROSE_BUSH.get(),ROSELLE_BUSH.get());
         registerForgeTags();
         registerMineables();
     }
