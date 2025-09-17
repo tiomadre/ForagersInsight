@@ -10,18 +10,24 @@
             "entries": [
               {
                 "data": {
-                  "Name": "minecraft:grass"
+                  "Name": "farmersdelight:sandy_shrub"
                 },
                 "weight": 6
               },
               {
                 "data": {
-                  "Name": "foragersinsight:roselle_bush",
+                  "Name": "foragersinsight:stout_beach_rose_bush"
+                },
+                "weight": 3
+              },
+              {
+                "data": {
+                  "Name": "foragersinsight:tall_beach_rose_bush",
                   "Properties": {
                     "half": "lower"
                   }
                 },
-                "weight": 2
+                "weight": 1
               }
             ]
           }
@@ -58,15 +64,15 @@
                   -1,
                   0
                 ],
-                "tag": "minecraft:dirt"
+                "tag": "minecraft:sand"
               }
             ]
           }
         }
       ]
     },
-    "tries": 64,
-    "xz_spread": 7,
-    "y_spread": 3
+    "tries": 48,
+    "xz_spread": 5,
+    "y_spread": 2
   }
 }

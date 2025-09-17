@@ -6,6 +6,6 @@ Players will be introduced to new tools, enchantments, blocks and dishes to help
 
 This mod is still in development and more content will be established!
 
-Please refer to https://github.com/tiomadre/ForagersInsight/wiki for some information on things like crops and features unique to the mod!
+Please refer to https://github.com/tiomadre/ForagersInsight/wiki/Home-Page%F0%9F%8F%A1 ,and the directory, for some information on things like crops and features unique to the mod!
 
 

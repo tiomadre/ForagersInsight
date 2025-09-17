@@ -17,11 +17,12 @@ public class FIBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_SPRUCE_TIP_TREES = registerKey("add_spruce_tip_trees");
     public static final ResourceKey<BiomeModifier> ADD_SAPPY_BIRCH_TREES = registerKey("add_sappy_birch_trees");
     public static final ResourceKey<BiomeModifier> ADD_ROSELLE_BUSHES = registerKey("add_roselle_bushes");
+    public static final ResourceKey<BiomeModifier> ADD_BEACH_ROSES = registerKey("add_beach_roses");
 
     public static void bootstap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
-
+                //Tree Stuff
         context.register(ADD_APPLE_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(FITags.BiomeTag.HAS_APPLE_TREES),
                 HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.APPLE_TREE_PLACED_KEY)),
@@ -44,10 +45,16 @@ public class FIBiomeModifiers {
                 biomes.getOrThrow(FITags.BiomeTag.HAS_SAPPY_BIRCH_TREES),
                 HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.SAPPY_BIRCH_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
+                //Wild Flower Patches
         );
         context.register(ADD_ROSELLE_BUSHES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(FITags.BiomeTag.HAS_ROSELLE_BUSHES),
                 HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.ROSELLE_PATCH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION)
+        );
+        context.register(ADD_BEACH_ROSES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(FITags.BiomeTag.HAS_BEACH_ROSES),
+                HolderSet.direct(placedFeatures.getOrThrow(FIPlacedFeatures.BEACH_ROSE_PATCH_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
     }

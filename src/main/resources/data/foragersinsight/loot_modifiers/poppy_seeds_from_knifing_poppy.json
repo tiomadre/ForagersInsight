@@ -10,6 +10,10 @@
     {
       "condition": "block_state_property",
       "block": "poppy"
+    },
+    {
+      "condition": "random_chance",
+      "chance": 0.25
     }
   ],
   "new": "foragersinsight:poppy_seeds",

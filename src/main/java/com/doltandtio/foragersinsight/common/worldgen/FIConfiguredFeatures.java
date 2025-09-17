@@ -36,6 +36,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlace
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
+
 import java.util.List;
 
 import java.util.OptionalInt;
@@ -48,12 +50,14 @@ public class FIConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SPRUCE_TIP_TREE_KEY = registerKey("spruce_tip_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPY_BIRCH_TREE_KEY = registerKey("sappy_birch_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROSELLE_BUSH_PATCH_KEY = registerKey("patch_roselle_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BEACH_ROSE_PATCH_KEY = registerKey("patch_beach_rose");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ForagersInsight.rl(name));
     }
 
     public static void bootstap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+            //Tree Stuff
         register(context, APPLE_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
@@ -92,11 +96,14 @@ public class FIConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 3),
                 new TwoLayersFeatureSize(1, 0, 2)
         ).decorators(List.of(new SappyBirchLogDecorator(0.5F))).build());
-
+            //Wild Flowers
+        WeightedStateProvider rosellePatchProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                .add(Blocks.GRASS.defaultBlockState(), 6)
+                .add(FIBlocks.ROSELLE_BUSH.get().defaultBlockState()
+                        .setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 2));
         Holder<PlacedFeature> roselleBush = PlacementUtils.inlinePlaced(
-                Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(
-                        FIBlocks.ROSELLE_BUSH.get().defaultBlockState()
-                                .setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))),
+                Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(rosellePatchProvider),
+
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
                         BlockPredicate.replaceable(),
                         BlockPredicate.replaceable(BlockPos.ZERO.above()),
@@ -104,6 +111,21 @@ public class FIConfiguredFeatures {
                         BlockPredicate.matchesTag(BlockPos.ZERO.below(), BlockTags.DIRT))));
         register(context, ROSELLE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(64, 7, 3, roselleBush));
+
+        Holder<PlacedFeature> beachRosePatch = PlacementUtils.inlinePlaced(
+                Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.SANDY_SHRUB.get().defaultBlockState(), 6)
+                        .add(FIBlocks.STOUT_BEACH_ROSE_BUSH.get().defaultBlockState(), 3)
+                        .add(FIBlocks.TALL_BEACH_ROSE_BUSH.get().defaultBlockState()
+                                .setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 1)
+                        .build())),
+                BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
+                        BlockPredicate.replaceable(),
+                        BlockPredicate.replaceable(BlockPos.ZERO.above()),
+                        BlockPredicate.not(BlockPredicate.matchesFluids(Fluids.WATER)),
+                        BlockPredicate.matchesTag(BlockPos.ZERO.below(), BlockTags.SAND))));
+        register(context, BEACH_ROSE_PATCH_KEY, Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(48, 5, 2, beachRosePatch));
     }
 
 

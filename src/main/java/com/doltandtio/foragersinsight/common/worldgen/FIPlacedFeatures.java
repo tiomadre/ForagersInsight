@@ -1,6 +1,7 @@
 package com.doltandtio.foragersinsight.common.worldgen;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
+import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -9,11 +10,19 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.HeightmapPlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.tags.BiomeTags;
 
 import java.util.List;
+
+import vectorwing.farmersdelight.common.world.filter.BiomeTagFilter;
 
 public class FIPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_TREE_PLACED_KEY = registerKey("apple_tree_placed");
@@ -21,6 +30,8 @@ public class FIPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SPRUCE_TIP_TREE_PLACED_KEY = registerKey("spruce_tip_tree_placed");
     public static final ResourceKey<PlacedFeature> SAPPY_BIRCH_TREE_PLACED_KEY = registerKey("sappy_birch_tree_placed");
     public static final ResourceKey<PlacedFeature> ROSELLE_PATCH_PLACED_KEY = registerKey("roselle_patch_placed");
+    public static final ResourceKey<PlacedFeature> BEACH_ROSE_PATCH_PLACED_KEY = registerKey("beach_rose_patch_placed");
+
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, ForagersInsight.rl(name));
@@ -38,8 +49,14 @@ public class FIPlacedFeatures {
         register(context, SAPPY_BIRCH_TREE_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.SAPPY_BIRCH_TREE_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.2f, 1), Blocks.BIRCH_SAPLING));
         //Wild Flower
-        register(context, ROSELLE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.ROSELLE_BUSH_PATCH_KEY),
-                VegetationPlacements.worldSurfaceSquaredWithCount(1));
+        register(context, ROSELLE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.ROSELLE_BUSH_PATCH_KEY), List.of(
+                RarityFilter.onAverageOnceEvery(80), InSquarePlacement.spread(), HeightmapPlacement
+                        .onHeightmap(Heightmap.Types.MOTION_BLOCKING), BiomeFilter.biome(), BiomeTagFilter.biomeIsInTag(BiomeTags.IS_OVERWORLD)));
+
+        register(context, BEACH_ROSE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(FIConfiguredFeatures.BEACH_ROSE_PATCH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(80), InSquarePlacement.spread(), HeightmapPlacement
+                                .onHeightmap(Heightmap.Types.MOTION_BLOCKING), BiomeFilter.biome(), BiomeTagFilter.biomeIsInTag(FITags.BiomeTag.HAS_BEACH_ROSES)));
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,

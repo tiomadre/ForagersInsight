@@ -10,6 +10,10 @@
     {
       "condition": "block_state_property",
       "block": "foragersinsight:roselle_bush"
+    },
+    {
+    "condition": "random_chance",
+    "chance": 0.5
     }
   ],
   "new": "foragersinsight:roselle_calyx",

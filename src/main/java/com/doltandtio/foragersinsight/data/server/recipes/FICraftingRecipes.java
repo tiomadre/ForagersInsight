@@ -107,6 +107,14 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(FIItems.ROSELLE_BUSH_ITEM.get())
                 .unlockedBy("has_roselle_bush", has(FIItems.ROSELLE_BUSH_ITEM.get()))
                 .save(consumer, ForagersInsight.rl("pink_dye_from_roselle_bush"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RED_DYE, 1)
+                .requires(STOUT_BEACH_ROSE_BUSH_ITEM.get())
+                .unlockedBy("has_roselle_bush", has(STOUT_BEACH_ROSE_BUSH_ITEM.get()))
+                .save(consumer, ForagersInsight.rl("red_dye_from_stout_beach_rose_bush"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, RED_DYE, 2)
+                .requires(TALL_BEACH_ROSE_BUSH_ITEM.get())
+                .unlockedBy("has_roselle_bush", has(TALL_BEACH_ROSE_BUSH_ITEM.get()))
+                .save(consumer, ForagersInsight.rl("red_dye_from_tall_beach_rose_bush"));
         //Seed Milk
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SEED_MILK_BOTTLE.get())
                 .requires(SEED_MILK_BUCKET.get()).requires(GLASS_BOTTLE).requires(GLASS_BOTTLE)

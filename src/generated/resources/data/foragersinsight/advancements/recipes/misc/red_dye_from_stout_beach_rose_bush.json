@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_roselle_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "foragersinsight:stout_beach_rose_bush"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:red_dye_from_stout_beach_rose_bush"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_roselle_bush",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:red_dye_from_stout_beach_rose_bush"
+    ]
+  },
+  "sends_telemetry_event": false
+}

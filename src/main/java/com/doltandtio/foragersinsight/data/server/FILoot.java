@@ -121,16 +121,23 @@ public class FILoot extends LootTableProvider {
             this.dropSelf(DANDELION_ROOT_SACK.get());
             this.dropSelf(POPPY_SEEDS_SACK.get());
                 //Wildflower + Plants
-            this.add(FIBlocks.ROSELLE_BUSH.get(), block ->
-                    LootTable.lootTable().withPool(
-                            this.applyExplosionCondition(block,
-                                            LootPool.lootPool()
-                                                    .setRolls(ConstantValue.exactly(1.0F))
-                                                    .add(LootItem.lootTableItem(block)))
+            this.add(FIBlocks.ROSELLE_BUSH.get(), block -> LootTable.lootTable().withPool(this.applyExplosionCondition(block, LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1.0F))
+                                            .add(LootItem.lootTableItem(block)))
                                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                             .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                    .hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))))
-            );
+                                                    .hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)))));
+            this.add(TALL_BEACH_ROSE_BUSH.get(), block -> LootTable.lootTable().withPool(this.applyExplosionCondition(block, LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(block)))
+                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                    .hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)))));
+            this.add(STOUT_BEACH_ROSE_BUSH.get(), block -> LootTable.lootTable().withPool(this.applyExplosionCondition(block, LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(block))))
+                            .withPool(this.applyExplosionCondition(block,
+                                            LootPool.lootPool())));
                 //Decorative
             this.dropSelf(SCATTERED_ROSE_PETAL_MAT.get());
             this.dropSelf(SCATTERED_ROSELLE_PETAL_MAT.get());

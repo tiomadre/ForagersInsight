@@ -10,10 +10,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Comparator;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SappyBirchLogDecorator extends TreeDecorator {
     public static final Codec<SappyBirchLogDecorator> CODEC = RecordCodecBuilder.create(
@@ -42,12 +43,24 @@ public class SappyBirchLogDecorator extends TreeDecorator {
         List<BlockPos> logs = context.logs();
         if (logs.isEmpty()) return;
 
-        logs.sort(Comparator.comparingInt(BlockPos::getY));
-        BlockPos base = logs.get(0);
+        Map<BlockPos, List<BlockPos>> columns = new HashMap<>();
+        for (BlockPos pos : logs) {
+            BlockPos columnPos = new BlockPos(pos.getX(), 0, pos.getZ());
+            columns.computeIfAbsent(columnPos, ignored -> new ArrayList<>()).add(pos);
+        }
+
+        List<BlockPos> trunkColumn = columns.values().stream()
+                .max(Comparator.comparingInt(List::size))
+                .orElse(null);
+
+        if (trunkColumn == null || trunkColumn.size() <= 1) return;
+
+        trunkColumn.sort(Comparator.comparingInt(BlockPos::getY));
+        BlockPos base = trunkColumn.get(0);
 
         List<BlockPos> trunk = new ArrayList<>();
-        for (BlockPos pos : logs) {
-            if (pos.getX() == base.getX() && pos.getZ() == base.getZ() && pos.getY() > base.getY()) {
+        for (BlockPos pos : trunkColumn) {
+            if (pos.getY() > base.getY()) {
                 trunk.add(pos);
                 if (trunk.size() >= 2) {
                     break;

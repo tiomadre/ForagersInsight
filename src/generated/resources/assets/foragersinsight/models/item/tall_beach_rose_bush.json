@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foragersinsight:item/tall_beach_rose_bush"
+  }
+}

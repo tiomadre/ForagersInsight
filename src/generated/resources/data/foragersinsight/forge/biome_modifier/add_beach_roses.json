@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foragersinsight:has_feature/beach_roses",
+  "features": "foragersinsight:beach_rose_patch_placed",
+  "step": "vegetal_decoration"
+}

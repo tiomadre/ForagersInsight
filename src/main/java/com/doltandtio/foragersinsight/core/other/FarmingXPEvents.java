@@ -5,22 +5,19 @@ import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.TapperBlock;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
+import com.doltandtio.foragersinsight.data.server.tags.FITags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 
-import net.minecraft.world.level.block.BeehiveBlock;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -30,14 +27,39 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import vectorwing.farmersdelight.common.block.TomatoVineBlock;
+import vectorwing.farmersdelight.common.item.KnifeItem;
 
 import java.util.Optional;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
-    // XP GAIN FROM FARMING
+    // XP GAIN FROM FARMING & FORAGING
+    // Foraging wild crops, wild flowers and grasses with a Knife grants 0-1 XP
+    @SubscribeEvent
+    public static void onKnifeHarvest(BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player)) {
+            return;
+        }
 
+        if (!(event.getLevel() instanceof Level level) || level.isClientSide()) {
+            return;
+        }
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        ItemStack tool = player.getMainHandItem();
+        if (!(tool.getItem() instanceof KnifeItem)) {
+            return;
+        }
+
+        BlockState state = event.getState();
+        if (state.is(FITags.BlockTag.FORAGING)) {
+            awardKnifeXP(serverLevel, player);
+        }
+    }
     // Gain 1-2 XP per harvesting of mature crop
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
@@ -89,82 +111,90 @@ public class FarmingXPEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         Level level = event.getLevel();
-        if (level.isClientSide()) return;
+        if (!(level instanceof ServerLevel serverLevel)) return;
         ItemStack held = player.getItemInHand(event.getHand());
         BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
 
         //Beehive  2-3 XP
-        if (block instanceof BeehiveBlock &&
-                state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
-                (held.getItem() instanceof ShearsItem || held.is(Items.GLASS_BOTTLE))) {
-            int xp = 2 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-            return;
-        }
-        //Tapper 1-2 XP
-        if (block instanceof TapperBlock &&
-                state.getValue(TapperBlock.HAS_TAPPER) &&
-                state.getValue(TapperBlock.FILL) == 4 &&
-                held.is(Items.BUCKET)) {
-            int xp = 1 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-            return;
+        if (!(block instanceof BeehiveBlock) ||
+                state.getValue(BeehiveBlock.HONEY_LEVEL) < 5 ||
+                (!(held.getItem() instanceof ShearsItem) && !held.is(Items.GLASS_BOTTLE))) {//Tapper 1-2 XP
+            if (block instanceof TapperBlock &&
+                    state.getValue(TapperBlock.HAS_TAPPER) &&
+                    state.getValue(TapperBlock.FILL) == 4 &&
+                    held.is(Items.BUCKET)) {
+                int xp = 1 + player.getRandom().nextInt(2);
+                ExperienceOrb.award(serverLevel, player.position(), xp);
 
-        }
-        // Mushroom Colonies 0-1 XP
-        if (block instanceof MushroomColonyBlock &&
-                state.getValue(MushroomColonyBlock.COLONY_AGE) > 0) {
-            int xp = player.getRandom().nextInt(2);
-            if (xp > 0) {
-                ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+                return;
+
             }
-            return;
-        }
-        if (!(held.isEmpty() || held.getItem() instanceof ShearsItem)) {
-            return;
-        }
-        state = level.getBlockState(event.getPos());
-        block = state.getBlock();
-        if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
+            // Mushroom Colonies 0-1 XP
+            if (block instanceof MushroomColonyBlock) {
+                int initialAge = state.getValue(MushroomColonyBlock.COLONY_AGE);
+                if (initialAge > 0) {
+                    BlockPos pos = event.getPos();
+                    serverLevel.getServer().execute(() -> {
+                        BlockState updatedState = serverLevel.getBlockState(pos);
+                        if (!(updatedState.getBlock() instanceof MushroomColonyBlock)) {
+                            return;
+                        }
+                        int updatedAge = updatedState.getValue(MushroomColonyBlock.COLONY_AGE);
+                        if (updatedAge < initialAge) {
+                            int xp = player.getRandom().nextInt(2);
+                            if (xp > 0) {
+                                ExperienceOrb.award(serverLevel, player.position(), xp);
+                            }
+                        }
+                    });
+                    return;
+                }
+            }
+            if (!(held.isEmpty() || held.getItem() instanceof ShearsItem)) {
+                return;
+            }
+            state = level.getBlockState(event.getPos());
+            block = state.getBlock();
+            // Tomatoes 1-2 XP
+            if (block instanceof TomatoVineBlock tomatoVine) {
+                int currentAge = state.getValue(TomatoVineBlock.VINE_AGE);
+                if (currentAge < tomatoVine.getMaxAge()) {
+                    return;
+                }
 
-        Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
-        if (agePropOpt.isEmpty()) return;
+                int xp = 1 + player.getRandom().nextInt(2);
+                ExperienceOrb.award(serverLevel, player.position(), xp);
+                return;
+            }
+            if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
+            if (block instanceof StemBlock || block instanceof AttachedStemBlock) {
+                return;
+            }
 
-        IntegerProperty ageProp = agePropOpt.get();
-        int currentAge = state.getValue(ageProp);
-        Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
-        int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
-        if (currentAge < maxAge) return;
+            Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
+            if (agePropOpt.isEmpty()) return;
 
-        int xp;
-        if (block instanceof BountifulLeavesBlock || block instanceof SpruceTipBlock) {
-            xp = player.getRandom().nextInt(2);
+            IntegerProperty ageProp = agePropOpt.get();
+            int currentAge = state.getValue(ageProp);
+            Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
+            int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
+            if (currentAge < maxAge) return;
+
+            int xp;
+            if (block instanceof BountifulLeavesBlock || block instanceof SpruceTipBlock) {
+                xp = player.getRandom().nextInt(2);
+            } else {
+                xp = 1 + player.getRandom().nextInt(2);
+            }
+            if (xp > 0) {
+                ExperienceOrb.award(serverLevel, player.position(), xp);
+            }
         } else {
-            xp = 1 + player.getRandom().nextInt(2);
-        }
-        if (xp > 0) {
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-        }
+    int xp = 2 + player.getRandom().nextInt(2);
+    ExperienceOrb.award(serverLevel, player.position(), xp);
+}
     }
-    // Milking Cows 1-2 XP
-    @SubscribeEvent
-    public static void onCowMilk(PlayerInteractEvent.EntityInteract event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
-
-        Level level = event.getLevel();
-        if (level.isClientSide()) return;
-
-        ItemStack held = player.getItemInHand(event.getHand());
-        if (!held.is(Items.BUCKET)) return;
-
-        if (event.getTarget() instanceof Cow cow) {
-            if (cow.isBaby()) return;
-            int xp = 1 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-        }
-    }
-
 
     // Shearing Mobs 1-2 XP
     @SubscribeEvent
@@ -188,6 +218,12 @@ public class FarmingXPEvents {
             if (now - last < 2400L) return;
             int xp = 1 + player.getRandom().nextInt(2);
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+        }
+    }
+    private static void awardKnifeXP(ServerLevel level, ServerPlayer player) {
+        int xp = player.getRandom().nextInt(2);
+        if (xp > 0) {
+            ExperienceOrb.award(level, player.position(), xp);
         }
     }
 

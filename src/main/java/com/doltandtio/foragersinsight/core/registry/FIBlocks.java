@@ -7,6 +7,7 @@ import com.doltandtio.foragersinsight.common.worldgen.trees.grower.BountifulSpru
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.fml.common.Mod;
@@ -65,7 +66,10 @@ public class FIBlocks {
         //Wildflowers
     public static final RegistryObject<Block> ROSELLE_BUSH = HELPER.createBlockNoItem("roselle_bush", () ->
           new TallFlowerBlock(copy(Blocks.LILAC)));
-
+    public static final RegistryObject<Block> STOUT_BEACH_ROSE_BUSH = HELPER.createBlockNoItem("stout_beach_rose_bush", () ->
+            new SandyFlowerBlock(() -> MobEffects.REGENERATION, 5, copy(Blocks.ROSE_BUSH)));
+    public static final RegistryObject<Block> TALL_BEACH_ROSE_BUSH = HELPER.createBlockNoItem("tall_beach_rose_bush", () ->
+            new TallSandyFlowerBlock(copy(Blocks.ROSE_BUSH)));
     //STORAGE
         //Crop Crates and Sacks
     public static final RegistryObject<Block> DANDELION_ROOT_SACK = HELPER.createBlock("dandelion_root_sack", () ->
