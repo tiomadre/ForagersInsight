@@ -1,11 +1,14 @@
 package com.doltandtio.foragersinsight.data.server.tags;
 
 import com.doltandtio.foragersinsight.core.ForagersInsight;
+import com.doltandtio.foragersinsight.core.registry.FIBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import static com.doltandtio.foragersinsight.core.registry.FIBlocks.*;
@@ -27,7 +30,14 @@ public class FIBlockTags extends BlockTagsProvider {
         ,BOUNTIFUL_OAK_LEAVES.get(),BOUNTIFUL_SPRUCE_TIPS.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(DANDELION_BUSH.get(), POPPY_BUSH.get(),ROSE_CROP.get(),BOUNTIFUL_DARK_OAK_LEAVES.get(),BOUNTIFUL_OAK_LEAVES.get()
         ,BOUNTIFUL_SPRUCE_TIPS.get(),ROSE_CROP.get());
-
+        this.tag(FORAGING)
+        //FD Wild Crops
+        .add(ModBlocks.WILD_BEETROOTS.get(),ModBlocks.WILD_CABBAGES.get(),ModBlocks.WILD_CARROTS.get(),
+        ModBlocks.WILD_ONIONS.get(),ModBlocks.WILD_POTATOES.get(),ModBlocks.WILD_TOMATOES.get(),ModBlocks.WILD_RICE.get(),
+        //Grasses
+        ModBlocks.SANDY_SHRUB.get(),Blocks.TALL_GRASS,Blocks.GRASS,
+        //Vanilla & Forager Wild Flowers
+        Blocks.ROSE_BUSH,Blocks.DANDELION,Blocks.POPPY,FIBlocks.ROSELLE_BUSH.get());
         registerForgeTags();
         registerMineables();
     }
