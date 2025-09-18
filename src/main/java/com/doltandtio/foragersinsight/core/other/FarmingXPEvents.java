@@ -113,7 +113,8 @@ public class FarmingXPEvents {
         Level level = event.getLevel();
         if (!(level instanceof ServerLevel serverLevel)) return;
         ItemStack held = player.getItemInHand(event.getHand());
-        BlockState state = level.getBlockState(event.getPos());
+        BlockPos pos = event.getPos();
+        BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
         //Beehive  2-3 XP
@@ -134,7 +135,6 @@ public class FarmingXPEvents {
             if (block instanceof MushroomColonyBlock) {
                 int initialAge = state.getValue(MushroomColonyBlock.COLONY_AGE);
                 if (initialAge > 0) {
-                    BlockPos pos = event.getPos();
                     serverLevel.getServer().execute(() -> {
                         BlockState updatedState = serverLevel.getBlockState(pos);
                         if (!(updatedState.getBlock() instanceof MushroomColonyBlock)) {
@@ -154,7 +154,7 @@ public class FarmingXPEvents {
             if (!(held.isEmpty() || held.getItem() instanceof ShearsItem)) {
                 return;
             }
-            state = level.getBlockState(event.getPos());
+            state = level.getBlockState(pos);
             block = state.getBlock();
             // Tomatoes 1-2 XP
             if (block instanceof TomatoVineBlock tomatoVine) {
@@ -163,8 +163,18 @@ public class FarmingXPEvents {
                     return;
                 }
 
-                int xp = 1 + player.getRandom().nextInt(2);
-                ExperienceOrb.award(serverLevel, player.position(), xp);
+                serverLevel.getServer().execute(() -> {
+                    BlockState updatedState = serverLevel.getBlockState(pos);
+                    if (!(updatedState.getBlock() instanceof TomatoVineBlock)) {
+                        return;
+                    }
+                    if (updatedState.getValue(TomatoVineBlock.VINE_AGE) >= currentAge) {
+                        return;
+                    }
+
+                    int xp = 1 + player.getRandom().nextInt(2);
+                    ExperienceOrb.award(serverLevel, player.position(), xp);
+                });
                 return;
             }
             if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
@@ -181,19 +191,35 @@ public class FarmingXPEvents {
             int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
             if (currentAge < maxAge) return;
 
-            int xp;
-            if (block instanceof BountifulLeavesBlock || block instanceof SpruceTipBlock) {
-                xp = player.getRandom().nextInt(2);
-            } else {
-                xp = 1 + player.getRandom().nextInt(2);
-            }
-            if (xp > 0) {
-                ExperienceOrb.award(serverLevel, player.position(), xp);
-            }
+            BlockState initialState = state;
+            serverLevel.getServer().execute(() -> {
+                BlockState updatedState = serverLevel.getBlockState(pos);
+                boolean harvested = false;
+                if (!updatedState.is(initialState.getBlock())) {
+                    harvested = true;
+                } else if (updatedState.hasProperty(ageProp) && updatedState.getValue(ageProp) < currentAge) {
+                    harvested = true;
+                }
+
+                if (!harvested) {
+                    return;
+                }
+
+                int xp;
+                if (initialState.getBlock() instanceof BountifulLeavesBlock || initialState.getBlock() instanceof SpruceTipBlock) {
+                    xp = player.getRandom().nextInt(2);
+                } else {
+                    xp = 1 + player.getRandom().nextInt(2);
+                }
+
+                if (xp > 0) {
+                    ExperienceOrb.award(serverLevel, player.position(), xp);
+                }
+            });
         } else {
-    int xp = 2 + player.getRandom().nextInt(2);
-    ExperienceOrb.award(serverLevel, player.position(), xp);
-}
+            int xp = 2 + player.getRandom().nextInt(2);
+            ExperienceOrb.award(serverLevel, player.position(), xp);
+        }
     }
 
     // Shearing Mobs 1-2 XP
