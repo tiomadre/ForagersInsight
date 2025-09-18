@@ -17,8 +17,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -125,6 +127,16 @@ public class TapperBlock extends HorizontalDirectionalBlock {
         BlockState logState = world.getBlockState(pos.relative(attachDir));
         return logState.is(FIBlocks.SAPPY_BIRCH_LOG.get()) &&
                 logState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y;
+    }
+    @Override
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction,
+                                           @NotNull BlockState neighborState, @NotNull LevelAccessor level,
+                                           @NotNull BlockPos currentPos, @NotNull BlockPos neighborPos) {
+        Direction attachDir = state.getValue(FACING).getOpposite();
+        if (direction == attachDir && !canSurvive(state, level, currentPos)) {
+            return Blocks.AIR.defaultBlockState();
+        }
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }
 
     @Override

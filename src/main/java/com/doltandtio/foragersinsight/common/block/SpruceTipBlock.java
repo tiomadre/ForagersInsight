@@ -67,9 +67,28 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     @Override
     public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (direction == Direction.UP && !canSurvive(state, level, pos)) {
+            if (level instanceof Level realLevel && !realLevel.isClientSide) {
+                realLevel.destroyBlock(pos, false);
+            }
             return Blocks.AIR.defaultBlockState();
         }
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+    }
+
+    @Override
+    public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean isMoving) {
+        super.onPlace(state, level, pos, oldState, isMoving);
+        if (!level.isClientSide && !this.canSurvive(state, level, pos)) {
+            level.destroyBlock(pos, false);
+        }
+    }
+
+    @Override
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos fromPos, boolean isMoving) {
+        super.neighborChanged(state, level, pos, block, fromPos, isMoving);
+        if (!level.isClientSide && !this.canSurvive(state, level, pos)) {
+            level.destroyBlock(pos, false);
+        }
     }
 
     @Override
