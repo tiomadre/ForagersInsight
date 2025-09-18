@@ -9,13 +9,11 @@
     },
     {
       "condition": "block_state_property",
-      "block": "rose_bush"
-    },
-    {
-      "condition": "random_chance",
-      "chance": 0.5
+      "block": "minecraft:rose_bush"
     }
   ],
   "new": "foragersinsight:rose_hip",
-  "replace": "rose_bush"
+  "replace": "minecraft:rose_bush",
+  "chance": 0.5,
+  "destroy_on_fail": true
 }

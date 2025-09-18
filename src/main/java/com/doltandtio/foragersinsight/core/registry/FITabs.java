@@ -40,6 +40,8 @@ public class FITabs {
                         output.accept(FIBlocks.SCATTERED_SPRUCE_TIP_MAT.get());
                         output.accept(FIBlocks.SCATTERED_STRAW_MAT.get());
                         output.accept(FIBlocks.ROSELLE_BUSH.get());
+                        output.accept(FIBlocks.STOUT_BEACH_ROSE_BUSH.get());
+                        output.accept(FIBlocks.TALL_BEACH_ROSE_BUSH.get());
                         output.accept(FIBlocks.SAPPY_BIRCH_LOG.get());
                         // Items
                             // Cuts and Crushed

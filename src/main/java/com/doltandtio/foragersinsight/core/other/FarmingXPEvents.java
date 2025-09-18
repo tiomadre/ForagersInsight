@@ -7,6 +7,7 @@ import com.doltandtio.foragersinsight.common.block.TapperBlock;
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -70,8 +71,11 @@ public class FarmingXPEvents {
 
         BlockState state = event.getState();
         if (state.getBlock() instanceof StemGrownBlock) {
-            int xp = 1 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            boolean connectedToStem = isConnectedToStem(level, event.getPos());
+            int xp = connectedToStem ? 1 + player.getRandom().nextInt(2) : player.getRandom().nextInt(2);
+            if (xp > 0) {
+                ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            }
             return;
         }
 
@@ -258,5 +262,25 @@ public class FarmingXPEvents {
                 .filter(p -> p.getName().equals("age") && p instanceof IntegerProperty)
                 .map(p -> (IntegerProperty) p)
                 .findFirst();
+    }
+
+    private static boolean isConnectedToStem(Level level, BlockPos pos) {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockPos neighborPos = pos.relative(direction);
+            BlockState neighborState = level.getBlockState(neighborPos);
+            Block neighborBlock = neighborState.getBlock();
+
+            if (neighborBlock instanceof StemBlock) {
+                return true;
+            }
+
+            if (neighborBlock instanceof AttachedStemBlock) {
+                if (neighborState.hasProperty(AttachedStemBlock.FACING)
+                        && neighborState.getValue(AttachedStemBlock.FACING) == direction.getOpposite()) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -9,13 +9,11 @@
     },
     {
       "condition": "block_state_property",
-      "block": "dandelion"
-    },
-  {
-    "condition": "random_chance",
-    "chance": 0.25
-  }
+      "block": "minecraft:dandelion"
+    }
   ],
   "new": "foragersinsight:dandelion_root",
-  "replace": "dandelion"
+  "replace": "minecraft:dandelion",
+  "chance": 0.25,
+  "destroy_on_fail": true
 }

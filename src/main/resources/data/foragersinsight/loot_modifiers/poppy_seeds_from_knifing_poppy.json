@@ -9,13 +9,11 @@
     },
     {
       "condition": "block_state_property",
-      "block": "poppy"
-    },
-    {
-      "condition": "random_chance",
-      "chance": 0.25
+      "block": "minecraft:poppy"
     }
   ],
   "new": "foragersinsight:poppy_seeds",
-  "replace": "poppy"
+  "replace": "minecraft:poppy",
+  "chance": 0.25,
+  "destroy_on_fail": true
 }
