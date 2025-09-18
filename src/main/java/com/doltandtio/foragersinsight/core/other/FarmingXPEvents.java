@@ -8,11 +8,13 @@ import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
@@ -20,10 +22,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,13 +35,21 @@ import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+
 public class FarmingXPEvents {
-    // XP GAIN FROM FARMING & FORAGING
-    // Foraging wild crops, wild flowers and grasses with a Knife grants 0-1 XP
+    private static final Map<ResourceKey<Level>, Map<BlockPos, PendingForage>> PENDING_FORAGING_DROPS = new HashMap<>();
+    private static final int FORAGING_DROP_TIMEOUT_TICKS = 20;
+
+/*/ XP GAIN FROM FARMING & FORAGING ✨/*/
+
+    // 🔪 Foraging wild crops, wild flowers and grasses with a Knife grants 0-1 XP
     @SubscribeEvent
     public static void onKnifeHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) {
@@ -58,10 +70,37 @@ public class FarmingXPEvents {
 
         BlockState state = event.getState();
         if (state.is(FITags.BlockTag.FORAGING)) {
-            awardKnifeXP(serverLevel, player);
+            trackPotentialForageDrop(serverLevel, event.getPos(), state, player);
         }
     }
-    // Gain 1-2 XP per harvesting of mature crop
+
+    @SubscribeEvent
+    @SuppressWarnings("resource")
+    public static void onForageDrop(EntityJoinLevelEvent event) {
+        if (!(event.getLevel() instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        if (!(event.getEntity() instanceof ItemEntity itemEntity)) {
+            return;
+        }
+
+        PendingForage pending = findPendingForage(serverLevel, itemEntity.blockPosition());
+        if (pending == null) {
+            return;
+        }
+
+        if (pending.player.level() != serverLevel) {
+            return;
+        }
+
+        if (itemEntity.getItem().isEmpty()) {
+            return;
+        }
+
+        awardKnifeXP(serverLevel, pending.player);
+    }
+    // 🥕 Gain 1-2 XP per harvesting of mature crop
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
@@ -250,6 +289,78 @@ public class FarmingXPEvents {
             ExperienceOrb.award((ServerLevel) level, player.position(), xp);
         }
     }
+
+    private static void trackPotentialForageDrop(ServerLevel level, BlockPos pos, BlockState state, ServerPlayer player) {
+        ResourceKey<Level> dimension = level.dimension();
+        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.computeIfAbsent(dimension, _ -> new HashMap<>());
+        long now = level.getGameTime();
+        cleanupExpiredEntries(entries, now);
+
+        BlockPos trackedPos = adjustTrackedPosition(state, pos).immutable();
+        entries.put(trackedPos, new PendingForage(player, now + FORAGING_DROP_TIMEOUT_TICKS));
+    }
+
+    private static PendingForage findPendingForage(ServerLevel level, BlockPos itemPos) {
+        ResourceKey<Level> dimension = level.dimension();
+        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.get(dimension);
+        if (entries == null) {
+            return null;
+        }
+
+        long now = level.getGameTime();
+        cleanupExpiredEntries(entries, now);
+        if (entries.isEmpty()) {
+            PENDING_FORAGING_DROPS.remove(dimension);
+            return null;
+        }
+
+        Iterator<Map.Entry<BlockPos, PendingForage>> iterator = entries.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<BlockPos, PendingForage> entry = iterator.next();
+            if (isMatchingPosition(entry.getKey(), itemPos)) {
+                PendingForage pending = entry.getValue();
+                iterator.remove();
+                if (entries.isEmpty()) {
+                    PENDING_FORAGING_DROPS.remove(dimension);
+                }
+                if (pending.isExpired(now)) {
+                    return null;
+                }
+                return pending;
+            }
+        }
+
+        return null;
+    }
+
+    private static void cleanupExpiredEntries(Map<BlockPos, PendingForage> entries, long now) {
+        entries.entrySet().removeIf(entry -> entry.getValue().isExpired(now));
+    }
+
+    private static boolean isMatchingPosition(BlockPos trackedPos, BlockPos itemPos) {
+        if (trackedPos.equals(itemPos)) {
+            return true;
+        }
+        if (trackedPos.equals(itemPos.below())) {
+            return true;
+        }
+        return trackedPos.equals(itemPos.above());
+    }
+
+    private static BlockPos adjustTrackedPosition(BlockState state, BlockPos pos) {
+        if (state.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)
+                && state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
+            return pos.below();
+        }
+        return pos;
+    }
+
+    private record PendingForage(ServerPlayer player, long expiryTick) {
+
+        boolean isExpired(long now) {
+                return now > expiryTick || !player.isAlive();
+            }
+        }
     private static void awardKnifeXP(ServerLevel level, ServerPlayer player) {
         int xp = player.getRandom().nextInt(2);
         if (xp > 0) {
