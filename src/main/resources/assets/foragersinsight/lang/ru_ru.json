@@ -17,7 +17,7 @@
   "item.foragersinsight.dandelion_fries": "Жареные корни одуванчика",
   "item.foragersinsight.foragers_granola": "Гранола собирателя",
   "item.foragersinsight.glazed_porkchop_and_acorn_grits": "Глазированная отбивная с желудями",
-  "item.foragersinsight.jammy_breakfast_sandwich": "Завтрачный сэндвич с джемом",
+  "item.foragersinsight.jammy_breakfast_sandwich": "Утренний сэндвич с джемом",
   "item.foragersinsight.kelp_and_beet_salad": "Салат из водорослей и свеклы",
   "item.foragersinsight.kelp_wrap": "Ролл из водорослей",
   "item.foragersinsight.meadow_medley": "Луговое ассорти",
@@ -34,9 +34,11 @@
   "item.foragersinsight.woodland_pasta": "Лесная паста",
   "item.foragersinsight.hearty_spruce_pilaf": "Сытный еловый плов",
   "item.foragersinsight.tart_wheat_pilaf": "Терпкий плов из пшеничных зёрен",
-
+  "item.foragersinsight.savory_pasta_roll": "Пикантный рулет из пасты",
+  
   "item.foragersinsight.dandelion_root_tea": "Чай из корня одуванчика",
   "item.foragersinsight.rose_cordial": "Розовый настой",
+  "item.foragersinsight.roselle_juice": "Сок розеллы",
   "item.foragersinsight.forest_elixir": "Лесной эликсир",
   "item.foragersinsight.glowing_carrot_juice": "Сияющий морковный сок",
 
@@ -107,11 +109,14 @@
   "foragersinsight.flavortext.dandelion_root_tea": "Целебный настой из корней одуванчика.",
   "foragersinsight.flavortext.forest_elixir": "Сладкий хвойный напиток из сиропа и еловых почек.",
   "foragersinsight.flavortext.rose_cordial": "Целебный чай из цветочных лепестков роз.",
+  "foragersinsight.flavortext.roselle_juice": "Терпкий настой напоминающий сок кислых фруктов.",
   "foragersinsight.flavortext.seed_milk_bucket": "Ведро молока сделанное из разных видов семян.",
 
+  "effect.foragersinsight.bloom": "Расцвет",
   "effect.foragersinsight.chilled": "Охлаждённый",
   "effect.foragersinsight.medicinal": "Целебный",
 
+  "effect.foragersinsight.bloom.desc": "Ты получаешь на 20% и тратишь на 20% меньше опыта.",
   "effect.foragersinsight.chilled.desc": "Замораживает продолжительность полезных эффектов.",
   "effect.foragersinsight.medicinal.desc": "Удаляет и предотвращает применение яда и ссыхания. Игрок также восстанавливает здоровье за каждый удалённый эффект.",
 
