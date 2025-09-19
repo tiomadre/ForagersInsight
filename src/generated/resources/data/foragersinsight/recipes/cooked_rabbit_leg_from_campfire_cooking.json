@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "foragersinsight:raw_rabbit_leg"
+  },
+  "result": "foragersinsight:cooked_rabbit_leg"
+}

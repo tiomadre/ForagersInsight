@@ -16,7 +16,8 @@ import static com.doltandtio.foragersinsight.core.registry.FIItems.*;
 
 public class FICookingRecipes {
     public static final int FAST_COOKING = 100;      // 5 seconds
-    public static final int NORMAL_COOKING = 200;    // 10 seconds
+    public static final int NORMAL_COOKING = 200;// 10 seconds
+    public static final int MODERATE_COOKING = 300;// 15 seconds
     public static final int SLOW_COOKING = 400;      // 20 seconds
 
     public static final float SMALL_EXP = 0.35F;
@@ -198,7 +199,7 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
             //Seed Milk
-        CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, SLOW_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, MODERATE_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
@@ -241,7 +242,7 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
-        CookingPotRecipeBuilder.cookingPotRecipe(Items.SLIME_BALL, 4, NORMAL_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(Items.SLIME_BALL, 4, MODERATE_COOKING, MEDIUM_EXP)
                 .addIngredient(Ingredient.of(BIRCH_SAP_BOTTLE.get(), BIRCH_SAP_BUCKET.get()))
                 .addIngredient(Items.KELP)
                 .addIngredient(Items.KELP)

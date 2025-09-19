@@ -39,17 +39,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
-
 public class FarmingXPEvents {
     private static final Map<ResourceKey<Level>, Map<BlockPos, PendingForage>> PENDING_FORAGING_DROPS = new HashMap<>();
     private static final int FORAGING_DROP_TIMEOUT_TICKS = 20;
 
-/*/ XP GAIN FROM FARMING & FORAGING ✨/*/
-
-    // 🔪 Foraging wild crops, wild flowers and grasses with a Knife grants 0-1 XP
     @SubscribeEvent
     public static void onKnifeHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) {
@@ -100,7 +95,7 @@ public class FarmingXPEvents {
 
         awardKnifeXP(serverLevel, pending.player);
     }
-    // 🥕 Gain 1-2 XP per harvesting of mature crop
+
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
@@ -123,8 +118,10 @@ public class FarmingXPEvents {
 
         IntegerProperty ageProp = agePropOpt.get();
         int currentAge = state.getValue(ageProp);
-        Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
-        int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
+        int maxAge = ageProp.getPossibleValues().stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .orElse(currentAge);
         if (currentAge < maxAge) return;
 
         for (Property<?> property : state.getProperties()) {
@@ -148,7 +145,6 @@ public class FarmingXPEvents {
         ExperienceOrb.award((ServerLevel) level, player.position(), xp);
     }
 
-    // Right-Click Harvesting (Empty Hand/Shears)
     @SubscribeEvent
     public static void onRightClickHarvest(PlayerInteractEvent.RightClickBlock event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -160,21 +156,17 @@ public class FarmingXPEvents {
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        //Beehive  2-3 XP
         if (!(block instanceof BeehiveBlock) ||
                 state.getValue(BeehiveBlock.HONEY_LEVEL) < 5 ||
-                (!(held.getItem() instanceof ShearsItem) && !held.is(Items.GLASS_BOTTLE))) {//Tapper 1-2 XP
+                (!(held.getItem() instanceof ShearsItem) && !held.is(Items.GLASS_BOTTLE))) {
             if (block instanceof TapperBlock &&
                     state.getValue(TapperBlock.HAS_TAPPER) &&
                     state.getValue(TapperBlock.FILL) == 4 &&
                     held.is(Items.BUCKET)) {
                 int xp = 1 + player.getRandom().nextInt(2);
                 ExperienceOrb.award(serverLevel, player.position(), xp);
-
                 return;
-
             }
-            // Mushroom Colonies 0-1 XP
             if (block instanceof MushroomColonyBlock) {
                 int initialAge = state.getValue(MushroomColonyBlock.COLONY_AGE);
                 if (initialAge > 0) {
@@ -199,7 +191,6 @@ public class FarmingXPEvents {
             }
             state = level.getBlockState(pos);
             block = state.getBlock();
-            // Tomatoes 1-2 XP
             if (block instanceof TomatoVineBlock tomatoVine) {
                 int currentAge = state.getValue(TomatoVineBlock.VINE_AGE);
                 if (currentAge < tomatoVine.getMaxAge()) {
@@ -230,8 +221,10 @@ public class FarmingXPEvents {
 
             IntegerProperty ageProp = agePropOpt.get();
             int currentAge = state.getValue(ageProp);
-            Set<Integer> possibleAges = (Set<Integer>) ageProp.getPossibleValues();
-            int maxAge = possibleAges.stream().max(Integer::compareTo).orElse(currentAge);
+            int maxAge = ageProp.getPossibleValues().stream()
+                    .mapToInt(Integer::intValue)
+                    .max()
+                    .orElse(currentAge);
             if (currentAge < maxAge) return;
 
             BlockState initialState = state;
@@ -265,7 +258,6 @@ public class FarmingXPEvents {
         }
     }
 
-    // Shearing Mobs 1-2 XP
     @SubscribeEvent
     public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -292,7 +284,7 @@ public class FarmingXPEvents {
 
     private static void trackPotentialForageDrop(ServerLevel level, BlockPos pos, BlockState state, ServerPlayer player) {
         ResourceKey<Level> dimension = level.dimension();
-        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.computeIfAbsent(dimension, _ -> new HashMap<>());
+        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.computeIfAbsent(dimension, ignored -> new HashMap<>());
         long now = level.getGameTime();
         cleanupExpiredEntries(entries, now);
 
@@ -356,11 +348,11 @@ public class FarmingXPEvents {
     }
 
     private record PendingForage(ServerPlayer player, long expiryTick) {
-
         boolean isExpired(long now) {
-                return now > expiryTick || !player.isAlive();
-            }
+            return now > expiryTick || !player.isAlive();
         }
+    }
+
     private static void awardKnifeXP(ServerLevel level, ServerPlayer player) {
         int xp = player.getRandom().nextInt(2);
         if (xp > 0) {

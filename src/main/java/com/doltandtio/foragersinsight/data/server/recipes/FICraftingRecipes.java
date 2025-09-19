@@ -150,15 +150,26 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(BIRCH_SYRUP_BOTTLE.get())
                 .unlockedBy("has_birch_syrup_bottle", has(BIRCH_SYRUP_BOTTLE.get()))
                 .save(consumer, ForagersInsight.rl("sugar_from_birch_syrup_bottle"));
-            //Cooking
-                //Bucket
+            //Furnace Cooking
+                //Syrup Bucket
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BUCKET.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BUCKET.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bucket_from_smelting"));
-                //Bottle
+                //Syrup Bottle
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BIRCH_SAP_BOTTLE.get()), RecipeCategory.FOOD, BIRCH_SYRUP_BOTTLE.get(), 1.0F, 200)
                 .unlockedBy("has_birch_sap_bucket", has(BIRCH_SAP_BUCKET.get()))
                 .save(consumer, ForagersInsight.rl("birch_syrup_bottle_from_smelting"));
+                //Rabbit Leg
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RAW_RABBIT_LEG.get()), RecipeCategory.FOOD, COOKED_RABBIT_LEG.get(), 0.35F, 200)
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
+                .save(consumer, ForagersInsight.rl("cooked_rabbit_leg_from_smelting"));
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(RAW_RABBIT_LEG.get()), RecipeCategory.FOOD, COOKED_RABBIT_LEG.get(), 0.35F, 100)
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
+                .save(consumer, ForagersInsight.rl("cooked_rabbit_leg_from_smoking"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(RAW_RABBIT_LEG.get()), RecipeCategory.FOOD, COOKED_RABBIT_LEG.get(), 0.35F, 600)
+                .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
+                .save(consumer, ForagersInsight.rl("cooked_rabbit_leg_from_campfire_cooking"));
+
 
 
 
