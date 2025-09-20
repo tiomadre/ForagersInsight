@@ -22,6 +22,7 @@ public class FICookingRecipes {
 
     public static final float SMALL_EXP = 0.35F;
     public static final float MEDIUM_EXP = 1.0F;
+    public static final float MODERATE_EXP = 1.3F;
     public static final float LARGE_EXP = 2.0F;
 
     public static void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
@@ -37,7 +38,7 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ForgeTags.RAW_FISHES_COD)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
-                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .addIngredient(SEED_BUTTER.get())
                 .addIngredient(ModItems.TOMATO.get())
                 .unlockedByAnyIngredient(ModItems.PUMPKIN_SLICE.get(), Items.COD)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -149,7 +150,7 @@ public class FICookingRecipes {
                 .addIngredient(ROSELLE_CALYX.get())
                 .addIngredient(Items.WHEAT_SEEDS)
                 .addIngredient(ROSELLE_CALYX.get())
-                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .addIngredient(Items.WHEAT_SEEDS)
                 .unlockedByAnyIngredient(ROSELLE_CALYX.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
@@ -199,7 +200,7 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(consumer);
             //Seed Milk
-        CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, MODERATE_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, MODERATE_COOKING, MODERATE_EXP)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)
                 .addIngredient(ForgeTags.SEEDS)

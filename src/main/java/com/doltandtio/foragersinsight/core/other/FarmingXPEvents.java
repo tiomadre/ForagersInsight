@@ -3,7 +3,6 @@ package com.doltandtio.foragersinsight.core.other;
 import com.doltandtio.foragersinsight.common.block.BountifulLeavesBlock;
 import com.doltandtio.foragersinsight.common.block.SpruceTipBlock;
 import com.doltandtio.foragersinsight.common.block.TapperBlock;
-
 import com.doltandtio.foragersinsight.core.ForagersInsight;
 import com.doltandtio.foragersinsight.data.server.tags.FITags;
 import net.minecraft.core.BlockPos;
@@ -20,14 +19,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,355 +33,285 @@ import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
     private static final Map<ResourceKey<Level>, Map<BlockPos, PendingForage>> PENDING_FORAGING_DROPS = new HashMap<>();
     private static final int FORAGING_DROP_TIMEOUT_TICKS = 20;
 
+//Experience event for Farming and Foraging
     @SubscribeEvent
     public static void onKnifeHarvest(BlockEvent.BreakEvent event) {
-        if (!(event.getPlayer() instanceof ServerPlayer player)) {
-            return;
-        }
-
-        if (!(event.getLevel() instanceof Level level) || level.isClientSide()) {
-            return;
-        }
-        if (!(level instanceof ServerLevel serverLevel)) {
-            return;
-        }
+        if (!(event.getPlayer() instanceof ServerPlayer player)) return;
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
 
         ItemStack tool = player.getMainHandItem();
-        if (!(tool.getItem() instanceof KnifeItem)) {
-            return;
-        }
+        if (!(tool.getItem() instanceof KnifeItem)) return;
 
         BlockState state = event.getState();
         if (state.is(FITags.BlockTag.FORAGING)) {
-            trackPotentialForageDrop(serverLevel, event.getPos(), state, player);
+            trackPotentialForageDrop(level, event.getPos(), state, player);
         }
     }
-
+    //Forage
     @SubscribeEvent
-    @SuppressWarnings("resource")
     public static void onForageDrop(EntityJoinLevelEvent event) {
-        if (!(event.getLevel() instanceof ServerLevel serverLevel)) {
-            return;
-        }
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
+        if (!(event.getEntity() instanceof ItemEntity item)) return;
 
-        if (!(event.getEntity() instanceof ItemEntity itemEntity)) {
-            return;
-        }
+        PendingForage pending = popPendingForageNear(level, item.blockPosition());
+        if (pending == null) return;
+        if (pending.player.level() != level) return;
+        if (item.getItem().isEmpty()) return;
 
-        PendingForage pending = findPendingForage(serverLevel, itemEntity.blockPosition());
-        if (pending == null) {
-            return;
-        }
-
-        if (pending.player.level() != serverLevel) {
-            return;
-        }
-
-        if (itemEntity.getItem().isEmpty()) {
-            return;
-        }
-
-        awardKnifeXP(serverLevel, pending.player);
+        awardRandomXP(level, pending.player, 0, 2); // 0–1 XP
     }
 
     @SubscribeEvent
     public static void onCropHarvest(BlockEvent.BreakEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
 
-        Level level = event.getLevel() instanceof Level ? (Level) event.getLevel() : null;
-        if (level == null || level.isClientSide()) return;
-
+        BlockPos pos = event.getPos();
         BlockState state = event.getState();
-        if (state.getBlock() instanceof StemGrownBlock) {
-            boolean connectedToStem = isConnectedToStem(level, event.getPos());
-            int xp = connectedToStem ? 1 + player.getRandom().nextInt(2) : player.getRandom().nextInt(2);
-            if (xp > 0) {
-                ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-            }
+        Block block = state.getBlock();
+
+        //Gourds attached to Stems
+        if (block instanceof StemGrownBlock) {
+            boolean connectedToStem = isConnectedToStem(level, pos);
+            awardRandomXP(level, player, connectedToStem ? 1 : 0, 2);
             return;
         }
 
-        Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
-        if (agePropOpt.isEmpty()) return;
+        Optional<IntegerProperty> ageProp = getAgeProp(state);
+        if (ageProp.isPresent() && isMature(state, ageProp.get())) {
 
-        IntegerProperty ageProp = agePropOpt.get();
-        int currentAge = state.getValue(ageProp);
-        int maxAge = ageProp.getPossibleValues().stream()
-                .mapToInt(Integer::intValue)
-                .max()
-                .orElse(currentAge);
-        if (currentAge < maxAge) return;
-
-        for (Property<?> property : state.getProperties()) {
-            if (property.getName().equals("half") &&
-                    property instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> enumProp) {
-                Comparable<?> halfValue = state.getValue(enumProp);
-                if (halfValue instanceof DoubleBlockHalf half) {
-                    BlockState counterpart = level.getBlockState(
-                            half == DoubleBlockHalf.UPPER
-                                    ? event.getPos().below()
-                                    : event.getPos().above());
-                    if (!counterpart.is(state.getBlock())) {
-                        return;
-                    }
-                }
-                break;
-            }
+            if (!isIntactDoublePlant(level, pos, state)) return;
+            awardRandomXP(level, player, 1, 3); // 1–2
         }
-
-        int xp = 1 + player.getRandom().nextInt(2);
-        ExperienceOrb.award((ServerLevel) level, player.position(), xp);
     }
 
     @SubscribeEvent
     public static void onRightClickHarvest(PlayerInteractEvent.RightClickBlock event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
 
-        Level level = event.getLevel();
-        if (!(level instanceof ServerLevel serverLevel)) return;
-        ItemStack held = player.getItemInHand(event.getHand());
         BlockPos pos = event.getPos();
+        ItemStack held = player.getItemInHand(event.getHand());
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (!(block instanceof BeehiveBlock) ||
-                state.getValue(BeehiveBlock.HONEY_LEVEL) < 5 ||
-                (!(held.getItem() instanceof ShearsItem) && !held.is(Items.GLASS_BOTTLE))) {
-            if (block instanceof TapperBlock &&
-                    state.getValue(TapperBlock.HAS_TAPPER) &&
-                    state.getValue(TapperBlock.FILL) == 4 &&
-                    held.is(Items.BUCKET)) {
-                int xp = 1 + player.getRandom().nextInt(2);
-                ExperienceOrb.award(serverLevel, player.position(), xp);
-                return;
-            }
-            if (block instanceof MushroomColonyBlock) {
-                int initialAge = state.getValue(MushroomColonyBlock.COLONY_AGE);
-                if (initialAge > 0) {
-                    serverLevel.getServer().execute(() -> {
-                        BlockState updatedState = serverLevel.getBlockState(pos);
-                        if (!(updatedState.getBlock() instanceof MushroomColonyBlock)) {
-                            return;
-                        }
-                        int updatedAge = updatedState.getValue(MushroomColonyBlock.COLONY_AGE);
-                        if (updatedAge < initialAge) {
-                            int xp = player.getRandom().nextInt(2);
-                            if (xp > 0) {
-                                ExperienceOrb.award(serverLevel, player.position(), xp);
-                            }
-                        }
-                    });
-                    return;
-                }
-            }
-            if (!(held.isEmpty() || held.getItem() instanceof ShearsItem)) {
-                return;
-            }
-            state = level.getBlockState(pos);
-            block = state.getBlock();
-            if (block instanceof TomatoVineBlock tomatoVine) {
-                int currentAge = state.getValue(TomatoVineBlock.VINE_AGE);
-                if (currentAge < tomatoVine.getMaxAge()) {
-                    return;
-                }
+        // Beehive
+        if (block instanceof BeehiveBlock &&
+                state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5 &&
+                ((held.getItem() instanceof ShearsItem) || held.is(Items.GLASS_BOTTLE))) {
+            awardRandomXP(level, player, 2, 4); // 2–3
+            return;
+        }
 
-                serverLevel.getServer().execute(() -> {
-                    BlockState updatedState = serverLevel.getBlockState(pos);
-                    if (!(updatedState.getBlock() instanceof TomatoVineBlock)) {
-                        return;
-                    }
-                    if (updatedState.getValue(TomatoVineBlock.VINE_AGE) >= currentAge) {
-                        return;
-                    }
+        // Tapper
+        if (block instanceof TapperBlock &&
+                state.getValue(TapperBlock.HAS_TAPPER) &&
+                state.getValue(TapperBlock.FILL) == 4 &&
+                held.is(Items.BUCKET)) {
+            awardRandomXP(level, player, 1, 3); // 1–2
+            return;
+        }
 
-                    int xp = 1 + player.getRandom().nextInt(2);
-                    ExperienceOrb.award(serverLevel, player.position(), xp);
+        // Mushroom Colony
+        if (block instanceof MushroomColonyBlock) {
+            int before = state.getValue(MushroomColonyBlock.COLONY_AGE);
+            if (before > 0) {
+                defer(level, () -> {
+                    BlockState afterState = level.getBlockState(pos);
+                    if (!(afterState.getBlock() instanceof MushroomColonyBlock)) return;
+                    int after = afterState.getValue(MushroomColonyBlock.COLONY_AGE);
+                    if (after < before) awardRandomXP(level, player, 0, 2); // 0–1
                 });
                 return;
             }
-            if (!(block instanceof BonemealableBlock) || block instanceof CropBlock) return;
-            if (block instanceof StemBlock || block instanceof AttachedStemBlock) {
+        }
+
+        // Tomato
+        if (block instanceof TomatoVineBlock vine) {
+            int current = state.getValue(TomatoVineBlock.VINE_AGE);
+            if (current >= vine.getMaxAge() && (held.isEmpty() || held.getItem() instanceof ShearsItem)) {
+                defer(level, () -> {
+                    BlockState after = level.getBlockState(pos);
+                    if (!(after.getBlock() instanceof TomatoVineBlock)) return;
+                    if (after.getValue(TomatoVineBlock.VINE_AGE) < current) {
+                        awardRandomXP(level, player, 1, 3); // 1–2
+                    }
+                });
                 return;
             }
+        }
 
-            Optional<IntegerProperty> agePropOpt = getAgeProperty(state);
-            if (agePropOpt.isEmpty()) return;
+        // Right Click Harvests
+        if (block instanceof BonemealableBlock && !(block instanceof CropBlock) &&
+                !(block instanceof StemBlock) && !(block instanceof AttachedStemBlock)) {
 
-            IntegerProperty ageProp = agePropOpt.get();
-            int currentAge = state.getValue(ageProp);
-            int maxAge = ageProp.getPossibleValues().stream()
-                    .mapToInt(Integer::intValue)
-                    .max()
-                    .orElse(currentAge);
-            if (currentAge < maxAge) return;
+            Optional<IntegerProperty> ageProp = getAgeProp(state);
+            if (ageProp.isEmpty()) return;
+            IntegerProperty age = ageProp.get();
 
-            BlockState initialState = state;
-            serverLevel.getServer().execute(() -> {
-                BlockState updatedState = serverLevel.getBlockState(pos);
-                boolean harvested = false;
-                if (!updatedState.is(initialState.getBlock())) {
-                    harvested = true;
-                } else if (updatedState.hasProperty(ageProp) && updatedState.getValue(ageProp) < currentAge) {
-                    harvested = true;
-                }
+            int current = state.getValue(age);
+            if (!isMature(state, age)) return;
 
-                if (!harvested) {
-                    return;
-                }
+            defer(level, () -> {
+                BlockState updated = level.getBlockState(pos);
+                boolean harvested =
+                        !updated.is(state.getBlock()) ||
+                                (updated.hasProperty(age) && updated.getValue(age) < current);
 
-                int xp;
-                if (initialState.getBlock() instanceof BountifulLeavesBlock || initialState.getBlock() instanceof SpruceTipBlock) {
-                    xp = player.getRandom().nextInt(2);
-                } else {
-                    xp = 1 + player.getRandom().nextInt(2);
-                }
-
-                if (xp > 0) {
-                    ExperienceOrb.award(serverLevel, player.position(), xp);
+                if (harvested) {
+                    // Bountiful Tree
+                    boolean leavesOrTips = state.getBlock() instanceof BountifulLeavesBlock ||
+                            state.getBlock() instanceof SpruceTipBlock;
+                    awardRandomXP(level, player, leavesOrTips ? 0 : 1, 2 + (leavesOrTips ? 0 : 1)); // leaves: 0–1, else: 1–2
                 }
             });
-        } else {
-            int xp = 2 + player.getRandom().nextInt(2);
-            ExperienceOrb.award(serverLevel, player.position(), xp);
         }
     }
-
+    //Shearing Chickens and Sheep
     @SubscribeEvent
     public static void onAnimalShear(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-
-        Level level = event.getLevel();
-        if (level.isClientSide()) return;
+        Level lvl = event.getLevel();
+        if (lvl.isClientSide()) return;
 
         ItemStack tool = player.getItemInHand(event.getHand());
         if (!(tool.getItem() instanceof ShearsItem)) return;
 
         if (event.getTarget() instanceof Sheep sheep) {
-            if (sheep.isBaby() || sheep.isSheared()) return;
-            int xp = 1 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
-        } else if (event.getTarget() instanceof Chicken chicken) {
-            if (chicken.isBaby()) return;
-            long now = level.getGameTime();
-            long last = chicken.getPersistentData().getLong("ShearFeatherTime");
-            if (now - last < 2400L) return;
-            int xp = 1 + player.getRandom().nextInt(2);
-            ExperienceOrb.award((ServerLevel) level, player.position(), xp);
+            if (!sheep.isBaby() && !sheep.isSheared()) {
+                awardRandomXP((ServerLevel) lvl, player, 1, 3);
+            }
+            return;
         }
+
+        if (event.getTarget() instanceof Chicken chicken) {
+            if (!chicken.isBaby()) {
+                long now = lvl.getGameTime();
+                long last = chicken.getPersistentData().getLong("ShearFeatherTime");
+                if (now - last >= 2400L) {
+                    awardRandomXP((ServerLevel) lvl, player, 1, 3);
+                }
+            }
+        }
+    }
+
+    private static void awardRandomXP(ServerLevel level, ServerPlayer player, int minInclusive, int maxExclusive) {
+        int delta = Math.max(0, maxExclusive - minInclusive);
+        int val = (delta == 0) ? minInclusive : (minInclusive + player.getRandom().nextInt(delta));
+        awardXPIfPositive(level, player, val);
+    }
+
+    private static void awardXPIfPositive(ServerLevel level, ServerPlayer player, int xp) {
+        if (xp > 0) ExperienceOrb.award(level, player.position(), xp);
+    }
+
+    private static Optional<IntegerProperty> getAgeProp(BlockState state) {
+        return state.getProperties().stream()
+                .filter(p -> p instanceof IntegerProperty && p.getName().equals("age"))
+                .map(p -> (IntegerProperty) p)
+                .findFirst();
+    }
+
+    private static boolean isMature(BlockState state, IntegerProperty age) {
+        int cur = state.getValue(age);
+        int max = age.getPossibleValues()
+                .stream()
+                .mapToInt(i -> i)
+                .max()
+                .orElse(cur);
+        return cur >= max;
+    }
+
+    private static boolean isIntactDoublePlant(Level level, BlockPos pos, BlockState state) {
+        if (state.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)) {
+            DoubleBlockHalf half = state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF);
+            BlockPos counterpart = (half == DoubleBlockHalf.UPPER) ? pos.below() : pos.above();
+            return level.getBlockState(counterpart).is(state.getBlock());
+        }
+        for (Property<?> prop : state.getProperties()) {
+            if ("half".equals(prop.getName()) && prop instanceof net.minecraft.world.level.block.state.properties.EnumProperty<?> ep) {
+                Comparable<?> val = state.getValue(ep);
+                if (val instanceof DoubleBlockHalf half) {
+                    BlockPos counterpart = (half == DoubleBlockHalf.UPPER) ? pos.below() : pos.above();
+                    return level.getBlockState(counterpart).is(state.getBlock());
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void defer(ServerLevel level, Runnable r) {
+        level.getServer().execute(r);
     }
 
     private static void trackPotentialForageDrop(ServerLevel level, BlockPos pos, BlockState state, ServerPlayer player) {
-        ResourceKey<Level> dimension = level.dimension();
-        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.computeIfAbsent(dimension, ignored -> new HashMap<>());
+        ResourceKey<Level> dim = level.dimension();
+        Map<BlockPos, PendingForage> map = PENDING_FORAGING_DROPS.computeIfAbsent(dim, d -> new HashMap<>());
         long now = level.getGameTime();
-        cleanupExpiredEntries(entries, now);
+        cleanupExpiredEntries(map, now);
 
-        BlockPos trackedPos = adjustTrackedPosition(state, pos).immutable();
-        entries.put(trackedPos, new PendingForage(player, now + FORAGING_DROP_TIMEOUT_TICKS));
+        BlockPos trackAt = adjustTrackedPosition(state, pos).immutable();
+        map.put(trackAt, new PendingForage(player, now + FORAGING_DROP_TIMEOUT_TICKS));
     }
 
-    private static PendingForage findPendingForage(ServerLevel level, BlockPos itemPos) {
-        ResourceKey<Level> dimension = level.dimension();
-        Map<BlockPos, PendingForage> entries = PENDING_FORAGING_DROPS.get(dimension);
-        if (entries == null) {
-            return null;
-        }
+    private static PendingForage popPendingForageNear(ServerLevel level, BlockPos itemPos) {
+        ResourceKey<Level> dim = level.dimension();
+        Map<BlockPos, PendingForage> map = PENDING_FORAGING_DROPS.get(dim);
+        if (map == null || map.isEmpty()) return null;
 
         long now = level.getGameTime();
-        cleanupExpiredEntries(entries, now);
-        if (entries.isEmpty()) {
-            PENDING_FORAGING_DROPS.remove(dimension);
-            return null;
-        }
+        cleanupExpiredEntries(map, now);
 
-        Iterator<Map.Entry<BlockPos, PendingForage>> iterator = entries.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<BlockPos, PendingForage> entry = iterator.next();
-            if (isMatchingPosition(entry.getKey(), itemPos)) {
-                PendingForage pending = entry.getValue();
-                iterator.remove();
-                if (entries.isEmpty()) {
-                    PENDING_FORAGING_DROPS.remove(dimension);
-                }
-                if (pending.isExpired(now)) {
-                    return null;
-                }
-                return pending;
+        for (BlockPos probe : new BlockPos[]{itemPos, itemPos.below(), itemPos.above()}) {
+            PendingForage got = map.remove(probe);
+            if (got != null) {
+                if (map.isEmpty()) PENDING_FORAGING_DROPS.remove(dim);
+                return got.isExpired(now) ? null : got;
             }
         }
-
+        if (map.isEmpty()) PENDING_FORAGING_DROPS.remove(dim);
         return null;
     }
 
     private static void cleanupExpiredEntries(Map<BlockPos, PendingForage> entries, long now) {
-        entries.entrySet().removeIf(entry -> entry.getValue().isExpired(now));
-    }
-
-    private static boolean isMatchingPosition(BlockPos trackedPos, BlockPos itemPos) {
-        if (trackedPos.equals(itemPos)) {
-            return true;
-        }
-        if (trackedPos.equals(itemPos.below())) {
-            return true;
-        }
-        return trackedPos.equals(itemPos.above());
+        entries.entrySet().removeIf(e -> e.getValue().isExpired(now));
     }
 
     private static BlockPos adjustTrackedPosition(BlockState state, BlockPos pos) {
-        if (state.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)
-                && state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
+        if (state.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF) &&
+                state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
             return pos.below();
         }
         return pos;
+    }
+
+    private static boolean isConnectedToStem(Level level, BlockPos pos) {
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            BlockPos n = pos.relative(dir);
+            BlockState s = level.getBlockState(n);
+            Block b = s.getBlock();
+
+            if (b instanceof StemBlock) return true;
+
+            if (b instanceof AttachedStemBlock &&
+                    s.hasProperty(AttachedStemBlock.FACING) &&
+                    s.getValue(AttachedStemBlock.FACING) == dir.getOpposite()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private record PendingForage(ServerPlayer player, long expiryTick) {
         boolean isExpired(long now) {
             return now > expiryTick || !player.isAlive();
         }
-    }
-
-    private static void awardKnifeXP(ServerLevel level, ServerPlayer player) {
-        int xp = player.getRandom().nextInt(2);
-        if (xp > 0) {
-            ExperienceOrb.award(level, player.position(), xp);
-        }
-    }
-
-    private static Optional<IntegerProperty> getAgeProperty(BlockState state) {
-        return state.getProperties().stream()
-                .filter(p -> p.getName().equals("age") && p instanceof IntegerProperty)
-                .map(p -> (IntegerProperty) p)
-                .findFirst();
-    }
-
-    private static boolean isConnectedToStem(Level level, BlockPos pos) {
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            BlockPos neighborPos = pos.relative(direction);
-            BlockState neighborState = level.getBlockState(neighborPos);
-            Block neighborBlock = neighborState.getBlock();
-
-            if (neighborBlock instanceof StemBlock) {
-                return true;
-            }
-
-            if (neighborBlock instanceof AttachedStemBlock) {
-                if (neighborState.hasProperty(AttachedStemBlock.FACING)
-                        && neighborState.getValue(AttachedStemBlock.FACING) == direction.getOpposite()) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

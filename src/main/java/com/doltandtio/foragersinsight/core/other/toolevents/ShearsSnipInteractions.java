@@ -7,9 +7,10 @@ import com.doltandtio.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -32,12 +33,56 @@ import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.utility.TextUtils;
 import net.minecraft.world.item.DyeColor; // for getWoolItemByColor
 
+import java.util.ArrayDeque;
+import java.util.function.Predicate;
+
 // Snip Interactions (Shears Right Click)
 // Drops from snipping are collected and dropped near the player.
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShearsSnipInteractions {
 
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
+    private static final float FORTUNE_PROC_CHANCE = 0.20F;
+
+    private static int getFortuneLevel(ItemStack tool) {
+        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+    }
+
+    /** Each fortune level has 20% to add +1 */
+    private static int rollFortuneExtras(RandomSource rand, int fortuneLevels) {
+        int extra = 0;
+        for (int i = 0; i < fortuneLevels; i++) {
+            if (rand.nextFloat() < FORTUNE_PROC_CHANCE) extra++;
+        }
+        return extra;
+    }
+
+    private static void play(Level level, BlockPos pos, SoundEvent sound) {
+        level.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0F, 1.0F);
+    }
+
+    private static void damageTool(ItemStack tool, Player player, InteractionHand hand) {
+        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+    }
+    private static int harvestVerticalTop(Level level, BlockPos basePos, Predicate<BlockState> isSameCrop, int maxBreak) {
+        // Build stack from base upward
+        ArrayDeque<BlockPos> stack = new ArrayDeque<>();
+        BlockPos.MutableBlockPos cursor = basePos.mutable();
+        while (isSameCrop.test(level.getBlockState(cursor))) {
+            stack.addLast(cursor.immutable());
+            cursor.move(Direction.UP);
+        }
+        if (stack.size() <= 1) return 0; // nothing to cut if only base exists
+        stack.removeFirst(); // never break base
+
+        int broken = 0;
+        while (broken < maxBreak && !stack.isEmpty()) {
+            BlockPos top = stack.removeLast(); // break from the top down
+            level.destroyBlock(top, false);
+            broken++;
+        }
+        return broken;
+    }
 
     public static void dropItemInFront(Level level, Player player, ItemStack stack) {
         dropItemInFront(level, player, stack, 3.25, 0.6);
@@ -49,9 +94,7 @@ public class ShearsSnipInteractions {
 
     public static void dropItemInFront(Level level, Player player, ItemStack stack, double distance, double heightOffset) {
         Vec3 look = player.getLookAngle().normalize();
-
         distance = Math.max(2.0, Math.min(distance, 4.5));
-
         double x = player.getX() + look.x * distance;
         double y = player.getY() + heightOffset;
         double z = player.getZ() + look.z * distance;
@@ -67,6 +110,8 @@ public class ShearsSnipInteractions {
         level.addFreshEntity(drop);
     }
 
+    /* --------------------------- block interactions --------------------------- */
+
     @SubscribeEvent
     public static void onShearCrop(RightClickBlock event) {
         Level level = event.getLevel();
@@ -79,21 +124,17 @@ public class ShearsSnipInteractions {
 
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
-        ServerLevel server = (ServerLevel) level;
+        RandomSource rand = level.getRandom();
+
         //Bountiful Crops
         // Bountiful Dark Oak and Oak Leaves
         if (state.getBlock() instanceof BountifulLeavesBlock leavesBlock) {
             int age = state.getValue(BountifulLeavesBlock.AGE);
             if (age >= BountifulLeavesBlock.MAX_AGE) {
                 event.setCanceled(true);
-                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                // snip 2 apple or acorns, plus fortune
-                int extraDrops = 0;
-                for (int i = 0; i < fortune; i++) {
-                    if (level.getRandom().nextFloat() < 0.2F) {
-                        extraDrops++;
-                    }}
 
+                int extraDrops = rollFortuneExtras(rand, getFortuneLevel(tool));
+                // snip 2 apple or acorns, plus fortune
                 Item bountyItem = leavesBlock.getBounty();
                 ItemStack drop = new ItemStack(bountyItem, 2 + extraDrops);
                 dropItemInFront(level, player, drop);
@@ -101,63 +142,52 @@ public class ShearsSnipInteractions {
                 BlockState updatedState = state.setValue(BountifulLeavesBlock.AGE, 0);
                 level.setBlock(pos, updatedState, Block.UPDATE_CLIENTS);
 
-                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
-                level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-
+                play(level, pos, SoundEvents.SHEEP_SHEAR);
+                play(level, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES);
+                damageTool(tool, player, hand);
                 return;
             }
+
             // Bountiful Spruce Tips
             if (state.getBlock() instanceof SpruceTipBlock tip && tip.isRandomlyTicking(state)) {
                 age = state.getValue(SpruceTipBlock.AGE);
                 if (age >= SpruceTipBlock.MAX_AGE) {
                     event.setCanceled(true);
                     //snip 2 spruce tips plus fortune
-                    int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                    int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
+                    int fortune = getFortuneLevel(tool);
+                    int extra = fortune > 0 ? rand.nextInt(fortune + 1) : 0;
                     ItemStack drop = new ItemStack(FIItems.SPRUCE_TIPS.get(), 2 + extra);
                     dropItemInFront(level, player, drop);
+
                     level.setBlock(pos, state.setValue(SpruceTipBlock.AGE, 0), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
-                    level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
-                    tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                    play(level, pos, SoundEvents.SHEEP_SHEAR);
+                    play(level, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES);
+                    damageTool(tool, player, hand);
                     return;
                 }
             }
         }
+
         // Kelp
         if (state.is(Blocks.KELP) || state.is(Blocks.KELP_PLANT)) {
-            java.util.ArrayDeque<BlockPos> kelpBlocks = new java.util.ArrayDeque<>();
-            BlockPos.MutableBlockPos cursor = pos.mutable();
-
-            while (level.getBlockState(cursor).is(Blocks.KELP_PLANT) || level.getBlockState(cursor).is(Blocks.KELP)) {
-                kelpBlocks.addLast(cursor.immutable());
-                cursor.move(Direction.UP);
-            }
-            // dont snip base of crop
-            if (kelpBlocks.size() <= 1) return;
-            kelpBlocks.removeFirst();
-
             event.setCanceled(true);
 
-            // snip 2 kelp, plus fortune
-            int maxBreak = Math.min(2, kelpBlocks.size());
-            int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-            int extraDrops = 0;
-            for (int i = 0; i < fortune; i++) {
-                if (level.getRandom().nextFloat() < 0.2F) extraDrops++;
-            }
+            int broken = harvestVerticalTop(
+                    level, pos,
+                    bs -> bs.is(Blocks.KELP) || bs.is(Blocks.KELP_PLANT),
+                    2 // snip up to 2 segments
+            );
+            if (broken <= 0) return;
 
-            for (int i = 0; i < maxBreak; i++) {
-                BlockPos target = kelpBlocks.removeLast(); // take from the top
+            int extraDrops = rollFortuneExtras(rand, getFortuneLevel(tool));
+            for (int i = 0; i < broken; i++) {
                 ItemStack kelpDrop = new ItemStack(Items.KELP, 1 + extraDrops);
                 dropItemInFront(level, player, kelpDrop);
-                level.destroyBlock(target, false);
             }
 
-            level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
-            level.playSound(null, pos, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 1, 1);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            play(level, pos, SoundEvents.SHEEP_SHEAR);
+            play(level, pos, SoundEvents.WATER_AMBIENT);
+            damageTool(tool, player, hand);
             return;
         }
 
@@ -166,53 +196,47 @@ public class ShearsSnipInteractions {
             int age = state.getValue(MushroomColonyBlock.COLONY_AGE);
             if (age > 0) {
                 event.setCanceled(true);
+
+                int extraDrops = rollFortuneExtras(rand, getFortuneLevel(tool));
                 // snip 1 mushroom, plus fortune
-                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                int extraDrops = 0;
-                for (int i = 0; i < fortune; i++) {
-                    if (level.getRandom().nextFloat() < 0.2F) extraDrops++;
-                }
                 ItemStack drop = new ItemStack(mushroomColony.mushroomType.get(), 1 + extraDrops);
                 dropItemInFront(level, player, drop);
 
-                level.setBlock(pos,
-                        state.setValue(MushroomColonyBlock.COLONY_AGE, age - 1),
-                        Block.UPDATE_ALL);
+                level.setBlock(pos, state.setValue(MushroomColonyBlock.COLONY_AGE, age - 1), Block.UPDATE_ALL);
 
-                level.playSound(null, pos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1, 1);
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                play(level, pos, SoundEvents.MOOSHROOM_SHEAR);
+                damageTool(tool, player, hand);
             }
             return;
         }
+
         // Sugar Cane
         if (state.is(Blocks.SUGAR_CANE)) {
-            int count = 1;
-            while (level.getBlockState(pos.above(count)).is(Blocks.SUGAR_CANE)) {
-                count++;
-            } // snip 1 sugar cane, plus fortune
-            if (count >= 2) {
+            // snip 1 top segment if stack height >= 2
+            int broken = harvestVerticalTop(level, pos, bs -> bs.is(Blocks.SUGAR_CANE), 1);
+            if (broken > 0) {
                 event.setCanceled(true);
-                BlockPos top = pos.above(count - 1);
-                server.setBlock(top, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
 
-                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
+                int fortune = getFortuneLevel(tool);
+                int extra = fortune > 0 ? rand.nextInt(fortune + 1) : 0;
                 ItemStack drop = new ItemStack(Items.SUGAR_CANE, 1 + extra);
                 dropItemInFront(level, player, drop);
 
-                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
-                level.playSound(null, top, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1, 1);
-
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                play(level, pos, SoundEvents.SHEEP_SHEAR);
+                play(level, pos, SoundEvents.CROP_BREAK);
+                damageTool(tool, player, hand);
             }
+            return;
         }
+
         // Sweet Berry Bush (mature)
         if (state.getBlock() instanceof SweetBerryBushBlock &&
                 state.getValue(SweetBerryBushBlock.AGE) >= SweetBerryBushBlock.MAX_AGE) {
+
             event.setCanceled(true);
             // snip max berries (3), plus fortune
-            int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-            int extra = fortune > 0 ? level.getRandom().nextInt(fortune + 1) : 0;
+            int fortune = getFortuneLevel(tool);
+            int extra = fortune > 0 ? rand.nextInt(fortune + 1) : 0;
             ItemStack drop = new ItemStack(Items.SWEET_BERRIES, 3 + extra);
             dropItemInFront(level, player, drop);
 
@@ -220,24 +244,18 @@ public class ShearsSnipInteractions {
                     state.setValue(SweetBerryBushBlock.AGE, SweetBerryBushBlock.MAX_AGE - 2),
                     Block.UPDATE_ALL);
 
-            level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
-            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            play(level, pos, SoundEvents.SHEEP_SHEAR);
+            play(level, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES);
+            damageTool(tool, player, hand);
             return;
         }
+
         // Tomatoes
         if (state.getBlock() instanceof TomatoVineBlock tomatoVine) {
             event.setCanceled(true);
             int age = state.getValue(TomatoVineBlock.VINE_AGE);
             if (age == tomatoVine.getMaxAge()) {
-                int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-
-                int extraDrops = 0;
-                for (int i = 0; i < fortune; i++) {
-                    if (level.getRandom().nextFloat() < 0.2F) {
-                        extraDrops++;
-                    }
-                }
+                int extraDrops = rollFortuneExtras(rand, getFortuneLevel(tool));
                 // snip 2 tomatoes, plus fortune
                 ItemStack tomatoDrop = new ItemStack(
                         vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(),
@@ -245,25 +263,25 @@ public class ShearsSnipInteractions {
                 );
                 dropItemInFront(level, player, tomatoDrop);
 
-                if (level.getRandom().nextFloat() < 0.05) { // 5% chance
+                if (rand.nextFloat() < 0.05F) { // 5% chance
                     ItemStack rotten = new ItemStack(
                             vectorwing.farmersdelight.common.registry.ModItems.ROTTEN_TOMATO.get()
                     );
                     dropItemInFront(level, player, rotten);
                 }
 
-                level.setBlock(pos,
-                        state.setValue(TomatoVineBlock.VINE_AGE, 0),
-                        Block.UPDATE_ALL);
+                level.setBlock(pos, state.setValue(TomatoVineBlock.VINE_AGE, 0), Block.UPDATE_ALL);
 
-                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
+                play(level, pos, SoundEvents.SHEEP_SHEAR);
                 level.playSound(null, pos,
                         vectorwing.farmersdelight.common.registry.ModSounds.ITEM_TOMATO_PICK_FROM_BUSH.get(),
                         SoundSource.BLOCKS, 1, 1);
-                tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                damageTool(tool, player, hand);
             }
         }
     }
+
+    /* --------------------------- entity interactions --------------------------- */
 
     // Entities
     // Chickens
@@ -279,6 +297,7 @@ public class ShearsSnipInteractions {
             event.setCanceled(true);
             return;
         }
+
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
@@ -290,31 +309,30 @@ public class ShearsSnipInteractions {
         long elapsed = now - last;
 
         if (elapsed < CHICKEN_SHEAR_COOLDOWN) {
-            int secondsLeft = (int)Math.ceil((CHICKEN_SHEAR_COOLDOWN - elapsed) / 20.0);
+            int secondsLeft = (int) Math.ceil((CHICKEN_SHEAR_COOLDOWN - elapsed) / 20.0);
             player.displayClientMessage(
                     TextUtils.getTranslation("tool_interaction.shears.chicken", secondsLeft), true);
             event.setCanceled(true);
             return;
         }
+
         data.putLong("ShearFeatherTime", now);
         event.setCanceled(true);
+
         // snip 2-3 feathers, plus fortune
-        int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-        int baseCount = 2 + event.getLevel().getRandom().nextInt(3);
-        int extraFeathers = 0;
-        for (int i = 0; i < fortune; i++) {
-            if (event.getLevel().getRandom().nextFloat() < 0.2F) extraFeathers++;
-        }
+        RandomSource rand = event.getLevel().getRandom();
+        int baseCount = 2 + rand.nextInt(3);
+        int extraFeathers = rollFortuneExtras(rand, getFortuneLevel(tool));
 
         ItemStack drop = new ItemStack(Items.FEATHER, baseCount + extraFeathers);
         dropItemInFront(event.getLevel(), player, drop);
 
-        event.getLevel().playSound(
-                null, chicken.blockPosition(), SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1, 1);
-        event.getLevel().playSound(
-                null, chicken.blockPosition(), SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS, 1, 1);
+        event.getLevel().playSound(null, chicken.blockPosition(), SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1, 1);
+        event.getLevel().playSound(null, chicken.blockPosition(), SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS, 1, 1);
 
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));}
+        damageTool(tool, player, hand);
+    }
+
     // Sheep
     private static Item getWoolItemByColor(DyeColor color) {
         return switch (color) {
@@ -334,31 +352,33 @@ public class ShearsSnipInteractions {
             case BLUE       -> Items.BLUE_WOOL;
             case PURPLE     -> Items.PURPLE_WOOL;
             case PINK       -> Items.PINK_WOOL;
-        };}
+        };
+    }
+
     @SubscribeEvent
     public static void onShearSheep(EntityInteract event) {
         if (event.getLevel().isClientSide()) return;
         if (!(event.getTarget() instanceof net.minecraft.world.entity.animal.Sheep sheep)) return;
+
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
         if (!(tool.getItem() instanceof ShearsItem)) return;
         if (!sheep.isAlive() || sheep.isSheared() || sheep.isBaby()) return;
+
         event.setCanceled(true);
         sheep.setSheared(true);
+
         // snip 2-3 wool, plus fortune
         Level level = event.getLevel();
-        int baseWoolCount = 2 + level.getRandom().nextInt(3);
-        int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-        int extraWool = 0;
-        for (int i = 0; i < fortuneLevel; i++) {
-            if (level.getRandom().nextFloat() < 0.2F) extraWool++;
-        }
-        ItemStack woolDrop = new ItemStack(
-                getWoolItemByColor(sheep.getColor()), baseWoolCount + extraWool);
+        RandomSource rand = level.getRandom();
+        int baseWoolCount = 2 + rand.nextInt(3);
+        int extraWool = rollFortuneExtras(rand, getFortuneLevel(tool));
+
+        ItemStack woolDrop = new ItemStack(getWoolItemByColor(sheep.getColor()), baseWoolCount + extraWool);
         dropItemInFront(level, player, woolDrop);
 
         level.playSound(null, sheep, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1, 1);
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+        damageTool(tool, player, hand);
     }
 }
