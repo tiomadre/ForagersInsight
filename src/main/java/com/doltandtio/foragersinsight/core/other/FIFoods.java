@@ -12,11 +12,10 @@ public class FIFoods {
             .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build();
     public static final FoodProperties SAUCE_BOWLS = new FoodProperties.Builder()
             .nutrition(2).saturationMod(0.3f).build();
-    public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().build();
+    public static final FoodProperties SEED_MILK_BOTTLE = new FoodProperties.Builder().alwaysEat().build();
     public static final FoodProperties SEED_MILK_BUCKET = new FoodProperties.Builder().build();
     public static final FoodProperties BIRCH_SYRUP_BOTTLE = new FoodProperties.Builder()
             .nutrition(5).saturationMod(1.0F).alwaysEat().build();
-
 
     //Cuts
     public static final FoodProperties RAW_RABBIT_LEG = new FoodProperties.Builder().meat()
