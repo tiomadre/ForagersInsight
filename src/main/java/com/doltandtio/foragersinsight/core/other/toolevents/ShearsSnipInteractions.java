@@ -30,25 +30,43 @@ import net.minecraftforge.fml.common.Mod;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.utility.TextUtils;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraft.world.item.DyeColor; // for getWoolItemByColor
 
 // Snip Interactions (Shears Right Click)
-// Drops from snipping are neatly collected and dropped in front of the player.
+// Drops from snipping are collected and dropped near the player.
 @Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShearsSnipInteractions {
 
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
-    private static void dropItemInFront(Level level, Player player, ItemStack stack) {
+
+    public static void dropItemInFront(Level level, Player player, ItemStack stack) {
+        dropItemInFront(level, player, stack, 3.25, 0.6);
+    }
+
+    public static void dropItemInFront(Level level, Player player, ItemStack stack, double distance) {
+        dropItemInFront(level, player, stack, distance, 0.6);
+    }
+
+    public static void dropItemInFront(Level level, Player player, ItemStack stack, double distance, double heightOffset) {
         Vec3 look = player.getLookAngle().normalize();
-        double distance = 2.5;
+
+        distance = Math.max(2.0, Math.min(distance, 4.5));
+
         double x = player.getX() + look.x * distance;
-        double y = player.getY() + 0.5;
+        double y = player.getY() + heightOffset;
         double z = player.getZ() + look.z * distance;
+
         ItemEntity drop = new ItemEntity(level, x, y, z, stack);
+        drop.setPickUpDelay(5);
+
+        if (!level.noCollision(drop.getBoundingBox())) {
+            double fallback = 2.5;
+            drop.setPos(player.getX() + look.x * fallback, y, player.getZ() + look.z * fallback);
+        }
+
         level.addFreshEntity(drop);
     }
+
     @SubscribeEvent
     public static void onShearCrop(RightClickBlock event) {
         Level level = event.getLevel();
@@ -63,13 +81,13 @@ public class ShearsSnipInteractions {
         BlockState state = level.getBlockState(pos);
         ServerLevel server = (ServerLevel) level;
         //Bountiful Crops
-            // Bountiful Dark Oak and Oak Leaves
+        // Bountiful Dark Oak and Oak Leaves
         if (state.getBlock() instanceof BountifulLeavesBlock leavesBlock) {
             int age = state.getValue(BountifulLeavesBlock.AGE);
             if (age >= BountifulLeavesBlock.MAX_AGE) {
                 event.setCanceled(true);
                 int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-                    // snip 2 apple or acorns, plus fortune
+                // snip 2 apple or acorns, plus fortune
                 int extraDrops = 0;
                 for (int i = 0; i < fortune; i++) {
                     if (level.getRandom().nextFloat() < 0.2F) {
@@ -109,17 +127,19 @@ public class ShearsSnipInteractions {
         }
         // Kelp
         if (state.is(Blocks.KELP) || state.is(Blocks.KELP_PLANT)) {
-            List<BlockPos> kelpBlocks = new ArrayList<>();
+            java.util.ArrayDeque<BlockPos> kelpBlocks = new java.util.ArrayDeque<>();
             BlockPos.MutableBlockPos cursor = pos.mutable();
 
-            while (level.getBlockState(cursor).is(Blocks.KELP_PLANT) ||
-                    level.getBlockState(cursor).is(Blocks.KELP)) {
-                kelpBlocks.add(cursor.immutable());
+            while (level.getBlockState(cursor).is(Blocks.KELP_PLANT) || level.getBlockState(cursor).is(Blocks.KELP)) {
+                kelpBlocks.addLast(cursor.immutable());
                 cursor.move(Direction.UP);
-            } //dont snip base of crop
+            }
+            // dont snip base of crop
             if (kelpBlocks.size() <= 1) return;
-            kelpBlocks.remove(0);
+            kelpBlocks.removeFirst();
+
             event.setCanceled(true);
+
             // snip 2 kelp, plus fortune
             int maxBreak = Math.min(2, kelpBlocks.size());
             int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
@@ -129,7 +149,7 @@ public class ShearsSnipInteractions {
             }
 
             for (int i = 0; i < maxBreak; i++) {
-                BlockPos target = kelpBlocks.get(kelpBlocks.size() - 1 - i);
+                BlockPos target = kelpBlocks.removeLast(); // take from the top
                 ItemStack kelpDrop = new ItemStack(Items.KELP, 1 + extraDrops);
                 dropItemInFront(level, player, kelpDrop);
                 level.destroyBlock(target, false);
@@ -140,6 +160,7 @@ public class ShearsSnipInteractions {
             tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             return;
         }
+
         // Mushroom Colonies
         if (state.getBlock() instanceof MushroomColonyBlock mushroomColony) {
             int age = state.getValue(MushroomColonyBlock.COLONY_AGE);
@@ -244,7 +265,7 @@ public class ShearsSnipInteractions {
         }
     }
 
-// Entities
+    // Entities
     // Chickens
     @SubscribeEvent
     public static void onShearChicken(EntityInteract event) {
