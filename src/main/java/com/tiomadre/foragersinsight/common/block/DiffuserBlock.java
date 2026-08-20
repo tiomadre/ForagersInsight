@@ -1,5 +1,6 @@
 package com.tiomadre.foragersinsight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
 import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import com.tiomadre.foragersinsight.core.registry.FIBlockEntityTypes;
@@ -60,6 +61,8 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(WATERLOGGED, false));
     }
+
+
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {

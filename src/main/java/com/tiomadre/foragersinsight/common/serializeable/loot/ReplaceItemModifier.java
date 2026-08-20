@@ -2,24 +2,27 @@ package com.tiomadre.foragersinsight.common.serializeable.loot;
 
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 public class ReplaceItemModifier extends LootModifier {
-    public static final Supplier<Codec<ReplaceItemModifier>> CODEC = Suppliers.memoize(() ->
-            RecordCodecBuilder.create(inst -> codecStart(inst)
-                    .and(ForgeRegistries.ITEMS.getCodec().fieldOf("new").forGetter(m -> m.newItem))
-                    .and(ForgeRegistries.ITEMS.getCodec().fieldOf("replace").forGetter(m -> m.replaceItem))
+    public static final Supplier<MapCodec<ReplaceItemModifier>> CODEC = Suppliers.memoize(() ->
+            RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
+                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("new").forGetter(m -> m.newItem))
+                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("replace").forGetter(m -> m.replaceItem))
                     .and(Codec.FLOAT.optionalFieldOf("chance", 1.0F).forGetter(m -> m.chance))
                     .and(Codec.BOOL.optionalFieldOf("destroy_on_fail", false).forGetter(m -> m.destroyOnFail))
                     .apply(inst, ReplaceItemModifier::new)));
@@ -62,7 +65,7 @@ public class ReplaceItemModifier extends LootModifier {
     }
 
     @Override
-    public Codec<? extends IGlobalLootModifier> codec() {
+    public MapCodec<? extends IGlobalLootModifier> codec() {
         return CODEC.get();
     }
 }

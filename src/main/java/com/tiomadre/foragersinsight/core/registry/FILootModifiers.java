@@ -16,6 +16,6 @@ public class FILootModifiers {
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIERS =
             DeferredRegister.create(NeoForgeRegistries.GLOBAL_LOOT_MODIFIER_SERIALIZERS, ForagersInsight.MOD_ID);
 
-    public static final Supplier<Codec<? extends IGlobalLootModifier>> REPLACE_ITEM =
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> REPLACE_ITEM =
             LOOT_MODIFIERS.register("replace_item", ReplaceItemModifier.CODEC);
 }

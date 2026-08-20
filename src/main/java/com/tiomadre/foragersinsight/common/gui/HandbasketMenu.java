@@ -1,25 +1,19 @@
 package com.tiomadre.foragersinsight.common.gui;
 
 import com.tiomadre.foragersinsight.core.registry.FIMenuTypes;
-import com.tiomadre.foragersinsight.data.server.tags.FITags;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class HandbasketMenu extends AbstractContainerMenu {
-    private final ItemStack basketStack;
-    private final int basketSlotIndex;
+
+    private final Container container;
+
 
     private static final int SLOT_SIZE     = 18;
     private static final int GUI_WIDTH     = 176;
@@ -34,115 +28,85 @@ public class HandbasketMenu extends AbstractContainerMenu {
     private static final int INV_START_Y  = 84;
     private static final int HOTBAR_Y     = INV_START_Y + 3 * SLOT_SIZE + 4; // 142
 
-    public HandbasketMenu(int id, Inventory playerInv, ItemStack basketStack, int basketSlotIndex) {
+
+
+    public HandbasketMenu(int id, Inventory inventory) {
+        this(id, inventory, new SimpleContainer(10));
+    }
+
+    public HandbasketMenu(int id, Inventory inventory, Container container) {
         super(FIMenuTypes.HANDBASKET_MENU.get(), id);
-        this.basketStack = basketStack;
-        IItemHandler basketInv = basketStack
-                .getCapability(Capabilities.ItemHandler.ITEM);
-//                .orElseThrow(() -> new IllegalStateException("Missing handler"));
-        this.basketSlotIndex = basketSlotIndex;
-        // basket’s 2×5 griddy
+        checkContainerSize(container, 14);
+        this.container = container;
+        container.startOpen(inventory.player);
+
         for (int row = 0; row < BASKET_ROWS; row++) {
             for (int col = 0; col < BASKET_COLS; col++) {
                 int index = col + row * BASKET_COLS;
                 int x = BASKET_START_X + col * SLOT_SIZE + SHIFT_X;
                 int y = BASKET_START_Y + row * SLOT_SIZE + SHIFT_Y;
-                addSlot(new SlotItemHandler(Objects.requireNonNull(basketInv), index, x, y) {
-                    @Override
-                    public boolean mayPlace(@NotNull ItemStack stack) {
-                        return stack.is(FITags.ItemTag.HANDBASKET_ALLOWED);
-                    }
-                });
+                this.addSlot(new HandbasketSlot(container, index, x, y));
             }
         }
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 int slotIndex = col + row * 9 + 9;
                 int x = INV_START_X + col * SLOT_SIZE;
                 int y = INV_START_Y + row * SLOT_SIZE;
-                addSlot(createPlayerSlot(playerInv, slotIndex, x, y));
+                this.addSlot(new Slot(inventory, slotIndex, x, y));
             }
         }
+
         for (int col = 0; col < 9; col++) {
             int x = INV_START_X + col * SLOT_SIZE;
-            addSlot(createPlayerSlot(playerInv, col, x, HOTBAR_Y));
+            this.addSlot(new Slot(inventory, col, x, HOTBAR_Y));
         }
     }
-    public HandbasketMenu(int id, Inventory inv, FriendlyByteBuf buf) {
-        this(id, inv, buf.readItem(), buf.readVarInt());
-    }
+
+
+
+
     @Override
-    public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
+    public @NotNull ItemStack quickMoveStack(Player player, int index) {
+        ItemStack copyOfSourceStack = ItemStack.EMPTY;
         Slot sourceSlot = this.slots.get(index);
         if (!sourceSlot.hasItem()) {
             return ItemStack.EMPTY;
         }
-
-        ItemStack sourceStack = sourceSlot.getItem();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        // no basket in itself
-        if (ItemStack.isSameItemSameComponents(sourceStack, this.basketStack)) {
-            return ItemStack.EMPTY;
-        }
-
-        if (index < BASKET_ROWS * BASKET_COLS) {
-            if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED)) {
+        if (sourceSlot.hasItem()) {
+            ItemStack sourceStack = sourceSlot.getItem();
+            copyOfSourceStack = sourceStack.copy();
+            if (index < this.container.getContainerSize()) {
+                if (!this.moveItemStackTo(sourceStack, this.container.getContainerSize(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(sourceStack, 0, this.container.getContainerSize(), false)) {
                 return ItemStack.EMPTY;
             }
-            if (!this.moveItemStackTo(sourceStack, BASKET_ROWS * BASKET_COLS, this.slots.size(), true)) {
-                return ItemStack.EMPTY;
-            }
-        } else {
-            if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED) ||
-                    !this.moveItemStackTo(sourceStack, 0, BASKET_ROWS * BASKET_COLS, false)) {
-                return ItemStack.EMPTY;
+
+            if (sourceStack.isEmpty()) {
+                sourceSlot.set(ItemStack.EMPTY);
+            } else {
+                sourceSlot.setChanged();
             }
         }
-
-        if (sourceStack.isEmpty()) {
-            sourceSlot.set(ItemStack.EMPTY);
-        } else {
-            sourceSlot.setChanged();
-        }
-
         return copyOfSourceStack;
     }
+
     @Override
-    public boolean stillValid(@NotNull Player player) {
-        return true;
-    }
-    @Override
-    public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
-        if (slotId == this.basketSlotId()) {
-            return;
-        }
-        super.clicked(slotId, dragType, clickType, player);
+    public boolean stillValid(Player player) {
+        return this.container.stillValid(player);
     }
 
-    private int basketSlotId() {
-        int offset = BASKET_ROWS * BASKET_COLS;
-        return this.basketSlotIndex < 9
-                ? offset + 27 + this.basketSlotIndex
-                : offset + this.basketSlotIndex - 9;
-    }
-    private Slot createPlayerSlot(Inventory playerInv, int index, int x, int y) {
-        return new Slot(playerInv, index, x, y) {
-            @Override
-            public boolean mayPickup(@NotNull Player player) {
-                if (index == HandbasketMenu.this.basketSlotIndex) {
-                    return false;
-                }
-                return super.mayPickup(player);
-            }
-
-            @Override
-            public boolean mayPlace(@NotNull ItemStack stack) {
-                if (index == HandbasketMenu.this.basketSlotIndex) {
-                    return false;
-                }
-                return super.mayPlace(stack);
-            }
-        };
-    }
+//Not sure what this method is for, but leaving it for now in case needed later
+//    @Override
+//    public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
+//        if (slotId == this.basketSlotId()) {
+//            return;
+//        }
+//        super.clicked(slotId, dragType, clickType, player);
+//    }
+//
+//
 }
