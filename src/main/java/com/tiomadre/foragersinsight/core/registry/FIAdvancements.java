@@ -38,24 +38,24 @@ public final class FIAdvancements {
     public static final ResourceLocation TASTE_THE_RAINBOW_MOTHA_ICON = ForagersInsight.rl("slice_of_rainbow_sandwich");
 
     public static final ResourceLocation ROOT_ICON = ForagersInsight.rl("handbasket");
-    public static final ResourceLocation SPRING_CLEANING_ICON = new ResourceLocation("minecraft", "brush");
+    public static final ResourceLocation SPRING_CLEANING_ICON = ResourceLocation.fromNamespaceAndPath("minecraft", "brush");
     public static final ResourceLocation BRUSH_IT_OFF_ICON = ForagersInsight.rl("suspicious_leaf_litter");
     public static final ResourceLocation RARE_FIND_ICON = ForagersInsight.rl("blewit_mushroom");
-    public static final ResourceLocation GIVING_TREES_ICON = new ResourceLocation("minecraft", "apple");
-    public static final ResourceLocation STINKY_SITUATION_ICON = new ResourceLocation("farmersdelight", "organic_compost");
+    public static final ResourceLocation GIVING_TREES_ICON = ResourceLocation.fromNamespaceAndPath("minecraft", "apple");
+    public static final ResourceLocation STINKY_SITUATION_ICON = ResourceLocation.fromNamespaceAndPath("farmersdelight", "organic_compost");
     public static final ResourceLocation TAP_THAT_ICON = ForagersInsight.rl("tapper");
     public static final ResourceLocation BIRCH_PLEASE_ICON = ForagersInsight.rl("birch_sap_bucket");
     public static final ResourceLocation SCENTSATIONAL_ICON = ForagersInsight.rl("diffuser");
     public static final ResourceLocation STOP_HAMMER_TIME_ICON = ForagersInsight.rl("flint_mallet");
     public static final ResourceLocation WILL_IT_CRUSH_ICON = ForagersInsight.rl("wheat_flour");
-    public static final ResourceLocation CRACK_IT_ICON = new ResourceLocation("minecraft", "cracked_stone_bricks");
+    public static final ResourceLocation CRACK_IT_ICON = ResourceLocation.fromNamespaceAndPath("minecraft", "cracked_stone_bricks");
     public static final ResourceLocation PETAL_TO_THE_METAL_ICON = ForagersInsight.rl("rose_petals");
-    public static final ResourceLocation UH_FIX_IT_ICON = new ResourceLocation("minecraft", "anvil");
+    public static final ResourceLocation UH_FIX_IT_ICON = ResourceLocation.fromNamespaceAndPath("minecraft", "anvil");
 
     public static final ResourceLocation TAP_THAT = ForagersInsight.rl("adventure/tap_that");
     public static final ResourceLocation BIRCH_PLEASE = ForagersInsight.rl("adventure/birch_please");
 
-    public static final ResourceLocation WILD_FLOWERS_ICON = new ResourceLocation("minecraft", "rose_bush");
+    public static final ResourceLocation WILD_FLOWERS_ICON = ResourceLocation.fromNamespaceAndPath("minecraft", "rose_bush");
     public static final ResourceLocation SHEARING_IS_CARING_ICON = ForagersInsight.rl("flint_shears");
 
     public static final ResourceLocation SCENTSATIONAL = ForagersInsight.rl("adventure/scentsational");
