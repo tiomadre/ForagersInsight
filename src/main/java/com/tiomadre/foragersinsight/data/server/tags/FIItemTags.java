@@ -4,6 +4,7 @@ import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -40,8 +41,8 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(WILD_FLOWER_DROPS).add(FIItems.ROSE_HIP.get(), FIItems.LILAC_BLOOM.get(), FIItems.POPPY_SEEDS.get(), FIItems.DANDELION_ROOT.get(), FIItems.ROSELLE_CALYX.get());
 
         var foragersInsightItems = this.tag(FORAGERS_INSIGHT_ITEMS);
-        ForgeRegistries.ITEMS.getValues().stream()
-                .filter(item -> ForagersInsight.MOD_ID.equals(ForgeRegistries.ITEMS.getKey(item).getNamespace()))
+        BuiltInRegistries.ITEM.stream()
+                .filter(item -> ForagersInsight.MOD_ID.equals(BuiltInRegistries.ITEM.getKey(item).getNamespace()))
                 .forEach(foragersInsightItems::add);
 
         //Crops
@@ -118,9 +119,9 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(ItemTags.PLANKS).add(FIBlocks.LILAC_PLANKS.get().asItem()
         );
 
-        registerForgeTags();
+        registerNeoTags();
     }
-    protected void registerForgeTags() {
+    protected void registerNeoTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(FIBlocks.ROSE_HIP_SACK.get().asItem());
         tag(STORAGE_BLOCK_ROSELLE_CALYX).add(FIBlocks.ROSELLE_CALYX_SACK.get().asItem());
         tag(STORAGE_BLOCK_POPPY_SEEDS).add(FIBlocks.POPPY_SEEDS_SACK.get().asItem());

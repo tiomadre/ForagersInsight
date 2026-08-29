@@ -331,7 +331,7 @@ public class FICookingRecipes {
         ResourceLocation id =  ResourceLocation.fromNamespaceAndPath("farmersdelight", "cooking/" + recipeName);
         JsonObject advancement = buildCookingAdvancement(id, BLEWIT_MUSHROOM.get(), flower);
         ResourceLocation advancementId = ResourceLocation.fromNamespaceAndPath("farmersdelight", "recipes/cooking/" + recipeName);
-        output.accept(new CookingPotRecipeWithNbt(id, CookingPotRecipeBookTab.MEALS, ingredients, stew, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL, advancement, advancementId));
+       // output.accept(new CookingPotRecipeWithNbt(id, CookingPotRecipeBookTab.MEALS, ingredients, stew, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL, advancement, advancementId));
     }
 
     private static ItemStack createAuspiciousStew(MobEffect effect) {
@@ -405,10 +405,12 @@ public class FICookingRecipes {
                 if (result.getCount() > 1) {
                     resultObject.addProperty("count", result.getCount());
                 }
+
+                //commented out for now, gotta full rewrite auspicious stew at some point
                 //give it the effect component
-                if (result.has()) {
-                    resultObject.addProperty("nbt", result.getTag().toString());
-                }
+//                if (result.hastag()) {
+//                    resultObject.addProperty("nbt", result.getTag().toString());
+//                }
                 json.add("result", resultObject);
                 if (experience > 0) {
                     json.addProperty("experience", experience);

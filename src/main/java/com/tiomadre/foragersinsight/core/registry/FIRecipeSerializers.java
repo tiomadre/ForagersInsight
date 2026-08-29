@@ -12,7 +12,6 @@ import java.util.function.Supplier;
 public class FIRecipeSerializers {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, ForagersInsight.MOD_ID);
 
-    public static final Supplier<SimpleCraftingRecipeSerializer<?>> WAXED_BOOTS = RECIPE_SERIALIZERS.register(
-            "crafting_special_waxedboots",
-            () -> new SimpleCraftingRecipeSerializer<>(WaxedBootsRecipe::new));
+    public static final Supplier<RecipeSerializer<?>> WAXED_BOOTS = RECIPE_SERIALIZERS
+            .register("crafting_special_waxedboots",(WaxedBootsRecipe.Serializer::new));
 }

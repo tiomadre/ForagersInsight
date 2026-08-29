@@ -197,8 +197,10 @@ public class FITabs {
             FIItems.LILAC_CHEST_BOAT
     );
 
-    private static final List<Supplier<MobEffect>> AUSPICIOUS_STEW_EFFECTS = List.of(
-            FIMobEffects.BLOOM.,  MobEffects.DAMAGE_RESISTANCE, () -> MobEffects.HEALTH_BOOST, () -> MobEffects.REGENERATION);
+    // commented out effects for now
+
+//    private static final List<Supplier<MobEffect>> AUSPICIOUS_STEW_EFFECTS = List.of(
+//          FIMobEffects.BLOOM,  MobEffects.DAMAGE_RESISTANCE, MobEffects.HEALTH_BOOST, MobEffects.REGENERATION);
 
 
     public static void register(IEventBus bus) {
@@ -212,10 +214,10 @@ public class FITabs {
                 .map(ItemStack::new)
                 .forEach(output::accept);
 
-        AUSPICIOUS_STEW_EFFECTS.stream()
-                .map(Supplier::get)
-                .map(FITabs::createAuspiciousStew)
-                .forEach(output::accept);
+//        AUSPICIOUS_STEW_EFFECTS.stream()
+//                .map(Supplier::get)
+//                .map(FITabs::createAuspiciousStew)
+//                .forEach(output::accept);
 
     }
 

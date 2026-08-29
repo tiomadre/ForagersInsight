@@ -45,8 +45,10 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
     public void buildRecipes(RecipeOutput output) {
         addVanillaOverrides(output);
         addFarmersDelightOverrides(output);
-        SpecialRecipeBuilder.special(FIRecipeSerializers.WAXED_BOOTS.get())
-                .save(output, ForagersInsight.rl("crafting_special_waxedboots").toString());
+
+
+//        SpecialRecipeBuilder.special(FIRecipeSerializers.WAXED_BOOTS.get())
+//                .save(output, ForagersInsight.rl("crafting_special_waxedboots").toString());
 
         cookie(ROSE_COOKIE, FIItems.ROSE_HIP, output);
         cookie(ACORN_COOKIE, BLACK_ACORN, output);

@@ -80,7 +80,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.floral",
             "foragersinsight.diffuser.floral.description",
             8.0,
-            () -> new MobEffectInstance(FIMobEffects.BLOOM.get(), 1200, 0),
+            () -> new MobEffectInstance(FIMobEffects.BLOOM, 1200, 0),
             0);
 
     public static final Supplier<FIDiffusingRecipes> FLORAL_II = register(
@@ -93,7 +93,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.floral_ii",
             "foragersinsight.diffuser.floral_ii.description",
             12.0,
-            () -> new MobEffectInstance(FIMobEffects.BLOOM.get(), 2000, 1),
+            () -> new MobEffectInstance(FIMobEffects.BLOOM, 2000, 1),
             4);
 
     //FOUL SCENT
@@ -104,7 +104,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.foul",
             "foragersinsight.diffuser.foul.description",
             8.0,
-            () -> new MobEffectInstance(FIMobEffects.ODOROUS.get(), 100, 0),
+            () -> new MobEffectInstance(FIMobEffects.ODOROUS, 100, 0),
             3);
 
     public static final Supplier<FIDiffusingRecipes> FOUL_II = register(
@@ -114,7 +114,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.foul_ii",
             "foragersinsight.diffuser.foul_ii.description",
             12.0,
-            () -> new MobEffectInstance(FIMobEffects.ODOROUS.get(), 1500, 0),
+            () -> new MobEffectInstance(FIMobEffects.ODOROUS, 1500, 0),
             3);
 
     public static void bootstrap() {
