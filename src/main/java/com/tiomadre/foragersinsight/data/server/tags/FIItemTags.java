@@ -97,7 +97,7 @@ public class FIItemTags extends ItemTagsProvider {
 
      //Handbasket
         IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> handbasketAllowedTag = this.tag(HANDBASKET_ALLOWED);
-        addOptionalTags(handbasketAllowedTag, "forge",
+        addOptionalTags(handbasketAllowedTag, "c",
                 "raw_meats", "cooked_meats", "raw_fishes", "cooked_fishes", "eggs", "leather",
                 "feathers", "nuts", "seeds", "crops", "fruits", "vegetables", "crops/mushroom",
                 "flour", "straw", "tree_bark", "ice", "sugar", "milk/milk", "milk/milk_bottle", "honey_bottle"
