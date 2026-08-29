@@ -242,9 +242,9 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .save(output);
         //Other
-        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION, "auspicious_stew_from_rose_petals");
-        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE, "auspicious_stew_from_roselle_petals");
-        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST, "auspicious_stew_from_spruce_tips");
+        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION.value(), "auspicious_stew_from_rose_petals");
+        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE.value(), "auspicious_stew_from_roselle_petals");
+        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST.value(), "auspicious_stew_from_spruce_tips");
         buildAuspiciousStewRecipe(output, LILAC_BLOOM.get(), FIMobEffects.BLOOM.get(), "auspicious_stew_from_lilac_bloom");
             //Other Non Food
         CookingPotRecipeBuilder.cookingPotRecipe(AMADOU.get(), 3, NORMAL_COOKING, MEDIUM_EXP)

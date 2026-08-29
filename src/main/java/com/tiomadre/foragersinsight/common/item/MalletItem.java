@@ -1,7 +1,6 @@
 package com.tiomadre.foragersinsight.common.item;
 
 import com.tiomadre.foragersinsight.common.utility.TextUtils;
-import com.tiomadre.foragersinsight.core.registry.FIAdvancementCriteria;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;

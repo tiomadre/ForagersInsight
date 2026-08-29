@@ -63,7 +63,7 @@ public class WaxedBoots {
         if (!isWaxed(boots)) return;
 
         int amplifier = getWaxedLevel(boots) - 1;
-        entity.addEffect(new MobEffectInstance(FIMobEffects.STICKY_RESISTANCE.get(), STICKY_RESISTANCE_REFRESH_DURATION, amplifier, false, false, true));
+        entity.addEffect(new MobEffectInstance(FIMobEffects.STICKY_RESISTANCE, STICKY_RESISTANCE_REFRESH_DURATION, amplifier, false, false, true));
 
         if (entity.level().getGameTime() % WALKING_DRAIN == 0 && entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5D) {
             shrinkWaxedDuration(boots, WALKING_DRAIN);

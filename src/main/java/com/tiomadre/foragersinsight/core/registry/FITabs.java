@@ -196,8 +196,9 @@ public class FITabs {
             FIItems.LILAC_BOAT,
             FIItems.LILAC_CHEST_BOAT
     );
+
     private static final List<Supplier<MobEffect>> AUSPICIOUS_STEW_EFFECTS = List.of(
-            FIMobEffects.BLOOM,  MobEffects.DAMAGE_RESISTANCE, () -> MobEffects.HEALTH_BOOST, () -> MobEffects.REGENERATION);
+            FIMobEffects.BLOOM.,  MobEffects.DAMAGE_RESISTANCE, () -> MobEffects.HEALTH_BOOST, () -> MobEffects.REGENERATION);
 
 
     public static void register(IEventBus bus) {

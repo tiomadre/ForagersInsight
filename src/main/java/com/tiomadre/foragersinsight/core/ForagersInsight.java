@@ -1,6 +1,6 @@
 package com.tiomadre.foragersinsight.core;
 
-import com.tiomadre.foragersinsight.data.server.FIAdvancementData;
+import com.tiomadre.foragersinsight.data.server.FIAdvancementProvider;
 import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
 import com.tiomadre.foragersinsight.core.other.FIClientCompat;
@@ -18,7 +18,6 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -66,8 +65,8 @@ public class ForagersInsight {
 		modContainer.registerConfig(ModConfig.Type.COMMON, FIConfig.COMMON_SPEC);
 	}
 
-	public static ResourceLocation rl(String namespace) {
-		return ResourceLocation.fromNamespaceAndPath(MOD_ID, namespace);
+	public static ResourceLocation rl(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
@@ -94,7 +93,7 @@ public class ForagersInsight {
 //                List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 		gen.addProvider(server, new FICraftingRecipes(event.getGenerator().getPackOutput() ,event.getLookupProvider()));
 		gen.addProvider(server, new FIWorldgen(event));
-		gen.addProvider(server, new FIAdvancementData(event));
+		gen.addProvider(server, new FIAdvancementProvider(event.getGenerator().getPackOutput(),event.getLookupProvider(),event.getExistingFileHelper()));
 		gen.addProvider(server, new FICompostableProvider(gen.getPackOutput(), event.getLookupProvider()));
 
 

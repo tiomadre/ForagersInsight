@@ -5,7 +5,6 @@ import com.tiomadre.foragersinsight.common.block.HangingLilacLeavesBlock;
 import com.tiomadre.foragersinsight.common.block.SpruceTipBlock;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
-import com.tiomadre.foragersinsight.core.registry.FIAdvancementCriteria;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

@@ -2,7 +2,7 @@ package com.tiomadre.foragersinsight.data.client;
 
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +20,7 @@ public abstract class FIBlockStatesHelper extends BlueprintBlockStateProvider {
     }
 
     public static ResourceLocation loc(Block block) {
-        return Registries.BLOCK.getKey(block);
+        return BuiltInRegistries.BLOCK.getKey(block);
     }
 
     public static ResourceLocation modTexture(String string) {
