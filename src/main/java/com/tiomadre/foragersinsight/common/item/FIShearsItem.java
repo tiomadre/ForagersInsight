@@ -29,7 +29,7 @@ public class FIShearsItem extends ShearsItem {
                 level.playSound(null, pos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.setBlock(pos, state.setValue(colony.getAgeProperty(), age - 1), 2);
                 if (!level.isClientSide()) {
-                    ctx.getItemInHand().hurtAndBreak(1, ctx.getPlayer(), (p) -> p.broadcastBreakEvent(ctx.getHand()));
+                    ctx.getItemInHand().hurtAndBreak(1, ctx.getPlayer(), ctx.getItemInHand().getEquipmentSlot());
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }

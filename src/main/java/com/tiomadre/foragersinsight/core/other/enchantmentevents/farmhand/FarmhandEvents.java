@@ -8,8 +8,10 @@ import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.sounds.SoundEvents;
@@ -25,15 +27,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.IShearable;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.items.IItemHandler;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 
 import java.util.Collection;
@@ -41,7 +40,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FarmhandEvents {
     //checks if player has a handbasket and if item can go in
     private static boolean tryInsertToHandbasket(Player player, ItemStack drop) {
@@ -53,16 +52,11 @@ public class FarmhandEvents {
             if (!(invStack.getItem() instanceof HandbasketItem)) {
                 continue;
             }
-            LazyOptional<IItemHandler> cap = invStack.getCapability(ForgeCapabilities.ITEM_HANDLER);
-            Optional<IItemHandler> resolved = cap.resolve();
-            if (resolved.isEmpty()) {
-                continue;
-            }
-            IItemHandler handler = resolved.get();
-            int totalSlots = handler.getSlots();
+            IItemHandler cap = invStack.getCapability(Capabilities.ItemHandler.ITEM);
+            int totalSlots = cap.getSlots();
             int usedSlots = 0;
             for (int slot = 0; slot < totalSlots; slot++) {
-                if (!handler.getStackInSlot(slot).isEmpty()) {
+                if (!cap.getStackInSlot(slot).isEmpty()) {
                     usedSlots++;
                 }
             }
@@ -74,7 +68,7 @@ public class FarmhandEvents {
             if (selectedHandler == null
                     || (hasItems && !selectedHasItems)
                     || (hasItems == selectedHasItems && usedSlots > selectedUsedSlots)) {
-                selectedHandler = handler;
+                selectedHandler = cap;
                 selectedUsedSlots = usedSlots;
                 selectedHasItems = hasItems;
             }
@@ -107,7 +101,7 @@ public class FarmhandEvents {
         if (level == null || level.isClientSide() || player == null) return;
 
         ItemStack tool = player.getMainHandItem();
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND.get()) <= 0) return;
+        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
 
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
@@ -156,15 +150,15 @@ public class FarmhandEvents {
         level.setBlock(pos, replanted, Block.UPDATE_ALL);
 
         // hurts the tool 😞
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+        tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
     }
     // Shearable on Left Click
     @SubscribeEvent
-    public static void onShearLeft(LeftClickBlock event) {
+    public static void onShearLeft(PlayerInteractEvent.LeftClickBlock event) {
         Player player = event.getEntity();
         ItemStack tool = player.getMainHandItem();
         if (!(tool.getItem() instanceof ShearsItem)) return;
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND.get()) <= 0) return;
+        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
 
         Level level = event.getLevel();
         if (level.isClientSide()) return;
@@ -173,13 +167,12 @@ public class FarmhandEvents {
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (!(block instanceof IForgeShearable shearable)) return;
-        if (!shearable.isShearable(tool, level, pos)) return;
+        if (!(block instanceof IShearable shearable)) return;
+        if (!shearable.isShearable(player, tool, level, pos)) return;
 
         event.setCanceled(true);
         ServerLevel server = (ServerLevel) level;
-        int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
-        Collection<ItemStack> drops = shearable.onSheared(player, tool, server, pos, fortuneLevel);
+        Collection<ItemStack> drops = shearable.onSheared(player, tool, server, pos);
 
         server.destroyBlock(pos, false);
         for (ItemStack drop : drops) {
@@ -190,14 +183,14 @@ public class FarmhandEvents {
             }
         }
         level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0f, 1.0f);
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+        tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
     }
     // Shearable on Right Click
     @SubscribeEvent
-    public static void onShearRight(RightClickBlock event) {
+    public static void onShearRight(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
         ItemStack tool = player.getMainHandItem();
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND.get()) <= 0) return;
+        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
 
         Level level = event.getLevel();
         if (level.isClientSide()) return;
@@ -219,7 +212,7 @@ public class FarmhandEvents {
             if (!tryInsertToHandbasket(player, drop)) player.drop(drop, false);
             level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(BountifulLeavesBlock.AGE, 0), Block.UPDATE_ALL);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+            tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
             return;
         }
         // Pumpkin
@@ -231,7 +224,7 @@ public class FarmhandEvents {
             ItemStack seeds = new ItemStack(Items.PUMPKIN_SEEDS, 4);
             if (!tryInsertToHandbasket(player, seeds)) player.drop(seeds, false);
             level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+            tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
             return;
         }
 
@@ -242,7 +235,7 @@ public class FarmhandEvents {
             if (!tryInsertToHandbasket(player, honey)) player.drop(honey, false);
             level.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(BeehiveBlock.HONEY_LEVEL, 0), Block.UPDATE_ALL);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+            tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
             return;
         }
         // Mushroom Colony
@@ -252,7 +245,7 @@ public class FarmhandEvents {
             if (!tryInsertToHandbasket(player, drop)) player.drop(drop, false);
             level.playSound(null, pos, SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.setBlock(pos, state.setValue(MushroomColonyBlock.COLONY_AGE, state.getValue(MushroomColonyBlock.COLONY_AGE) - 1), Block.UPDATE_ALL);
-            tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+            tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
         }
     }
     //replant logic
@@ -290,7 +283,7 @@ public class FarmhandEvents {
 
         level.setBlock(pos, replanted, Block.UPDATE_ALL);
         level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 0.8f, 1.0f);
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+        tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(InteractionHand.MAIN_HAND));
         return true;
     }
 

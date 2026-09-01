@@ -12,6 +12,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -59,6 +60,9 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(FOODS).addTags(FOODS_APPLE,FOODS_POPPY_SEEDS,FOODS_ACORN,FOODS_ROOTS,FOODS_MUSHROOM,FOODS_LILAC).add(FIItems.TINDER_CONK.get());
         //Food
         this.tag(BLEWIT_STUFFING).addTags(SEEDS,NUTS,FOODS_VEGETABLE,FOODS_RAW_MEAT,FOODS_RAW_FISH);
+
+        //give shears fortune
+        this.tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTag(TOOLS_SHEAR);
 
         // Handbasket support tags
         this.tag(FOODS_RAW_MEAT).add(FIItems.RAW_RABBIT_LEG.get());

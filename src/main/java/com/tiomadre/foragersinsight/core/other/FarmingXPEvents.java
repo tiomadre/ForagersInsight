@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoBlock;
@@ -39,7 +40,7 @@ import net.minecraft.world.entity.animal.Cow;
 
 import java.util.*;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
 
     private static final Map<ResourceKey<Level>, Map<BlockPos, PendingForage>> PENDING_FORAGING_DROPS = new HashMap<>();
@@ -72,9 +73,6 @@ public class FarmingXPEvents {
         if (pending.player.level() != level) return;
         if (item.getItem().isEmpty()) return;
         ItemStack drop = item.getItem();
-        if (drop.is(FIItems.ROSE_PETALS.get()) || drop.is(FIItems.ROSELLE_PETALS.get())) {
-            FIAdvancementCriteria.PETAL_TO_THE_METAL.trigger(pending.player);
-        }
 
         awardUnifiedXP(level, pending.player, 0, 2, XPSource.FORAGING, true);
     }
@@ -99,7 +97,7 @@ public class FarmingXPEvents {
         if (!isCropBlock(state)) return;
 
         // Gourds attached to stems
-        if (block instanceof StemGrownBlock) {
+        if (block instanceof AttachedStemBlock) {
             boolean connectedToStem = isConnectedToStem(level, pos);
             awardUnifiedXP(level, player, connectedToStem ? 1 : 0, connectedToStem ? 2 : 0, XPSource.CROP, false);
             return;
@@ -118,7 +116,7 @@ public class FarmingXPEvents {
         if (block == Blocks.BAMBOO) {
             return false;
         }
-        return block instanceof CropBlock || block instanceof StemGrownBlock || state.is(BlockTags.CROPS);
+        return block instanceof CropBlock || block instanceof AttachedStemBlock || state.is(BlockTags.CROPS);
     }
     // Right-Click Harvests
     @SubscribeEvent
@@ -282,7 +280,7 @@ public class FarmingXPEvents {
         int delta = Math.max(0, max - min);
         int val = (delta == 0) ? min : (min + player.getRandom().nextInt(delta));
 
-        if (isForaging && player.hasEffect(FIMobEffects.BLOOM.get())) {
+        if (isForaging && player.hasEffect(FIMobEffects.BLOOM)) {
             val = Math.max(val, 1);
         }
 

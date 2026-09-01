@@ -9,18 +9,17 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandbasketItemPickup {
-    @SubscribeEvent
-    public static void onItemPickup(EntityItemPickupEvent ev) {
-        Player player = ev.getEntity();
+    //@SubscribeEvent
+    public static void onItemPickup(ItemEntityPickupEvent ev) {
+        Player player = ev.getPlayer();
         if (!(player instanceof ServerPlayer server)) return;
 
         IItemHandler selectedHandler = null;
@@ -29,7 +28,7 @@ public class HandbasketItemPickup {
         for (ItemStack stack : server.getInventory().items) {
             if (!(stack.getItem() instanceof HandbasketItem)) continue;
 
-            IItemHandler handler = stack.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+            IItemHandler handler = stack.getCapability(Capabilities.ItemHandler.ITEM);
             if (handler == null) continue;
 
             int usedSlots = countUsedSlots(handler);
@@ -42,14 +41,16 @@ public class HandbasketItemPickup {
         }
 
         if (selectedHandler == null) return;
-        ItemEntity entity = ev.getItem();
+        ItemEntity entity = ev.getItemEntity();
         ItemStack stack = entity.getItem();
         if (!stack.is(FITags.ItemTag.HANDBASKET_ALLOWED)) return;
 
         ItemStack remainder = ItemHandlerHelper.insertItem(selectedHandler, stack.copy(), false);
         if (remainder.getCount() == stack.getCount()) return;
 
-        ev.setCanceled(true);
+        //come back to this if there is a problem
+
+        //ev.setCanceled(true);
         playRustleSound(player);
         if (remainder.isEmpty()) {
             entity.discard();

@@ -6,20 +6,25 @@ import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Shearable;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.Optional;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FarmhandEntityEvents {
 
     @SubscribeEvent
-    public static void onEntityShear(EntityInteractSpecific event) {
+    public static void onEntityShear(PlayerInteractEvent.EntityInteractSpecific event) {
         Level level = event.getLevel();
         if (level.isClientSide()) return;
 
@@ -27,7 +32,7 @@ public class FarmhandEntityEvents {
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
         if (!(tool.getItem() instanceof ShearsItem)) return;
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND.get()) <= 0) return;
+        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
 
         Entity target = event.getTarget();
         if (!(target instanceof Shearable shearable)) return;
@@ -48,7 +53,7 @@ public class FarmhandEntityEvents {
             dropEntity.discard();
         }
 
-        tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+        tool.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
     }
 
     //Insert into Handbasket
@@ -61,16 +66,12 @@ public class FarmhandEntityEvents {
             if (!(invStack.getItem() instanceof HandbasketItem)) {
                 continue;
             }
-            LazyOptional<IItemHandler> cap = invStack.getCapability(ForgeCapabilities.ITEM_HANDLER);
-            Optional<IItemHandler> resolved = cap.resolve();
-            if (resolved.isEmpty()) {
-                continue;
-            }
-            IItemHandler handler = resolved.get();
-            int totalSlots = handler.getSlots();
+
+            IItemHandler cap = invStack.getCapability(Capabilities.ItemHandler.ITEM);
+            int totalSlots = cap.getSlots();
             int usedSlots = 0;
             for (int slot = 0; slot < totalSlots; slot++) {
-                if (!handler.getStackInSlot(slot).isEmpty()) {
+                if (!cap.getStackInSlot(slot).isEmpty()) {
                     usedSlots++;
                 }
             }
@@ -82,7 +83,7 @@ public class FarmhandEntityEvents {
             if (selectedHandler == null
                     || (hasItems && !selectedHasItems)
                     || (hasItems == selectedHasItems && usedSlots > selectedUsedSlots)) {
-                selectedHandler = handler;
+                selectedHandler = cap;
                 selectedUsedSlots = usedSlots;
                 selectedHasItems = hasItems;
             }

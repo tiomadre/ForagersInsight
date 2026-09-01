@@ -39,6 +39,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 
 import java.util.Objects;
 import java.util.Set;
@@ -70,7 +71,7 @@ public class FIBlockLoot extends BlockLootSubProvider
                 .toList();
     }
 
-    private static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(FITags.ItemTag.TOOLS_KNIVES));
+    private static final LootItemCondition.Builder HAS_KNIFE = MatchTool.toolMatches(ItemPredicate.Builder.item().of(CommonTags.Items.TOOLS_KNIFE));
 
 
 
