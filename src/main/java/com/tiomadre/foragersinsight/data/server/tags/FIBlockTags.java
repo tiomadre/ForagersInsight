@@ -12,7 +12,6 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.CommonTags;
-import vectorwing.farmersdelight.common.tag.ModTags;
 
 import static com.tiomadre.foragersinsight.core.registry.FIBlocks.*;
 import static com.tiomadre.foragersinsight.data.server.tags.FITags.BlockTag.*;
@@ -70,7 +69,7 @@ public class FIBlockTags extends BlockTagsProvider {
         ModBlocks.SANDY_SHRUB.get(),Blocks.TALL_GRASS,Blocks.GRASS_BLOCK,
         //Vanilla & Forager Wild Flowers
         Blocks.ROSE_BUSH,Blocks.DANDELION,Blocks.POPPY,STOUT_BEACH_ROSE_BUSH.get(), TALL_BEACH_ROSE_BUSH.get(),ROSELLE_BUSH.get());
-        registerForgeTags();
+        registerNeoForgeTags();
         registerMineables();
 
     }
@@ -86,7 +85,7 @@ public class FIBlockTags extends BlockTagsProvider {
     }
 
 
-    protected void registerForgeTags() {
+    protected void registerNeoForgeTags() {
         tag(STORAGE_BLOCK_ROSE_HIP).add(ROSE_HIP_SACK.get());
         tag(STORAGE_BLOCK_POPPY_SEEDS).add(POPPY_SEEDS_SACK.get());
         tag(STORAGE_BLOCK_APPLE).add(Block.byItem(Items.APPLE));
