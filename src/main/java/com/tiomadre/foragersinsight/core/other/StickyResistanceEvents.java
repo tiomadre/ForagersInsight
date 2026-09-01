@@ -8,53 +8,51 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.SubscribeEvent;
+
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class StickyResistanceEvents {
     private static final int SPEED_BOOST_DURATION = 60;
     private static final String SPEED_BOOST_END_TICK_TAG = "ForagersInsightStickyResistanceSpeedEndTick";
-    private static final UUID SPEED_BOOST_MODIFIER_UUID = UUID.fromString("8b341286-6da1-4a7d-a35b-4fb71d37d678");
     private static final AttributeModifier SPEED_BOOST_MODIFIER = new AttributeModifier(
-            SPEED_BOOST_MODIFIER_UUID,
-            "Sticky resistance speed boost",
+            Attributes.MOVEMENT_SPEED.getKey().location(),
             0.1D,
-            AttributeModifier.Operation.MULTIPLY_TOTAL
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
     );
 
     @SubscribeEvent
     public static void onMobEffectApplicable(MobEffectEvent.Applicable event) {
-        MobEffect incomingEffect = event.getEffectInstance().getEffect();
+        MobEffect incomingEffect = event.getEffectInstance().getEffect().value();
         if (incomingEffect != FIMobEffects.STUCK.get()) return;
-        if (!event.getEntity().hasEffect(FIMobEffects.STICKY_RESISTANCE.get())) return;
+        if (!event.getEntity().hasEffect(FIMobEffects.STICKY_RESISTANCE)) return;
 
         WaxedBoots.drainForStuckPrevention(event.getEntity());
-        if (event.getEntity().getEffect(FIMobEffects.STICKY_RESISTANCE.get()).getAmplifier() >= 1) {
+        if (event.getEntity().getEffect(FIMobEffects.STICKY_RESISTANCE).getAmplifier() >= 1) {
             applySpeedBoost(event.getEntity());
         }
-        event.setResult(Event.Result.DENY);
+        event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
     }
 
     @SubscribeEvent
     public static void onMobEffectAdded(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
-        MobEffect addedEffect = event.getEffectInstance().getEffect();
+        MobEffect addedEffect = event.getEffectInstance().getEffect().value();
         if (addedEffect != FIMobEffects.STICKY_RESISTANCE.get()) return;
-        if (!entity.hasEffect(FIMobEffects.STUCK.get())) return;
+        if (!entity.hasEffect(FIMobEffects.STUCK)) return;
 
-        entity.removeEffect(FIMobEffects.STUCK.get());
+        entity.removeEffect(FIMobEffects.STUCK);
         applySpeedBoost(entity);
     }
 
     @SubscribeEvent
-    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        LivingEntity entity = event.getEntity();
+    public static void onLivingTick(EntityTickEvent.Pre event) {
+        LivingEntity entity = event.getEntity().getControllingPassenger();
         if (entity.level().isClientSide()) return;
 
         long speedEndTick = entity.getPersistentData().getLong(SPEED_BOOST_END_TICK_TAG);
@@ -78,8 +76,8 @@ public class StickyResistanceEvents {
 
     private static void removeSpeedBoost(LivingEntity entity) {
         AttributeInstance movementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (movementSpeed == null || movementSpeed.getModifier(SPEED_BOOST_MODIFIER_UUID) == null) return;
+        if (movementSpeed == null || movementSpeed.getModifier(SPEED_BOOST_MODIFIER.id()) == null) return;
 
-        movementSpeed.removeModifier(SPEED_BOOST_MODIFIER_UUID);
+        movementSpeed.removeModifier( Attributes.MOVEMENT_SPEED.getKey().location());
     }
 }

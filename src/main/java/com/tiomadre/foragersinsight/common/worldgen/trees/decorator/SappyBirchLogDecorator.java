@@ -1,5 +1,6 @@
 package com.tiomadre.foragersinsight.common.worldgen.trees.decorator;
 
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FITreeDecoratorTypes;
 import com.tiomadre.foragersinsight.common.block.TinderConkBlock;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SappyBirchLogDecorator extends TreeDecorator {
-    public static final Codec<SappyBirchLogDecorator> CODEC = RecordCodecBuilder.create(
+    public static final MapCodec<SappyBirchLogDecorator> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Codec.FLOAT.fieldOf("probability").forGetter(d -> d.probability)
             ).apply(instance, SappyBirchLogDecorator::new));

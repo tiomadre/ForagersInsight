@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.worldgen.trees.decorator;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.tiomadre.foragersinsight.common.block.SpruceTipBlock;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
@@ -18,13 +19,15 @@ import java.util.List;
 import java.util.Set;
 
 public class BountifulSpruceTipDecorator extends TreeDecorator {
-    public static final Codec<BountifulSpruceTipDecorator> CODEC = RecordCodecBuilder.create(
+    private final int count;
+
+    public static final MapCodec<BountifulSpruceTipDecorator> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Codec.INT.fieldOf("count").forGetter(decorator -> decorator.count)
             ).apply(instance, BountifulSpruceTipDecorator::new)
     );
 
-    private final int count;
+
 
     public BountifulSpruceTipDecorator(int count) {
         this.count = count;

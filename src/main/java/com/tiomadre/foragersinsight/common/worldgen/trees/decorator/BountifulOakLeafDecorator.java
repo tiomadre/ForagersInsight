@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.worldgen.trees.decorator;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.tiomadre.foragersinsight.common.block.BountifulLeavesBlock;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BountifulOakLeafDecorator extends TreeDecorator {
-    public static final Codec<BountifulOakLeafDecorator> CODEC = RecordCodecBuilder.create(
+    public static final MapCodec<BountifulOakLeafDecorator> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Codec.INT.fieldOf("count").forGetter(decorator -> decorator.count)
             ).apply(instance, BountifulOakLeafDecorator::new));

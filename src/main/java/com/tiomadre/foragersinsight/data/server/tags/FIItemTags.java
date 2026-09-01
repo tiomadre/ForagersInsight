@@ -89,6 +89,9 @@ public class FIItemTags extends ItemTagsProvider {
         addOptionalTags(handbasketAllowedTag, "minecraft", "flowers", "saplings");
         handbasketAllowedTag.addTag(HANDBASKET_OTHER);
 
+        //Amadou cap
+        this.tag(ItemTags.DYEABLE).add(FIItems.AMADOU_CAP.get());
+
         // Mallet
         this.tag(FITags.ItemTag.MALLETS).add(FIItems.FLINT_MALLET.get(),FIItems.IRON_MALLET.get(),
         FIItems.GOLD_MALLET.get(),FIItems.DIAMOND_MALLET.get(),FIItems.NETHERITE_MALLET.get());

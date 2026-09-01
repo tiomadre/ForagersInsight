@@ -16,20 +16,20 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FIEvents {
     private static final Map<UUID, MobEffectInstance> ODOROUS_MILK_EFFECTS = new HashMap<>();
 
@@ -63,12 +63,12 @@ public class FIEvents {
     @SubscribeEvent
     public static void onMobTargetChange(LivingChangeTargetEvent event) {
         LivingEntity attacker = event.getEntity();
-        LivingEntity newTarget = event.getNewTarget();
+        LivingEntity newTarget = event.getNewAboutToBeSetTarget();
 
         if (!(attacker instanceof Monster monster)) return;
-        if (newTarget == null || !newTarget.hasEffect(FIMobEffects.ODOROUS.get())) return;
+        if (newTarget == null || !newTarget.hasEffect(FIMobEffects.ODOROUS)) return;
 
-        event.setNewTarget(null);
+        event.setNewAboutToBeSetTarget(null);
         monster.setTarget(null);
     }
     @SubscribeEvent
@@ -76,7 +76,7 @@ public class FIEvents {
         if (FIConfig.COMMON.milkRemovesOdorous.get()) return;
         if (!isMilk(event.getItem())) return;
 
-        MobEffectInstance odorous = event.getEntity().getEffect(FIMobEffects.ODOROUS.get());
+        MobEffectInstance odorous = event.getEntity().getEffect(FIMobEffects.ODOROUS);
         if (odorous == null) return;
 
         ODOROUS_MILK_EFFECTS.put(event.getEntity().getUUID(), new MobEffectInstance(odorous));
@@ -88,20 +88,20 @@ public class FIEvents {
         if (!isMilk(event.getItem())) return;
 
         MobEffectInstance odorous = ODOROUS_MILK_EFFECTS.remove(event.getEntity().getUUID());
-        if (odorous == null || event.getEntity().hasEffect(FIMobEffects.ODOROUS.get())) return;
+        if (odorous == null || event.getEntity().hasEffect(FIMobEffects.ODOROUS)) return;
 
         event.getEntity().addEffect(odorous);
     }
 
     private static boolean isMilk(ItemStack stack) {
-        return stack.is(Items.MILK_BUCKET) || stack.is(FITags.ItemTag.MILK);
+        return stack.is(Items.MILK_BUCKET) || stack.is(Tags.Items.DRINKS_MILK);
     }
     //Stuck Effect Logico
     @SubscribeEvent
-    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        LivingEntity entity = event.getEntity();
+    public static void onLivingTick(EntityTickEvent.Pre event) {
+        LivingEntity entity = event.getEntity().getControllingPassenger();
         WaxedBoots.tick(entity);
-        if (!entity.hasEffect(FIMobEffects.STUCK.get())) {
+        if (!entity.hasEffect(FIMobEffects.STUCK)) {
             StuckEffect.restoreMovementActions(entity);
             return;
         }
@@ -120,7 +120,7 @@ public class FIEvents {
     @SubscribeEvent
     public static void onXpChange(PlayerXpEvent.XpChange event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (!player.hasEffect(FIMobEffects.BLOOM.get())) return;
+        if (!player.hasEffect(FIMobEffects.BLOOM)) return;
 
         int amount = scaleAmount(event.getAmount(), 1.2f, 0.8f);
         event.setAmount(amount);
@@ -129,7 +129,7 @@ public class FIEvents {
     @SubscribeEvent
     public static void onXpLevelChange(PlayerXpEvent.LevelChange event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (!player.hasEffect(FIMobEffects.BLOOM.get())) return;
+        if (!player.hasEffect(FIMobEffects.BLOOM)) return;
 
         int levels = scaleAmount(event.getLevels(), 1.2f, 0.8f);
         event.setLevels(levels);

@@ -22,10 +22,10 @@ public class DiffuserBlockItem extends BlockItem {
         super(block, properties);
     }
 
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip,
+
+    public void appendHoverText(@NotNull ItemStack stack, TooltipContext tooltipContext, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
+        super.appendHoverText(stack, tooltipContext, tooltip, flag);
         Optional<FIDiffusingRecipes> scent = DiffuserBlockEntity.getScentFromItem(stack);
         if (scent.isPresent()) {
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.scent", scent.get().displayName())

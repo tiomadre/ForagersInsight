@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.worldgen.trees.decorator;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.common.block.WallMushroomBlock;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FITreeDecoratorTypes;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WallMushroomTreeDecorator extends TreeDecorator {
-    public static final Codec<WallMushroomTreeDecorator> CODEC = Codec.unit(WallMushroomTreeDecorator::new);
+    public static final MapCodec<WallMushroomTreeDecorator> CODEC = MapCodec.unit(WallMushroomTreeDecorator::new);
 
     @Override
     protected @NotNull TreeDecoratorType<?> type() {

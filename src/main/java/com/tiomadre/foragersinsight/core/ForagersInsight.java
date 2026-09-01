@@ -42,7 +42,7 @@ public class ForagersInsight {
 
 		REGISTRY_HELPER.register(modEventBus);
 		FIBoatTypes.register();
-		FIAdvancementCriteria.register();
+		FIAdvancements.TRIGGERS.register(modEventBus);
 		FIWoodTypes.register();
 		FIEnchantments.register(modEventBus);
 		FIBiomeFeatures.register(modEventBus);
