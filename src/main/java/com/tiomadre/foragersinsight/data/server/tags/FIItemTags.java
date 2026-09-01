@@ -48,14 +48,15 @@ public class FIItemTags extends ItemTagsProvider {
                 .forEach(foragersInsightItems::add);
 
         //Crops
-        this.tag(CROPS_APPLE).add(FIItems.APPLE_SLICE.get(), Items.APPLE);
-        this.tag(CROPS_POPPY_SEEDS).add(FIItems.POPPY_SEEDS.get());
-        this.tag(CROPS_ACORN).add(FIItems.BLACK_ACORN.get());
-        this.tag(CROPS_LILAC).add((FIItems.LILAC_BLOOM.get()), Items.LILAC);
-        this.tag(ROOTS).add(Items.CARROT, Items.BEETROOT, FIItems.DANDELION_ROOT.get());
-        this.tag(MUSHROOM).add(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM, FIItems.BLEWIT_MUSHROOM.get());
+        this.tag(FOODS_APPLE).add(FIItems.APPLE_SLICE.get(), Items.APPLE);
+        this.tag(FOODS_POPPY_SEEDS).add(FIItems.POPPY_SEEDS.get(), FIItems.POPPY_SEED_PASTE.get());
+        this.tag(FOODS_ACORN).add(FIItems.BLACK_ACORN.get(), FIItems.ACORN_MEAL.get());
+        this.tag(FOODS_LILAC).add((FIItems.LILAC_BLOOM.get()), Items.LILAC);
+        this.tag(FOODS_ROOTS).add(Items.CARROT, Items.BEETROOT, FIItems.DANDELION_ROOT.get());
+        this.tag(FOODS_MUSHROOM).add(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM, FIItems.BLEWIT_MUSHROOM.get());
+        this.tag(FOODS_COCOA).add(Items.COCOA_BEANS, FIItems.COCOA_POWDER.get());
 
-        this.tag(CROPS).addTags(CROPS_APPLE,CROPS_POPPY_SEEDS,CROPS_ACORN,ROOTS,MUSHROOM,CROPS_LILAC).add(FIItems.TINDER_CONK.get());
+        this.tag(FOODS).addTags(FOODS_APPLE,FOODS_POPPY_SEEDS,FOODS_ACORN,FOODS_ROOTS,FOODS_MUSHROOM,FOODS_LILAC).add(FIItems.TINDER_CONK.get());
         //Food
         this.tag(BLEWIT_STUFFING).addTags(SEEDS,NUTS,FOODS_VEGETABLE,FOODS_RAW_MEAT,FOODS_RAW_FISH);
 
@@ -63,9 +64,9 @@ public class FIItemTags extends ItemTagsProvider {
         this.tag(FOODS_RAW_MEAT).add(FIItems.RAW_RABBIT_LEG.get());
         this.tag(FOODS_COOKED_MEAT).add(FIItems.COOKED_RABBIT_LEG.get());
         this.tag(FOODS_FRUIT).add(FIItems.ROSE_HIP.get(), FIItems.ROSELLE_CALYX.get(), FIItems.APPLE_SLICE.get());
-        this.tag(FOODS_VEGETABLE).add(FIItems.SPRUCE_TIPS.get())
-                .addTag(ROOTS);
-        this.tag(FLOUR).add(FIItems.ACORN_MEAL.get(), FIItems.WHEAT_FLOUR.get());
+        this.tag(FOODS_VEGETABLE).add(FIItems.SPRUCE_TIPS.get(), FIItems.DANDELION_ROOT.get());
+        this.tag(FLOURS).add(FIItems.ACORN_MEAL.get(), FIItems.WHEAT_FLOUR.get());
+        this.tag(FLOURS_WHEAT).add(FIItems.WHEAT_FLOUR.get());
         this.tag(STRAW).add(ModItems.STRAW.get());
         this.tag(TREE_BARK).add(ModItems.TREE_BARK.get());
         this.tag(EGGS).add(Items.EGG);

@@ -15,20 +15,22 @@ public class FITags {
             public static final TagKey<Item> ICE = TagUtil.itemTag("c","ice");
             public static final TagKey<Item> NUTS = TagUtil.itemTag("c", "nuts");
             public static final TagKey<Item> NUTS_ACORN = TagUtil.itemTag("c", "nuts/acorn");
-            public static final TagKey<Item> FLOUR = TagUtil.itemTag("c", "flour");
+            public static final TagKey<Item> FLOURS = TagUtil.itemTag("c", "flours");
+            public static final TagKey<Item> FLOURS_WHEAT = TagUtil.itemTag("c", "flours/wheat");
             public static final TagKey<Item> STRAW = TagUtil.itemTag("c", "straw");
             public static final TagKey<Item> TREE_BARK = TagUtil.itemTag("c", "tree_bark");
             public static final TagKey<Item> WOLF_PREY = TagUtil.itemTag("c", "wolf_prey");
 
             //Mallet
             public static final TagKey<net.minecraft.world.item.Item> MALLETS = TagUtil.itemTag("c", "tools/mallets");
-            //Crops
-            public static final TagKey<net.minecraft.world.item.Item> CROPS_APPLE = TagUtil.itemTag("c", "crops/apple");
-            public static final TagKey<net.minecraft.world.item.Item> CROPS_POPPY_SEEDS = TagUtil.itemTag("c", "crops/poppy_seeds");
-            public static final TagKey<net.minecraft.world.item.Item> CROPS_ACORN = TagUtil.itemTag("c", "crops/acorn");
-            public static final TagKey<net.minecraft.world.item.Item> CROPS_LILAC = TagUtil.itemTag("c", "crops/lilac");
-            public static final TagKey<net.minecraft.world.item.Item> ROOTS = TagUtil.itemTag("c", "crops/root_vegetable");
-            public static final TagKey<net.minecraft.world.item.Item> MUSHROOM = TagUtil.itemTag("c", "crops/mushroom");
+            //Foods
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_APPLE = TagUtil.itemTag("c", "crops/apple");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_POPPY_SEEDS = TagUtil.itemTag("c", "foods/poppy_seeds");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_ACORN = TagUtil.itemTag("c", "foods/acorn");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_LILAC = TagUtil.itemTag("c", "foods/lilac");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_ROOTS = TagUtil.itemTag("c", "foods/root_vegetable");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_MUSHROOM = TagUtil.itemTag("c", "foods/mushroom");
+            public static final TagKey<net.minecraft.world.item.Item> FOODS_COCOA = TagUtil.itemTag("c", "foods/cocoa");
         //Food
         public static final TagKey<Item> BLEWIT_STUFFING = TagKey.create(Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(ForagersInsight.MOD_ID, "blewit_stuffing"));

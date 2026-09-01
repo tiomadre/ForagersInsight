@@ -9,7 +9,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -23,12 +22,12 @@ import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.registry.ModRecipeSerializers;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
-import vectorwing.farmersdelight.common.tag.ModTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
 import javax.annotation.Nullable;
 
 import static com.tiomadre.foragersinsight.core.registry.FIItems.*;
+import static net.neoforged.neoforge.common.Tags.Items.*;
 
 public class FICookingRecipes {
     public static final int FAST_COOKING = 100;      // 5 seconds
@@ -45,23 +44,23 @@ public class FICookingRecipes {
         //Comfort
         CookingPotRecipeBuilder.cookingPotRecipe(BLEWIT_BITES.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(BLEWIT_MUSHROOM.get())
-                .addIngredient(FITags.ItemTag.WHEAT)
+                .addIngredient(FITags.ItemTag.FLOURS_WHEAT)
                 .addIngredient(FITags.ItemTag.BLEWIT_STUFFING)
-                .addIngredient(FITags.ItemTag.WHEAT)
+                .addIngredient(FITags.ItemTag.FLOURS_WHEAT)
                 .addIngredient(BLEWIT_MUSHROOM.get())
                 .unlockedByAnyIngredient(BLEWIT_MUSHROOM.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(CARROT_POPPY_CHOWDER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
-                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
+                .addIngredient(FITags.ItemTag.FOODS_POPPY_SEEDS)
+                .addIngredient(FITags.ItemTag.FOODS_POPPY_SEEDS)
                 .addIngredient(Items.CARROT)
                 .addIngredient(SEED_BUTTER.get())
                 .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.CARROT)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(COD_AND_PUMPKIN_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(FITags.ItemTag.RAW_COD)
+                .addIngredient(CommonTags.Items.FOODS_RAW_COD)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
                 .addIngredient(SEED_BUTTER.get())
                 .addIngredient(ModItems.TOMATO.get())
@@ -71,7 +70,7 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(ROSE_HIP_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ROSE_HIP.get())
                 .addIngredient(ROSE_HIP.get())
-                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .addIngredient(DRINKS_MILK)
                 .unlockedByAnyIngredient(ROSE_HIP.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
@@ -85,8 +84,8 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(HEARTY_SPRUCE_PILAF.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(GREEN_SAUCE.get())
                 .addIngredient(ModItems.RICE.get())
-                .addIngredient(FITags.ItemTag.ACORN)
-                .addIngredient(FITags.ItemTag.ACORN)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
                 .addIngredient(ModItems.PUMPKIN_SLICE.get())
                 .addIngredient(SPRUCE_TIPS.get())
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get())
@@ -94,8 +93,8 @@ public class FICookingRecipes {
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(BLACK_FOREST_MUFFIN.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ACORN_DOUGH.get())
-                .addIngredient(FITags.ItemTag.COCOA)
-                .addIngredient(FITags.ItemTag.COCOA)
+                .addIngredient(FITags.ItemTag.FOODS_COCOA)
+                .addIngredient(FITags.ItemTag.FOODS_COCOA)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(BLACK_ACORN.get(), Items.COCOA_BEANS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -103,23 +102,23 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(RED_VELVET_CUPCAKE.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ModItems.WHEAT_DOUGH.get())
                 .addIngredient(Items.BEETROOT)
-                .addIngredient(FITags.ItemTag.COCOA)
+                .addIngredient(FITags.ItemTag.FOODS_COCOA)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.BEETROOT, Items.COCOA_BEANS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(POPPY_SEED_BAGEL.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(FITags.ItemTag.DOUGH)
-                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
-                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
-                .addIngredient(FITags.ItemTag.POPPY_SEEDS)
+                .addIngredient(FOODS_DOUGH)
+                .addIngredient(FITags.ItemTag.FOODS_POPPY_SEEDS)
+                .addIngredient(FITags.ItemTag.FOODS_POPPY_SEEDS)
+                .addIngredient(FITags.ItemTag.FOODS_POPPY_SEEDS)
                 .unlockedByAnyIngredient(POPPY_SEEDS.get(), Items.WHEAT)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(LILAC_TEACAKE.get(), 2, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ModItems.WHEAT_DOUGH.get())
-                .addIngredient(FITags.ItemTag.LILAC)
-                .addIngredient(FITags.ItemTag.LILAC)
+                .addIngredient(FITags.ItemTag.FOODS_LILAC)
+                .addIngredient(FITags.ItemTag.FOODS_LILAC)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.BEETROOT, Items.COCOA_BEANS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -127,18 +126,18 @@ public class FICookingRecipes {
         //Nourishment
         CookingPotRecipeBuilder.cookingPotRecipe(ACORN_NOODLES.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(ACORN_DOUGH.get())
-                .addIngredient(FITags.ItemTag.ACORN)
-                .addIngredient(FITags.ItemTag.ACORN)
-                .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
+                .addIngredient(DRINKS_MILK)
                 .unlockedByAnyIngredient(BLACK_ACORN.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(GLAZED_PORKCHOP_AND_ACORN_GRITS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Ingredient.of(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get()))
                 .addIngredient(Items.PORKCHOP)
-                .addIngredient(FITags.ItemTag.ACORN)
-                .addIngredient(FITags.ItemTag.ACORN)
-                .addIngredient(FITags.ItemTag.MILK)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
+                .addIngredient(FITags.ItemTag.FOODS_ACORN)
+                .addIngredient(DRINKS_MILK)
                 .addIngredient(SPRUCE_TIPS.get())
                 .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -164,17 +163,17 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(SYRUP_TOAST_STACKS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Ingredient.of(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get()))
                 .addIngredient(Items.BREAD)
-                .addIngredient(FITags.ItemTag.EGGS)
-              .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+                .addIngredient(EGGS)
+              .addIngredient(DRINKS_MILK)
                 .unlockedByAnyIngredient(BIRCH_SYRUP_BOTTLE.get(), BIRCH_SYRUP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(WOODLAND_PASTA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(GREEN_SAUCE.get())
                 .addIngredient(ModItems.RAW_PASTA.get())
-                .addIngredient(Ingredient.of(FITags.ItemTag.MUSHROOM))
-                .addIngredient(Ingredient.of(FITags.ItemTag.MUSHROOM))
-                .addIngredient(Ingredient.of(FITags.ItemTag.MUSHROOM))
+                .addIngredient(Ingredient.of(FITags.ItemTag.FOODS_MUSHROOM))
+                .addIngredient(Ingredient.of(FITags.ItemTag.FOODS_MUSHROOM))
+                .addIngredient(Ingredient.of(FITags.ItemTag.FOODS_MUSHROOM))
                 .unlockedByAnyIngredient(SPRUCE_TIPS.get(), BLEWIT_MUSHROOM.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
@@ -191,7 +190,7 @@ public class FICookingRecipes {
                 .addIngredient(ModItems.RAW_PASTA.get())
                 .addIngredient(SEED_BUTTER.get())
                 .addIngredient(ModItems.TOMATO_SAUCE.get())
-              .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+              .addIngredient(DRINKS_MILK)
                 .unlockedByAnyIngredient(SEED_BUTTER.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
@@ -214,7 +213,7 @@ public class FICookingRecipes {
         CookingPotRecipeBuilder.cookingPotRecipe(DANDELION_ROOT_TEA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(DANDELION_ROOT.get())
                 .addIngredient(DANDELION_ROOT.get())
-              .addIngredient(FITags.ItemTag.MILK_BOTTLE)
+              .addIngredient(DRINKS_MILK)
                 .unlockedByAnyIngredient(DANDELION_ROOT.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .save(output);
@@ -234,10 +233,10 @@ public class FICookingRecipes {
                 .save(output);
         //Seed Milk
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_MILK_BUCKET.get(), 1, MODERATE_COOKING, MODERATE_EXP, Items.BUCKET)
-                .addIngredient(FITags.ItemTag.SEEDS)
-                .addIngredient(FITags.ItemTag.SEEDS)
-                .addIngredient(FITags.ItemTag.SEEDS)
-                .addIngredient(FITags.ItemTag.SEEDS)
+                .addIngredient(SEEDS)
+                .addIngredient(SEEDS)
+                .addIngredient(SEEDS)
+                .addIngredient(SEEDS)
                 .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .save(output);
@@ -265,7 +264,7 @@ public class FICookingRecipes {
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(APPLE_DIPPERS.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Items.SUGAR)
-                .addIngredient(FITags.ItemTag.APPLE)
+                .addIngredient(FITags.ItemTag.FOODS_APPLE)
                 .addIngredient(Ingredient.of(Items.HONEY_BOTTLE, BIRCH_SYRUP_BOTTLE.get()))
                 .unlockedByAnyIngredient(Items.APPLE)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -284,9 +283,9 @@ public class FICookingRecipes {
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(SEED_BUTTER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(FITags.ItemTag.SEEDS)
-                .addIngredient(FITags.ItemTag.SEEDS)
-                .addIngredient(FITags.ItemTag.SEEDS)
+                .addIngredient(SEEDS)
+                .addIngredient(SEEDS)
+                .addIngredient(SEEDS)
                 .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .save(output);
@@ -302,17 +301,17 @@ public class FICookingRecipes {
         // Override FD Recipes
         //Hot Cocoa
         CookingPotRecipeBuilder.cookingPotRecipe(ModItems.HOT_COCOA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                          .addIngredient(FITags.ItemTag.MILK)
+                          .addIngredient(DRINKS_MILK)
                         .addIngredient(Items.SUGAR)
-                        .addIngredient(FITags.ItemTag.COCOA)
-                        .addIngredient(FITags.ItemTag.COCOA)
+                        .addIngredient(FITags.ItemTag.FOODS_COCOA)
+                        .addIngredient(FITags.ItemTag.FOODS_COCOA)
                         .unlockedByAnyIngredient(Items.COCOA_BEANS)
                         .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                         .save(output, ResourceLocation.fromNamespaceAndPath("farmersdelight", "hot_cocoa"));
         //Apple Cider
        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.APPLE_CIDER.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                        .addIngredient(FITags.ItemTag.APPLE)
-                        .addIngredient(FITags.ItemTag.APPLE)
+                        .addIngredient(FITags.ItemTag.FOODS_APPLE)
+                        .addIngredient(FITags.ItemTag.FOODS_APPLE)
                         .addIngredient(Items.SUGAR)
                         .unlockedByAnyIngredient(Items.APPLE)
                         .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)

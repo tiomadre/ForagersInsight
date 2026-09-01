@@ -55,9 +55,9 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
 
         //Dough
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_DOUGH.get(), 3)
-                .requires(FITags.ItemTag.ACORN)
-                .requires(FITags.ItemTag.ACORN)
-                .requires(FITags.ItemTag.ACORN)
+                .requires(FITags.ItemTag.FOODS_ACORN)
+                .requires(FITags.ItemTag.FOODS_ACORN)
+                .requires(FITags.ItemTag.FOODS_ACORN)
                 .requires(Ingredient.fromValues(Stream.of(
                         new Ingredient.TagValue(Tags.Items.EGGS),
                         new Ingredient.ItemValue(new net.minecraft.world.item.ItemStack(Items.WATER_BUCKET))
@@ -67,19 +67,19 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         //DISHES
         //Comfort
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FORAGERS_GRANOLA.get())
-                .requires(FIItems.ROSE_HIP.get()).requires(FITags.ItemTag.APPLE).requires(FIItems.ROSE_HIP.get())
-                .requires(FITags.ItemTag.ACORN).requires(BOWL)
+                .requires(FIItems.ROSE_HIP.get()).requires(FITags.ItemTag.FOODS_APPLE).requires(FIItems.ROSE_HIP.get())
+                .requires(FITags.ItemTag.FOODS_ACORN).requires(BOWL)
                 .unlockedBy("has_rose_hip", has(FIItems.ROSE_HIP.get())).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CREAMY_SALMON_BAGEL.get(), 2)
-                .requires(FITags.ItemTag.MILK).requires(POPPY_SEED_BAGEL.get()).requires(CommonTags.Items.FOODS_COOKED_SALMON)
+                .requires(Tags.Items.DRINKS_MILK).requires(POPPY_SEED_BAGEL.get()).requires(CommonTags.Items.FOODS_COOKED_SALMON)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, JAMMY_BREAKFAST_SANDWICH.get())
                 .requires(SWEET_BERRIES).requires(POPPY_SEED_BAGEL.get()).requires(ModItems.BACON.get())
                 .requires(ModItems.FRIED_EGG.get()).requires(SWEET_BERRIES)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, RABBIT_STEW)
-                .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.ROOTS)
-                .requires(FITags.ItemTag.MUSHROOM).requires(BOWL)
+                .requires(BAKED_POTATO).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.FOODS_ROOTS)
+                .requires(FITags.ItemTag.FOODS_MUSHROOM).requires(BOWL)
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(ForagersInsight.MOD_ID, "stew_from_rabbit_leg"));
         //Nourishment
@@ -89,7 +89,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(KELP).requires(KELP).requires(BEETROOT).requires(BEETROOT).requires(BOWL)
                 .unlockedBy("has_kelp", has(KELP)).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MEADOW_MEDLEY.get())
-                .requires(FITags.ItemTag.APPLE).requires(FITags.ItemTag.POPPY_SEEDS).requires(FITags.ItemTag.POPPY_SEEDS)
+                .requires(FITags.ItemTag.FOODS_APPLE).requires(FITags.ItemTag.FOODS_POPPY_SEEDS).requires(FITags.ItemTag.FOODS_POPPY_SEEDS)
                 .requires(DANDELION).requires(DANDELION)
                 .requires(BOWL)
                 .unlockedBy("has_poppy_seed", has(POPPY_SEEDS.get())).save(output);
@@ -109,8 +109,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(SWEET_BERRIES)
                 .unlockedBy("has_sweet_berries", has(SWEET_BERRIES)).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SWEET_ROASTED_RABBIT_LEG.get(), 2)
-                .requires(COOKED_RABBIT_LEG.get()).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.POPPY_SEEDS)
-                .requires(FITags.ItemTag.POPPY_SEEDS) .requires(Ingredient.of(HONEY_BOTTLE, BIRCH_SYRUP_BOTTLE.get()))
+                .requires(COOKED_RABBIT_LEG.get()).requires(COOKED_RABBIT_LEG.get()).requires(FITags.ItemTag.FOODS_POPPY_SEEDS)
+                .requires(FITags.ItemTag.FOODS_POPPY_SEEDS) .requires(Ingredient.of(HONEY_BOTTLE, BIRCH_SYRUP_BOTTLE.get()))
                 .unlockedBy("has_raw_rabbit_leg", has(RAW_RABBIT_LEG.get())).save(output);
 
         //Seed Milk
@@ -330,7 +330,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ACORN_CARROT_CAKE_ITEM.get())
                 .requires(ACORN_DOUGH.get()).requires(CARROT).requires(CARROT)
                 .requires(SUGAR).requires(Tags.Items.EGGS).requires(SUGAR)
-                .requires(FITags.ItemTag.MILK).requires(FITags.ItemTag.MILK).requires(FITags.ItemTag.MILK)
+                .requires(Tags.Items.DRINKS_MILK).requires(Tags.Items.DRINKS_MILK).requires(Tags.Items.DRINKS_MILK)
                 .unlockedBy("has_black_acorn", has(BLACK_ACORN.get())).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, RAINBOW_SANDWICH_ITEM.get())
                 .pattern("BTC")
@@ -340,7 +340,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .define('T', Ingredient.of(ModItems.TOMATO.get(), BEETROOT))
                 .define('C', Ingredient.of(CARROT, DANDELION_ROOT.get(), POTATO))
                 .define('K', Ingredient.of(ModItems.CABBAGE_LEAF.get(), KELP))
-                .define('V', FITags.ItemTag.VEGETABLES)
+                .define('V', Tags.Items.FOODS_VEGETABLE)
                 .unlockedBy("has_bread", has(BREAD))
                 .save(output);
         //OTHER
@@ -547,15 +547,15 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         //Bread
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.BREAD)
                 .pattern("WWW")
-                .define('W', FITags.ItemTag.WHEAT)
+                .define('W', FITags.ItemTag.FLOURS_WHEAT)
                 .unlockedBy("has_wheat", has(Items.WHEAT))
                 .save(output, ResourceLocation.fromNamespaceAndPath("minecraft", "bread"));
 
         //Cookie
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.COOKIE, 8)
-                .requires(FITags.ItemTag.WHEAT)
-                .requires(FITags.ItemTag.COCOA)
-                .requires(FITags.ItemTag.WHEAT)
+                .requires(FITags.ItemTag.FLOURS_WHEAT)
+                .requires(FITags.ItemTag.FOODS_COCOA)
+                .requires(FITags.ItemTag.FLOURS_WHEAT)
                 .unlockedBy("has_cocoa", has(COCOA_BEANS))
                 .save(output, ResourceLocation.fromNamespaceAndPath("minecraft", "cookie"));
         //Cake
@@ -563,10 +563,10 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .pattern("MMM")
                 .pattern("SES")
                 .pattern("WWW")
-                .define('M', FITags.ItemTag.MILK)
+                .define('M', Tags.Items.DRINKS_MILK)
                 .define('S', Items.SUGAR)
                 .define('E', Tags.Items.EGGS)
-                .define('W', FITags.ItemTag.WHEAT)
+                .define('W', FITags.ItemTag.FLOURS_WHEAT)
                 .unlockedBy("has_egg", has(Items.EGG))
                 .save(output, ResourceLocation.fromNamespaceAndPath("minecraft", "cake"));
         //Item Frame
@@ -584,7 +584,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                 .requires(Ingredient.of(Items.RED_MUSHROOM, FIItems.BLEWIT_MUSHROOM.get()))
                 .requires(ItemTags.SMALL_FLOWERS)
                 .requires(BOWL)
-                .unlockedBy("has_mushroom", has(FITags.ItemTag.MUSHROOM))
+                .unlockedBy("has_mushroom", has(FITags.ItemTag.FOODS_MUSHROOM))
                 .save(output, ResourceLocation.fromNamespaceAndPath("minecraft", "suspicious_stew"));
 
     }
@@ -593,7 +593,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, vectorwing.farmersdelight.common.registry.ModItems.WHEAT_DOUGH.get(), 3)
                         .pattern("EW ")
                         .pattern("WW ")
-                        .define('W', FITags.ItemTag.WHEAT)
+                        .define('W', FITags.ItemTag.FLOURS_WHEAT)
                         .define('E', Ingredient.fromValues(java.util.stream.Stream.of(
                                 new Ingredient.TagValue(Tags.Items.EGGS),
                                 new Ingredient.ItemValue(new net.minecraft.world.item.ItemStack(Items.WATER_BUCKET)))))
@@ -603,23 +603,23 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PIE_CRUST.get())
                         .pattern("WMW")
                         .pattern(" W ")
-                        .define('W', FITags.ItemTag.WHEAT)
-                        .define('M', FITags.ItemTag.MILK)
+                        .define('W', FITags.ItemTag.FLOURS_WHEAT)
+                        .define('M', Tags.Items.DRINKS_MILK)
                         .unlockedBy("has_wheat", has(Items.WHEAT))
                         .save(output);
         // Honey Cookie (shapeless)
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.HONEY_COOKIE.get(), 8)
-                        .requires(FITags.ItemTag.WHEAT)
-                        .requires(FITags.ItemTag.WHEAT)
+                        .requires(FITags.ItemTag.FLOURS_WHEAT)
+                        .requires(FITags.ItemTag.FLOURS_WHEAT)
                         .requires(HONEY_BOTTLE)
                         .unlockedBy("has_honey", has(HONEY_BOTTLE))
                         .save(output);
 
 // Sweet Berry Cookie (shapeless)
       ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.SWEET_BERRY_COOKIE.get(), 8)
-                        .requires(FITags.ItemTag.WHEAT)
+                        .requires(FITags.ItemTag.FLOURS_WHEAT)
                         .requires(SWEET_BERRIES)
-                        .requires(FITags.ItemTag.WHEAT)
+                        .requires(FITags.ItemTag.FLOURS_WHEAT)
                         .unlockedBy("has_sweet_berries", has(SWEET_BERRIES))
                         .save(output);
 // Chocolate Pie
@@ -627,8 +627,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                         .pattern("CCC")
                         .pattern("MMM")
                         .pattern("SPS")
-                        .define('C', FITags.ItemTag.COCOA)
-                        .define('M', FITags.ItemTag.MILK)
+                        .define('C', FITags.ItemTag.FOODS_COCOA)
+                        .define('M', Tags.Items.DRINKS_MILK)
                         .define('S', SUGAR)
                         .define('P', ModItems.PIE_CRUST.get())
                         .unlockedBy("has_cocoa_beans", has(COCOA_BEANS))
@@ -638,8 +638,8 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
                         .pattern("WWW")
                         .pattern("AAA")
                         .pattern("SCS")
-                        .define('W', FITags.ItemTag.WHEAT)
-                        .define('A', FITags.ItemTag.APPLE)
+                        .define('W', FITags.ItemTag.FLOURS_WHEAT)
+                        .define('A', FITags.ItemTag.FOODS_APPLE)
                         .define('S', SUGAR)
                         .define('C', ModItems.PIE_CRUST.get())
                         .unlockedBy("has_apple", has(APPLE))
@@ -648,9 +648,9 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
 
     private void cookie(Supplier<Item> cookie, Supplier<? extends ItemLike> ingred, RecipeOutput output) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, cookie.get(), 8)
-                .requires(FITags.ItemTag.WHEAT)
+                .requires(FITags.ItemTag.FLOURS_WHEAT)
                 .requires(ingred.get())
-                .requires(FITags.ItemTag.WHEAT)
+                .requires(FITags.ItemTag.FLOURS_WHEAT)
                 .unlockedBy("has_ing", has(ingred.get()))
                 .save(output);
     }

@@ -4,9 +4,11 @@ import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import com.tiomadre.foragersinsight.data.server.tags.FITags;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 
@@ -15,26 +17,26 @@ import static net.minecraft.world.item.crafting.Ingredient.of;
 public class FICrushandCutRecipes {
     public static void buildRecipes(RecipeOutput output) {
         //Chopping Recipes (Axe)
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIBlocks.LILAC_LOG.get()), of(FITags.ItemTag.TOOLS_AXES), FIBlocks.STRIPPED_LILAC_LOG.get(), 1).addResult(ModItems.TREE_BARK.get()).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIBlocks.LILAC_LOG.get()), of(ItemTags.AXES), FIBlocks.STRIPPED_LILAC_LOG.get(), 1).addResult(ModItems.TREE_BARK.get()).save(output);
 
         //Cutting Recipes (Knife)
         //Crop Cuts
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.APPLE), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.APPLE_SLICE.get(), 2).addResultWithChance(FIItems.APPLE_SLICE.get(),0.1f).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.LILAC), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.LILAC_BLOOM.get(), 1).addResultWithChance(FIItems.LILAC_BLOOM.get(),0.1f).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.ROSE_BUSH), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.1f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 2).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ROSELLE_BUSH_ITEM.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.ROSELLE_CALYX.get(), 1).addResultWithChance(FIItems.ROSELLE_CALYX.get(),0.1f).addResultWithChance(FIItems.ROSELLE_PETALS.get(), 1f, 2).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.DANDELION), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.DANDELION_ROOT.get(), 1).addResultWithChance(FIItems.DANDELION_ROOT.get(),0.1f).addResultWithChance(Items.YELLOW_DYE,1f, 2).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.POPPY), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.POPPY_SEEDS.get(), 1).addResultWithChance(FIItems.POPPY_SEEDS.get(),0.1f).addResultWithChance(Items.RED_DYE,1f, 2).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIBlocks.BLEWIT_MUSHROOM_COLONY.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.BLEWIT_MUSHROOM.get(), 5).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.APPLE), of(CommonTags.Items.TOOLS_KNIFE), FIItems.APPLE_SLICE.get(), 2).addResultWithChance(FIItems.APPLE_SLICE.get(),0.1f).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.LILAC), of(CommonTags.Items.TOOLS_KNIFE), FIItems.LILAC_BLOOM.get(), 1).addResultWithChance(FIItems.LILAC_BLOOM.get(),0.1f).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.ROSE_BUSH), of(CommonTags.Items.TOOLS_KNIFE), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.1f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 2).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ROSELLE_BUSH_ITEM.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.ROSELLE_CALYX.get(), 1).addResultWithChance(FIItems.ROSELLE_CALYX.get(),0.1f).addResultWithChance(FIItems.ROSELLE_PETALS.get(), 1f, 2).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.DANDELION), of(CommonTags.Items.TOOLS_KNIFE), FIItems.DANDELION_ROOT.get(), 1).addResultWithChance(FIItems.DANDELION_ROOT.get(),0.1f).addResultWithChance(Items.YELLOW_DYE,1f, 2).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.POPPY), of(CommonTags.Items.TOOLS_KNIFE), FIItems.POPPY_SEEDS.get(), 1).addResultWithChance(FIItems.POPPY_SEEDS.get(),0.1f).addResultWithChance(Items.RED_DYE,1f, 2).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIBlocks.BLEWIT_MUSHROOM_COLONY.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.BLEWIT_MUSHROOM.get(), 5).save(output);
 
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.TALL_BEACH_ROSE_BUSH_ITEM.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.1f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 2).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.STOUT_BEACH_ROSE_BUSH_ITEM.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.075f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 1).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.TALL_BEACH_ROSE_BUSH_ITEM.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.1f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 2).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.STOUT_BEACH_ROSE_BUSH_ITEM.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.ROSE_HIP.get(), 1).addResultWithChance(FIItems.ROSE_HIP.get(),0.075f).addResultWithChance(FIItems.ROSE_PETALS.get(), 1f, 1).save(output);
         //Meat Cuts
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.RABBIT), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.RAW_RABBIT_LEG.get(), 2).addResultWithChance(Items.RABBIT_FOOT,0.3f).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.COOKED_RABBIT), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.COOKED_RABBIT_LEG.get(), 2).addResultWithChance(Items.RABBIT_FOOT,0.3f).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.RABBIT), of(CommonTags.Items.TOOLS_KNIFE), FIItems.RAW_RABBIT_LEG.get(), 2).addResultWithChance(Items.RABBIT_FOOT,0.3f).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(Items.COOKED_RABBIT), of(CommonTags.Items.TOOLS_KNIFE), FIItems.COOKED_RABBIT_LEG.get(), 2).addResultWithChance(Items.RABBIT_FOOT,0.3f).save(output);
         //Cake Slices + Feast
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ACORN_CARROT_CAKE_ITEM.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.SLICE_OF_ACORN_CARROT_CAKE.get(), 7).save(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.RAINBOW_SANDWICH_ITEM.get()), of(FITags.ItemTag.TOOLS_KNIVES), FIItems.SLICE_OF_RAINBOW_SANDWICH.get(), 4).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.ACORN_CARROT_CAKE_ITEM.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.SLICE_OF_ACORN_CARROT_CAKE.get(), 7).save(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(of(FIItems.RAINBOW_SANDWICH_ITEM.get()), of(CommonTags.Items.TOOLS_KNIFE), FIItems.SLICE_OF_RAINBOW_SANDWICH.get(), 4).save(output);
 
         //Crushing Recipes (Mallet)
         //Blocks
