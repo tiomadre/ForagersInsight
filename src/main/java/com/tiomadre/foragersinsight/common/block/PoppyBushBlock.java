@@ -24,7 +24,7 @@ public class PoppyBushBlock extends CropBlock implements BonemealableBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
-    @Override
+
     public @NotNull BlockState getPlant(@NotNull BlockGetter level, @NotNull BlockPos pos) {
         return FIBlocks.POPPY_BUSH.get().defaultBlockState();
     }

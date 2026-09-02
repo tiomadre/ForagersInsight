@@ -1,5 +1,6 @@
 package com.tiomadre.foragersinsight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
+    public static final MapCodec<SpruceTipBlock> CODEC = simpleCodec(SpruceTipBlock::new);
+
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D),
@@ -39,6 +42,11 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     public SpruceTipBlock(@NotNull Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, MAX_AGE));
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -91,7 +99,6 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
         }
     }
 
-    @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         int age = state.getValue(AGE);
         if (age >= MAX_AGE) {
@@ -105,8 +112,7 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state,
-                                         boolean isClient) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 

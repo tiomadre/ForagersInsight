@@ -22,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 
 import java.util.function.Supplier;
 
@@ -55,10 +56,9 @@ public class SliceableCakeBlock extends Block {
         return this.defaultBlockState();
     }
 
-    @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
-        if (heldStack.is(FITags.ItemTag.TOOLS_KNIVES)) {
+        if (heldStack.is(CommonTags.Items.TOOLS_KNIFE)) {
             return cutSlice(level, pos, state, player);
         }
         return InteractionResult.PASS;

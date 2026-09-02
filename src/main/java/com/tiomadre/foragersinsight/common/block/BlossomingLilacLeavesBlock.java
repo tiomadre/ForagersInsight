@@ -34,11 +34,13 @@ public class BlossomingLilacLeavesBlock extends LeavesBlock implements Bonemeala
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         BlockPos below = pos.below();
         BlockState belowState = level.getBlockState(below);
         return belowState.isAir() && !belowState.is(FIBlocks.HANGING_LILAC_LEAVES.get());
     }
+
+
 
     @Override
     public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {

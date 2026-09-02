@@ -17,7 +17,7 @@ public class GhostPipeWallTorchBlock extends WallTorchBlock {
     private final Supplier<SimpleParticleType> flameParticle;
 
     public GhostPipeWallTorchBlock(Properties properties, Supplier<SimpleParticleType> flameParticle) {
-        super(properties, ParticleTypes.FLAME);
+        super(ParticleTypes.FLAME, properties);
         this.flameParticle = flameParticle;
     }
     @Override

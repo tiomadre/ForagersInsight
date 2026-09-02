@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
@@ -23,8 +25,8 @@ public class WallMushroomColonyBlock extends MushroomColonyBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final VoxelShape[][] SHAPES_BY_FACING_AND_AGE = WMCShapes();
 
-    public WallMushroomColonyBlock(Properties properties, Supplier<Item> mushroomType) {
-        super(properties, mushroomType);
+    public WallMushroomColonyBlock(Properties properties, Holder<Item> mushroomType) {
+        super(mushroomType, properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(COLONY_AGE, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -36,7 +38,7 @@ public class WallMushroomColonyBlock extends MushroomColonyBlock {
         BlockPos supportPos = pos.relative(facing.getOpposite());
         BlockState supportState = level.getBlockState(supportPos);
         return WallMushroomBlock.canGrowColonyOn(supportState, facing)
-                || supportState.canSustainPlant(level, supportPos, facing, this);
+                || supportState.canSustainPlant(level, supportPos, facing, level.getBlockState(pos)).isTrue();
     }
 
     @Override
@@ -49,9 +51,9 @@ public class WallMushroomColonyBlock extends MushroomColonyBlock {
         int age = state.getValue(COLONY_AGE);
         Direction facing = state.getValue(FACING);
         BlockState supportState = level.getBlockState(pos.relative(facing.getOpposite()));
-        if (age < getMaxAge() && supportState.is(ModTags.Blocks.MUSHROOM_COLONY_GROWABLE_ON) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(4) == 0)) {
+        if (age < getMaxAge() && supportState.is(ModTags.Blocks.MUSHROOM_COLONY_GROWABLE_ON) && CommonHooks.canCropGrow(level, pos, state, random.nextInt(4) == 0)) {
             level.setBlock(pos, state.setValue(COLONY_AGE, age + 1), 2);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
+            CommonHooks.fireCropGrowPost(level, pos, state);
         }
     }
 

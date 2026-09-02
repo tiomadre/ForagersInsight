@@ -32,7 +32,7 @@ public class WallMushroomBlock extends MushroomBlock {
     private final Supplier<Block> colonyBlock;
 
     public WallMushroomBlock(Properties props, Supplier<Block> colonyBlock) {
-        super(props, null);
+        super(null, props);
         this.colonyBlock = colonyBlock;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
@@ -58,7 +58,7 @@ public class WallMushroomBlock extends MushroomBlock {
             return true;
         }
 
-        return level.getRawBrightness(pos, 0) < PLACING_LIGHT_LEVEL && supportState.canSustainPlant(level, supportPos, facing, this);
+        return level.getRawBrightness(pos, 0) < PLACING_LIGHT_LEVEL && supportState.canSustainPlant(level, supportPos, facing,  level.getBlockState(pos)).isTrue();
     }
 
     @Override

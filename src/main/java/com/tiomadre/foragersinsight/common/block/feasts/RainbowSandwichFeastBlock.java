@@ -26,6 +26,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.tag.CommonTags;
+
 import java.util.function.Supplier;
 
 public class RainbowSandwichFeastBlock extends Block {
@@ -90,9 +92,9 @@ public class RainbowSandwichFeastBlock extends Block {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        if (!player.getItemInHand(hand).is(FITags.ItemTag.TOOLS_KNIVES)) {
+        if (!player.getItemInHand(hand).is(CommonTags.Items.TOOLS_KNIFE)) {
             return InteractionResult.PASS;
         }
 

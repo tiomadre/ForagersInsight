@@ -1,5 +1,6 @@
 package com.tiomadre.foragersinsight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.common.block.entity.TapperBlockEntity;
 import com.tiomadre.foragersinsight.core.registry.*;
 import net.minecraft.core.BlockPos;
@@ -45,6 +46,8 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
     public static final BooleanProperty HAS_TAPPER = BooleanProperty.create("has_tapper");
     public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 4);
     public static final BooleanProperty ENCHANTED = BooleanProperty.create("enchanted");
+    public static final MapCodec<TapperBlock> CODEC = simpleCodec(TapperBlock::new);
+
     // hit box
     private static final VoxelShape NORTH_SHAPE = Stream.of(
             Block.box(7.5, 12, 0, 8.5, 15, 6),
@@ -66,7 +69,12 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
                 .setValue(FILL, 0)
                 .setValue(ENCHANTED, false));
     }
+
     @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
     public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull BlockState state) {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof TapperBlockEntity tapper) {
@@ -117,7 +125,7 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
                 .setValue(FACING, face)
                 .setValue(HAS_TAPPER, true)
                 .setValue(FILL, 0)
-                .setValue(ENCHANTED, context.getItemInHand().getEnchantmentLevel(Enchantments.FIRE_ASPECT) > 0);
+                .setValue(ENCHANTED, context.getItemInHand().getEnchantmentLevel(context.getLevel().holderOrThrow(Enchantments.FIRE_ASPECT)) > 0);
     }
 
     @Override
@@ -178,7 +186,7 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
             level.playLocalSound(x, y, z, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 0.6F, 0.0001F, false);
         }
     }
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         //collect with empty bucket
@@ -195,9 +203,6 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
                 level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.9F, 0.9F);
                 level.playSound(null, pos, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 1.1F, 0.0001F);
                 if (!player.getAbilities().instabuild) held.shrink(1);
-                if (player instanceof ServerPlayer serverPlayer) {
-                    FIAdvancementCriteria.BIRCH_PLEASE.trigger(serverPlayer);
-                }
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

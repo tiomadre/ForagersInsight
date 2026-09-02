@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class TinderConkBlock extends Block implements BonemealableBlock {
@@ -60,7 +61,7 @@ public class TinderConkBlock extends Block implements BonemealableBlock {
         BlockPos supportPos = pos.relative(facing.getOpposite());
         return canGrowOn(level.getBlockState(supportPos));
     }
-    @Override
+
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(AGE) != MAX_AGE) {
             return InteractionResult.PASS;
@@ -94,7 +95,7 @@ public class TinderConkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
@@ -110,9 +111,9 @@ public class TinderConkBlock extends Block implements BonemealableBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (state.getValue(AGE) < MAX_AGE && random.nextInt(4) == 0 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, true)) {
+        if (state.getValue(AGE) < MAX_AGE && random.nextInt(4) == 0 && CommonHooks.canCropGrow(level, pos, state, true)) {
             grow(level, pos, state);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
+            CommonHooks.fireCropGrowPost(level, pos, state);
         }
     }
 

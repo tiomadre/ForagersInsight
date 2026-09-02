@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -84,11 +85,11 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
     }
 
 
-    @Override
+
     public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         int age = pState.getValue(AGE);
         boolean isFullGrown = age == MAX_AGE;
-        boolean playerHasShears = pPlayer.getItemInHand(pHand).canPerformAction(ToolActions.SHEARS_HARVEST);
+        boolean playerHasShears = pPlayer.getItemInHand(pHand).canPerformAction(ItemAbilities.SHEARS_HARVEST);
 
         if (!isFullGrown && pPlayer.getItemInHand(pHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
@@ -104,7 +105,7 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
 
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+        return this.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
 
@@ -116,7 +117,7 @@ public class BountifulLeavesBlock extends LeavesBlock implements BonemealableBlo
 
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader pLevel, @NotNull BlockPos pPos, @NotNull BlockState state, boolean pIsClient) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader pLevel, @NotNull BlockPos pPos, @NotNull BlockState state) {
         return this.getAge(state) != MAX_AGE;
     }
 

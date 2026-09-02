@@ -1,5 +1,6 @@
 package com.tiomadre.foragersinsight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import com.tiomadre.foragersinsight.core.registry.FIParticleTypes;
 import net.minecraft.core.BlockPos;
@@ -14,9 +15,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SkunkCabbageBlock extends BushBlock {
     private static final int ODOROUS_DURATION_TICKS = 250;
+    public static final MapCodec<SkunkCabbageBlock> CODEC = simpleCodec(SkunkCabbageBlock::new);
 
     public SkunkCabbageBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -26,7 +33,7 @@ public class SkunkCabbageBlock extends BushBlock {
             return;
         }
 
-        livingEntity.addEffect(new MobEffectInstance(FIMobEffects.ODOROUS.get(), ODOROUS_DURATION_TICKS, 0, false, true, true));
+        livingEntity.addEffect(new MobEffectInstance(FIMobEffects.ODOROUS, ODOROUS_DURATION_TICKS, 0, false, true, true));
 
         if (level instanceof ServerLevel serverLevel) {
             RandomSource random = serverLevel.random;

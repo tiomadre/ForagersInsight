@@ -60,11 +60,11 @@ public class SapSplotchBlock extends FoliageMatBlock {
             return;
         }
 
-        livingEntity.addEffect(new MobEffectInstance(FIMobEffects.STUCK.get(), STUCK_DURATION, 0, false, true, true));
+        livingEntity.addEffect(new MobEffectInstance(FIMobEffects.STUCK, STUCK_DURATION, 0, false, true, true));
         level.destroyBlock(pos, false);
     }
 
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand,
                                           @NotNull BlockHitResult hit) {

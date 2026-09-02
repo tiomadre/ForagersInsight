@@ -51,7 +51,7 @@ public class SapTrapBlockEntity extends BlockEntity {
         }
     }
 
-    @Override
+    @z
     public void load(@NotNull CompoundTag tag) {
         super.load(tag);
         this.bait = tag.contains(TAG_BAIT) ? ItemStack.of(tag.getCompound(TAG_BAIT)) : ItemStack.EMPTY;

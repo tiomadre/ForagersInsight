@@ -42,10 +42,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.neoforged.neoforge.common.world.chunk.TicketHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape SHAPE = Shapes.or(
@@ -68,7 +69,7 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new DiffuserBlockEntity(pos, state);
     }
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         BlockEntity entity = level.getBlockEntity(pos);
@@ -79,7 +80,7 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
         if (!level.isClientSide) {
 
             if (player instanceof ServerPlayer serverPlayer) {
-                NetworkHooks.openScreen(serverPlayer, diffuser, pos);
+                player.openMenu(diffuser, pos);
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
@@ -91,11 +92,13 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
         super.setPlacedBy(level, pos, state, placer, stack);
         if (!level.isClientSide) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof DiffuserBlockEntity diffuser && stack.hasTag()) {
-                if (diffuser.applyItemData(stack.getTag())) {
-                    level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
-                }
-            }
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
+
+//            if (entity instanceof DiffuserBlockEntity diffuser && stack.has) {
+//                if (diffuser.applyItemData(stack.getTags().Z)) {
+//
+//                }
+//            }
         }
     }
     @Override
@@ -159,6 +162,12 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
             return java.util.Collections.singletonList(diffuser.getDiffuserStack());
         }
         return super.getDrops(state, params);
+    }
+
+    private static <E extends BlockEntity, A extends BlockEntity> @Nullable BlockEntityTicker<A> createTickerHelper(
+            BlockEntityType<A> type, BlockEntityType<E> checkedType, BlockEntityTicker<? super E> ticker
+    ) {
+        return checkedType == type ? (BlockEntityTicker<A>) ticker : null;
     }
 
     @Nullable

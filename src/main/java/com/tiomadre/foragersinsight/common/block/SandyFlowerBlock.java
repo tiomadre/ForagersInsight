@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.BlockGetter;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class SandyFlowerBlock extends FlowerBlock {
-    public SandyFlowerBlock(Supplier<MobEffect> effect, int effectDuration, Properties properties) {
+    public SandyFlowerBlock(Holder<MobEffect> effect, int effectDuration, Properties properties) {
         super(effect, effectDuration, properties);
     }
 

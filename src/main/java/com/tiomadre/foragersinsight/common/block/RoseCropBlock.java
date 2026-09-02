@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
@@ -69,10 +70,10 @@ public class RoseCropBlock extends CropBlock implements BonemealableBlock {
             return;
         }
 
-        float growthSpeed = getGrowthSpeed(this, level, pos);
-        if (ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt((int) (25 / growthSpeed)) == 0)) {
+        float growthSpeed = getGrowthSpeed(state, level, pos);
+        if (CommonHooks.canCropGrow(level, pos, state, rand.nextInt((int) (25 / growthSpeed)) == 0)) {
             this.mature(level, state, pos);
-            ForgeHooks.onCropsGrowPost(level, pos, state);
+            CommonHooks.fireCropGrowPost(level, pos, state);
         }
     }
 

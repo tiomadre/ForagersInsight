@@ -89,7 +89,7 @@ public class SuspiciousLitterBlock extends CarpetBlock implements EntityBlock {
         return SHAPE;
     }
 
-    @Override
+
     public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level,
                                   @NotNull BlockPos pos, @NotNull PathComputationType type) {
         return false;
@@ -100,7 +100,7 @@ public class SuspiciousLitterBlock extends CarpetBlock implements EntityBlock {
         return Collections.emptyList();
     }
 
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level,
                                           @NotNull BlockPos pos, @NotNull Player player,
                                           @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {

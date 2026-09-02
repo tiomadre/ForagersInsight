@@ -68,14 +68,14 @@ public class SapTrapBlock extends FoliageMatBlock implements EntityBlock {
                                         @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
-    @Override
+
     public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip.foragersinsight.sap_trap.baits").withStyle(net.minecraft.ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.foragersinsight.sap_trap.potent_baits").withStyle(net.minecraft.ChatFormatting.DARK_GREEN));
     }
 
-    @Override
+
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
@@ -130,7 +130,7 @@ public class SapTrapBlock extends FoliageMatBlock implements EntityBlock {
         boolean baitWasEaten = false;
         for (LivingEntity livingEntity : level.getEntitiesOfClass(LivingEntity.class, trapArea)) {
             int duration = getStuckDuration(level, pos, livingEntity);
-            livingEntity.addEffect(new MobEffectInstance(FIMobEffects.STUCK.get(), duration, 0, false, true, true));
+            livingEntity.addEffect(new MobEffectInstance(FIMobEffects.STUCK, duration, 0, false, true, true));
             baitWasEaten = baitWasEaten || isEatingBait(level, pos, livingEntity);
         }
 
