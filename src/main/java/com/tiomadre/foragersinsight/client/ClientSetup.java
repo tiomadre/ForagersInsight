@@ -25,14 +25,15 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 
-@Mod.EventBusSubscriber(
-        modid = ForagersInsight.MOD_ID,
-        bus = Bus.MOD,
-        value = Dist.CLIENT
-)
+//@Mod.EventBusSubscriber(
+//        modid = ForagersInsight.MOD_ID,
+//        bus = Bus.MOD,
+//        value = Dist.CLIENT
+//)
 public class ClientSetup {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
@@ -50,9 +51,9 @@ public class ClientSetup {
             // "full" handbasket property
             ItemProperties.register(
                     FIItems.HANDBASKET.get(),
-                    new ResourceLocation(ForagersInsight.MOD_ID, "full"),
+                    ResourceLocation.fromNamespaceAndPath(ForagersInsight.MOD_ID, "full"),
                     (stack, world, entity, seed) ->
-                            stack.getCapability(ForgeCapabilities.ITEM_HANDLER)
+                            stack.getCapability(Capabilities.ItemHandler.ITEM)
                                     .map(handler -> {
                                         for (int i = 0; i < handler.getSlots(); i++) {
                                             if (handler.getStackInSlot(i).isEmpty()) {
@@ -142,7 +143,7 @@ public class ClientSetup {
 
                     return (red << 16) | (green << 8) | blue;
                 },
-                Blocks.GRASS,
+                Blocks.SHORT_GRASS,
                 Blocks.TALL_GRASS
         );
     }

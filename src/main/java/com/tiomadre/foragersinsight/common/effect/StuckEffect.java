@@ -19,7 +19,7 @@ public class StuckEffect extends MobEffect {
         stopMovementActions(entity);
     }
 
-    @Override
+ 
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }

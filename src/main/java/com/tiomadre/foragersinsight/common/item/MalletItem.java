@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.item;
 
 import com.tiomadre.foragersinsight.common.utility.TextUtils;
+import com.tiomadre.foragersinsight.core.registry.FIAdvancements;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -92,7 +94,7 @@ public class MalletItem extends PickaxeItem {
     }
 
     public MalletItem(Tier tier, int attackDamageModifier, float attackSpeedModifier, Properties properties) {
-        super(tier, attackDamageModifier, attackSpeedModifier, properties);
+        super(tier, properties);
     }
 
     @Override
@@ -105,7 +107,7 @@ public class MalletItem extends PickaxeItem {
         Block block = state.getBlock();
         Player player = context.getPlayer();
         ItemStack stack = context.getItemInHand();
-        int mendingLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, stack);
+        int mendingLevel = EnchantmentHelper.getItemEnchantmentLevel(context.getLevel().holderOrThrow(Enchantments.MENDING), stack);
 
         // Mending (Repair Interactions)
         if (block == Blocks.ANVIL || block == Blocks.CHIPPED_ANVIL || block == Blocks.DAMAGED_ANVIL) {
@@ -115,7 +117,7 @@ public class MalletItem extends PickaxeItem {
                             TextUtils.getTranslation("tool_interaction.mallet.anvil_no_repairs"), true);
                     return InteractionResult.FAIL;
                 }
-                stack.hurtAndBreak(20, player, p -> p.broadcastBreakEvent(context.getHand()));
+                stack.hurtAndBreak(20, player, LivingEntity.getSlotForHand(context.getHand()));
                 BlockState repairedState = (block == Blocks.CHIPPED_ANVIL)
                         ? Blocks.ANVIL.defaultBlockState()
                         : Blocks.CHIPPED_ANVIL.defaultBlockState();
@@ -124,7 +126,7 @@ public class MalletItem extends PickaxeItem {
                 level.setBlock(pos, repairedState, 3);
                 level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
                 if (player instanceof ServerPlayer serverPlayer) {
-                    FIAdvancementCriteria.UH_FIX_IT.trigger(serverPlayer);
+                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -134,7 +136,7 @@ public class MalletItem extends PickaxeItem {
         if (player != null && mendingLevel > 0) {
             Block repairedBlock = CRACKED_TO_NORMAL_BLOCKS.get(block);
             if (repairedBlock != null) {
-                stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+                stack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(context.getHand()));
                 level.setBlock(pos, repairedBlock.defaultBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
                 return InteractionResult.SUCCESS;
@@ -149,9 +151,10 @@ public class MalletItem extends PickaxeItem {
             }
             if (player == null) return InteractionResult.PASS;
 
-            stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+            stack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(context.getHand()));
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
             dropItemInFront(level, player, new ItemStack(Items.SUGAR, 2));
+
             level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
             return InteractionResult.SUCCESS;
         }
@@ -171,7 +174,7 @@ public class MalletItem extends PickaxeItem {
         if (transformedBlock != null) {
             if (player == null) return InteractionResult.PASS;
 
-            stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+            stack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(context.getHand()));
 
             float hardness = state.getDestroySpeed(level, pos);
             int baseTicks = (int) (hardness * 1.5f * 20f);
@@ -182,9 +185,9 @@ public class MalletItem extends PickaxeItem {
             level.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
 
             if (player instanceof ServerPlayer serverPlayer) {
-                FIAdvancementCriteria.WILL_IT_CRUSH.trigger(serverPlayer);
+                FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                 if (CRACK_IT_SOURCE_BLOCKS.contains(block)) {
-                    FIAdvancementCriteria.CRACK_IT.trigger(serverPlayer);
+                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                 }
             }
             return InteractionResult.SUCCESS;
@@ -193,7 +196,7 @@ public class MalletItem extends PickaxeItem {
         if (crushResult != null) {
             if (player == null) return InteractionResult.PASS;
 
-            stack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(context.getHand()));
+            stack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(context.getHand()));
 
             if (block == Blocks.PUMPKIN || block == Blocks.MELON || block == Blocks.CARVED_PUMPKIN || block == Blocks.COCOA) {
                 level.playSound(null, pos, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
@@ -212,15 +215,16 @@ public class MalletItem extends PickaxeItem {
             int baseAmount = crushResult.baseAmount();
 
             // Fortune (increase crush drops)
-            int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, stack);
+            int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(level.holderOrThrow(Enchantments.FORTUNE), stack);
             int extraAmount = calculateFortuneBonus(fortuneLevel, level.getRandom());
             int totalAmount = baseAmount + extraAmount;
 
             dropItemInFront(level, player, new ItemStack(resultItem, totalAmount));
+
             if (player instanceof ServerPlayer serverPlayer) {
-                FIAdvancementCriteria.WILL_IT_CRUSH.trigger(serverPlayer);
+                FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                 if (CRACK_IT_SOURCE_BLOCKS.contains(block)) {
-                    FIAdvancementCriteria.CRACK_IT.trigger(serverPlayer);
+                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                 }
             }
             return InteractionResult.SUCCESS;

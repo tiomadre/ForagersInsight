@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.gui;
 
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
+import com.tiomadre.foragersinsight.core.registry.FIAdvancements;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIMenuTypes;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
@@ -221,11 +222,10 @@ public class DiffuserMenu extends AbstractContainerMenu {
                         level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F,
                                 level.random.nextFloat() * 0.4F + 0.8F);
                         if (player instanceof ServerPlayer serverPlayer) {
-                            FIAdvancementCriteria.SCENTSATIONAL.trigger(serverPlayer);
+                            FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                             diffuser.getActiveScent()
                                     .filter(scent -> scent.usesEffect(FIMobEffects.ODOROUS.get()))
-                                    .ifPresent(scent -> FIAdvancementCriteria.STINKY_SITUATION.trigger(serverPlayer));
-                        }
+                                    .ifPresent(scent -> FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer));                        }
                     } }
             });
             return true;

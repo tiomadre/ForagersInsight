@@ -61,7 +61,7 @@ public class OdorousEffect extends MobEffect {
     }
 
     private static int getCounterbalanceDrainTicks(LivingEntity entity) {
-        if (entity.hasEffect(FIMobEffects.BLOOM.get())) {
+        if (entity.hasEffect(FIMobEffects.BLOOM)) {
             return BLOOM_EXTRA_DRAIN_TICKS;
         }
 

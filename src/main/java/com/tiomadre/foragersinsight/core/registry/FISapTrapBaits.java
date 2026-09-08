@@ -76,7 +76,7 @@ public final class FISapTrapBaits {
         return new Bait(ingredient, target::isInstance, durationMultiplier, searchRange);
     }
 
-    private record Bait(Ingredient ingredient, Predicate<LivingEntity> target, float stuckDurationMultiplier,
+    public record Bait(Ingredient ingredient, Predicate<LivingEntity> target, float stuckDurationMultiplier,
                         int searchRange) {
     }
 }

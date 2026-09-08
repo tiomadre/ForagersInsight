@@ -11,15 +11,16 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 
 
-@Mod.EventBusSubscriber(
-        modid = ForagersInsight.MOD_ID,
-        value = Dist.CLIENT,
-        bus = Mod.EventBusSubscriber.Bus.FORGE
-)
+//@Mod.EventBusSubscriber(
+//        modid = ForagersInsight.MOD_ID,
+//        value = Dist.CLIENT,
+//        bus = Mod.EventBusSubscriber.Bus.FORGE
+//)
 public final class StropAnimation {
 
     private StropAnimation() {
@@ -45,7 +46,7 @@ public final class StropAnimation {
         float partialTick = event.getPartialTick();
 
         float animationTime =
-                offHand.getUseDuration() -
+                offHand.getUseDuration(player) -
                         player.getUseItemRemainingTicks() +
                         partialTick;
 
@@ -87,7 +88,7 @@ public final class StropAnimation {
         }
 
         float animationTime =
-                offHand.getUseDuration() -
+                offHand.getUseDuration(event.getEntity()) -
                         player.getUseItemRemainingTicks() +
                         event.getPartialTick();
         float rub = Mth.sin(animationTime * 1.8F);

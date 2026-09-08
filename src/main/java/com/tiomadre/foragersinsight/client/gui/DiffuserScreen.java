@@ -113,7 +113,7 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
 
     @Override
     public void render(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(gui);
+        this.renderBackground(gui, mouseX, mouseY, partialTicks);
         super.render(gui, mouseX, mouseY, partialTicks);
         this.renderTooltip(gui, mouseX, mouseY);
         this.renderScentTooltip(gui, mouseX, mouseY);

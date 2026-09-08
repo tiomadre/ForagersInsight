@@ -14,7 +14,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,11 +22,15 @@ import java.util.UUID;
 import java.util.List;
 
 
-public class AmadouCapItem extends Item implements DyeableLeatherItem, Equipable {
-    private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("5f5b1524-4079-4e20-a4c9-c7d1842f3f2a");
+public class AmadouCapItem extends Item implements Equipable {
+
+    public static int CAP_COLOR = 0xD39E85;
+    private int rgb;
+
+
     private static final Multimap<Attribute, AttributeModifier> HEAD_ATTRIBUTE_MODIFIERS =
-            ImmutableMultimap.of(Attributes.ARMOR, new AttributeModifier(ARMOR_MODIFIER_UUID, "Armor modifier",
-                    1.0D, AttributeModifier.Operation.ADDITION));
+            ImmutableMultimap.of(Attributes.ARMOR.value(), new AttributeModifier(Attributes.ARMOR.getKey().location(),
+                    1.0D, AttributeModifier.Operation.ADD_VALUE));
 
     public AmadouCapItem(Properties properties) {
         super(properties);
@@ -49,7 +52,7 @@ public class AmadouCapItem extends Item implements DyeableLeatherItem, Equipable
     }
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.HEAD ? HEAD_ATTRIBUTE_MODIFIERS : super.getDefaultAttributeModifiers(slot);
+        return slot == EquipmentSlot.HEAD ? HEAD_ATTRIBUTE_MODIFIERS : super.getDefaultAttributeModifiers();
     }
 
     public static int applyLuckOfTheTrees(Player player, int enchantmentLevel) {
@@ -59,7 +62,6 @@ public class AmadouCapItem extends Item implements DyeableLeatherItem, Equipable
         return enchantmentLevel;
     }
 
-    @Override
     public int getColor(ItemStack stack) {
         return this.hasCustomColor(stack) ? lesscolor(DyeableLeatherItem.super.getColor(stack)) : 0xFFFFFF;
     }
@@ -82,7 +84,6 @@ public class AmadouCapItem extends Item implements DyeableLeatherItem, Equipable
     }
 
 
-    @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
