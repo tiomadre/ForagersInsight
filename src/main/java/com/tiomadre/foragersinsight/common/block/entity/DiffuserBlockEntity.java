@@ -36,6 +36,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -70,6 +71,23 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
     private int effectTickCounter;
     private Enhancement activeEnhancement = Enhancement.NONE;
     private int respirationLevel;
+    private final ItemStackHandler inventory = new ItemStackHandler(SLOT_COUNT) {
+        @Override
+        protected int getStackLimit(int slot, ItemStack stack) {
+            if (slot == 1 || slot == 2 || slot == 3 ||  slot == 4) {
+                return Math.max(64, stack.getMaxStackSize());
+            }
+            return super.getStackLimit(slot, stack);
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if(!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    };;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -251,6 +269,15 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
         return Component.translatable("container.foragersinsight.diffuser");
     }
 
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return items;
+    }
+
+    @Override
+    protected void setItems(NonNullList<ItemStack> nonNullList) {
+        this.items = items;
+    }
 
 
     @Override
@@ -277,13 +304,6 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
         }
         return true;
     }
-
-    @Override
-    protected NonNullList<ItemStack> getItems() {
-        return items;
-    }
-
-
 
     @Override
     public @NotNull ItemStack getItem(int pSlot) {
@@ -343,12 +363,6 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
         }
         this.setChanged();
     }
-
-    @Override
-    protected void setItems(NonNullList<ItemStack> nonNullList) {
-        this.items = items;
-    }
-
     public void extinguish() {
         boolean wasLit = this.isLit();
         boolean hadActiveScent = this.activeScent != null;
@@ -381,7 +395,7 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
         if (stack == null) {
             return 0;
         }
-        CompoundTag tag = stack.;
+        CompoundTag tag = stack.getTag();
         if (tag == null) {
             return 0;
         }
@@ -419,8 +433,8 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag,registries);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(tag, this.items, registries);
         for (int slot = 0; slot < INPUT_SLOT_COUNT; slot++) {
@@ -444,7 +458,7 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
         this.activeScent = null;
         this.activeEnhancement = Enhancement.NONE;
         if (tag.contains(TAG_ACTIVE_SCENT, CompoundTag.TAG_STRING)) {
-            FIDiffusingRecipes.byId(ResourceLocation.fromNamespaceAndPath("foragersinsight",tag.getString(TAG_ACTIVE_SCENT)))
+            FIDiffusingRecipes.byId(new ResourceLocation(tag.getString(TAG_ACTIVE_SCENT)))
                     .ifPresent(scent -> this.activeScent = scent);
         } else if (tag.contains(TAG_ACTIVE_SCENT_ID, CompoundTag.TAG_INT)) {
             FIDiffusingRecipes.byNetworkId(tag.getInt(TAG_ACTIVE_SCENT_ID)).ifPresent(scent -> this.activeScent = scent);
@@ -464,8 +478,8 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
 
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag,registries);
         ContainerHelper.saveAllItems(tag, this.items, registries);
         tag.putInt(TAG_LIT_TIME, this.litTime);
         tag.putInt(TAG_LIT_DURATION, this.litDuration);
@@ -591,7 +605,7 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
             return false;
         }
         if (tag.contains(TAG_ACTIVE_SCENT, CompoundTag.TAG_STRING)) {
-            FIDiffusingRecipes.byId(ResourceLocation.fromNamespaceAndPath("foragersinsight", tag.getString(TAG_ACTIVE_SCENT)))
+            FIDiffusingRecipes.byId(new ResourceLocation(tag.getString(TAG_ACTIVE_SCENT)))
                     .ifPresent(scent -> this.activeScent = scent);
         } else if (tag.contains(TAG_ACTIVE_SCENT_ID, CompoundTag.TAG_INT)) {
             FIDiffusingRecipes.byNetworkId(tag.getInt(TAG_ACTIVE_SCENT_ID)).ifPresent(scent -> this.activeScent = scent);
@@ -646,7 +660,7 @@ public class DiffuserBlockEntity extends BaseContainerBlockEntity {
     private static ListTag saveActiveIngredients(List<ItemStack> ingredients) {
         ListTag list = new ListTag();
         for (ItemStack stack : ingredients) {
-            list.add(stack.save(this.dataAccess.));
+            list.add(stack.save(new CompoundTag()));
         }
         return list;
     }

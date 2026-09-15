@@ -212,7 +212,7 @@ public class TapperBlock extends HorizontalDirectionalBlock implements EntityBlo
 
     private static int getFireAspectLevel(Level level, BlockPos pos) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        return blockEntity instanceof TapperBlockEntity tapper ? tapper.getFireAspectLevel() : 0;
+        return blockEntity instanceof TapperBlockEntity tapper ? tapper.getFireAspectLevel(level) : 0;
     }
 
     @Override

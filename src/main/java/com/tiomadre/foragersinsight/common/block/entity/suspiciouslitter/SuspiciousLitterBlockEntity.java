@@ -5,6 +5,7 @@ import com.tiomadre.foragersinsight.common.item.AmadouCapItem;
 import com.tiomadre.foragersinsight.core.other.FarmingXPEvents;
 import com.tiomadre.foragersinsight.core.registry.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,7 +47,12 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
 
     private UUID brusher;
     private int brushTicks;
-    private ItemStack revealedItem = ItemStack.EMPTY;
+    private ItemStackHandler revealedItem =  new ItemStackHandler(1) {
+        @Override
+        protected int getStackLimit(int slot, ItemStack stack) {
+            return 1;
+        }
+    };
     private int luckOfTheTreesLevel;
     private long cooldownEndsAtTick;
     private long brushResetsAtTick;
@@ -110,9 +117,9 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
         if (blockEntity.brushTicks >= BRUSH_DURATION_TICKS) {
             serverLevel.playSound(null, pos, SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.BLOCKS, 1.0F, 0.5F);
             serverLevel.playSound(null, pos, SoundEvents.ROOTED_DIRT_BREAK, SoundSource.BLOCKS, 0.75F, 2.0F);
-            ItemStack drop = blockEntity.revealedItem.isEmpty()
+            ItemStack drop = blockEntity.revealedItem.getStackInSlot(1).isEmpty()
                     ? SuspiciousLitterLoot.chooseLoot(serverLevel, pos, state)
-                    : blockEntity.revealedItem;
+                    : blockEntity.revealedItem.getStackInSlot(1);
             SuspiciousLitterLoot.dropLoot(serverLevel, pos, state, drop);
             if (player instanceof ServerPlayer serverPlayer) {
                 FarmingXPEvents.awardSuspiciousLitterXP(serverLevel, serverPlayer, state, drop);
@@ -142,7 +149,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     private void resetProgress() {
         clearBrusher();
         this.brushTicks = 0;
-        this.revealedItem = ItemStack.EMPTY;
+        revealedItem.setStackInSlot(1,ItemStack.EMPTY);
         this.cooldownEndsAtTick = 0L;
         this.brushResetsAtTick = 0L;
         sync();
@@ -182,13 +189,13 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     private static int getLuckOfTheTreesLevel(Player player, ItemStack brushStack) {
-        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(FIEnchantments.LUCK_OF_THE_TREES.get(), brushStack);
+        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(FIEnchantments.LUCK_OF_THE_TREES, brushStack);
         return AmadouCapItem.applyLuckOfTheTrees(player, enchantmentLevel);
     }
 
     private void resolveRevealedItem(ServerLevel level, BlockState state) {
-        if (this.revealedItem.isEmpty()) {
-            this.revealedItem = SuspiciousLitterLoot.chooseLoot(level, this.worldPosition, state, this.luckOfTheTreesLevel);
+        if (this.revealedItem.getStackInSlot(1).isEmpty()) {
+            this.revealedItem.setStackInSlot(1, SuspiciousLitterLoot.chooseLoot(level, this.worldPosition, state, this.luckOfTheTreesLevel));
             sync();
         }
     }
@@ -221,12 +228,12 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     public ItemStack getRevealedItem() {
-        return revealedItem;
+        return revealedItem.getStackInSlot(1);
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
         if (this.brusher != null) {
             tag.putUUID(NBT_BRUSHER, this.brusher);
         }
@@ -234,31 +241,30 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
         tag.putInt(NBT_LUCK_OF_THE_TREES, this.luckOfTheTreesLevel);
         tag.putLong(NBT_COOLDOWN_ENDS, this.cooldownEndsAtTick);
         tag.putLong(NBT_RESET_AT, this.brushResetsAtTick);
-        if (!this.revealedItem.isEmpty()) {
-            tag.put(NBT_REVEALED_ITEM, this.revealedItem.save(new CompoundTag()));
+        if (!this.revealedItem.getStackInSlot(1).isEmpty()) {
+            tag.put(NBT_REVEALED_ITEM, revealedItem.serializeNBT(registries));
         }
     }
 
     @Override
-    public void load(@NotNull CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
         this.brusher = tag.hasUUID(NBT_BRUSHER) ? tag.getUUID(NBT_BRUSHER) : null;
         this.brushTicks = tag.getInt(NBT_BRUSH_TICKS);
         this.luckOfTheTreesLevel = tag.getInt(NBT_LUCK_OF_THE_TREES);
         this.cooldownEndsAtTick = tag.getLong(NBT_COOLDOWN_ENDS);
         this.brushResetsAtTick = tag.getLong(NBT_RESET_AT);
         if (tag.contains(NBT_REVEALED_ITEM)) {
-            this.revealedItem = ItemStack.of(tag.getCompound(NBT_REVEALED_ITEM));
+            this.revealedItem.setStackInSlot(1,ItemStack.parseOptional(registries, tag.getCompound(NBT_REVEALED_ITEM)));
         } else {
-            this.revealedItem = ItemStack.EMPTY;
+            this.revealedItem.setStackInSlot(1,ItemStack.EMPTY);
             this.luckOfTheTreesLevel = 0;
         }
     }
 
-        public CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
-        return tag;
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
     }
 
     @Override
@@ -267,7 +273,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     private static double getReachDistanceSqr(Player player) {
-        double reachDistance = player.getAttributeValue(ForgeMod.BLOCK_REACH.get());
+        double reachDistance = player.blockInteractionRange();
         if (reachDistance <= 0.0D) {
             reachDistance = 5.0D;
         }
