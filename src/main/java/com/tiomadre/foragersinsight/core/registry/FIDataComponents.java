@@ -22,7 +22,6 @@ public class FIDataComponents {
     //public static final DeferredHolder<DataComponentType<?>, DataComponentType<>>
 
 
-    //this prob needs to be rewritten oopsie
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> BOOTWAXED =
             DATA_COMPONENTS.registerComponentType("bootwaxed", builder ->
                     builder.persistent(Codec.BOOL)

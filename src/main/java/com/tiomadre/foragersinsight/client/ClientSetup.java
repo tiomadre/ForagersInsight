@@ -23,47 +23,45 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 
-//@Mod.EventBusSubscriber(
-//        modid = ForagersInsight.MOD_ID,
-//        bus = Bus.MOD,
-//        value = Dist.CLIENT
-//)
+
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class ClientSetup {
+
+    @SubscribeEvent
+    public static void registerMenuScreens(RegisterMenuScreensEvent event) {
+        event.register(FIMenuTypes.HANDBASKET_MENU.get(), HandbasketScreen::new);
+        event.register(FIMenuTypes.DIFFUSER_MENU.get(), DiffuserScreen::new);
+    }
+
+
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            //container screen
-            MenuScreens.register(
-                    FIMenuTypes.HANDBASKET_MENU.get(),
-                    HandbasketScreen::new
-            );
-            //diffuser screen
-            MenuScreens.register(
-                    FIMenuTypes.DIFFUSER_MENU.get(),
-                    DiffuserScreen::new
-            );
+
+            //I don't think I need this anymore but keeping here just in case
             // "full" handbasket property
-            ItemProperties.register(
-                    FIItems.HANDBASKET.get(),
-                    ResourceLocation.fromNamespaceAndPath(ForagersInsight.MOD_ID, "full"),
-                    (stack, world, entity, seed) ->
-                            stack.getCapability(Capabilities.ItemHandler.ITEM)
-                                    .map(handler -> {
-                                        for (int i = 0; i < handler.getSlots(); i++) {
-                                            if (handler.getStackInSlot(i).isEmpty()) {
-                                                return 0.0F;
-                                            }
-                                        }
-                                        return 1.0F;
-                                    })
-                                    .orElse(0.0F)
-            );
+//            ItemProperties.register(
+//                    FIItems.HANDBASKET.get(),
+//                    ResourceLocation.fromNamespaceAndPath(ForagersInsight.MOD_ID, "full"),
+//                    (stack, world, entity, seed) ->
+//                            stack.getCapability(Capabilities.ItemHandler.ITEM)
+//                                    .map(handler -> {
+//                                        for (int i = 0; i < handler.getSlots(); i++) {
+//                                            if (handler.getStackInSlot(i).isEmpty()) {
+//                                                return 0.0F;
+//                                            }
+//                                        }
+//                                        return 1.0F;
+//                                    })
+//                                    .orElse(0.0F)
+//            );
 
             ItemBlockRenderTypes.setRenderLayer(
                     FIBlocks.SUSPICIOUS_LEAF_LITTER.get(),
@@ -153,13 +151,15 @@ public class ClientSetup {
         event.register(
                 (stack, tintIndex) -> {
                     SuspiciousLitterBlock.FoliageType foliageType = SuspiciousLitterBlock.FoliageType.OAK;
-                    if (stack.hasTag() && stack.getTag().contains("BlockStateTag") && stack.getTag().getCompound("BlockStateTag").contains("foliage")) {
-                        String foliageName = stack.getTag().getCompound("BlockStateTag").getString("foliage");
-                        try {
-                            foliageType = SuspiciousLitterBlock.FoliageType.valueOf(foliageName.toUpperCase());
-                        } catch (IllegalArgumentException ignored) {
-                        }
-                    }
+
+
+//                    if (stack.hasTag() && stack.getTag().contains("BlockStateTag") && stack.getTag().getCompound("BlockStateTag").contains("foliage")) {
+//                        String foliageName = stack.getTag().getCompound("BlockStateTag").getString("foliage");
+//                        try {
+//                            foliageType = SuspiciousLitterBlock.FoliageType.valueOf(foliageName.toUpperCase());
+//                        } catch (IllegalArgumentException ignored) {
+//                        }
+//                    }
 
                     return switch (foliageType) {
                         case SPRUCE -> FoliageColor.getEvergreenColor();
@@ -169,6 +169,7 @@ public class ClientSetup {
                 },
                 FIBlocks.SUSPICIOUS_LEAF_LITTER.get()
         );
+
         event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), FIBlocks.WOODLAND_FERN.get());
     }
 }

@@ -14,12 +14,26 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class SapTrapBlockEntity extends BlockEntity {
-    private static final String TAG_BAIT = "Bait";
-    private ItemStack bait = ItemStack.EMPTY;
+public class SapTrapBlockEntity extends BlockEntity { ;
+    public final ItemStackHandler bait = new ItemStackHandler(1) {
+        @Override
+        protected int getStackLimit(int slot, ItemStack stack) {
+            return 1;
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if(!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    };
+
 
 
     public SapTrapBlockEntity(BlockPos pos, BlockState state) {
@@ -27,24 +41,20 @@ public class SapTrapBlockEntity extends BlockEntity {
     }
 
     public ItemStack getBait() {
-        return this.bait;
+        return this.bait.getStackInSlot(1);
     }
 
     public boolean hasBait() {
-        return !this.bait.isEmpty();
+        return !this.bait.getStackInSlot(1).isEmpty();
     }
 
     public void setBait(ItemStack bait) {
-        this.bait = bait.copyWithCount(1);
-        this.setChanged();
-        if (this.level != null) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
-        }
+       this.bait.setStackInSlot(1,bait);
     }
 
     public ItemStack removeBait() {
-        ItemStack removed = this.bait;
-        this.bait = ItemStack.EMPTY;
+        ItemStack removed = this.bait.getStackInSlot(1);
+        this.bait.setStackInSlot(1, ItemStack.EMPTY);
         this.setChanged();
         return removed;
     }
@@ -52,15 +62,15 @@ public class SapTrapBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        if (!this.bait.isEmpty()) {
-            tag.put( );
-        }
+
+        tag.put("bait", bait.serializeNBT(registries));
+
     }
 
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        this.bait = tag.contains(TAG_BAIT) ? ItemStack. : ItemStack.EMPTY;
+        bait.deserializeNBT(registries, tag.getCompound("bait"));
     }
 
     @Override
