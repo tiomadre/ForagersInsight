@@ -14,7 +14,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
@@ -58,17 +57,17 @@ public class FIBlocks {
     public static final DeferredBlock<Block> BLEWIT_MUSHROOM = HELPER.createBlockNoItem("blewit_mushroom", () ->
             new WildMushroomBlock(ofFullCopy(Blocks.RED_MUSHROOM), BLEWIT_MUSHROOM_COLONY));
     public static final DeferredBlock<Block> WALL_RED_MUSHROOM_COLONY = HELPER.createBlockNoItem("wall_red_mushroom_colony", () ->
-            new WallMushroomColonyBlock(ofFullCopy(Blocks.RED_MUSHROOM), () -> Items.RED_MUSHROOM));
+            new WallMushroomColonyBlock(ofFullCopy(ModBlocks.RED_MUSHROOM_COLONY.get()), Items.RED_MUSHROOM.builtInRegistryHolder()));
     public static final DeferredBlock<Block> WALL_BROWN_MUSHROOM_COLONY = HELPER.createBlockNoItem("wall_brown_mushroom_colony", () ->
-            new WallMushroomColonyBlock(ofFullCopy(Blocks.BROWN_MUSHROOM), () -> Items.BROWN_MUSHROOM));
+            new WallMushroomColonyBlock(ofFullCopy(ModBlocks.BROWN_MUSHROOM_COLONY.get()), Items.BROWN_MUSHROOM.builtInRegistryHolder()));
     public static final DeferredBlock<Block> WALL_BLEWIT_MUSHROOM_COLONY = HELPER.createBlockNoItem("wall_blewit_mushroom_colony", () ->
-            new WallMushroomColonyBlock(ofFullCopy(Blocks.RED_MUSHROOM), FIItems.BLEWIT_MUSHROOM));
+            new WallMushroomColonyBlock(ofFullCopy(FIBlocks.BLEWIT_MUSHROOM_COLONY.get()), FIItems.BLEWIT_MUSHROOM));
     public static final DeferredBlock<Block> WALL_RED_MUSHROOM = HELPER.createBlockNoItem("wall_red_mushroom", () ->
             new WallMushroomBlock(ofFullCopy(Blocks.RED_MUSHROOM), WALL_RED_MUSHROOM_COLONY));
     public static final DeferredBlock<Block> WALL_BROWN_MUSHROOM = HELPER.createBlockNoItem("wall_brown_mushroom", () ->
             new WallMushroomBlock(ofFullCopy(Blocks.BROWN_MUSHROOM), WALL_BROWN_MUSHROOM_COLONY));
     public static final DeferredBlock<Block> WALL_BLEWIT_MUSHROOM = HELPER.createBlockNoItem("wall_blewit_mushroom", () ->
-            new WallMushroomBlock(ofFullCopy(Blocks.RED_MUSHROOM), WALL_BLEWIT_MUSHROOM_COLONY));
+            new WallMushroomBlock(ofFullCopy(FIBlocks.BLEWIT_MUSHROOM.get()), WALL_BLEWIT_MUSHROOM_COLONY));
         //Unique Mushrooms
         public static final DeferredBlock<Block> TINDER_CONK = HELPER.createBlockNoItem("tinder_conk", () ->
             new TinderConkBlock(ofFullCopy(Blocks.BROWN_MUSHROOM).randomTicks().noOcclusion()));
@@ -156,7 +155,7 @@ public class FIBlocks {
     public static final DeferredBlock<Block> ROSELLE_BUSH = HELPER.createBlockNoItem("roselle_bush", () ->
           new TallFlowerBlock(ofFullCopy(Blocks.LILAC)));
     public static final DeferredBlock<Block> STOUT_BEACH_ROSE_BUSH = HELPER.createBlockNoItem("stout_beach_rose_bush", () ->
-            new SandyFlowerBlock(MobEffects.REGENERATION::value, 5, ofFullCopy(Blocks.ROSE_BUSH)));
+            new SandyFlowerBlock(MobEffects.REGENERATION, 5, ofFullCopy(Blocks.ROSE_BUSH)));
     public static final DeferredBlock<Block> TALL_BEACH_ROSE_BUSH = HELPER.createBlockNoItem("tall_beach_rose_bush", () ->
             new TallSandyFlowerBlock(ofFullCopy(Blocks.ROSE_BUSH)));
     public static final DeferredBlock<Block> WOODLAND_FERN = HELPER.createBlockNoItem("woodland_fern", () ->

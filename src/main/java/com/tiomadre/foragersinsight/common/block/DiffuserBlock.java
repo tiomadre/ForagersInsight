@@ -2,22 +2,20 @@ package com.tiomadre.foragersinsight.common.block;
 
 import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import com.tiomadre.foragersinsight.core.registry.FIBlockEntityTypes;
 import com.tiomadre.foragersinsight.core.registry.FIParticleTypes;
+import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -35,20 +33,19 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.neoforged.neoforge.common.world.chunk.TicketHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,EntityBlock {
+public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+    public static final MapCodec<DiffuserBlock> CODEC = simpleCodec(DiffuserBlock::new);
+
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     private static final VoxelShape SHAPE = Shapes.or(
             Block.box(4.0D, 0.0D, 4.0D, 12.0D, 12.0D, 12.0D),
             Block.box(9.0D, 12.0D, 6.0D, 10.0D, 14.0D, 10.0D),
@@ -57,90 +54,33 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
             Block.box(7.0D, 12.0D, 9.0D, 9.0D, 14.0D, 10.0D)
     );
 
-
     public DiffuserBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(WATERLOGGED, false));
     }
 
-
-
     @Override
-    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new DiffuserBlockEntity(pos, state);
-    }
-
-    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
-                                          @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        BlockEntity entity = level.getBlockEntity(pos);
-        if (!(entity instanceof DiffuserBlockEntity diffuser)) {
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        if (!level.isClientSide) {
-
-            if (player instanceof ServerPlayer serverPlayer) {
-                player.openMenu(diffuser, pos);
-            }
-        }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
-    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state,
-                            @Nullable LivingEntity placer, @NotNull ItemStack stack) {
-        super.setPlacedBy(level, pos, state, placer, stack);
-        if (!level.isClientSide) {
-            BlockEntity entity = level.getBlockEntity(pos);
-            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
-
-//            if (entity instanceof DiffuserBlockEntity diffuser && stack.has) {
-//                if (diffuser.applyItemData(stack.getTags().Z)) {
-//
-//                }
-//            }
-        }
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new DiffuserBlockEntity(blockPos, blockState);
     }
+
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos,
                                         @NotNull CollisionContext context) {
         return SHAPE;
     }
 
-    @Override
-    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-        BlockPos belowPos = pos.below();
-        BlockState belowState = level.getBlockState(belowPos);
 
-        return belowState.isFaceSturdy(level, belowPos, Direction.UP)
-                || Block.isFaceFull(belowState.getCollisionShape(level, belowPos), Direction.UP);
-    }
 
-    @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction,
-                                           @NotNull BlockState neighborState, @NotNull LevelAccessor level,
-                                           @NotNull BlockPos currentPos, @NotNull BlockPos neighborPos) {
-        if (direction == Direction.DOWN && !canSurvive(state, level, currentPos)) {
-            return Blocks.AIR.defaultBlockState();
-        }
-
-        if (state.getValue(WATERLOGGED)) {
-            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-        }
-
-        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
-    }
     @Override
     public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
-
-    @Override
-    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
-        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER));
-    }
-
 
     @Override
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
@@ -148,33 +88,33 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
         if (!state.is(newState.getBlock())) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof DiffuserBlockEntity diffuser) {
-                Containers.dropContents(level, pos, diffuser);
+                diffuser.drops();
                 level.updateNeighbourForOutputSignal(pos, this);
             }
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
-
     @Override
-    public @NotNull java.util.List<ItemStack> getDrops(@NotNull BlockState state, @NotNull LootParams.Builder params) {
-        BlockEntity entity = params.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
-        if (entity instanceof DiffuserBlockEntity diffuser) {
-            return java.util.Collections.singletonList(diffuser.getDiffuserStack());
+    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos,
+                                              Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
+        if (!pLevel.isClientSide()) {
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if(entity instanceof DiffuserBlockEntity growthChamberBlockEntity) {
+                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(growthChamberBlockEntity, Component.literal("Diffuser")), pPos);
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
+            }
         }
-        return super.getDrops(state, params);
-    }
 
-    private static <E extends BlockEntity, A extends BlockEntity> @Nullable BlockEntityTicker<A> createTickerHelper(
-            BlockEntityType<A> type, BlockEntityType<E> checkedType, BlockEntityTicker<? super E> ticker
-    ) {
-        return checkedType == type ? (BlockEntityTicker<A>) ticker : null;
+        return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state,
                                                                   @NotNull BlockEntityType<T> type) {
-        return level.isClientSide ? null : createTickerHelper(type, FIBlockEntityTypes.DIFFUSER.get(), DiffuserBlockEntity::serverTick);
+        return level.isClientSide ? null : createTickerHelper(type, FIBlockEntityTypes.DIFFUSER.get(),
+                (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
     }
 
     @Override
@@ -221,6 +161,8 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
         }
 
     }
+
+
     private void spawnScentParticle(Level level, RandomSource random, double x, double y, double z, FIDiffusingRecipes scent) {
         SimpleParticleType particle = getScentParticleType(scent);
         if (particle == null) {
@@ -231,6 +173,7 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
         double driftZ = (random.nextDouble() - 0.5D) * 0.08D;
         level.addParticle(particle, x, y, z, driftX, driftY, driftZ);
     }
+
 
     private @Nullable SimpleParticleType getScentParticleType(FIDiffusingRecipes scent) {
         if (scent == FIDiffusingRecipes.ROSEY.get() || scent == FIDiffusingRecipes.ROSEY_II.get()) {
@@ -249,6 +192,38 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
             return FIParticleTypes.FOUL_SCENT.get();
         }
         return null;
+    }
+
+
+    @Override
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        BlockState belowState = level.getBlockState(belowPos);
+
+        return belowState.isFaceSturdy(level, belowPos, Direction.UP)
+                || Block.isFaceFull(belowState.getCollisionShape(level, belowPos), Direction.UP);
+    }
+
+
+    @Override
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction,
+                                           @NotNull BlockState neighborState, @NotNull LevelAccessor level,
+                                           @NotNull BlockPos currentPos, @NotNull BlockPos neighborPos) {
+        if (direction == Direction.DOWN && !canSurvive(state, level, currentPos)) {
+            return Blocks.AIR.defaultBlockState();
+        }
+
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER));
     }
 
     @Override
@@ -275,4 +250,5 @@ public class DiffuserBlock extends Block implements SimpleWaterloggedBlock,Entit
         }
         return super.getFluidState(state);
     }
+
 }

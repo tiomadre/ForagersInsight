@@ -18,6 +18,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 
@@ -49,52 +50,44 @@ public class DiffuserMenu extends AbstractContainerMenu {
     private static final int ARROW_PROGRESS_PIXELS = 22;
 
 
-    private final Container diffuserContainer;
-    private final DiffuserBlockEntity diffuser;
+    public final DiffuserBlockEntity diffuser;
+    private final Level level;
+    private final ContainerData data;
     private final ContainerLevelAccess access;
-    private final ContainerData dataAccess;
+
 
     public DiffuserMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(containerId, playerInventory, resolveBlockEntity(playerInventory, buffer));
+        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
     }
 
-    public DiffuserMenu(int containerId, Inventory playerInventory, DiffuserBlockEntity diffuser) {
+    public DiffuserMenu(int containerId, Inventory playerInventory, BlockEntity entity, ContainerData data) {
         super(FIMenuTypes.DIFFUSER_MENU.get(), containerId);
-        this.diffuser = Objects.requireNonNull(diffuser, "diffuser");
-        this.diffuserContainer = this.diffuser;
-        Level level = this.diffuser.getLevel();
-        this.access = level != null ? ContainerLevelAccess.create(level, this.diffuser.getBlockPos()) : ContainerLevelAccess.NULL;
-        this.dataAccess = this.diffuser.getDataAccess();
+        this.diffuser = ((DiffuserBlockEntity) entity);
+        this.level = playerInventory.player.level();
+        this.access = ContainerLevelAccess.create(level, this.diffuser.getBlockPos());
+        this.data = data;
 
-        checkContainerSize(this.diffuserContainer, DIFFUSER_SLOT_COUNT);
-        this.diffuserContainer.startOpen(playerInventory.player);
 
+        addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
         addDiffuserSlots();
-        addPlayerInventorySlots(playerInventory);
 
-        this.addDataSlots(this.dataAccess);
+//        checkContainerSize(this.diffuserContainer, DIFFUSER_SLOT_COUNT);
+//        this.diffuserContainer.startOpen(playerInventory.player);
+//
+
+//
+//        this.addDataSlots(this.dataAccess);
     }
 
-    private static DiffuserBlockEntity resolveBlockEntity(Inventory playerInventory, FriendlyByteBuf buffer) {
-        Objects.requireNonNull(playerInventory, "playerInventory");
-        Objects.requireNonNull(buffer, "buffer");
 
-        BlockPos pos = buffer.readBlockPos();
-        Level level = playerInventory.player.level();
-
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof DiffuserBlockEntity diffuser) {
-            return diffuser;
-        }
-        return null;
-    }
     private void addDiffuserSlots() {
         for (int slot = 0; slot < INPUT_SLOT_COUNT; slot++) {
             int x = INPUT_SLOT_START_X + slot * SLOT_SPACING;
-            this.addSlot(new Slot(this.diffuserContainer, slot, x, INPUT_SLOT_Y) {
+            this.addSlot(new SlotItemHandler(diffuser.itemHandler, slot, x, INPUT_SLOT_Y) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    return !DiffuserMenu.this.diffuser.hasActiveScent() && super.mayPlace(stack);
+                    return !DiffuserMenu.this.diffuser.isBurning() && super.mayPlace(stack);
                 }
                 @Override
                 public int getMaxStackSize() {
@@ -102,10 +95,10 @@ public class DiffuserMenu extends AbstractContainerMenu {
                 }
             });
         }
-        this.addSlot(new Slot(this.diffuserContainer, ENHANCEMENT_SLOT_INDEX, ENHANCEMENT_SLOT_X, ENHANCEMENT_SLOT_Y) {
+        this.addSlot(new SlotItemHandler(diffuser.itemHandler, ENHANCEMENT_SLOT_INDEX, ENHANCEMENT_SLOT_X, ENHANCEMENT_SLOT_Y) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return !DiffuserMenu.this.diffuser.hasActiveScent()
+                return !DiffuserMenu.this.diffuser.isBurning()
                         && DiffuserBlockEntity.Enhancement.fromStack(stack) != DiffuserBlockEntity.Enhancement.NONE;
             }
 
@@ -115,7 +108,7 @@ public class DiffuserMenu extends AbstractContainerMenu {
             }
         });
 
-        this.addSlot(new Slot(this.diffuserContainer, RESULT_SLOT_INDEX, RESULT_SLOT_X, RESULT_SLOT_Y) {
+        this.addSlot(new SlotItemHandler(diffuser.itemHandler, RESULT_SLOT_INDEX, RESULT_SLOT_X, RESULT_SLOT_Y) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
@@ -128,19 +121,17 @@ public class DiffuserMenu extends AbstractContainerMenu {
         });
     }
 
-    private void addPlayerInventorySlots(Inventory playerInventory) {
-        for (int row = 0; row < PLAYER_INVENTORY_ROWS; row++) {
-            for (int column = 0; column < PLAYER_INVENTORY_COLUMNS; column++) {
-                int slotIndex = column + row * PLAYER_INVENTORY_COLUMNS + PLAYER_INVENTORY_COLUMNS;
-                int x = INV_START_X + column * SLOT_SIZE;
-                int y = INV_START_Y + row * SLOT_SIZE;
-                this.addSlot(new Slot(playerInventory, slotIndex, x, y));
+    private void addPlayerInventory(Inventory playerInventory) {
+        for (int i = 0; i < 3; ++i) {
+            for (int l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
+    }
 
-        for (int column = 0; column < PLAYER_INVENTORY_COLUMNS; column++) {
-            int x = INV_START_X + column * SLOT_SIZE;
-            this.addSlot(new Slot(playerInventory, column, x, HOTBAR_Y));
+    private void addPlayerHotbar(Inventory playerInventory) {
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 
@@ -178,8 +169,8 @@ public class DiffuserMenu extends AbstractContainerMenu {
     }
 
     public int getCraftProgress() {
-        int progress = this.dataAccess.get(DATA_PROGRESS);
-        int total = this.dataAccess.get(DATA_TOTAL);
+        int progress = this.data.get(DATA_PROGRESS);
+        int total = this.data.get(DATA_TOTAL);
         if (total <= 0) {
             return 0;
         }
@@ -191,7 +182,7 @@ public class DiffuserMenu extends AbstractContainerMenu {
     }
 
     public boolean isLit() {
-        return this.dataAccess.get(0) > 0;
+        return this.data.get(0) > 0;
     }
 
     public double getEffectiveRadius() {
@@ -206,6 +197,7 @@ public class DiffuserMenu extends AbstractContainerMenu {
     }
 
 
+
     @Override
     public boolean stillValid(@NotNull Player player) {
         return stillValid(this.access, player, FIBlocks.DIFFUSER.get());
@@ -217,8 +209,9 @@ public class DiffuserMenu extends AbstractContainerMenu {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof DiffuserBlockEntity diffuser) {
                     if (diffuser.isLit()) {
-                        diffuser.extinguish();
-                    } else if (diffuser.tryStartDiffusion()) {
+                        diffuser.endScentEffect();
+                    }
+                    else if (diffuser.tryStartDiffusion()) {
                         level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F,
                                 level.random.nextFloat() * 0.4F + 0.8F);
                         if (player instanceof ServerPlayer serverPlayer) {
@@ -226,16 +219,12 @@ public class DiffuserMenu extends AbstractContainerMenu {
                             diffuser.getActiveScent()
                                     .filter(scent -> scent.usesEffect(FIMobEffects.ODOROUS.get()))
                                     .ifPresent(scent -> FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer));                        }
-                    } }
+                    }
+                }
             });
             return true;
         }
         return super.clickMenuButton(player, id);
     }
 
-    @Override
-    public void removed(@NotNull Player player) {
-        super.removed(player);
-        this.diffuserContainer.stopOpen(player);
-    }
 }

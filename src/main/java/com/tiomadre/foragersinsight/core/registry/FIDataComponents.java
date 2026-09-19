@@ -17,11 +17,6 @@ public class FIDataComponents {
     public static final DeferredRegister.DataComponents DATA_COMPONENTS =
             DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, ForagersInsight.MOD_ID);
 
-
-
-    //public static final DeferredHolder<DataComponentType<?>, DataComponentType<>>
-
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> BOOTWAXED =
             DATA_COMPONENTS.registerComponentType("bootwaxed", builder ->
                     builder.persistent(Codec.BOOL)

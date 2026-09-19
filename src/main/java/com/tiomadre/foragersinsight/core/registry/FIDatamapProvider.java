@@ -13,8 +13,8 @@ import java.util.concurrent.CompletableFuture;
 import static com.tiomadre.foragersinsight.core.registry.FIBlocks.*;
 import static com.tiomadre.foragersinsight.core.registry.FIItems.*;
 
-public class FICompostableProvider extends DataMapProvider {
-    public FICompostableProvider(PackOutput output, CompletableFuture<Provider> provider) {
+public class FIDatamapProvider extends DataMapProvider {
+    public FIDatamapProvider(PackOutput output, CompletableFuture<Provider> provider) {
         super(output, provider);
     }
 
@@ -81,5 +81,6 @@ public class FICompostableProvider extends DataMapProvider {
                 .add(POPPY_SEED_PASTE.getId(), new Compostable(0.3f), false)
                 .add(COCOA_POWDER.getId(), new Compostable(0.3f), false);
 
-    }
+
+}
 }
