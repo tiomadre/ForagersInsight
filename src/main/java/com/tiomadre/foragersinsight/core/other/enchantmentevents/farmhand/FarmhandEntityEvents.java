@@ -13,14 +13,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.Optional;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class FarmhandEntityEvents {
 
     @SubscribeEvent
@@ -32,7 +34,7 @@ public class FarmhandEntityEvents {
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
         if (!(tool.getItem() instanceof ShearsItem)) return;
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
+        if (tool.getEnchantmentLevel(level.holderOrThrow(FIEnchantments.FARMHAND)) <= 0) return;
 
         Entity target = event.getTarget();
         if (!(target instanceof Shearable shearable)) return;

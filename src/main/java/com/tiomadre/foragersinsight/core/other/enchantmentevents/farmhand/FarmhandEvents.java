@@ -27,7 +27,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.IShearable;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -40,7 +42,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class FarmhandEvents {
     //checks if player has a handbasket and if item can go in
     private static boolean tryInsertToHandbasket(Player player, ItemStack drop) {

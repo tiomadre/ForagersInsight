@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.item;
 
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
+
+import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class DiffuserBlockItem extends BlockItem {
-    private static final int INGREDIENT_SLOT_COUNT = DiffuserBlockEntityOld.INPUT_SLOT_COUNT;
+    private static final int INGREDIENT_SLOT_COUNT = DiffuserBlockEntity.INPUT_SLOT_COUNT;
 
     public DiffuserBlockItem(Block block, Properties properties) {
         super(block, properties);
@@ -23,11 +24,11 @@ public class DiffuserBlockItem extends BlockItem {
     public void appendHoverText(@NotNull ItemStack stack, TooltipContext tooltipContext, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, tooltipContext, tooltip, flag);
-        Optional<FIDiffusingRecipes> scent = DiffuserBlockEntityOld.getScentFromItem(stack);
+        Optional<FIDiffusingRecipes> scent = DiffuserBlockEntity.getScentFromItem(stack);
         if (scent.isPresent()) {
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.scent", scent.get().displayName())
                     .withStyle(ChatFormatting.GOLD));
-            int remainingDuration = DiffuserBlockEntityOld.getRemainingDurationFromItem(stack);
+            int remainingDuration = DiffuserBlockEntity.getRemainingDurationFromItem(stack);
             int durationSeconds = (int) Math.round(remainingDuration / 20.0D);
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.remaining_duration", durationSeconds)
                     .withStyle(ChatFormatting.GRAY));

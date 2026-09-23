@@ -1,7 +1,6 @@
 package com.tiomadre.foragersinsight.core;
 
 import com.tiomadre.foragersinsight.data.server.FIAdvancementProvider;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
 import com.tiomadre.foragersinsight.core.other.FIClientCompat;
 import com.tiomadre.foragersinsight.core.registry.FIDatamapProvider;

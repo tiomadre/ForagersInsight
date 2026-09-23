@@ -11,16 +11,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 
 
-//@Mod.EventBusSubscriber(
-//        modid = ForagersInsight.MOD_ID,
-//        value = Dist.CLIENT,
-//        bus = Mod.EventBusSubscriber.Bus.FORGE
-//)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public final class StropAnimation {
 
     private StropAnimation() {

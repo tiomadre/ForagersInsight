@@ -2,11 +2,13 @@ package com.tiomadre.foragersinsight.client;
 
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class StuckEffectClientside {
     @SubscribeEvent
     public static void onMovementInputUpdate(MovementInputUpdateEvent event) {

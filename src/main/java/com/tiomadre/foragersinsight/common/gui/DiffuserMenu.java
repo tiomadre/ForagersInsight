@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.common.gui;
 
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.registry.FIAdvancements;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIMenuTypes;
@@ -20,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -177,7 +177,7 @@ public class DiffuserMenu extends AbstractContainerMenu {
         return Mth.clamp((int) ((long) progress * ARROW_PROGRESS_PIXELS / total), 0, ARROW_PROGRESS_PIXELS);
     }
 
-    public Optional<FIDiffusingRecipes> getActiveScent() {
+    public Optional<FIDiffuserRecipe> getActiveScent() {
         return this.diffuser.getActiveScent();
     }
 
@@ -217,8 +217,10 @@ public class DiffuserMenu extends AbstractContainerMenu {
                         if (player instanceof ServerPlayer serverPlayer) {
                             FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
                             diffuser.getActiveScent()
-                                    .filter(scent -> scent.usesEffect(FIMobEffects.ODOROUS.get()))
-                                    .ifPresent(scent -> FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer));                        }
+                                    .filter(scent -> scent.getMobEffect().equals(FIMobEffects.ODOROUS))
+                                    .ifPresent(scent -> FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer));
+                        }
+
                     }
                 }
             });

@@ -77,7 +77,7 @@ public class StropItem extends Item {
 
         if (!level.isClientSide) {
             tool.setDamageValue(Math.max(0, tool.getDamageValue() - REPAIR_AMOUNT));
-            strop.hurtAndBreak(2, player, user -> user.broadcastBreakEvent(EquipmentSlot.OFFHAND));
+            //strop.hurtAndBreak(2, player, user -> user.broadcastBreakEvent(EquipmentSlot.OFFHAND));
             player.awardStat(Stats.ITEM_USED.get(this));
         }
     }

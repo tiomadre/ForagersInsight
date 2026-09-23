@@ -2,9 +2,11 @@ package com.tiomadre.foragersinsight.common.block.entity;
 
 import com.tiomadre.foragersinsight.common.block.DiffuserBlock;
 import com.tiomadre.foragersinsight.common.gui.DiffuserMenu;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserInput;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.registry.FIBlockEntityTypes;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
+import com.tiomadre.foragersinsight.core.registry.FIRecipeSerializers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -26,6 +28,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -55,7 +58,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
     public static final int RESULT_SLOT_INDEX = ENHANCEMENT_SLOT_INDEX + 1;
     protected final ContainerData data;
     private int scentDuration= 1200;
-    private FIDiffusingRecipes activeScent;
+    private FIDiffuserRecipe activeScent;
     private Enhancement activeEnhancement = Enhancement.NONE;
 
 
@@ -117,18 +120,20 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
 
     public void tick(Level level1, BlockPos blockPos, BlockState blockState) {
-        if(tryStartDiffusion()){
-            emitScentEffect();
-            decreaseLitTime();
-            setChanged();
+       if(hasRecipe()){
+           if(tryStartDiffusion()){
+               emitScentEffect();
+               decreaseLitTime();
+               setChanged();
 
-            if(hasTimeEnded()){
-                endScentEffect();
-                resetProgress();
-            }
-        } else {
-            resetProgress();
-        }
+               if(hasTimeEnded()){
+                   endScentEffect();
+                   resetProgress();
+               }
+           } else {
+               resetProgress();
+           }
+       }
     }
 
 
@@ -153,24 +158,32 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
 
     private boolean hasRecipe() {
-        boolean slotsFull = false;
         int fullCount = 0;
+        Optional<RecipeHolder<FIDiffuserRecipe>> recipe = getCurrentRecipe();
 
+        if (recipe.isEmpty()){
+            return false;
+        }
         for( int i=0; i < INPUT_SLOT_COUNT; i++){
             if(!itemHandler.getStackInSlot(i).isEmpty()){
                 fullCount++;
             }
         }
-
         if(fullCount==3){
-            slotsFull= true;
+           this.activeScent=recipe.get().value();
         }
-        //code that checks the recipe
-        //add something that if true saves the active scent as the recipe
+
+
         return false;
     }
 
-    private void getEmitInfo(FIDiffusingRecipes scent){
+    private Optional<RecipeHolder<FIDiffuserRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager()
+                .getRecipeFor(FIRecipeSerializers.DIFFUSER_TYPE.get(),new FIDiffuserInput(
+                        itemHandler.getStackInSlot(0), itemHandler.getStackInSlot(1),itemHandler.getStackInSlot(2)),level);
+    }
+
+    private void getEmitInfo(FIDiffuserRecipe scent){
         this.activeScent = scent;
     }
 
@@ -186,24 +199,24 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         AABB area = new AABB(this.worldPosition).inflate(this.getEffectiveRadius());
         List<LivingEntity> entities = this.level.getEntitiesOfClass(LivingEntity.class, area);
 
-        this.activeScent.createEffectInstance().ifPresent(template -> {
-            for (LivingEntity entity : entities) {
-                MobEffectInstance instance = new MobEffectInstance(template.getEffect(), template.getDuration(),
-                        template.getAmplifier(), template.isAmbient(), template.isVisible(), template.showIcon());
-                entity.addEffect(instance);
-            }
-        });
+        for (LivingEntity entity :entities){
+            MobEffectInstance instance = new MobEffectInstance(this.activeScent.getMobEffect(),this.activeScent.getScentDuration(),
+                    this.activeScent.getEffectAmplifier());
+            entity.addEffect(instance);
+        }
 
         if (shouldRestoreBreath()) {
             restoreBreath(entities);
         }
     }
 
+
+
     public double getEffectiveRadius() {
         if (this.activeScent == null) {
             return 0.0D;
         }
-        return this.activeScent.radius() * this.activeEnhancement.radiusMultiplier();
+        return this.activeScent.getScentRadius() * this.activeEnhancement.radiusMultiplier();
     }
 
     public boolean isBurning() {
@@ -271,7 +284,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
                 || this.level.getFluidState(this.worldPosition.above()).is(FluidTags.WATER);
     }
 
-    public Optional<FIDiffusingRecipes> getActiveScent() {
+    public Optional<FIDiffuserRecipe> getActiveScent() {
         if (this.activeScent != null) {
             return Optional.of(this.activeScent);
         }else{

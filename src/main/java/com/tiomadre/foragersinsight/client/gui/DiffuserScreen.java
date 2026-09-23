@@ -2,8 +2,8 @@ package com.tiomadre.foragersinsight.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import com.tiomadre.foragersinsight.common.gui.DiffuserMenu;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
@@ -116,23 +116,23 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
         this.renderBackground(gui, mouseX, mouseY, partialTicks);
         super.render(gui, mouseX, mouseY, partialTicks);
         this.renderTooltip(gui, mouseX, mouseY);
-        this.renderScentTooltip(gui, mouseX, mouseY);
+        //this.renderScentTooltip(gui, mouseX, mouseY);
         this.renderScentCloudTooltip(gui, mouseX, mouseY);
     }
 
     private void renderScentIcon(GuiGraphics gui, int left, int top) {
-        Optional<FIDiffusingRecipes> scent = this.menu.getActiveScent();
+        Optional<FIDiffuserRecipe> scent = this.menu.getActiveScent();
         if (scent.isEmpty()) {
             return;
         }
         Slot slot = this.menu.getSlot(DiffuserBlockEntity.RESULT_SLOT_INDEX);
         int iconX = left + slot.x;
         int iconY = top + slot.y;
-        gui.blit(scent.get().icon(), iconX, iconY, 0, 0, ICON_SIZE, ICON_SIZE, ICON_SIZE, ICON_SIZE);
+        gui.blit(ResourceLocation.fromNamespaceAndPath("foragersinsight",scent.get().getIcon()), iconX, iconY, 0, 0, ICON_SIZE, ICON_SIZE, ICON_SIZE, ICON_SIZE);
     }
 
     private void renderScentTooltip(GuiGraphics gui, int mouseX, int mouseY) {
-        Optional<FIDiffusingRecipes> scent = this.menu.getActiveScent();
+        Optional<FIDiffuserRecipe> scent = this.menu.getActiveScent();
         if (scent.isEmpty()) {
             return;
         }
@@ -142,10 +142,10 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
         int iconX = left + slot.x;
         int iconY = top + slot.y;
         if (mouseX >= iconX && mouseX < iconX + ICON_SIZE && mouseY >= iconY && mouseY < iconY + ICON_SIZE) {
-            FIDiffusingRecipes recipe = scent.get();
+            FIDiffuserRecipe recipe = scent.get();
             List<Component> tooltip = new ArrayList<>(2);
             tooltip.add(recipe.recipeName().copy().withStyle(ChatFormatting.GOLD));
-            tooltip.add(recipe.description());
+            tooltip.add(recipe.getDescriptionKey());
             gui.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
         }
     }
@@ -155,7 +155,7 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
             return;
         }
 
-        Optional<FIDiffusingRecipes> scent = this.menu.getActiveScent();
+        Optional<FIDiffuserRecipe> scent = this.menu.getActiveScent();
         if (scent.isEmpty()) {
             return;
         }
@@ -183,13 +183,13 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
 
         DiffuserBlockEntity.Enhancement enhancement = this.menu.getActiveEnhancement();
         if (enhancement == DiffuserBlockEntity.Enhancement.RADIUS) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius").withStyle(style -> style.withColor(FIDiffusingRecipes.RADIUS_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius").withStyle(style -> style.withColor(FIDiffuserRecipe.RADIUS_ACCENT_COLOR)));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.RADIUS_BLOCK) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius_block").withStyle(style -> style.withColor(FIDiffusingRecipes.RADIUS_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius_block").withStyle(style -> style.withColor(FIDiffuserRecipe.RADIUS_ACCENT_COLOR)));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.DURATION) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration").withStyle(style -> style.withColor(FIDiffusingRecipes.DURATION_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration").withStyle(style -> style.withColor(FIDiffuserRecipe.DURATION_ACCENT_COLOR)));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.DURATION_BUCKET) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration_bucket").withStyle(style -> style.withColor(FIDiffusingRecipes.DURATION_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration_bucket").withStyle(style -> style.withColor(FIDiffuserRecipe.DURATION_ACCENT_COLOR)));
         }
 
         gui.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);

@@ -2,9 +2,9 @@ package com.tiomadre.foragersinsight.common.block;
 
 import com.mojang.serialization.MapCodec;
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.registry.FIBlockEntityTypes;
 import com.tiomadre.foragersinsight.core.registry.FIParticleTypes;
-import com.tiomadre.foragersinsight.data.server.recipes.FIDiffusingRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -163,7 +163,7 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
 
-    private void spawnScentParticle(Level level, RandomSource random, double x, double y, double z, FIDiffusingRecipes scent) {
+    private void spawnScentParticle(Level level, RandomSource random, double x, double y, double z, FIDiffuserRecipe scent) {
         SimpleParticleType particle = getScentParticleType(scent);
         if (particle == null) {
             return;
@@ -175,20 +175,26 @@ public class DiffuserBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
 
-    private @Nullable SimpleParticleType getScentParticleType(FIDiffusingRecipes scent) {
-        if (scent == FIDiffusingRecipes.ROSEY.get() || scent == FIDiffusingRecipes.ROSEY_II.get()) {
+    private @Nullable SimpleParticleType getScentParticleType(FIDiffuserRecipe scent)
+    {
+
+        if (scent.getScentName().equals("ROSEY") || scent.getScentName().equals("ROSEY II")){
             return FIParticleTypes.ROSE_SCENT.get();
         }
-        if (scent == FIDiffusingRecipes.CONIFEROUS.get() || scent == FIDiffusingRecipes.CONIFEROUS_II.get()) {
+
+        if (scent.getScentName().equals("CONIFEROUS") || scent.getScentName().equals("CONIFEROUS II")){
             return FIParticleTypes.CONIFEROUS_SCENT.get();
         }
-        if (scent == FIDiffusingRecipes.FLORAL.get()) {
+
+        if (scent.getScentName().equals("FLORAL")){
             return FIParticleTypes.FLORAL_SCENT.get();
         }
-        if(scent ==  FIDiffusingRecipes.FLORAL_II.get()) {
+
+        if (scent.getScentName().equals("FLORAL_II")){
             return FIParticleTypes.FLORAL_II_SCENT.get();
         }
-        if (scent == FIDiffusingRecipes.FOUL.get() || scent == FIDiffusingRecipes.FOUL_II.get()) {
+
+        if (scent.getScentName().equals("FOUL") || scent.getScentName().equals("FOUL II")){
             return FIParticleTypes.FOUL_SCENT.get();
         }
         return null;

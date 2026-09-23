@@ -6,10 +6,12 @@ import com.tiomadre.foragersinsight.client.particle.SuspiciousLitterParticleProv
 import com.tiomadre.foragersinsight.core.registry.FIParticleTypes;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import net.minecraft.client.particle.FlameParticle;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class FIClientParticles {
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {

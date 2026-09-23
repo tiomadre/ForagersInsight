@@ -1,0 +1,22 @@
+{
+  "type": "foragersinsight:diffusing",
+  "scentname": "ROSEY",
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "foragersinsight:rose_petals"
+    }
+  ],
+  "scentduration": 200,
+  "scentradius": 8.0,
+  "scenteffect": "minecraft:regeneration",
+  "amplifier": 0,
+  "icon": "foragersinsight/textures/scents/rosey.png",
+  "translationkey": "foragersinsight.diffuser.rosey",
+  "descriptionkey": "foragersinsight.diffuser.rosey.description"
+}
