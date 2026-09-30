@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.client.gui.components.Button;
@@ -144,8 +145,9 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
         if (mouseX >= iconX && mouseX < iconX + ICON_SIZE && mouseY >= iconY && mouseY < iconY + ICON_SIZE) {
             FIDiffuserRecipe recipe = scent.get();
             List<Component> tooltip = new ArrayList<>(2);
-            tooltip.add(recipe.recipeName().copy().withStyle(ChatFormatting.GOLD));
-            tooltip.add(recipe.getDescriptionKey());
+
+            tooltip.add(Component.translatable(recipe.getTranslationKey()).copy().withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable(recipe.getDescriptionKey()));
             gui.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
         }
     }
@@ -183,13 +185,13 @@ public class DiffuserScreen extends AbstractContainerScreen<DiffuserMenu> {
 
         DiffuserBlockEntity.Enhancement enhancement = this.menu.getActiveEnhancement();
         if (enhancement == DiffuserBlockEntity.Enhancement.RADIUS) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius").withStyle(style -> style.withColor(FIDiffuserRecipe.RADIUS_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius").withStyle(style -> style.withColor(TextColor.fromRgb(0xfabf29))));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.RADIUS_BLOCK) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius_block").withStyle(style -> style.withColor(FIDiffuserRecipe.RADIUS_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_radius_block").withStyle(style -> style.withColor(TextColor.fromRgb(0xfabf29))));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.DURATION) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration").withStyle(style -> style.withColor(FIDiffuserRecipe.DURATION_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration").withStyle(style -> style.withColor(TextColor.fromRgb(0xc2daaf))));
         } else if (enhancement == DiffuserBlockEntity.Enhancement.DURATION_BUCKET) {
-            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration_bucket").withStyle(style -> style.withColor(FIDiffuserRecipe.DURATION_ACCENT_COLOR)));
+            tooltip.add(Component.translatable("gui.foragersinsight.diffuser.tooltip.enhanced_duration_bucket").withStyle(style -> style.withColor(TextColor.fromRgb(0xc2daaf))));
         }
 
         gui.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
