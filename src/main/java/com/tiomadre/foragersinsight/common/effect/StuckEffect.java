@@ -15,8 +15,9 @@ public class StuckEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
         stopMovementActions(entity);
+        return true;
     }
 
  

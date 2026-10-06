@@ -13,7 +13,7 @@ public class MedicinalEffect extends MobEffect {
         super(MobEffectCategory.BENEFICIAL, 0x0a5f38);
     }
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.getPersistentData().getBoolean("foragersinsight:medicinal_healed")) {
             int removalCount = 0;
             if (entity.hasEffect(MobEffects.POISON)) {
@@ -30,16 +30,17 @@ public class MedicinalEffect extends MobEffect {
         }
         entity.removeEffect(MobEffects.POISON);
         entity.removeEffect(MobEffects.WITHER);
+        return true;
     }
-    @Override
+
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 
     // When effects end, remove mark.
-    @Override
+
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attributeMap, int amplifier) {
-        super.removeAttributeModifiers(entity, attributeMap, amplifier);
+        super.removeAttributeModifiers(attributeMap);
         entity.getPersistentData().remove("foragersinsight:medicinal_healed");
     }
 }

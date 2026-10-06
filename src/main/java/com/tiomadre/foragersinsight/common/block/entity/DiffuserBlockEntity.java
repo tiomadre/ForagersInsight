@@ -57,7 +57,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
     public static final int ENHANCEMENT_SLOT_INDEX = INPUT_SLOT_COUNT;
     public static final int RESULT_SLOT_INDEX = ENHANCEMENT_SLOT_INDEX + 1;
     protected final ContainerData data;
-    private int scentDuration= 1200;
+    private static int scentDuration= 1200;
     private FIDiffuserRecipe activeScent;
     private Enhancement activeEnhancement = Enhancement.NONE;
 
@@ -338,8 +338,9 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         return this.activeEnhancement;
     }
 
-    public int getRemainingDuration() {
-        return this.scentDuration;
+    public static int getRemainingDuration() {
+
+        return scentDuration;
     }
 
     private Enhancement consumeEnhancement() {

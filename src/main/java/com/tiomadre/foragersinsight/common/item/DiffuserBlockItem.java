@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.common.item;
 
 
 import com.tiomadre.foragersinsight.common.block.entity.DiffuserBlockEntity;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
@@ -24,18 +25,17 @@ public class DiffuserBlockItem extends BlockItem {
     public void appendHoverText(@NotNull ItemStack stack, TooltipContext tooltipContext, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, tooltipContext, tooltip, flag);
-        Optional<FIDiffusingRecipes> scent = DiffuserBlockEntity.getScentFromItem(stack);
+        Optional<FIDiffuserRecipe> scent = DiffuserBlockEntity.getScentFromItem(stack);
         if (scent.isPresent()) {
-            tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.scent", scent.get().displayName())
+            tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.scent", scent.get().getTranslationKey())
                     .withStyle(ChatFormatting.GOLD));
-            int remainingDuration = DiffuserBlockEntity.getRemainingDurationFromItem(stack);
-            int durationSeconds = (int) Math.round(remainingDuration / 20.0D);
+            int durationSeconds = (int) Math.round(DiffuserBlockEntity.getRemainingDuration() / 20.0D);
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.remaining_duration", durationSeconds)
                     .withStyle(ChatFormatting.GRAY));
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.ingredients").withStyle(ChatFormatting.GRAY));
         }
 
-        List<ItemStack> ingredients = DiffuserBlockEntityOld.getIngredientsFromItem(stack);
+        List<ItemStack> ingredients = DiffuserBlockEntity.getIngredientsFromItem(stack);
         for (int slot = 0; slot < INGREDIENT_SLOT_COUNT; slot++) {
             ItemStack ingredient = ingredients.get(slot);
             if (ingredient.isEmpty()) {

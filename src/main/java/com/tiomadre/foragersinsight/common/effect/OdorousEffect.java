@@ -22,30 +22,30 @@ public class OdorousEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.level().isClientSide()) {
-            return;
+            return false;
         }
 
-        MobEffectInstance odorous = entity.getEffect(this);
+        MobEffectInstance odorous = entity.getEffect(entity.level().holderOrThrow(FIMobEffects.ODOROUS.getKey()));
         if (odorous == null) {
-            return;
+            return false;
         }
 
         int extraDrainTicks = getCounterbalanceDrainTicks(entity);
 
         if (extraDrainTicks <= 0
                 || entity.tickCount % EXTRA_DRAIN_INTERVAL != 0) {
-            return;
+            return true;
         }
 
         int newDuration = odorous.getDuration() - extraDrainTicks;
 
-        entity.removeEffect(this);
+        entity.removeEffect(entity.level().holderOrThrow(FIMobEffects.ODOROUS.getKey()));
 
         if (newDuration > 0) {
             entity.addEffect(new MobEffectInstance(
-                    this,
+                    entity.level().holderOrThrow(FIMobEffects.ODOROUS.getKey()),
                     newDuration,
                     odorous.getAmplifier(),
                     odorous.isAmbient(),
@@ -53,9 +53,10 @@ public class OdorousEffect extends MobEffect {
                     odorous.showIcon()
             ));
         }
+        return false;
     }
 
-    @Override
+
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }

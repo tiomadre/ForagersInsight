@@ -29,7 +29,7 @@ public class MilkBucketItem extends Item {
         this.hasFoodEffectTooltip = hasFoodEffectTooltip;
     }
 
-    z@Override
+    @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);

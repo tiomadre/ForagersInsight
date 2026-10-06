@@ -1,7 +1,10 @@
 package com.tiomadre.foragersinsight.core.other.toolevents;
 
+import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
+import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -9,9 +12,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.Objects;
+
 public class WaxedBoots {
-    public static final String WAXED_DURATION_TAG = "ForagersInsightWaxedDuration";
-    private static final String WAXED_LEVEL_TAG = "ForagersInsightWaxedLevel";
     public static final int HONEYCOMB_COUNT = 2;
     public static final int STICKY_RESISTANCE_LEVEL = 1;
     public static final int STICKY_RESISTANCE_II_LEVEL = 2;
@@ -26,27 +29,35 @@ public class WaxedBoots {
     }
 
     public static void wax(ItemStack stack) {
-        stack.getOrCreateTag().putInt(WAXED_DURATION_TAG, HONEYCOMB_COUNT * WAXED_DURATION);
-        stack.getOrCreateTag().putInt(WAXED_LEVEL_TAG, STICKY_RESISTANCE_LEVEL);
+        stack.set(FIDataComponents.BOOTWAXED,
+                new WaxedComponent(true, HONEYCOMB_COUNT * WAXED_DURATION, STICKY_RESISTANCE_LEVEL));
     }
 
     public static void waxWithHoneycombBlock(ItemStack stack) {
-        stack.getOrCreateTag().putInt(WAXED_DURATION_TAG, BLOCK_WAXED_DURATION);
-        stack.getOrCreateTag().putInt(WAXED_LEVEL_TAG, STICKY_RESISTANCE_II_LEVEL);
+        stack.set(FIDataComponents.BOOTWAXED,
+                new WaxedComponent(true, BLOCK_WAXED_DURATION, STICKY_RESISTANCE_II_LEVEL));
     }
 
     public static boolean isWaxed(ItemStack stack) {
-        return getWaxedDuration(stack) > 0;
+        return stack.get(FIDataComponents.BOOTWAXED).isWaxed();
     }
 
     public static int getWaxedDuration(ItemStack stack) {
-        return stack.getOrCreateTag().getInt(WAXED_DURATION_TAG);
+        if(!isWaxed(stack)){
+            return 0;
+        }else{
+            return Objects.requireNonNull(stack.get(FIDataComponents.BOOTWAXED)).duration();
+        }
     }
 
     public static int getWaxedLevel(ItemStack stack) {
-        if (!isWaxed(stack)) return 0;
 
-        return Math.max(STICKY_RESISTANCE_LEVEL, stack.getOrCreateTag().getInt(WAXED_LEVEL_TAG));
+        if(!isWaxed(stack)){
+            return 0;
+        }else{
+            return Objects.requireNonNull(stack.get(FIDataComponents.BOOTWAXED)).enchantLevel();
+        }
+
     }
 
     public static void appendTooltip(ItemStack stack, java.util.List<Component> tooltip) {
@@ -80,10 +91,10 @@ public class WaxedBoots {
     private static void shrinkWaxedDuration(ItemStack stack, int amount) {
         int duration = Math.max(0, getWaxedDuration(stack) - amount);
         if (duration == 0) {
-            stack.getOrCreateTag().remove(WAXED_DURATION_TAG);
-            stack.getOrCreateTag().remove(WAXED_LEVEL_TAG);
+            stack.remove(FIDataComponents.BOOTWAXED);
             return;
         }
-        stack.getOrCreateTag().putInt(WAXED_DURATION_TAG, duration);
+        stack.set(FIDataComponents.BOOTWAXED,new WaxedComponent(true,duration,
+                stack.get(FIDataComponents.BOOTWAXED).enchantLevel()));
     }
 }

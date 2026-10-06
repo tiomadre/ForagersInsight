@@ -14,6 +14,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -97,7 +98,7 @@ public class HandbasketItem extends Item {
     public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
         super.readShareTag(stack, tag);
         if (tag != null && tag.contains("HandbasketInv")) {
-            stack.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(cap -> {
+            stack.getCapability(Capabilities.ItemHandler.ITEM).ifPresent(cap -> {
                 if (cap instanceof ItemStackHandler handler) {
                     handler.deserializeNBT(tag.getCompound("HandbasketInv"));
                 }

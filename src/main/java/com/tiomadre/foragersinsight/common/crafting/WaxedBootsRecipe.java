@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.common.crafting;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.other.toolevents.WaxedBoots;
 import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
@@ -80,6 +81,7 @@ public class WaxedBootsRecipe implements CraftingRecipe {
     @Override
     public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
         ItemStack bootStack = ItemStack.EMPTY;
+        boolean hasHoneycombBlock= false;
         for (int i = 0; i < input.size(); i++) {
             ItemStack stack = input.getItem(i);
             if (!stack.isEmpty() && !waxedBootIngredient.test(stack) && stack.is(Tags.Items.ARMORS)){  //make boot tag later
@@ -87,11 +89,27 @@ public class WaxedBootsRecipe implements CraftingRecipe {
                 break;
             }
         }
+
+        for (int i = 0; i < input.size(); i++) {
+            ItemStack stack = input.getItem(i);
+            if (!stack.isEmpty() && stack.is(Items.HONEYCOMB_BLOCK)){  //make boot tag later
+                hasHoneycombBlock = true;
+                break;
+            }
+        }
+
         if (bootStack.isEmpty()) return ItemStack.EMPTY;
       
 
         ItemStack result = bootStack.copyWithCount(1);
-        result.set(FIDataComponents.BOOTWAXED.get(), true);
+
+        if (!hasHoneycombBlock){
+            WaxedBoots.wax(result);
+        }else{
+            WaxedBoots.waxWithHoneycombBlock(result);
+        }
+
+
         return result;
     }
 

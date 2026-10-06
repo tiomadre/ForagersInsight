@@ -1,7 +1,9 @@
 package com.tiomadre.foragersinsight.core.registry;
 
 import com.mojang.serialization.Codec;
+import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
+import com.tiomadre.foragersinsight.core.other.toolevents.WaxedBoots;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -19,10 +21,10 @@ public class FIDataComponents {
 
 
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> BOOTWAXED =
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<WaxedComponent>> BOOTWAXED =
             DATA_COMPONENTS.registerComponentType("bootwaxed", builder ->
-                    builder.persistent(Codec.BOOL)
-                            .networkSynchronized(ByteBufCodecs.BOOL)
+                    builder.persistent(WaxedComponent.CODEC)
+                            .networkSynchronized(WaxedComponent.STREAM_CODEC)
             );
 
 

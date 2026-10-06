@@ -5,7 +5,7 @@
   "supported_items": "#foragersinsight:harvest_tools",
   "primary_items": "#minecraft:hoes",
   "weight": 5,
-  "max_level": 3,
+  "max_level": 1,
   "min_cost": {
     "base": 20,
     "per_level_above_first": 20
