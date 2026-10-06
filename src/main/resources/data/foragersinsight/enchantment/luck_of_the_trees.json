@@ -1,0 +1,20 @@
+{
+  "description": {
+    "translate": "enchantment.foragersinsight.luck_of_the_trees"
+  },
+  "supported_items": "#c:tools/brush",
+  "primary_items": "#c:tools/brush",
+  "weight": 5,
+  "max_level": 3,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 20
+  },
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 25
+  },
+  "anvil_cost": 4,
+  "slots": ["mainhand"],
+  "effects": {}
+}

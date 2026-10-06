@@ -189,7 +189,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     private static int getLuckOfTheTreesLevel(Player player, ItemStack brushStack) {
-        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(FIEnchantments.LUCK_OF_THE_TREES, brushStack);
+        int enchantmentLevel = brushStack.getEnchantmentLevel(player.level().holderOrThrow(FIEnchantments.LUCK_OF_THE_TREES));
         return AmadouCapItem.applyLuckOfTheTrees(player, enchantmentLevel);
     }
 

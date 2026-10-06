@@ -103,7 +103,7 @@ public class FarmhandEvents {
         if (level == null || level.isClientSide() || player == null) return;
 
         ItemStack tool = player.getMainHandItem();
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
+        if (tool.getEnchantmentLevel(level.holderOrThrow(FIEnchantments.FARMHAND)) <= 0) return;
 
         BlockPos pos = event.getPos();
         BlockState state = level.getBlockState(pos);
@@ -159,10 +159,11 @@ public class FarmhandEvents {
     public static void onShearLeft(PlayerInteractEvent.LeftClickBlock event) {
         Player player = event.getEntity();
         ItemStack tool = player.getMainHandItem();
-        if (!(tool.getItem() instanceof ShearsItem)) return;
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
-
         Level level = event.getLevel();
+        if (!(tool.getItem() instanceof ShearsItem)) return;
+        if (tool.getEnchantmentLevel(level.holderOrThrow(FIEnchantments.FARMHAND)) <= 0) return;
+
+
         if (level.isClientSide()) return;
 
         BlockPos pos = event.getPos();
@@ -192,9 +193,10 @@ public class FarmhandEvents {
     public static void onShearRight(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
         ItemStack tool = player.getMainHandItem();
-        if (tool.getEnchantmentLevel(FIEnchantments.FARMHAND) <= 0) return;
-
         Level level = event.getLevel();
+        if (tool.getEnchantmentLevel(level.holderOrThrow(FIEnchantments.FARMHAND)) <= 0) return;
+
+
         if (level.isClientSide()) return;
 
         BlockPos pos = event.getPos();

@@ -96,6 +96,16 @@ public class FIItemTags extends ItemTagsProvider {
         //Amadou cap
         this.tag(ItemTags.DYEABLE).add(FIItems.AMADOU_CAP.get());
 
+        //Hoes and Farmhand tools
+        this.tag(TOOLS_HOE).add(Items.WOODEN_HOE, Items.STONE_HOE, Items.IRON_HOE, Items.GOLDEN_HOE, Items.DIAMOND_HOE, Items.NETHERITE_HOE);
+
+        this.tag(HARVEST_TOOLS).add(Items.WOODEN_HOE, Items.STONE_HOE, Items.IRON_HOE, Items.GOLDEN_HOE,
+                Items.DIAMOND_HOE, Items.NETHERITE_HOE, Items.SHEARS, ModItems.FLINT_KNIFE.get(), ModItems.IRON_KNIFE.get(),
+                ModItems.GOLDEN_KNIFE.get(), ModItems.DIAMOND_KNIFE.get(), ModItems.NETHERITE_KNIFE.get());
+
+        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> harvestToolsAllowedTag = this.tag(HARVEST_TOOLS);
+        addOptionalTags(harvestToolsAllowedTag, "c", "tools/knife", "tools/shear", "tools/hoe");
+
         // Mallet
         this.tag(FITags.ItemTag.MALLETS).add(FIItems.FLINT_MALLET.get(),FIItems.IRON_MALLET.get(),
         FIItems.GOLD_MALLET.get(),FIItems.DIAMOND_MALLET.get(),FIItems.NETHERITE_MALLET.get());
