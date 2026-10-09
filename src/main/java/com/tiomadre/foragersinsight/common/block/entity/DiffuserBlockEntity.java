@@ -9,6 +9,7 @@ import com.tiomadre.foragersinsight.core.registry.FIItems;
 import com.tiomadre.foragersinsight.core.registry.FIRecipeSerializers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jline.utils.DiffHelper;
 
@@ -57,8 +59,9 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
     public static final int ENHANCEMENT_SLOT_INDEX = INPUT_SLOT_COUNT;
     public static final int RESULT_SLOT_INDEX = ENHANCEMENT_SLOT_INDEX + 1;
     protected final ContainerData data;
+    public static NonNullList<ItemStack> activeIngredients = NonNullList.withSize(INPUT_SLOT_COUNT, ItemStack.EMPTY);
     private static int scentDuration= 1200;
-    private FIDiffuserRecipe activeScent;
+    private static FIDiffuserRecipe activeScent;
     private Enhancement activeEnhancement = Enhancement.NONE;
 
 
@@ -82,6 +85,27 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
             }
         };
     }
+
+    public static NonNullList<ItemStack> getActiveIngredients(){
+        return activeIngredients;
+    }
+
+    public static Optional<FIDiffuserRecipe> getScentFromItem(@NotNull ItemStack stack) {
+        return Optional.ofNullable(activeScent);
+    }
+
+    private void storeActiveIngredients() {
+        NonNullList<ItemStack> stored = NonNullList.withSize(INPUT_SLOT_COUNT, ItemStack.EMPTY);
+        for (int slot = 0; slot < INPUT_SLOT_COUNT; slot++) {
+            ItemStack stack = itemHandler.getStackInSlot(slot);
+            if (!stack.isEmpty()) {
+                stored.set(slot, stack.copyWithCount(1));
+            }
+        }
+        this.activeIngredients = stored;
+    }
+
+
 
     @Override
     public Component getDisplayName() {
@@ -120,7 +144,8 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
 
     public void tick(Level level1, BlockPos blockPos, BlockState blockState) {
-       if(hasRecipe()){
+        storeActiveIngredients();
+        if(hasRecipe()){
            if(tryStartDiffusion()){
                emitScentEffect();
                decreaseLitTime();
@@ -191,6 +216,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         if (this.level == null || this.activeScent == null) {
             return;
         }
+
 
         for( int i=0;i<INPUT_SLOT_COUNT;i++){
             itemHandler.extractItem(i,1,false);
@@ -342,6 +368,8 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
         return scentDuration;
     }
+
+
 
     private Enhancement consumeEnhancement() {
         ItemStack stack = this.itemHandler.getStackInSlot(ENHANCEMENT_SLOT_INDEX);

@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
+import org.jetbrains.annotations.NotNull;
 
 public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
 
@@ -51,9 +52,10 @@ public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         return this.inputItems;
     }
+
 
     public int getScentDuration() {
         return this.scentDuration;

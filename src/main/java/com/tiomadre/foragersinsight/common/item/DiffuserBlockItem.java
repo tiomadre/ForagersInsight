@@ -35,7 +35,8 @@ public class DiffuserBlockItem extends BlockItem {
             tooltip.add(Component.translatable("item.foragersinsight.diffuser.tooltip.ingredients").withStyle(ChatFormatting.GRAY));
         }
 
-        List<ItemStack> ingredients = DiffuserBlockEntity.getIngredientsFromItem(stack);
+
+        List<ItemStack> ingredients = DiffuserBlockEntity.getActiveIngredients();
         for (int slot = 0; slot < INGREDIENT_SLOT_COUNT; slot++) {
             ItemStack ingredient = ingredients.get(slot);
             if (ingredient.isEmpty()) {

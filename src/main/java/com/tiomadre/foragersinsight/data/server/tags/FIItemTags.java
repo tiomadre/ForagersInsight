@@ -112,6 +112,13 @@ public class FIItemTags extends ItemTagsProvider {
         //Shears
         this.tag(TOOLS_SHEAR).add(FIItems.FLINT_SHEARS.get());
 
+        //Boots
+        this.tag(BOOTS).add(Items.LEATHER_BOOTS, Items.CHAINMAIL_BOOTS, Items.IRON_BOOTS,
+        Items.GOLDEN_BOOTS,Items.DIAMOND_BOOTS, Items.NETHERITE_BOOTS);
+
+        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> bootsAllowedtag = this.tag(BOOTS);
+        addOptionalTags(bootsAllowedtag, "c", "armor/boots");
+
         //Wood
         this.tag(ItemTags.SIGNS).add(FIItems.LILAC_SIGN.get());
         this.tag(ItemTags.HANGING_SIGNS).add(FIItems.LILAC_HANGING_SIGN.get());

@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.data.server.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import com.tiomadre.foragersinsight.data.server.tags.FITags;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
-import vectorwing.farmersdelight.common.registry.ModRecipeSerializers;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
@@ -240,12 +240,7 @@ public class FICookingRecipes {
                 .unlockedByAnyIngredient(Items.WHEAT_SEEDS)
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .save(output);
-        //Other
-        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION.value(), "auspicious_stew_from_rose_petals");
-        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE.value(), "auspicious_stew_from_roselle_petals");
-        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST.value(), "auspicious_stew_from_spruce_tips");
-        buildAuspiciousStewRecipe(output, LILAC_BLOOM.get(), FIMobEffects.BLOOM.get(), "auspicious_stew_from_lilac_bloom");
-            //Other Non Food
+         //Other Non Food
         CookingPotRecipeBuilder.cookingPotRecipe(AMADOU.get(), 3, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(FIItems.TINDER_CONK.get())
                 .addIngredient(FIItems.TINDER_CONK.get())
@@ -301,7 +296,7 @@ public class FICookingRecipes {
         // Override FD Recipes
         //Hot Cocoa
         CookingPotRecipeBuilder.cookingPotRecipe(ModItems.HOT_COCOA.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                          .addIngredient(DRINKS_MILK)
+                .addIngredient(DRINKS_MILK)
                         .addIngredient(Items.SUGAR)
                         .addIngredient(FITags.ItemTag.FOODS_COCOA)
                         .addIngredient(FITags.ItemTag.FOODS_COCOA)
@@ -317,130 +312,42 @@ public class FICookingRecipes {
                         .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                         .save(output, ResourceLocation.fromNamespaceAndPath("farmersdelight", "apple_cider"));
 
+
+        //Other
+        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION.value(), "auspicious_stew_from_rose_petals");
+        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE.value(), "auspicious_stew_from_roselle_petals");
+        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST.value(), "auspicious_stew_from_spruce_tips");
+        buildAuspiciousStewRecipe(output, LILAC_BLOOM.get(), FIMobEffects.BLOOM.get(), "auspicious_stew_from_lilac_bloom");
+
+
+
     }
 
+
+
+
     private static void buildAuspiciousStewRecipe(RecipeOutput output, ItemLike flower, MobEffect effect, String recipeName) {
-        ItemStack stew = createAuspiciousStew(effect);
-        NonNullList<Ingredient> ingredients = NonNullList.of(
-                Ingredient.of(Tags.Items.DRINKS_MILK), //figure out how to get the tag for milk bottle
-                Ingredient.of(BLEWIT_MUSHROOM.get()),
-                Ingredient.of(BLEWIT_MUSHROOM.get()),
-                Ingredient.of(flower)
-        );
-        ResourceLocation id =  ResourceLocation.fromNamespaceAndPath("farmersdelight", "cooking/" + recipeName);
-        JsonObject advancement = buildCookingAdvancement(id, BLEWIT_MUSHROOM.get(), flower);
-        ResourceLocation advancementId = ResourceLocation.fromNamespaceAndPath("farmersdelight", "recipes/cooking/" + recipeName);
-       // output.accept(new CookingPotRecipeWithNbt(id, CookingPotRecipeBookTab.MEALS, ingredients, stew, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL, advancement, advancementId));
+
+        CookingPotRecipeBuilder.cookingPotRecipe(AUSPICIOUS_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(Tags.Items.DRINKS_MILK)
+                .addIngredient(BLEWIT_MUSHROOM.get())
+                .addIngredient(BLEWIT_MUSHROOM.get())
+                .addIngredient(flower)
+                .unlockedByAnyIngredient(BLEWIT_MUSHROOM.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                .save(output, ResourceLocation.fromNamespaceAndPath("foragersinsight", recipeName));
+
     }
 
     private static ItemStack createAuspiciousStew(MobEffect effect) {
         ItemStack stack = new ItemStack(FIItems.AUSPICIOUS_STEW.get());
 
-
-        //Check back on this later, had to redo the method cause no more item stack compound tags
-        DataComponentType<MobEffect> effectcomponent= DataComponentType.<MobEffect>builder().build();
         if (effect != null) {
-            stack.getOrDefault(effectcomponent,effect);
+            stack.getOrDefault(FIDataComponents.AUSPICIOUS_EFFECT,effect);
 
         }
         return stack;
     }
 
-    private static JsonObject buildCookingAdvancement(ResourceLocation recipeId, ItemLike... ingredients) {
-        JsonObject advancement = new JsonObject();
-        advancement.addProperty("parent", "minecraft:recipes/root");
-        JsonObject criteria = new JsonObject();
-        JsonObject hasAnyIngredient = new JsonObject();
-        JsonObject conditions = new JsonObject();
-        JsonArray items = new JsonArray();
-        JsonObject itemEntry = new JsonObject();
-        JsonArray itemIds = new JsonArray();
-        for (ItemLike ingredient : ingredients) {
-            itemIds.add(BuiltInRegistries.ITEM.getKey(ingredient.asItem()).toString());
-        }
-        itemEntry.add("items", itemIds);
-        items.add(itemEntry);
-        conditions.add("items", items);
-        hasAnyIngredient.add("conditions", conditions);
-        hasAnyIngredient.addProperty("trigger", "minecraft:inventory_changed");
-        criteria.add("has_any_ingredient", hasAnyIngredient);
-        JsonObject hasRecipe = new JsonObject();
-        JsonObject recipeConditions = new JsonObject();
-        recipeConditions.addProperty("recipe", recipeId.toString());
-        hasRecipe.add("conditions", recipeConditions);
-        hasRecipe.addProperty("trigger", "minecraft:recipe_unlocked");
-        criteria.add("has_the_recipe", hasRecipe);
-        advancement.add("criteria", criteria);
-        JsonArray requirements = new JsonArray();
-        JsonArray requirement = new JsonArray();
-        requirement.add("has_any_ingredient");
-        requirement.add("has_the_recipe");
-        requirements.add(requirement);
-        advancement.add("requirements", requirements);
-        JsonObject rewards = new JsonObject();
-        JsonArray recipes = new JsonArray();
-        recipes.add(recipeId.toString());
-        rewards.add("recipes", recipes);
-        advancement.add("rewards", rewards);
-        advancement.addProperty("sends_telemetry_event", true);
-        return advancement;
-    }
 
-    private record CookingPotRecipeWithNbt(ResourceLocation id, CookingPotRecipeBookTab tab, NonNullList<Ingredient> ingredients, ItemStack result, int cookingTime,
-    float experience, @Nullable ItemLike container, JsonObject advancement, ResourceLocation advancementId){
-
-
-            public void serializeRecipeData(JsonObject json) {
-                if (tab != null) {
-                    json.addProperty("recipe_book_tab", tab.toString());
-                }
-                JsonArray ingredientArray = new JsonArray();
-                for (Ingredient ingredient : ingredients) {
-                    ingredientArray.add(ingredient.toString());
-                }
-                json.add("ingredients", ingredientArray);
-                JsonObject resultObject = new JsonObject();
-                resultObject.addProperty("item", BuiltInRegistries.ITEM.getKey(result.getItem()).toString());
-                if (result.getCount() > 1) {
-                    resultObject.addProperty("count", result.getCount());
-                }
-
-                //commented out for now, gotta full rewrite auspicious stew at some point
-                //give it the effect component
-//                if (result.hastag()) {
-//                    resultObject.addProperty("nbt", result.getTag().toString());
-//                }
-                json.add("result", resultObject);
-                if (experience > 0) {
-                    json.addProperty("experience", experience);
-                }
-            json.addProperty("cookingtime", cookingTime);
-            if (container != null) {
-                JsonObject containerObject = new JsonObject();
-                containerObject.addProperty("item", BuiltInRegistries.ITEM.getKey(container.asItem()).toString());
-                json.add("container", containerObject);
-                }
-            }
-
-
-            public ResourceLocation getId() {
-                return id;
-            }
-
-
-            public net.minecraft.world.item.crafting.RecipeSerializer<?> getType() {
-                return ModRecipeSerializers.COOKING.get();
-            }
-
-
-            public JsonObject serializeAdvancement() {
-                return advancement;
-            }
-
-
-            public ResourceLocation getAdvancementId() {
-                return advancementId;
-            }
-
-        }
 }

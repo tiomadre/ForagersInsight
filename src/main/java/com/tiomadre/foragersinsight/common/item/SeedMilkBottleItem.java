@@ -21,9 +21,9 @@ public class SeedMilkBottleItem extends MilkBottleItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip,
+    public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
+        super.appendHoverText(stack, context, tooltip, flag);
         if (this.hasFoodEffectTooltip) {
             tooltip.add(Component.translatable(TOOLTIP_KEY).withStyle(ChatFormatting.BLUE));
         }

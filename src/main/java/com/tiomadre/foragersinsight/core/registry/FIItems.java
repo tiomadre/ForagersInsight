@@ -7,7 +7,9 @@ import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.other.FIFoods;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
@@ -220,7 +222,7 @@ public class FIItems {
 // Tools & Armor
     //Armor
     public static final DeferredItem<Item> AMADOU_CAP = HELPER.createItem("amadou_cap", () ->
-        new AmadouCapItem(new Item.Properties().stacksTo(1)));
+        new AmadouCapItem(new Item.Properties().stacksTo(1).component(DataComponents.DYED_COLOR,new DyedItemColor(DyedItemColor.LEATHER_COLOR,true))));
     //Diffuser
     public static final DeferredItem<Item> DIFFUSER = HELPER.createItem("diffuser", () ->
         new DiffuserBlockItem(FIBlocks.DIFFUSER.get(), basicItem().stacksTo(1)));

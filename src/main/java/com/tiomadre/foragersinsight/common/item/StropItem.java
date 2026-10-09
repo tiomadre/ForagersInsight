@@ -68,7 +68,7 @@ public class StropItem extends Item {
             return;
         }
 
-        int elapsedTicks = this.getUseDuration(strop) - remainingUseDuration;
+        int elapsedTicks = this.getUseDuration(strop, livingEntity) - remainingUseDuration;
         playStroppingSound(level, player, elapsedTicks);
 
         if (elapsedTicks < REPAIR_DELAY_TICKS || elapsedTicks % REPAIR_INTERVAL_TICKS != 0) {
@@ -83,7 +83,7 @@ public class StropItem extends Item {
     }
 
     @Override
-    public int getUseDuration(@NotNull ItemStack stack) {
+    public int getUseDuration(@NotNull ItemStack stack, LivingEntity entity) {
         return USE_DURATION_TICKS;
     }
     @Override

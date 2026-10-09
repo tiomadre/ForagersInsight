@@ -4,9 +4,11 @@ import com.mojang.serialization.Codec;
 import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.other.toolevents.WaxedBoots;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.effect.MobEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -27,7 +29,11 @@ public class FIDataComponents {
                             .networkSynchronized(WaxedComponent.STREAM_CODEC)
             );
 
-
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Holder<MobEffect>>> AUSPICIOUS_EFFECT =
+            DATA_COMPONENTS.registerComponentType("auspicious_effect", builder ->
+                    builder.persistent(MobEffect.CODEC)
+                            .networkSynchronized(MobEffect.STREAM_CODEC)
+            );
 
 
     private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,

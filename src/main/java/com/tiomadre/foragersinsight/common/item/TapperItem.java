@@ -36,16 +36,16 @@ public class TapperItem extends Item {
         return 1;
     }
 
-    @Override
-    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack, @NotNull Enchantment enchantment) {
-        return enchantment == Enchantments.FIRE_ASPECT;
-    }
+//    @Override
+//    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack, @NotNull Enchantment enchantment) {
+//        return enchantment Enchantments.FIRE_ASPECT;
+//    }
 
-    @Override
-    public boolean isBookEnchantable(@NotNull ItemStack stack, @NotNull ItemStack book) {
-        var enchantments = EnchantmentHelper.getEnchantments(book);
-        return enchantments.size() == 1 && enchantments.containsKey(Enchantments.FIRE_ASPECT);
-    }
+//    @Override
+//    public boolean isBookEnchantable(@NotNull ItemStack stack, @NotNull ItemStack book) {
+//        var enchantments = EnchantmentHelper.getEnchantmentsForCrafting(book);
+//        return enchantments.size() == 1 && enchantments.(Enchantments.FIRE_ASPECT);
+//    }
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext ctx) {
@@ -79,7 +79,7 @@ public class TapperItem extends Item {
                     .setValue(TapperBlock.FACING, face)
                     .setValue(TapperBlock.HAS_TAPPER, true)
                     .setValue(TapperBlock.FILL, 0)
-                    .setValue(TapperBlock.ENCHANTED, stack.getEnchantmentLevel(Enchantments.FIRE_ASPECT) > 0);
+                    .setValue(TapperBlock.ENCHANTED, stack.getEnchantmentLevel(level.holderOrThrow(Enchantments.FIRE_ASPECT)) > 0);
             level.setBlock(targetPos, tapperState, Block.UPDATE_ALL);
 
             level.getBlockEntity(targetPos, FIBlockEntityTypes.TAPPER.get())

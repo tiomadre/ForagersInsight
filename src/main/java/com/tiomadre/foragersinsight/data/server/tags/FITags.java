@@ -29,6 +29,10 @@ public class FITags {
 
             //Mallet
             public static final TagKey<net.minecraft.world.item.Item> MALLETS = TagUtil.itemTag("c", "tools/mallets");
+
+            //
+            public static final TagKey<net.minecraft.world.item.Item> BOOTS = TagUtil.itemTag("c", "armor/boots");
+
             //Foods
             public static final TagKey<net.minecraft.world.item.Item> FOODS_APPLE = TagUtil.itemTag("c", "crops/apple");
             public static final TagKey<net.minecraft.world.item.Item> FOODS_POPPY_SEEDS = TagUtil.itemTag("c", "foods/poppy_seeds");
