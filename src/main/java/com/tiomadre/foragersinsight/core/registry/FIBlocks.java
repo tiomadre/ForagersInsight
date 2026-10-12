@@ -10,11 +10,13 @@ import com.tiomadre.foragersinsight.common.block.feasts.SliceableCakeBlock;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
@@ -32,6 +34,9 @@ public class FIBlocks {
                 .isSuffocating((state, level, pos) -> false)
                 .isViewBlocking((state, level, pos) -> false);
     }
+
+
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, ForagersInsight.MOD_ID);
 
     //Cakes and Feasts
     public static final DeferredBlock<Block> ACORN_CARROT_CAKE = HELPER.createBlockNoItem("acorn_carrot_cake",

@@ -328,6 +328,7 @@ public class FICookingRecipes {
 
     private static void buildAuspiciousStewRecipe(RecipeOutput output, ItemLike flower, MobEffect effect, String recipeName) {
 
+
         CookingPotRecipeBuilder.cookingPotRecipe(AUSPICIOUS_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Tags.Items.DRINKS_MILK)
                 .addIngredient(BLEWIT_MUSHROOM.get())

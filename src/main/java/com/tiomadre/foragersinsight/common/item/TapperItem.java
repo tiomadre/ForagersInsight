@@ -6,6 +6,7 @@ import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FITappables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -36,16 +37,11 @@ public class TapperItem extends Item {
         return 1;
     }
 
-//    @Override
-//    public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack, @NotNull Enchantment enchantment) {
-//        return enchantment Enchantments.FIRE_ASPECT;
-//    }
-
-//    @Override
-//    public boolean isBookEnchantable(@NotNull ItemStack stack, @NotNull ItemStack book) {
-//        var enchantments = EnchantmentHelper.getEnchantmentsForCrafting(book);
-//        return enchantments.size() == 1 && enchantments.(Enchantments.FIRE_ASPECT);
-//    }
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (enchantment.is(Enchantments.FIRE_ASPECT)) return true;
+        return super.supportsEnchantment(stack, enchantment);
+    }
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext ctx) {

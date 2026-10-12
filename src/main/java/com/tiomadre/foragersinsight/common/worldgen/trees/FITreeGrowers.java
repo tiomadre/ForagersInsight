@@ -17,7 +17,7 @@ public class FITreeGrowers {
     public static final TreeGrower APPLE_TREE = new TreeGrower( "foragersinsight:apple_tree",
             Optional.of(TreeFeatures.OAK), Optional.of(FIConfiguredFeatures.APPLE_TREE_KEY), Optional.empty());
 
-    public static final TreeGrower SSPRUCE_TIP_TREE = new TreeGrower( "foragersinsight:spruce_tip_tree",
+    public static final TreeGrower SPRUCE_TIP_TREE = new TreeGrower( "foragersinsight:spruce_tip_tree",
             Optional.of(TreeFeatures.SPRUCE), Optional.of(FIConfiguredFeatures.SPRUCE_TIP_TREE_KEY), Optional.empty());
 
     public static final TreeGrower LILAC_TREE = new TreeGrower( "foragersinsight:lilac_tree",

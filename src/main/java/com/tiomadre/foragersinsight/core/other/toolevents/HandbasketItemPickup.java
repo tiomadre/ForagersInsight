@@ -10,6 +10,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
@@ -19,8 +20,8 @@ import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 @EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class HandbasketItemPickup {
-    //@SubscribeEvent
-    public static void onItemPickup(ItemEntityPickupEvent ev) {
+    @SubscribeEvent
+    public static void onItemPickup(ItemEntityPickupEvent.Pre ev) {
         Player player = ev.getPlayer();
         if (!(player instanceof ServerPlayer server)) return;
 

@@ -1,13 +1,12 @@
 modLoader = "javafml"
-loaderVersion = "[32,)"
-issueTrackerURL = "https://github.com/team-abnormals/template-mod/issues"
+loaderVersion = "${loader_version_range}"
 license = "https://github.com/team-abnormals/template-mod/blob/main/LICENSE.txt"
 
 [[mods]]
-    modId = "foragersinsight"
-    version = "${file.jarVersion}"
-    logoFile = "logo.png"
-    itemIcon = "minecraft:dirt"
+    modId="foragersinsight"
+    version="2.0.0"
+    logoFile="logo.png"
+    itemIcon= "minecraft:dirt"
     configBackground = "minecraft:textures/block/dirt.png"
     authors = "tiomadre"
     credits = "tiomadre"
@@ -17,28 +16,28 @@ license = "https://github.com/team-abnormals/template-mod/blob/main/LICENSE.txt"
 
 [[dependencies.foragersinsight]]
     modId = "minecraft"
-    mandatory = true
-    versionRange = "[1.20.1,1.20.2)"
+    type="required"
+    versionRange = "${minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.foragersinsight]]
-    modId = "forge"
-    mandatory = true
-    versionRange = "[47.1.3,)"
+    modId = "neoforge"
+    type="required"
+    versionRange = "${neo_version_range}"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.foragersinsight]]
     modId = "blueprint"
-    mandatory = true
-    versionRange = "[7.1.0,)"
+    type="required"
+    versionRange = "[8.2.0,)"
     ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.foragersinsight]]
     modId = "farmersdelight"
-    mandatory = true
-    versionRange = "[1.2.0,)"
+    type="required"
+    versionRange = "[1.3.0,)"
     ordering = "AFTER"
     side = "BOTH"
