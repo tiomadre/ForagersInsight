@@ -44,7 +44,7 @@ public class BlossomingLilacLeavesBlock extends LeavesBlock implements Bonemeala
 
     @Override
     public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return true;
+        return random.nextInt(2) == 0;
     }
 
     @Override

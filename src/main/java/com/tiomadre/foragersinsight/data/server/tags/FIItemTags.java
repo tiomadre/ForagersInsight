@@ -59,7 +59,7 @@ public class FIItemTags extends ItemTagsProvider {
 
         this.tag(FOODS).addTags(FOODS_APPLE,FOODS_POPPY_SEEDS,FOODS_ACORN,FOODS_ROOTS,FOODS_MUSHROOM,FOODS_LILAC).add(FIItems.TINDER_CONK.get());
         //Food
-        this.tag(BLEWIT_STUFFING).addTags(SEEDS,NUTS,FOODS_VEGETABLE,FOODS_RAW_MEAT,FOODS_RAW_FISH);
+        this.tag(BLEWIT_STUFFING).addTags(SEEDS,NUTS,FOODS_VEGETABLE,FOODS_RAW_MEAT);
 
         //give shears fortune
         this.tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTag(TOOLS_SHEAR);

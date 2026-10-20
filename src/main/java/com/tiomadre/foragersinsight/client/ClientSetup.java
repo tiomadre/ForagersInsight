@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.client;
 
 import com.tiomadre.foragersinsight.client.render.blockentity.SuspiciousLitterRender;
 import com.tiomadre.foragersinsight.client.render.blockentity.SapTrapRenderer;
+import com.tiomadre.foragersinsight.common.block.BountifulLeavesBlock;
 import com.tiomadre.foragersinsight.common.block.SuspiciousLitterBlock;
 import com.tiomadre.foragersinsight.common.worldgen.FIBiomes;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
@@ -17,8 +18,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
@@ -144,6 +147,21 @@ public class ClientSetup {
                 Blocks.SHORT_GRASS,
                 Blocks.TALL_GRASS
         );
+        event.register((state, level, pos, tintIndex) -> {
+            if (tintIndex != 0) return -1;
+            if (level != null && pos != null) {
+                return BiomeColors.getAverageGrassColor(level, pos);
+            }
+            return FoliageColor.getDefaultColor();
+        }, FIBlocks.BOUNTIFUL_OAK_LEAVES.get());
+
+        event.register((state, level, pos, tintIndex) -> {
+            if (tintIndex != 0) return -1;
+            if (level != null && pos != null) {
+                return BiomeColors.getAverageGrassColor(level, pos);
+            }
+            return FoliageColor.getDefaultColor();
+        }, FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES.get());
     }
 
     @SubscribeEvent
@@ -171,5 +189,9 @@ public class ClientSetup {
         );
 
         event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), FIBlocks.WOODLAND_FERN.get());
+        event.register((stack, tintIndex) -> tintIndex == 0 ? FastColor.ARGB32.opaque(GrassColor.getDefaultColor()) : -1,
+                FIBlocks.BOUNTIFUL_OAK_LEAVES.asItem());
+        event.register((stack, tintIndex) -> tintIndex == 0 ? FastColor.ARGB32.opaque(GrassColor.getDefaultColor()) : -1,
+                FIBlocks.BOUNTIFUL_DARK_OAK_LEAVES.asItem());
     }
 }

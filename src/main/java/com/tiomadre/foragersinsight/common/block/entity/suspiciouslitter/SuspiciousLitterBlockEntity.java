@@ -117,9 +117,9 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
         if (blockEntity.brushTicks >= BRUSH_DURATION_TICKS) {
             serverLevel.playSound(null, pos, SoundEvents.CHERRY_LEAVES_BREAK, SoundSource.BLOCKS, 1.0F, 0.5F);
             serverLevel.playSound(null, pos, SoundEvents.ROOTED_DIRT_BREAK, SoundSource.BLOCKS, 0.75F, 2.0F);
-            ItemStack drop = blockEntity.revealedItem.getStackInSlot(1).isEmpty()
+            ItemStack drop = blockEntity.revealedItem.getStackInSlot(0).isEmpty()
                     ? SuspiciousLitterLoot.chooseLoot(serverLevel, pos, state)
-                    : blockEntity.revealedItem.getStackInSlot(1);
+                    : blockEntity.revealedItem.getStackInSlot(0);
             SuspiciousLitterLoot.dropLoot(serverLevel, pos, state, drop);
             if (player instanceof ServerPlayer serverPlayer) {
                 FarmingXPEvents.awardSuspiciousLitterXP(serverLevel, serverPlayer, state, drop);
@@ -149,7 +149,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     private void resetProgress() {
         clearBrusher();
         this.brushTicks = 0;
-        revealedItem.setStackInSlot(1,ItemStack.EMPTY);
+        revealedItem.setStackInSlot(0,ItemStack.EMPTY);
         this.cooldownEndsAtTick = 0L;
         this.brushResetsAtTick = 0L;
         sync();
@@ -194,8 +194,8 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     private void resolveRevealedItem(ServerLevel level, BlockState state) {
-        if (this.revealedItem.getStackInSlot(1).isEmpty()) {
-            this.revealedItem.setStackInSlot(1, SuspiciousLitterLoot.chooseLoot(level, this.worldPosition, state, this.luckOfTheTreesLevel));
+        if (this.revealedItem.getStackInSlot(0).isEmpty()) {
+            this.revealedItem.setStackInSlot(0, SuspiciousLitterLoot.chooseLoot(level, this.worldPosition, state, this.luckOfTheTreesLevel));
             sync();
         }
     }
@@ -228,7 +228,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
     }
 
     public ItemStack getRevealedItem() {
-        return revealedItem.getStackInSlot(1);
+        return revealedItem.getStackInSlot(0);
     }
 
     @Override
@@ -241,7 +241,7 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
         tag.putInt(NBT_LUCK_OF_THE_TREES, this.luckOfTheTreesLevel);
         tag.putLong(NBT_COOLDOWN_ENDS, this.cooldownEndsAtTick);
         tag.putLong(NBT_RESET_AT, this.brushResetsAtTick);
-        if (!this.revealedItem.getStackInSlot(1).isEmpty()) {
+        if (!this.revealedItem.getStackInSlot(0).isEmpty()) {
             tag.put(NBT_REVEALED_ITEM, revealedItem.serializeNBT(registries));
         }
     }
@@ -255,9 +255,9 @@ public class SuspiciousLitterBlockEntity extends BlockEntity {
         this.cooldownEndsAtTick = tag.getLong(NBT_COOLDOWN_ENDS);
         this.brushResetsAtTick = tag.getLong(NBT_RESET_AT);
         if (tag.contains(NBT_REVEALED_ITEM)) {
-            this.revealedItem.setStackInSlot(1,ItemStack.parseOptional(registries, tag.getCompound(NBT_REVEALED_ITEM)));
+            this.revealedItem.setStackInSlot(0,ItemStack.parseOptional(registries, tag.getCompound(NBT_REVEALED_ITEM)));
         } else {
-            this.revealedItem.setStackInSlot(1,ItemStack.EMPTY);
+            this.revealedItem.setStackInSlot(0,ItemStack.EMPTY);
             this.luckOfTheTreesLevel = 0;
         }
     }

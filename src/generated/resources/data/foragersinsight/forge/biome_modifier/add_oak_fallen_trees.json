@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/oak_forest_litter",
-  "features": "foragersinsight:oak_fallen_trees_placed",
-  "step": "vegetal_decoration"
-}

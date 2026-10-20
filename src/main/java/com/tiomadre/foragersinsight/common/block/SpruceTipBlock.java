@@ -61,6 +61,7 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
         }
     }
 
+
     @Override
     protected boolean mayPlaceOn(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return state.getBlock() instanceof BountifulSpruceLeavesBlock;
@@ -99,7 +100,18 @@ public class SpruceTipBlock extends BushBlock implements BonemealableBlock {
         }
     }
 
-    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
+                                          @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        return tryHarvest(state, level, pos);
+    }
+
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
+                                                     @NotNull Player player, @NotNull BlockHitResult hit) {
+        return tryHarvest(state, level, pos);
+    }
+
+    private @NotNull InteractionResult tryHarvest(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+
         int age = state.getValue(AGE);
         if (age >= MAX_AGE) {
             popResource(level, pos, new ItemStack(FIItems.SPRUCE_TIPS.get()));

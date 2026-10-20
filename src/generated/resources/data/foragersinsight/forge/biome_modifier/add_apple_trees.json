@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/apple_trees",
-  "features": "foragersinsight:apple_tree_placed",
-  "step": "vegetal_decoration"
-}

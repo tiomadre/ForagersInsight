@@ -186,7 +186,7 @@ public class FIConfiguredFeatures {
         //Wild Flowers
         Holder<PlacedFeature> roselleBush = PlacementUtils.inlinePlaced(
                 Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(Blocks.GRASS_BLOCK.defaultBlockState(), 6)
+                        .add(Blocks.SHORT_GRASS.defaultBlockState(), 6)
                         .add(FIBlocks.ROSELLE_BUSH.get().defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 2)
                         .build())),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
@@ -256,7 +256,7 @@ public class FIConfiguredFeatures {
         Holder<PlacedFeature> placedFeature = PlacementUtils.inlinePlaced(
                 Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(Blocks.GRASS_BLOCK.defaultBlockState(), 6)
+                        .add(Blocks.SHORT_GRASS.defaultBlockState(), 6)
                         .add(state, 2)
                         .build())),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
@@ -271,7 +271,7 @@ public class FIConfiguredFeatures {
         Holder<PlacedFeature> placedFeature = PlacementUtils.inlinePlaced(
                 Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(Blocks.GRASS_BLOCK.defaultBlockState(), 5)
+                        .add(Blocks.SHORT_GRASS.defaultBlockState(), 5)
                         .add(Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 3)
                         .add(FIBlocks.WOODLAND_FERN.get().defaultBlockState(), 3)
                         .add(Blocks.LILAC.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 1)
@@ -291,7 +291,7 @@ public class FIConfiguredFeatures {
                 new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(Blocks.DARK_OAK_LOG.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X), 4)
                         .add(Blocks.DARK_OAK_LOG.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z), 4)
-                        .add(Blocks.GRASS_BLOCK.defaultBlockState(), 2)
+                        .add(Blocks.SHORT_GRASS.defaultBlockState(), 2)
                         .build())),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
                         BlockPredicate.replaceable(),

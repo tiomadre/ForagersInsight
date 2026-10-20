@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/birch_forest_litter",
-  "features": "foragersinsight:mushroom_birch_tree_placed",
-  "step": "vegetal_decoration"
-}

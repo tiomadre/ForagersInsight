@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/flower_forest_litter",
-  "features": "foragersinsight:flower_suspicious_leaf_litter_patch_placed",
-  "step": "vegetal_decoration"
-}

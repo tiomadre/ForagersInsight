@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/acorn_trees",
-  "features": "foragersinsight:acorn_dark_oak_placed",
-  "step": "vegetal_decoration"
-}

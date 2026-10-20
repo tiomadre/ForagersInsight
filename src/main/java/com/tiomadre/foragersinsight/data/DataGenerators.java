@@ -36,10 +36,8 @@ public class DataGenerators {
         gen.addProvider(server, new FIBiomeTags(event));
         gen.addProvider(server, new FIItemTags(event, blockTags));
         gen.addProvider(server, new LootTableProvider(event.getGenerator().getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(FIBlockLoot::new, LootContextParamSets.BLOCK)),event.getLookupProvider()));
-        gen.addProvider(event.includeServer(), new LootTableProvider(event.getGenerator().getPackOutput(), Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(FIBlockLoot::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
         gen.addProvider(server, new FICraftingRecipes(event.getGenerator().getPackOutput() ,event.getLookupProvider()));
-        gen.addProvider(event.includeServer(), new FIRecipes(event.getGenerator().getPackOutput(),event.getLookupProvider()));
+        //gen.addProvider(event.includeServer(), new FIRecipes(event.getGenerator().getPackOutput(),event.getLookupProvider()));
         gen.addProvider(server, new FIWorldgen(event));
         gen.addProvider(server, new FIAdvancementProvider(event.getGenerator().getPackOutput(),event.getLookupProvider(),event.getExistingFileHelper()));
         gen.addProvider(server, new FIDatamapProvider(gen.getPackOutput(), event.getLookupProvider()));

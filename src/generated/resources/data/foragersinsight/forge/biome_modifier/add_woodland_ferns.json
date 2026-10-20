@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/woodland_ferns",
-  "features": "foragersinsight:woodland_fern_patch_placed",
-  "step": "vegetal_decoration"
-}

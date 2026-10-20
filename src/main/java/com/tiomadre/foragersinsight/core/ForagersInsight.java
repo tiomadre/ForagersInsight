@@ -40,11 +40,12 @@ public class ForagersInsight {
 	public ForagersInsight(IEventBus modEventBus, ModContainer modContainer) {
 		//NeoForge.EVENT_BUS.register(this);
 
-		REGISTRY_HELPER.register(modEventBus);
+		//REGISTRY_HELPER.register(modEventBus);
 		FIBoatTypes.register();
 		FIAdvancements.TRIGGERS.register(modEventBus);
 		FIWoodTypes.register();
         FIBlocks.BLOCKS.register(modEventBus);
+        FIItems.HELPER.register(modEventBus);
 		FIBiomeFeatures.register(modEventBus);
 		FIBlockEntityTypes.register(modEventBus);
 		FIFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modEventBus);

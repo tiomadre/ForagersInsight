@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/puddles",
-  "features": "foragersinsight:puddle_placed",
-  "step": "vegetal_decoration"
-}

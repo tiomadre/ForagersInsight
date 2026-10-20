@@ -10,7 +10,7 @@
             "entries": [
               {
                 "data": {
-                  "Name": "minecraft:grass"
+                  "Name": "minecraft:short_grass"
                 },
                 "weight": 5
               },
@@ -25,7 +25,10 @@
               },
               {
                 "data": {
-                  "Name": "foragersinsight:woodland_fern"
+                  "Name": "foragersinsight:woodland_fern",
+                  "Properties": {
+                    "snowy": "false"
+                  }
                 },
                 "weight": 3
               },

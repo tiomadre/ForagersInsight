@@ -196,13 +196,17 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         }
         if(fullCount==3){
            this.activeScent=recipe.get().value();
+           return true;
+        }else{
+            return false;
         }
 
 
-        return false;
+
     }
 
     private Optional<RecipeHolder<FIDiffuserRecipe>> getCurrentRecipe() {
+        assert this.level != null;
         return this.level.getRecipeManager()
                 .getRecipeFor(FIRecipeSerializers.DIFFUSER_TYPE.get(),new FIDiffuserInput(
                         itemHandler.getStackInSlot(0), itemHandler.getStackInSlot(1),itemHandler.getStackInSlot(2)),level);
@@ -314,7 +318,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         if (this.activeScent != null) {
             return Optional.of(this.activeScent);
         }else{
-            return null;
+            return Optional.empty();
         }
     }
 

@@ -6,7 +6,7 @@
       "layer0": "foragersinsight:item/amadou_cap"
     }
   },
-  "loader": "forge:separate_transforms",
+  "loader": "neoforge:separate_transforms",
   "perspectives": {
     "head": {
       "parent": "foragersinsight:armor/amadou_cap"

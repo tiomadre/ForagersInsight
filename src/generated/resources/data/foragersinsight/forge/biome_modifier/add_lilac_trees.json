@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#foragersinsight:has_feature/lilac_trees",
-  "features": "foragersinsight:lilac_tree_placed",
-  "step": "vegetal_decoration"
-}

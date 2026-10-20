@@ -64,7 +64,7 @@ public class FIBlockLoot extends BlockLootSubProvider
     @Override
     protected Iterable<Block> getKnownBlocks() {
         // The contents of our DeferredRegister.
-        return FIBlocks.HELPER.getDeferredRegister().getEntries()
+        return BLOCKS.getDeferredRegister().getEntries()
                 .stream()
                 // Cast to Block here, otherwise it will be a ? extends Block and Java will complain.
                 .map(e -> (Block) e.value())
