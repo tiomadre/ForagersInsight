@@ -13,6 +13,7 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
+import vectorwing.farmersdelight.common.item.MushroomColonyItem;
 import vectorwing.farmersdelight.common.registry.ModMaterials;
 
 
@@ -206,6 +207,10 @@ public class FIItems {
     //Fungi
     public static final DeferredItem<Item> BLEWIT_MUSHROOM = HELPER.createItem("blewit_mushroom",  () ->
             new ModerateFoodBlockItem(FIBlocks.BLEWIT_MUSHROOM.get(), new Item.Properties().food(FIFoods.BLEWIT)));
+
+    public static final DeferredItem<Item> BLEWIT_MUSHROOM_COLONY = HELPER.createItem("blewit_mushroom_colony",
+            () -> new MushroomColonyItem(FIBlocks.BLEWIT_MUSHROOM_COLONY.get(),new Item.Properties()));
+
     public static final DeferredItem<Item> TINDER_CONK = HELPER.createItem("tinder_conk", () ->
             new BlockItem(FIBlocks.TINDER_CONK.get(), new Item.Properties()));
 

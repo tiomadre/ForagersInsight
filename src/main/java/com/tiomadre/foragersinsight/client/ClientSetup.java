@@ -114,15 +114,14 @@ public class ClientSetup {
                 FIBlocks.SUSPICIOUS_LEAF_LITTER.get()
         );
 
-        event.register(
-                (state, level, pos, tintIndex) -> {
-                    if (level == null || pos == null) {
-                        return FoliageColor.getDefaultColor();
-                    }
-                    return BiomeColors.getAverageGrassColor(level, pos);
-                },
-                FIBlocks.WOODLAND_FERN.get()
-        );
+        event.register((state, level, pos, tintIndex) -> {
+            if (tintIndex != 0) return -1;
+            if (level != null && pos != null) {
+                return BiomeColors.getAverageGrassColor(level, pos);
+            }
+            return GrassColor.getDefaultColor();
+        },  FIBlocks.WOODLAND_FERN.get());
+
         event.register(
                 (state, level, pos, tintIndex) -> {
                     if (level == null || pos == null) {

@@ -58,7 +58,7 @@ public class FIBlocks {
             new PinkPetalsBlock(ofFullCopy(Blocks.PINK_PETALS)));
 
     //Mushrooms
-    public static final DeferredBlock<Block> BLEWIT_MUSHROOM_COLONY = BLOCKS.createBlock("blewit_mushroom_colony", () ->
+    public static final DeferredBlock<Block> BLEWIT_MUSHROOM_COLONY = BLOCKS.createBlockNoItem("blewit_mushroom_colony", () ->
             new MushroomColonyBlock(FIItems.BLEWIT_MUSHROOM,Block.Properties.ofFullCopy(ModBlocks.RED_MUSHROOM_COLONY.get())));
     public static final DeferredBlock<Block> BLEWIT_MUSHROOM = BLOCKS.createBlockNoItem("blewit_mushroom", () ->
             new WildMushroomBlock(ofFullCopy(Blocks.RED_MUSHROOM), BLEWIT_MUSHROOM_COLONY));

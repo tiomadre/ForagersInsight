@@ -13,11 +13,6 @@ import java.util.function.Supplier;
 public class WildMushroomBlock extends MushroomBlock {
     private final Supplier<Block> colonyBlock;
 
-    public WildMushroomBlock(Properties props) {
-        super(null, props);
-        this.colonyBlock = () -> null;
-    }
-
     public WildMushroomBlock(Properties props, Supplier<Block> colonyBlock) {
         super(null, props);
         this.colonyBlock = colonyBlock;

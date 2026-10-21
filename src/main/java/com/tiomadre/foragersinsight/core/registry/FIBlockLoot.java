@@ -47,6 +47,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.tiomadre.foragersinsight.core.registry.FIBlocks.*;
+import static com.tiomadre.foragersinsight.core.registry.FIBlocks.BLEWIT_MUSHROOM_COLONY;
 import static com.tiomadre.foragersinsight.core.registry.FIBlocks.LILAC_HANGING_SIGN;
 import static com.tiomadre.foragersinsight.core.registry.FIBlocks.LILAC_SIGN;
 import static com.tiomadre.foragersinsight.core.registry.FIItems.*;
