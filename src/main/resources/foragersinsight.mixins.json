@@ -1,5 +1,6 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "com.tiomadre.foragersinsight.core.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "foragersinsight.refmap.json",
@@ -14,6 +15,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "minVersion": "0.8"
+  }
+
 }

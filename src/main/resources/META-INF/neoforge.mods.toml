@@ -14,6 +14,10 @@ license = "https://github.com/team-abnormals/template-mod/blob/main/LICENSE.txt"
     displayName = "Forager's Insight"
     description = ''' A foraging expansion for Farmer's Delight!'''
 
+
+[[mixins]]
+config = "foragersinsight.mixins.json"
+
 [[dependencies.foragersinsight]]
     modId = "minecraft"
     type="required"
