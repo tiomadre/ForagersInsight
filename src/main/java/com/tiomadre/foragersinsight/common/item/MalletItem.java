@@ -126,7 +126,7 @@ public class MalletItem extends PickaxeItem {
                 level.setBlock(pos, repairedState, 3);
                 level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
                 if (player instanceof ServerPlayer serverPlayer) {
-                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                    FIAdvancements.FIX_ANVIL_TRIGGER.get().trigger(serverPlayer);
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -185,9 +185,9 @@ public class MalletItem extends PickaxeItem {
             level.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
 
             if (player instanceof ServerPlayer serverPlayer) {
-                FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                FIAdvancements.CRUSH_ITEM_TRIGGER.get().trigger(serverPlayer);
                 if (CRACK_IT_SOURCE_BLOCKS.contains(block)) {
-                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                    FIAdvancements.CRACK_BLOCK_TRIGGER.get().trigger(serverPlayer);
                 }
             }
             return InteractionResult.SUCCESS;
@@ -222,9 +222,9 @@ public class MalletItem extends PickaxeItem {
             dropItemInFront(level, player, new ItemStack(resultItem, totalAmount));
 
             if (player instanceof ServerPlayer serverPlayer) {
-                FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                FIAdvancements.CRUSH_ITEM_TRIGGER.get().trigger(serverPlayer);
                 if (CRACK_IT_SOURCE_BLOCKS.contains(block)) {
-                    FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                    FIAdvancements.CRACK_BLOCK_TRIGGER.get().trigger(serverPlayer);
                 }
             }
             return InteractionResult.SUCCESS;

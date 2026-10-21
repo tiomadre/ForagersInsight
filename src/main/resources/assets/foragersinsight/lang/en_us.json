@@ -247,53 +247,53 @@
 
   "biome.foragersinsight.dark_woodlands": "Dark Woodlands",
 
-  "advancements.foragersinsight.adventure.foragers_insight.title": "Forager's Insight",
-  "advancements.foragersinsight.adventure.foragers_insight.description": "Forage delights that are hidden in plain sight!",
+  "advancements.foragersinsight.foragers_insight.title": "Forager's Insight",
+  "advancements.foragersinsight.foragers_insight.description": "Forage delights that are hidden in plain sight!",
 
-  "advancements.foragersinsight.adventure.spring_cleaning.title": "Spring Cleaning",
-  "advancements.foragersinsight.adventure.spring_cleaning.description": "Craft a Brush and look in forested areas for leaf litter to clean up.",
+  "advancements.foragersinsight.spring_cleaning.title": "Spring Cleaning",
+  "advancements.foragersinsight.spring_cleaning.description": "Craft a Brush and look in forested areas for leaf litter to clean up.",
 
-  "advancements.foragersinsight.adventure.wild_flowers.title": "Stop and Stab the Roses?",
-  "advancements.foragersinsight.adventure.wild_flowers.description": "Use a knife to forage a unique crop from a wild flower.",
+  "advancements.foragersinsight.wild_flowers.title": "Stop and Stab the Roses?",
+  "advancements.foragersinsight.wild_flowers.description": "Use a knife to forage a unique crop from a wild flower.",
 
-  "advancements.foragersinsight.adventure.giving_trees.title": "Giving Tree",
-  "advancements.foragersinsight.adventure.giving_trees.description": "Pluck the leaves of one of the crops of a bountiful tree variant.",
+  "advancements.foragersinsight.giving_trees.title": "Giving Tree",
+  "advancements.foragersinsight.giving_trees.description": "Pluck the leaves of one of the crops of a bountiful tree variant.",
 
-  "advancements.foragersinsight.adventure.stop_hammer_time.title": "Stop...Hammer Time",
-  "advancements.foragersinsight.adventure.stop_hammer_time.description": "Craft a Mallet to crush certain blocks and items.",
+  "advancements.foragersinsight.stop_hammer_time.title": "Stop...Hammer Time",
+  "advancements.foragersinsight.stop_hammer_time.description": "Craft a Mallet to crush certain blocks and items.",
 
-  "advancements.foragersinsight.adventure.brush_it_off.title": "Brush It Off",
-  "advancements.foragersinsight.adventure.brush_it_off.description": "Brush away forest litter to reveal an item.",
+  "advancements.foragersinsight.brush_it_off.title": "Brush It Off",
+  "advancements.foragersinsight.brush_it_off.description": "Brush away forest litter to reveal an item.",
 
-  "advancements.foragersinsight.adventure.scentsational.title": "Scentsational...",
-  "advancements.foragersinsight.adventure.scentsational.description": "Ignite a Diffuser and take a deep breath!",
+  "advancements.foragersinsight.scentsational.title": "Scentsational...",
+  "advancements.foragersinsight.scentsational.description": "Ignite a Diffuser and take a deep breath!",
 
-  "advancements.foragersinsight.adventure.petal_to_the_metal.title": "Petal to The Metal",
-  "advancements.foragersinsight.adventure.petal_to_the_metal.description": "Use a Knife to acquire some Petals.",
+  "advancements.foragersinsight.petal_to_the_metal.title": "Petal to The Metal",
+  "advancements.foragersinsight.petal_to_the_metal.description": "Use a Knife to acquire some Petals.",
 
-  "advancements.foragersinsight.adventure.shear.title": "Shearing is Caring",
-  "advancements.foragersinsight.adventure.shear.description": "Instead of plucking, snip with Shears to get a little something extra!",
+  "advancements.foragersinsight.shear.title": "Shearing is Caring",
+  "advancements.foragersinsight.shear.description": "Instead of plucking, snip with Shears to get a little something extra!",
 
-  "advancements.foragersinsight.adventure.will_it_crush.title": "Crush It!",
-  "advancements.foragersinsight.adventure.will_it_crush.description": "Use a Mallet to crush an item on the Cutting Board.",
+  "advancements.foragersinsight.will_it_crush.title": "Crush It!",
+  "advancements.foragersinsight.will_it_crush.description": "Use a Mallet to crush an item on the Cutting Board.",
 
-  "advancements.foragersinsight.adventure.crack_it.title": "Crack It!",
-  "advancements.foragersinsight.adventure.crack_it.description": "Use a Mallet to crack certain bricks.",
+  "advancements.foragersinsight.crack_it.title": "Crack It!",
+  "advancements.foragersinsight.crack_it.description": "Use a Mallet to crack certain bricks.",
 
-  "advancements.foragersinsight.adventure.uh_fix_it.title": "Fix It?",
-  "advancements.foragersinsight.adventure.uh_fix_it.description": "Use a Mallet with Mending to repair an Anvil.",
+  "advancements.foragersinsight.uh_fix_it.title": "Fix It?",
+  "advancements.foragersinsight.uh_fix_it.description": "Use a Mallet with Mending to repair an Anvil.",
 
-  "advancements.foragersinsight.adventure.rare_find.title": "Choice Edible",
-  "advancements.foragersinsight.adventure.rare_find.description": "Find something rare from Suspicious Leaf Litter...",
+  "advancements.foragersinsight.rare_find.title": "Choice Edible",
+  "advancements.foragersinsight.rare_find.description": "Find something rare from Suspicious Leaf Litter...",
 
-  "advancements.foragersinsight.adventure.stinky_situation.title": "I Hope You Wash That...",
-  "advancements.foragersinsight.adventure.stinky_situation.description": "Exude a distasteful scent from the Diffuser.",
+  "advancements.foragersinsight.stinky_situation.title": "I Hope You Wash That...",
+  "advancements.foragersinsight.stinky_situation.description": "Exude a distasteful scent from the Diffuser.",
 
-  "advancements.foragersinsight.adventure.tap_that.title": "Tap That",
-  "advancements.foragersinsight.adventure.tap_that.description": "Craft a Tapper and begin collecting new ingredients!",
+  "advancements.foragersinsight.tap_that.title": "Tap That",
+  "advancements.foragersinsight.tap_that.description": "Craft a Tapper and begin collecting new ingredients!",
 
-  "advancements.foragersinsight.adventure.birch_please.title": "All That For a Drop Of...",
-  "advancements.foragersinsight.adventure.birch_please.description": "Use a Bucket to collect from a full Tapper.",
+  "advancements.foragersinsight.birch_please.title": "All That For a Drop Of...",
+  "advancements.foragersinsight.birch_please.description": "Use a Bucket to collect from a full Tapper.",
 
   "advancements.foragersinsight.taste_the_rainbow_motha.title": "§4T§ca§6s§et§ae §bt§9h§de §4R§ca§6i§en§ab§bo§9w§d!",
   "advancements.foragersinsight.taste_the_rainbow_motha.description": "Consume the whole visible spectrum conveniently sandwiched between bread!",

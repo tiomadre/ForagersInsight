@@ -11,31 +11,32 @@ import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Optional;
 
-public class SimpleTrigger extends SimpleCriterionTrigger<SimpleTrigger.TriggerInstance>{
+public class BrushLitterTrigger extends SimpleCriterionTrigger<BrushLitterTrigger.BrushLitterTriggerInstance>{
 
 
     @Override
-    public Codec<TriggerInstance> codec() {
-        return SimpleTrigger.TriggerInstance.CODEC;
+    public Codec<BrushLitterTriggerInstance> codec() {
+        return BrushLitterTriggerInstance.CODEC;
     }
 
     public void trigger(ServerPlayer player) {
-        this.trigger(player, TriggerInstance::test);
+        this.trigger(player, BrushLitterTriggerInstance::test);
     }
 
-    public static record TriggerInstance(
+    public static record BrushLitterTriggerInstance(
             Optional<ContextAwarePredicate> player) implements SimpleCriterionTrigger.SimpleInstance {
-        public static final Codec<SimpleTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
+        public static final Codec<BrushLitterTriggerInstance> CODEC = RecordCodecBuilder.create(
                 builder -> builder.group(
-                                EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(SimpleTrigger.TriggerInstance::player))
-                        .apply(builder, SimpleTrigger.TriggerInstance::new)
+                                EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(BrushLitterTriggerInstance::player))
+                        .apply(builder, BrushLitterTriggerInstance::new)
         );
 
-        public static Criterion<TriggerInstance> simple() {
-            return FIAdvancements.SIMPLE_TRIGGER.get().createCriterion(
-                    new SimpleTrigger.TriggerInstance(Optional.empty())
+        public static Criterion<BrushLitterTriggerInstance> brushLitter() {
+            return FIAdvancements.BRUSH_LITTER_TRIGGER.get().createCriterion(
+                    new BrushLitterTriggerInstance(Optional.empty())
             );
         }
+        
 
         public boolean test() {
             return true;

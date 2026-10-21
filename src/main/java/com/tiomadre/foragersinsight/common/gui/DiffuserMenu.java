@@ -215,10 +215,10 @@ public class DiffuserMenu extends AbstractContainerMenu {
                         level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F,
                                 level.random.nextFloat() * 0.4F + 0.8F);
                         if (player instanceof ServerPlayer serverPlayer) {
-                            FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer);
+                            FIAdvancements.LIGHT_DIFFUSER_TRIGGER.get().trigger(serverPlayer);
                             diffuser.getActiveScent()
                                     .filter(scent -> scent.getMobEffect().equals(FIMobEffects.ODOROUS))
-                                    .ifPresent(scent -> FIAdvancements.SIMPLE_TRIGGER.get().trigger(serverPlayer));
+                                    .ifPresent(scent -> FIAdvancements.STINKY_SMELL_TRIGGER.get().trigger(serverPlayer));
                         }
 
                     }
