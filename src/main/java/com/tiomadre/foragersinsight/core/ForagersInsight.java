@@ -5,14 +5,7 @@ import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
 import com.tiomadre.foragersinsight.core.other.FIClientCompat;
 import com.tiomadre.foragersinsight.core.registry.FIDatamapProvider;
 import com.tiomadre.foragersinsight.core.registry.*;
-import com.tiomadre.foragersinsight.data.client.FIBlockStates;
-import com.tiomadre.foragersinsight.data.client.FIItemModels;
-import com.tiomadre.foragersinsight.data.client.FIParticles;
-import com.tiomadre.foragersinsight.data.server.FIWorldgen;
-import com.tiomadre.foragersinsight.data.server.recipes.FICraftingRecipes;
-import com.tiomadre.foragersinsight.data.server.tags.FIBiomeTags;
-import com.tiomadre.foragersinsight.data.server.tags.FIBlockTags;
-import com.tiomadre.foragersinsight.data.server.tags.FIItemTags;
+
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;

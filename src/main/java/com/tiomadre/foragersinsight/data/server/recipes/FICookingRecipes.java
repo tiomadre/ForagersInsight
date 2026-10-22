@@ -6,25 +6,37 @@ import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import com.tiomadre.foragersinsight.data.server.tags.FITags;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
-import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.tiomadre.foragersinsight.core.registry.FIItems.*;
 import static net.neoforged.neoforge.common.Tags.Items.*;
@@ -314,41 +326,34 @@ public class FICookingRecipes {
 
 
         //Other
-        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION.value(), "auspicious_stew_from_rose_petals");
-        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE.value(), "auspicious_stew_from_roselle_petals");
-        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST.value(), "auspicious_stew_from_spruce_tips");
-        buildAuspiciousStewRecipe(output, LILAC_BLOOM.get(), FIMobEffects.BLOOM.get(), "auspicious_stew_from_lilac_bloom");
+        buildAuspiciousStewRecipe(output, ROSE_PETALS.get(), MobEffects.REGENERATION, "auspicious_stew_from_rose_petals");
+        buildAuspiciousStewRecipe(output, ROSELLE_PETALS.get(), MobEffects.DAMAGE_RESISTANCE, "auspicious_stew_from_roselle_petals");
+        buildAuspiciousStewRecipe(output, SPRUCE_TIPS.get(), MobEffects.HEALTH_BOOST, "auspicious_stew_from_spruce_tips");
+        buildAuspiciousStewRecipe(output, LILAC_BLOOM.get(), FIMobEffects.BLOOM, "auspicious_stew_from_lilac_bloom");
 
 
 
     }
 
 
+    private static void buildAuspiciousStewRecipe(RecipeOutput output, ItemLike flower, Holder<MobEffect> effect, String recipeName) {
+
+        ItemStack stack = new ItemStack(FIItems.AUSPICIOUS_STEW.get());
+        stack.set(FIDataComponents.AUSPICIOUS_EFFECT, effect);
 
 
-    private static void buildAuspiciousStewRecipe(RecipeOutput output, ItemLike flower, MobEffect effect, String recipeName) {
 
-
-        CookingPotRecipeBuilder.cookingPotRecipe(AUSPICIOUS_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+       new CookingPotRecipeBuilder(stack, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                 .addIngredient(Tags.Items.DRINKS_MILK)
                 .addIngredient(BLEWIT_MUSHROOM.get())
                 .addIngredient(BLEWIT_MUSHROOM.get())
                 .addIngredient(flower)
                 .unlockedByAnyIngredient(BLEWIT_MUSHROOM.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
-                .save(output, ResourceLocation.fromNamespaceAndPath("foragersinsight", recipeName));
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .save(output, ResourceLocation.fromNamespaceAndPath("foragersinsight", "cooking/"+recipeName));
 
     }
 
-    private static ItemStack createAuspiciousStew(MobEffect effect) {
-        ItemStack stack = new ItemStack(FIItems.AUSPICIOUS_STEW.get());
 
-        if (effect != null) {
-            stack.getOrDefault(FIDataComponents.AUSPICIOUS_EFFECT,effect);
-
-        }
-        return stack;
-    }
-
-
+    
 }

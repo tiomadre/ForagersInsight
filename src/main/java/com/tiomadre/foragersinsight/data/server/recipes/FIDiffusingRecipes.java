@@ -32,14 +32,14 @@ public class FIDiffusingRecipes {
 
         //Coniferous
         FIDiffuserRecipeBuilder.diffusingrecipe("coniferous", 500, 8.0,
-                MobEffects.DAMAGE_RESISTANCE,0, "textures/scents/coniferous.png",
+                MobEffects.DAMAGE_RESISTANCE,0, "assets/foragersinsight/textures/scents/coniferous.png",
                 "foragersinsight.diffuser.coniferous",
                 "foragersinsight.diffuser.coniferous.description")
                 .addIngredient(FIItems.SPRUCE_TIPS,3)
                 .build(output);
 
         FIDiffuserRecipeBuilder.diffusingrecipe("coniferous_ii", 1500, 12.0,
-                        MobEffects.DAMAGE_RESISTANCE,0, "textures/scents/coniferous_ii.png",
+                        MobEffects.DAMAGE_RESISTANCE,0, "assets/foragersinsight/textures/scents/coniferous_ii.png",
                         "foragersinsight.diffuser.coniferous_ii",
                         "foragersinsight.diffuser.coniferous_ii.description")
                 .addIngredient(FIBlocks.DENSE_SPRUCE_TIP_MAT,3)
@@ -47,13 +47,13 @@ public class FIDiffusingRecipes {
 
         //Floral
         FIDiffuserRecipeBuilder.diffusingrecipe("floral",1200,8.0, FIMobEffects.BLOOM
-        ,0,"textures/scents/floral.png","foragersinsight.diffuser.floral",
+        ,0,"assets/foragersinsight/textures/scents/floral.png","foragersinsight.diffuser.floral",
                 "foragersinsight.diffuser.floral.description")
                 .addIngredient(FIItems.LILAC_BLOOM,3)
                 .build(output);
 
         FIDiffuserRecipeBuilder.diffusingrecipe("floral_ii",2000,12.0, FIMobEffects.BLOOM
-                ,1,"textures/scents/floral_ii.png","foragersinsight.diffuser.floral_ii",
+                ,1,"assets/foragersinsight/textures/scents/floral_ii.png","foragersinsight.diffuser.floral_ii",
                 "foragersinsight.diffuser.floral_ii.description")
                 .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT)
                 .addIngredient(FIBlocks.DENSE_LILAC_BLOOM_MAT)
@@ -62,14 +62,14 @@ public class FIDiffusingRecipes {
 
         //Foul
         FIDiffuserRecipeBuilder.diffusingrecipe("foul",100,8.0,
-                FIMobEffects.ODOROUS,0,"textures/scents/foul.png",
+                FIMobEffects.ODOROUS,0,"assets/foragersinsight/textures/scents/foul.png",
                 "foragersinsight.diffuser.foul_ii",
                 "foragersinsight.diffuser.foul_ii.description")
                 .addIngredient(FIBlocks.SKUNK_CABBAGE,3)
                 .build(output);
 
         FIDiffuserRecipeBuilder.diffusingrecipe("foul_ii",1500,12.0,
-        FIMobEffects.ODOROUS,0,"textures/scents/foul_ii.png",
+        FIMobEffects.ODOROUS,0,"assets/foragersinsight/textures/scents/foul_ii.png",
                 "foragersinsight.diffuser.foul_ii",
                 "foragersinsight.diffuser.foul_ii.description")
                 .addIngredient(ModBlocks.ORGANIC_COMPOST.get(),3)

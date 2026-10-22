@@ -534,6 +534,7 @@ public class FICraftingRecipes extends BlueprintRecipeProvider {
 
         FICookingRecipes.buildRecipes(output);
         FICrushandCutRecipes.buildRecipes(output);
+        FIDiffusingRecipes.register(output);
     }
     private void addVanillaOverrides(RecipeOutput output) {
         //Book

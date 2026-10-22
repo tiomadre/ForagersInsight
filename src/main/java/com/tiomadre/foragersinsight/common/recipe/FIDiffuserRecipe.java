@@ -156,7 +156,7 @@ public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
 
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, FIDiffuserRecipe> streamCodec() {
-            return null;
+            return STREAM_CODEC;
         }
 
         private static FIDiffuserRecipe fromNetwork(RegistryFriendlyByteBuf buffer){
