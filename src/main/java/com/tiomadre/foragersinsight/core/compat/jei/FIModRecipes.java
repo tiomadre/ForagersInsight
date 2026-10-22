@@ -1,7 +1,7 @@
 package com.tiomadre.foragersinsight.core.compat.jei;
 
 import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
-import com.tiomadre.foragersinsight.core.registry.FIRecipeTypes;
+import com.tiomadre.foragersinsight.core.registry.FIRecipeSerializers;
 import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -26,7 +26,7 @@ public class FIModRecipes {
 
 
     public List<RecipeHolder<FIDiffuserRecipe>> getDiffuserRecipe() {
-        return recipeManager.getAllRecipesFor(FIRecipeTypes.DIFFUSING.get());
+        return recipeManager.getAllRecipesFor(FIRecipeSerializers.DIFFUSER_TYPE.get());
     }
 
 }

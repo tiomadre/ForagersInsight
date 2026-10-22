@@ -17,14 +17,14 @@ public class FIDiffusingRecipes {
     public static void register(RecipeOutput output){
         //Rosey
         FIDiffuserRecipeBuilder.diffusingrecipe("rosey", 200,  8.0,
-                MobEffects.REGENERATION,0, "textures/scents/rosey.png",
+                MobEffects.REGENERATION,0, "assets/foragersinsight/textures/scents/rosey.png",
                 "foragersinsight.diffuser.rosey",
                 "foragersinsight.diffuser.rosey.description")
                 .addIngredient(FIItems.ROSE_PETALS,3)
                 .build(output);
 
         FIDiffuserRecipeBuilder.diffusingrecipe("rosey_ii",800,12.0,MobEffects.REGENERATION,
-                1,"textures/scents/rosey_ii.png",
+                1,"assets/foragersinsight/textures/scents/rosey_ii.png",
                 "foragersinsight.diffuser.rosey_ii",
                 "foragersinsight.diffuser.rosey_ii.description")
                 .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT)

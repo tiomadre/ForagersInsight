@@ -2,7 +2,6 @@ package com.tiomadre.foragersinsight.common.block.entity;
 
 import com.tiomadre.foragersinsight.common.block.DiffuserBlock;
 import com.tiomadre.foragersinsight.common.gui.DiffuserMenu;
-import com.tiomadre.foragersinsight.common.recipe.FIDiffuserInput;
 import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.registry.FIBlockEntityTypes;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
@@ -37,6 +36,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jline.utils.DiffHelper;
@@ -208,12 +208,8 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
     private Optional<RecipeHolder<FIDiffuserRecipe>> getCurrentRecipe() {
         assert this.level != null;
         return this.level.getRecipeManager()
-                .getRecipeFor(FIRecipeSerializers.DIFFUSER_TYPE.get(),new FIDiffuserInput(
-                        itemHandler.getStackInSlot(0), itemHandler.getStackInSlot(1),itemHandler.getStackInSlot(2)),level);
-    }
-
-    private void getEmitInfo(FIDiffuserRecipe scent){
-        this.activeScent = scent;
+                .getRecipeFor(FIRecipeSerializers.DIFFUSER_TYPE.get(),new RecipeWrapper(
+                        itemHandler),level);
     }
 
     private void emitScentEffect() {
@@ -230,8 +226,8 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         List<LivingEntity> entities = this.level.getEntitiesOfClass(LivingEntity.class, area);
 
         for (LivingEntity entity :entities){
-            MobEffectInstance instance = new MobEffectInstance(this.activeScent.getMobEffect(),this.activeScent.getScentDuration(),
-                    this.activeScent.getEffectAmplifier());
+            MobEffectInstance instance = new MobEffectInstance(activeScent.getMobEffect(), activeScent.getScentDuration(),
+                    activeScent.getEffectAmplifier());
             entity.addEffect(instance);
         }
 

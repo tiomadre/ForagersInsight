@@ -6,8 +6,7 @@ import com.tiomadre.foragersinsight.core.compat.jei.DiffusingRecipeCategory;
 import com.tiomadre.foragersinsight.core.compat.jei.FIModRecipes;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
-import com.tiomadre.foragersinsight.core.registry.FIRecipeTypes;
-import com.tiomadre.foragersinsight.core.registry.FIRecipes;
+import com.tiomadre.foragersinsight.core.registry.FIRecipeSerializers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 @JeiPlugin
 public class JEIComp implements IModPlugin {
 
-    public static final RecipeType<RecipeHolder<FIDiffuserRecipe>> DIFFUSING = RecipeType.createFromVanilla(FIRecipeTypes.DIFFUSING.get());
+    public static final RecipeType<RecipeHolder<FIDiffuserRecipe>> DIFFUSING = RecipeType.createFromVanilla(FIRecipeSerializers.DIFFUSER_TYPE.get());
 
 
     @Override

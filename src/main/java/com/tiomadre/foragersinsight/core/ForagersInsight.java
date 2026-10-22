@@ -49,9 +49,10 @@ public class ForagersInsight {
 		FITabs.TABS.register(modEventBus);
 		FITreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
 		FIRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        FIRecipeSerializers.RECIPE_TYPES.register(modEventBus);
 		FITappables.bootstrap();
         FIDataComponents.register(modEventBus);
-        FIRecipeTypes.RECIPE_TYPES.register(modEventBus);
+
 
 
 		modEventBus.addListener(this::commonSetup);

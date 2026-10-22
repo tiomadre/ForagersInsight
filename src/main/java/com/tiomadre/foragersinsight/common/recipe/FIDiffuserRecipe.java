@@ -17,9 +17,10 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 
-public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
+public class FIDiffuserRecipe implements Recipe<RecipeWrapper> {
 
     public static final int INPUT_SLOTS = 3;
     private final String scentName;
@@ -87,7 +88,7 @@ public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
 
 
     @Override
-    public boolean matches(FIDiffuserInput inv, Level level) {
+    public boolean matches(RecipeWrapper inv, Level level) {
         java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
         int i = 0;
 
@@ -102,7 +103,7 @@ public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
     }
 
     @Override
-    public ItemStack assemble(FIDiffuserInput fiDiffuserInput, HolderLookup.Provider provider) {
+    public ItemStack assemble(RecipeWrapper input, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -160,9 +161,8 @@ public class FIDiffuserRecipe implements Recipe<FIDiffuserInput> {
         }
 
         private static FIDiffuserRecipe fromNetwork(RegistryFriendlyByteBuf buffer){
-            int i = buffer.readVarInt();
             String scentName= buffer.toString();
-            NonNullList<Ingredient> inputItems = NonNullList.withSize(i, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputItems = NonNullList.withSize(3, Ingredient.EMPTY);
             inputItems.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
             int scentDuration = buffer.readVarInt();
             double scentRadius= buffer.readDouble();

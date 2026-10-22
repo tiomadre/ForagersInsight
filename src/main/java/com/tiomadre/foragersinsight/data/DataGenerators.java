@@ -3,7 +3,6 @@ package com.tiomadre.foragersinsight.data;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIBlockLoot;
 import com.tiomadre.foragersinsight.core.registry.FIDatamapProvider;
-import com.tiomadre.foragersinsight.core.registry.FIRecipes;
 import com.tiomadre.foragersinsight.data.client.FIBlockStates;
 import com.tiomadre.foragersinsight.data.client.FIItemModels;
 import com.tiomadre.foragersinsight.data.client.FIParticles;
