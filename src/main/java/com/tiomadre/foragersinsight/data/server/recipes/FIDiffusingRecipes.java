@@ -27,7 +27,7 @@ public class FIDiffusingRecipes {
                 1,"assets/foragersinsight/textures/scents/rosey_ii.png",
                 "foragersinsight.diffuser.rosey_ii",
                 "foragersinsight.diffuser.rosey_ii.description")
-                .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT)
+                .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT,3)
                 .build(output);
 
         //Coniferous

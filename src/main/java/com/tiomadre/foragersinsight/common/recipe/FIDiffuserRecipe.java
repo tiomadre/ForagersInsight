@@ -11,6 +11,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -113,8 +114,8 @@ public class FIDiffuserRecipe implements Recipe<RecipeWrapper> {
     }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return ItemStack.EMPTY;
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
+        return new ItemStack(Items.AIR);
     }
 
     @Override
