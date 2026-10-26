@@ -57,12 +57,12 @@ public class DiffuserMenu extends AbstractContainerMenu {
 
 
     public DiffuserMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(containerId, playerInventory, playerInventory.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
+        this(containerId, playerInventory, getBlockEntity(playerInventory,buffer), new SimpleContainerData(4));
     }
 
-    public DiffuserMenu(int containerId, Inventory playerInventory, BlockEntity entity, ContainerData data) {
+    public DiffuserMenu(int containerId, Inventory playerInventory, DiffuserBlockEntity entity, ContainerData data) {
         super(FIMenuTypes.DIFFUSER_MENU.get(), containerId);
-        this.diffuser = ((DiffuserBlockEntity) entity);
+        this.diffuser = (entity);
         this.level = playerInventory.player.level();
         this.access = ContainerLevelAccess.create(level, this.diffuser.getBlockPos());
         this.data = data;
@@ -189,14 +189,19 @@ public class DiffuserMenu extends AbstractContainerMenu {
         return this.diffuser.getEffectiveRadius();
     }
     public int getRemainingDuration() {
-        return this.diffuser.getRemainingDuration();
+        return diffuser.getRemainingDuration();
     }
 
     public DiffuserBlockEntity.Enhancement getActiveEnhancement() {
         return this.diffuser.getActiveEnhancement();
     }
 
-
+    private static DiffuserBlockEntity getBlockEntity(Inventory playerInventory, FriendlyByteBuf buf) {
+        BlockPos pos = buf.readBlockPos();
+        BlockEntity be = playerInventory.player.level().getBlockEntity(pos);
+        if (be instanceof DiffuserBlockEntity diffuser) return diffuser;
+        throw new IllegalStateException("Diffuser block entity missing at " + pos);
+    }
 
     @Override
     public boolean stillValid(@NotNull Player player) {
@@ -211,7 +216,8 @@ public class DiffuserMenu extends AbstractContainerMenu {
                     if (diffuser.isLit()) {
                         diffuser.endScentEffect();
                     }
-                    else if (diffuser.tryStartDiffusion()) {
+                    else {
+                        diffuser.lightDiffuser();
                         level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F,
                                 level.random.nextFloat() * 0.4F + 0.8F);
                         if (player instanceof ServerPlayer serverPlayer) {

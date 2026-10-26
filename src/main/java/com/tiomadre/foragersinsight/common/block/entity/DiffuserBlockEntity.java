@@ -11,8 +11,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,20 +29,19 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jline.utils.DiffHelper;
+import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
 
 import java.util.List;
 import java.util.Optional;
 
-public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
+public class DiffuserBlockEntity extends SyncedBlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(5) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -70,13 +67,13 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         data= new ContainerData() {
             @Override
             public int get(int i) {
-                return DiffuserBlockEntity.this.scentDuration;
+                return scentDuration;
 
             }
 
             @Override
             public void set(int i, int value) {
-                DiffuserBlockEntity.this.scentDuration = value;
+                scentDuration = value;
             }
 
             @Override
@@ -90,9 +87,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         return activeIngredients;
     }
 
-    public static Optional<FIDiffuserRecipe> getScentFromItem(@NotNull ItemStack stack) {
-        return Optional.ofNullable(activeScent);
-    }
+
 
     private void storeActiveIngredients() {
         NonNullList<ItemStack> stored = NonNullList.withSize(INPUT_SLOT_COUNT, ItemStack.EMPTY);
@@ -102,7 +97,7 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
                 stored.set(slot, stack.copyWithCount(1));
             }
         }
-        this.activeIngredients = stored;
+        activeIngredients = stored;
     }
 
 
@@ -145,8 +140,8 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
     public void tick(Level level1, BlockPos blockPos, BlockState blockState) {
         storeActiveIngredients();
-        if(hasRecipe()){
-           if(tryStartDiffusion()){
+        hasRecipe();
+           if(isLit()){
                emitScentEffect();
                decreaseLitTime();
                setChanged();
@@ -158,16 +153,30 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
            } else {
                resetProgress();
            }
-       }
+
     }
 
+    public void lightDiffuser(){
+        if (this.level != null || !this.isLit()) {
+
+            if (activeScent != null && scentDuration > 0) {
+                BlockState state = this.getBlockState();
+                if (!state.getValue(DiffuserBlock.LIT)) {
+                    this.level.setBlock(this.worldPosition, state.setValue(DiffuserBlock.LIT, true), Block.UPDATE_ALL);
+                } else {
+                    this.level.sendBlockUpdated(this.worldPosition, state, state, Block.UPDATE_ALL);
+                }
+                this.setChanged();
+            }
+        }
+    }
 
     private void decreaseLitTime() {
        scentDuration--;
     }
 
     private boolean hasTimeEnded() {
-        return this.scentDuration <= 0;
+        return scentDuration <= 0;
     }
 
     private void resetProgress() {
@@ -176,9 +185,9 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
 
     public boolean isLit(){
         if (this.level == null) {
-            return this.scentDuration > 0;
+            return scentDuration > 0;
         }
-        return this.scentDuration > 0 && this.getBlockState().getValue(DiffuserBlock.LIT);
+        return scentDuration > 0 && this.getBlockState().getValue(DiffuserBlock.LIT);
     }
 
 
@@ -200,7 +209,6 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
         }else{
             return false;
         }
-
 
 
     }
@@ -246,15 +254,15 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public boolean isBurning() {
-        return this.activeScent != null;
+        return activeScent != null;
     }
 
 
     public void endScentEffect() {
         boolean wasLit = this.isLit();
-        boolean hadActiveScent = this.activeScent != null;
+        boolean hadActiveScent = activeScent != null;
 
-        if (this.activeScent != null) {
+        if (activeScent != null) {
             clearActiveScent();
         }
 
@@ -263,18 +271,14 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
                 this.level.playSound(null, this.worldPosition, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.3F, .0F);
             }
             BlockState state = this.getBlockState();
-            boolean blockLit = state.getValue(DiffuserBlock.LIT);
-            if (blockLit != this.isLit()) {
-                this.level.setBlock(this.worldPosition, state.setValue(DiffuserBlock.LIT, false), Block.UPDATE_ALL);
-            } else if (wasLit || hadActiveScent) {
-                this.level.sendBlockUpdated(this.worldPosition, state, state, Block.UPDATE_ALL);
-            }
+            this.level.setBlock(this.worldPosition, state.setValue(DiffuserBlock.LIT, false), Block.UPDATE_ALL);
+
         }
     }
 
 
     private void clearActiveScent() {
-        this.activeScent = null;
+        activeScent = null;
         this.activeEnhancement = Enhancement.NONE;
     }
 
@@ -310,53 +314,24 @@ public class DiffuserBlockEntity extends BlockEntity implements MenuProvider {
                 || this.level.getFluidState(this.worldPosition.above()).is(FluidTags.WATER);
     }
 
-    public Optional<FIDiffuserRecipe> getActiveScent() {
-        if (this.activeScent != null) {
-            return Optional.of(this.activeScent);
+    public static Optional<FIDiffuserRecipe> getActiveScent() {
+        if (activeScent != null) {
+            return Optional.of(activeScent);
         }else{
             return Optional.empty();
         }
     }
 
-    public boolean tryStartDiffusion(){
-        if (this.level == null || this.isLit()) {
-            return false;
-        }
-
-        if (this.activeScent != null && this.scentDuration > 0){
-            BlockState state = this.getBlockState();
-            if (!state.getValue(DiffuserBlock.LIT)) {
-                this.level.setBlock(this.worldPosition, state.setValue(DiffuserBlock.LIT, true), Block.UPDATE_ALL);
-            } else {
-                this.level.sendBlockUpdated(this.worldPosition, state, state, Block.UPDATE_ALL);
-            }
-            this.setChanged();
-            return true;
-        }
-        if (!hasRecipe()) {
-            return false;
-        }
 
 
-        this.setChanged();
-        BlockState state = this.getBlockState();
-        if (!state.getValue(DiffuserBlock.LIT)) {
-            this.level.setBlock(this.worldPosition, state.setValue(DiffuserBlock.LIT, true), Block.UPDATE_ALL);
-        } else {
-            this.level.sendBlockUpdated(this.worldPosition, state, state, Block.UPDATE_ALL);
-        }
-        return true;
-
-    }
     
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
     }
 
-    @Nullable
     @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 

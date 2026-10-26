@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.core.registry;
 
 import com.mojang.serialization.Codec;
 import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
+import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.other.toolevents.WaxedBoots;
 import net.minecraft.core.Holder;
@@ -34,6 +35,8 @@ public class FIDataComponents {
                     builder.persistent(MobEffect.CODEC)
                             .networkSynchronized(MobEffect.STREAM_CODEC)
             );
+
+
 
 
     private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,

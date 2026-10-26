@@ -105,7 +105,7 @@ public class FIDiffuserRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public ItemStack assemble(RecipeWrapper input, HolderLookup.Provider provider) {
-        return ItemStack.EMPTY;
+        return new ItemStack(Items.AIR);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class FIDiffuserRecipe implements Recipe<RecipeWrapper> {
         private static FIDiffuserRecipe fromNetwork(RegistryFriendlyByteBuf buffer){
             String scentName= buffer.toString();
             NonNullList<Ingredient> inputItems = NonNullList.withSize(3, Ingredient.EMPTY);
-            inputItems.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
+            inputItems.replaceAll(ignored ->Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
             int scentDuration = buffer.readVarInt();
             double scentRadius= buffer.readDouble();
             Holder<MobEffect> effect = MobEffect.STREAM_CODEC.decode(buffer);
@@ -178,11 +178,12 @@ public class FIDiffuserRecipe implements Recipe<RecipeWrapper> {
         private static void toNetwork(RegistryFriendlyByteBuf buffer, FIDiffuserRecipe recipe){
             for (Ingredient ingredient : recipe.inputItems) {
                 Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
+            }
                 buffer.writeVarInt(recipe.scentDuration);
                 buffer.writeDouble(recipe.scentRadius);
                 MobEffect.STREAM_CODEC.encode(buffer, recipe.effect);
                 buffer.writeVarInt(recipe.effectAmplifier);
-            }
+
         }
 
     }
