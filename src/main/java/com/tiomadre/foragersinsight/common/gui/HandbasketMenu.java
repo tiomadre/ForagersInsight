@@ -1,11 +1,13 @@
 package com.tiomadre.foragersinsight.common.gui;
 
 import com.tiomadre.foragersinsight.core.registry.FIMenuTypes;
+import com.tiomadre.foragersinsight.data.server.tags.FITags;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +38,7 @@ public class HandbasketMenu extends AbstractContainerMenu {
 
     public HandbasketMenu(int id, Inventory inventory, Container container) {
         super(FIMenuTypes.HANDBASKET_MENU.get(), id);
-        checkContainerSize(container, 14);
+        checkContainerSize(container, 10);
         this.container = container;
         container.startOpen(inventory.player);
 
@@ -74,15 +76,21 @@ public class HandbasketMenu extends AbstractContainerMenu {
         if (!sourceSlot.hasItem()) {
             return ItemStack.EMPTY;
         }
-        if (sourceSlot.hasItem()) {
-            ItemStack sourceStack = sourceSlot.getItem();
-            copyOfSourceStack = sourceStack.copy();
+        ItemStack sourceStack = sourceSlot.getItem();
+        copyOfSourceStack = sourceStack.copy();
+
             if (index < this.container.getContainerSize()) {
-                if (!this.moveItemStackTo(sourceStack, this.container.getContainerSize(), this.slots.size(), true)) {
+                if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(sourceStack, 0, this.container.getContainerSize(), false)) {
-                return ItemStack.EMPTY;
+                if (!this.moveItemStackTo(sourceStack, BASKET_ROWS * BASKET_COLS, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else{
+                if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED) ||
+                        !this.moveItemStackTo(sourceStack, 0, BASKET_ROWS * BASKET_COLS, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (sourceStack.isEmpty()) {
@@ -90,7 +98,6 @@ public class HandbasketMenu extends AbstractContainerMenu {
             } else {
                 sourceSlot.setChanged();
             }
-        }
         return copyOfSourceStack;
     }
 
@@ -99,14 +106,5 @@ public class HandbasketMenu extends AbstractContainerMenu {
         return this.container.stillValid(player);
     }
 
-//Not sure what this method is for, but leaving it for now in case needed later
-//    @Override
-//    public void clicked(int slotId, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
-//        if (slotId == this.basketSlotId()) {
-//            return;
-//        }
-//        super.clicked(slotId, dragType, clickType, player);
-//    }
-//
-//
+
 }

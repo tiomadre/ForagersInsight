@@ -27,10 +27,10 @@ public class HandbasketItem extends Item {
         ItemStack held = player.getItemInHand(hand);
         if (!world.isClientSide() && player instanceof ServerPlayer server) {
             int slotIndex = hand == InteractionHand.MAIN_HAND
-                    ? player.getInventory().selected
+                    ? server.getInventory().selected
                     : Inventory.SLOT_OFFHAND;
 
-            player.openMenu(new SimpleMenuProvider(
+            server.openMenu(new SimpleMenuProvider(
                             (id, inv, p) -> new HandbasketMenu(id, inv),
                             Component.translatable("container.foragersinsight.handbasket")
                     ),
