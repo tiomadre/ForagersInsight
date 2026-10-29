@@ -1,28 +1,19 @@
 package com.tiomadre.foragersinsight.core;
 
-import com.tiomadre.foragersinsight.data.server.FIAdvancementProvider;
-import com.tiomadre.foragersinsight.core.registry.FIEnchantments;
+
 import com.tiomadre.foragersinsight.core.other.FIClientCompat;
-import com.tiomadre.foragersinsight.core.registry.FIDatamapProvider;
 import com.tiomadre.foragersinsight.core.registry.*;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.LootTableProvider;
+
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import java.util.Collections;
-import java.util.List;
 
 @Mod(ForagersInsight.MOD_ID)
 public class ForagersInsight {

@@ -2,20 +2,29 @@ package com.tiomadre.foragersinsight.common.gui;
 
 import com.tiomadre.foragersinsight.core.registry.FIMenuTypes;
 import com.tiomadre.foragersinsight.data.server.tags.FITags;
-import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemContainerContents;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
+
+
+import java.util.Objects;
 
 public class HandbasketMenu extends AbstractContainerMenu {
 
-    private final Container container;
-
+    ItemStack basket;
+    IItemHandler inputs;
+    int originalSlot;
 
     private static final int SLOT_SIZE     = 18;
     private static final int GUI_WIDTH     = 176;
@@ -32,22 +41,27 @@ public class HandbasketMenu extends AbstractContainerMenu {
 
 
 
+
     public HandbasketMenu(int id, Inventory inventory) {
-        this(id, inventory, new SimpleContainer(10));
+        this(id,inventory, new ItemStackHandler(10),ItemStack.EMPTY,0);
     }
 
-    public HandbasketMenu(int id, Inventory inventory, Container container) {
+    public HandbasketMenu(int id, Inventory inventory, IItemHandler inputs, ItemStack basket, int slot) {
         super(FIMenuTypes.HANDBASKET_MENU.get(), id);
-        checkContainerSize(container, 10);
-        this.container = container;
-        container.startOpen(inventory.player);
-
+        this.basket=basket;
+        this.inputs=inputs;
+        this.originalSlot=slot;
+        NonNullList<ItemStack> basketInv = NonNullList.withSize(10,ItemStack.EMPTY);
+        Objects.requireNonNull(basket.get(DataComponents.CONTAINER)).copyInto(basketInv);
         for (int row = 0; row < BASKET_ROWS; row++) {
             for (int col = 0; col < BASKET_COLS; col++) {
                 int index = col + row * BASKET_COLS;
                 int x = BASKET_START_X + col * SLOT_SIZE + SHIFT_X;
                 int y = BASKET_START_Y + row * SLOT_SIZE + SHIFT_Y;
-                this.addSlot(new HandbasketSlot(container, index, x, y));
+
+                this.addSlot(new SlotItemHandler(inputs, index, x, y));
+
+
             }
         }
 
@@ -64,10 +78,25 @@ public class HandbasketMenu extends AbstractContainerMenu {
             int x = INV_START_X + col * SLOT_SIZE;
             this.addSlot(new Slot(inventory, col, x, HOTBAR_Y));
         }
+
+
     }
 
+    @Override
+    public void removed(Player player){
+        super.removed(player);
+        if (player instanceof ServerPlayer) {
+            if (!basket.is(Items.AIR)) {
+                NonNullList<ItemStack> basketContents = NonNullList.withSize(10, ItemStack.EMPTY);
+                for (int i = 0; i < 10; i++) {
+                    basketContents.set(i, inputs.getStackInSlot(i));
 
-
+                }
+                this.basket.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(basketContents));
+                player.setItemInHand(player.getUsedItemHand(), basket);
+            }
+        }
+    }
 
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int index) {
@@ -79,7 +108,7 @@ public class HandbasketMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         copyOfSourceStack = sourceStack.copy();
 
-            if (index < this.container.getContainerSize()) {
+            if (index < 10) {
                 if (!sourceStack.is(FITags.ItemTag.HANDBASKET_ALLOWED)) {
                     return ItemStack.EMPTY;
                 }
@@ -103,8 +132,9 @@ public class HandbasketMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return this.container.stillValid(player);
+        return true;
     }
+
 
 
 }

@@ -72,12 +72,6 @@ public class DiffuserMenu extends AbstractContainerMenu {
         addPlayerHotbar(playerInventory);
         addDiffuserSlots();
 
-//        checkContainerSize(this.diffuserContainer, DIFFUSER_SLOT_COUNT);
-//        this.diffuserContainer.startOpen(playerInventory.player);
-//
-
-//
-//        this.addDataSlots(this.dataAccess);
     }
 
 

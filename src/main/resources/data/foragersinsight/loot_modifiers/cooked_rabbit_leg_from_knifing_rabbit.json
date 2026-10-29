@@ -1,14 +1,22 @@
 {
-  "type": "foragersinsight:replace_item",
+  "type": "farmersdelight:add_item",
   "conditions": [
-    { "condition": "minecraft:killed_by_player" },
     {
       "condition": "minecraft:entity_properties",
-      "entity": "killer",
+      "entity": "attacker",
       "predicate": {
         "equipment": {
-          "mainhand": { "tag": "farmersdelight:tools/knives" }
+          "mainhand": {
+            "items": "#farmersdelight:tools/knives"
+          }
         }
+      }
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "type": "minecraft:hoglin"
       }
     },
     {
@@ -17,11 +25,9 @@
       "predicate": {
         "flags": {
           "is_on_fire": true
-        },
-        "type": "minecraft:rabbit"
+        }
       }
     }
   ],
-  "new": "foragersinsight:cooked_rabbit_leg",
-  "replace": "minecraft:cooked_rabbit"
+  "item": "foragersinsight:cooked_rabbit_leg"
 }

@@ -1,22 +1,23 @@
 {
   "type": "farmersdelight:add_item",
   "conditions": [
-
-    { "condition": "minecraft:random_chance", "chance": 0.25 },
-    { "condition": "minecraft:killed_by_player" },
     {
       "condition": "minecraft:entity_properties",
-      "entity": "killer",
+      "entity": "attacker",
       "predicate": {
         "equipment": {
-          "mainhand": { "tag": "farmersdelight:tools/knives" }
+          "mainhand": {
+            "items": "#farmersdelight:tools/knives"
+          }
         }
       }
     },
     {
       "condition": "minecraft:entity_properties",
       "entity": "this",
-      "predicate": { "type": "minecraft:rabbit" }
+      "predicate": {
+        "type": "minecraft:rabbit"
+      }
     }
   ],
   "item": "minecraft:rabbit_foot"
