@@ -108,13 +108,14 @@ public class ClientSetup {
                 FIBlocks.SUSPICIOUS_LEAF_LITTER.get()
         );
 
-        event.register((state, level, pos, tintIndex) -> {
-            if (tintIndex != 0) return -1;
+        event.register(
+                (state, level, pos, tintIndex) -> {
+
             if (level != null && pos != null) {
-                return BiomeColors.getAverageGrassColor(level, pos);
+                return BiomeColors.getAverageFoliageColor(level, pos);
             }
             return GrassColor.getDefaultColor();
-        },  FIBlocks.WOODLAND_FERN.get());
+        }, FIBlocks.WOODLAND_FERN.get());
 
         event.register(
                 (state, level, pos, tintIndex) -> {
@@ -181,7 +182,7 @@ public class ClientSetup {
                 FIBlocks.SUSPICIOUS_LEAF_LITTER.get()
         );
 
-        event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), FIBlocks.WOODLAND_FERN.get());
+        event.register((stack, tintIndex) -> GrassColor.getDefaultColor(), FIBlocks.WOODLAND_FERN.get());
         event.register((stack, tintIndex) -> tintIndex == 0 ? FastColor.ARGB32.opaque(GrassColor.getDefaultColor()) : -1,
                 FIBlocks.BOUNTIFUL_OAK_LEAVES.asItem());
         event.register((stack, tintIndex) -> tintIndex == 0 ? FastColor.ARGB32.opaque(GrassColor.getDefaultColor()) : -1,

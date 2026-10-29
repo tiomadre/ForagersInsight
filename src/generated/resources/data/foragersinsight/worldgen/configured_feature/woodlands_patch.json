@@ -25,10 +25,7 @@
               },
               {
                 "data": {
-                  "Name": "foragersinsight:woodland_fern",
-                  "Properties": {
-                    "snowy": "false"
-                  }
+                  "Name": "foragersinsight:woodland_fern"
                 },
                 "weight": 3
               },

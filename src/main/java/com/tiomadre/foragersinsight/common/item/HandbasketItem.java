@@ -1,7 +1,6 @@
 package com.tiomadre.foragersinsight.common.item;
 
 import com.tiomadre.foragersinsight.common.gui.HandbasketMenu;
-import com.tiomadre.foragersinsight.common.item.container.HandBasketContainer;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;

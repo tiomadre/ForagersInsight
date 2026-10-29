@@ -165,9 +165,9 @@ public class FIBlocks {
     public static final DeferredBlock<Block> TALL_BEACH_ROSE_BUSH = BLOCKS.createBlockNoItem("tall_beach_rose_bush", () ->
             new TallSandyFlowerBlock(ofFullCopy(Blocks.ROSE_BUSH)));
     public static final DeferredBlock<Block> WOODLAND_FERN = BLOCKS.createBlockNoItem("woodland_fern", () ->
-            new GrassBlock(ofFullCopy(Blocks.FERN)));
+            new TallGrassBlock(ofFullCopy(Blocks.SHORT_GRASS).offsetType(BlockBehaviour.OffsetType.XYZ)));
     public static final DeferredBlock<Block> GHOST_PIPE = BLOCKS.createBlockNoItem("ghost_pipe", () ->
-            new GrassBlock(ofFullCopy(Blocks.ALLIUM).lightLevel(state -> 8).noCollission()));
+            new FlowerBlock( MobEffects.FIRE_RESISTANCE,4.0F,ofFullCopy(Blocks.ALLIUM).lightLevel(state -> 8).noCollission()));
     public static final DeferredBlock<Block> SKUNK_CABBAGE = BLOCKS.createBlockNoItem("skunk_cabbage", () ->
             new SkunkCabbageBlock(ofFullCopy(Blocks.ALLIUM).noCollission()));
     //Lighting
