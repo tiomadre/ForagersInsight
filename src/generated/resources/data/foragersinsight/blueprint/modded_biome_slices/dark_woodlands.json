@@ -1,0 +1,18 @@
+{
+  "levels": [
+    "minecraft:overworld"
+  ],
+  "provider": {
+    "type": "blueprint:overlay",
+    "overlays": [
+      {
+        "biome_source": {
+          "type": "minecraft:fixed",
+          "biome": "foragersinsight:dark_woodlands"
+        },
+        "matches_biomes": "minecraft:dark_forest"
+      }
+    ]
+  },
+  "weight": 100
+}

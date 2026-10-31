@@ -1,9 +1,8 @@
 package com.tiomadre.foragersinsight.data.server;
 
-import com.tiomadre.foragersinsight.common.worldgen.FIBiomeModifiers;
-import com.tiomadre.foragersinsight.common.worldgen.FIBiomes;
-import com.tiomadre.foragersinsight.common.worldgen.FIConfiguredFeatures;
-import com.tiomadre.foragersinsight.common.worldgen.FIPlacedFeatures;
+import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
+import com.tiomadre.foragersinsight.common.worldgen.*;
+import com.tiomadre.foragersinsight.common.worldgen.FIBiomeSlices;
 import com.tiomadre.foragersinsight.core.ForagersInsight;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -18,10 +17,15 @@ public class FIWorldgen extends DatapackBuiltinEntriesProvider {
             .add(Registries.BIOME, FIBiomes::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, FIConfiguredFeatures::bootstap)
             .add(Registries.PLACED_FEATURE, FIPlacedFeatures::bootstap)
-            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, FIBiomeModifiers::bootstap);
+            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, FIBiomeModifiers::bootstap)
+            .add(BlueprintDataPackRegistries.MODDED_BIOME_SLICES, FIBiomeSlices::bootstrap);
 
-
-    public FIWorldgen(GatherDataEvent e) {
-        super(e.getGenerator().getPackOutput(), e.getLookupProvider(), BUILDER, Set.of(ForagersInsight.MOD_ID));
+    public FIWorldgen(GatherDataEvent event) {
+        super(
+                event.getGenerator().getPackOutput(),
+                event.getLookupProvider(),
+                BUILDER,
+                Set.of(ForagersInsight.MOD_ID)
+        );
     }
 }

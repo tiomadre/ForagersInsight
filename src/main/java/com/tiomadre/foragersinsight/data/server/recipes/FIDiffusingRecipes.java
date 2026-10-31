@@ -50,7 +50,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.rosey_ii.description",
             12.0,
             () -> new MobEffectInstance(MobEffects.REGENERATION, 800, 1),
-            0);
+            1);
 
     //CONIFEROUS SCENT RECIPES
     public static final Supplier<FIDiffusingRecipes> CONIFEROUS = register(
@@ -61,7 +61,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.coniferous.description",
             8.0,
             () -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 500, 0),
-            1);
+            2);
     public static final Supplier<FIDiffusingRecipes> CONIFEROUS_II = register(
             "coniferous",
             repeated(FIBlocks.DENSE_SPRUCE_TIP_MAT, 1, 3),
@@ -70,7 +70,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.coniferous_ii.description",
             12.0,
             () -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1500, 0),
-            1);
+            3);
 
     //FLORAL SCENT RECIPES
     public static final Supplier<FIDiffusingRecipes> FLORAL = register(
@@ -81,7 +81,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.floral.description",
             8.0,
             () -> new MobEffectInstance(FIMobEffects.BLOOM.get(), 1200, 0),
-            0);
+            4);
 
     public static final Supplier<FIDiffusingRecipes> FLORAL_II = register(
             "floral_ii",
@@ -94,7 +94,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.floral_ii.description",
             12.0,
             () -> new MobEffectInstance(FIMobEffects.BLOOM.get(), 2000, 1),
-            4);
+            5);
 
     //FOUL SCENT
     public static final Supplier<FIDiffusingRecipes> FOUL = register(
@@ -105,7 +105,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.foul.description",
             8.0,
             () -> new MobEffectInstance(FIMobEffects.ODOROUS.get(), 100, 0),
-            3);
+            6);
 
     public static final Supplier<FIDiffusingRecipes> FOUL_II = register(
             "foul_ii",
@@ -115,7 +115,7 @@ public final class FIDiffusingRecipes {
             "foragersinsight.diffuser.foul_ii.description",
             12.0,
             () -> new MobEffectInstance(FIMobEffects.ODOROUS.get(), 1500, 0),
-            3);
+            7);
 
     public static void bootstrap() {
         REGISTERED.forEach(Supplier::get);
@@ -185,12 +185,11 @@ public final class FIDiffusingRecipes {
     }
 
     public static Optional<FIDiffusingRecipes> byNetworkId(int networkId) {
-        if (networkId < 0 || networkId >= ALL.size()) {
-            return Optional.empty();
-        }
-        return Optional.ofNullable(ALL.get(networkId));
+        bootstrap();
+        return ALL.stream()
+                .filter(scent -> scent.networkId() == networkId)
+                .findFirst();
     }
-
     public Component displayName() {
         return Component.translatable(this.translationKey);
     }
