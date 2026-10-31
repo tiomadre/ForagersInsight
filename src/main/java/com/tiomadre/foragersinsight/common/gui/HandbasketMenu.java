@@ -51,8 +51,6 @@ public class HandbasketMenu extends AbstractContainerMenu {
         this.basket=basket;
         this.inputs=inputs;
         this.originalSlot=slot;
-        NonNullList<ItemStack> basketInv = NonNullList.withSize(10,ItemStack.EMPTY);
-        Objects.requireNonNull(basket.get(DataComponents.CONTAINER)).copyInto(basketInv);
         for (int row = 0; row < BASKET_ROWS; row++) {
             for (int col = 0; col < BASKET_COLS; col++) {
                 int index = col + row * BASKET_COLS;

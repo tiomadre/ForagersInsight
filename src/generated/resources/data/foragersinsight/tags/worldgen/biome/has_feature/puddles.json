@@ -7,9 +7,6 @@
     "minecraft:taiga",
     "minecraft:old_growth_spruce_taiga",
     "minecraft:flower_forest",
-    {
-      "id": "foragersinsight:dark_woodlands",
-      "required": false
-    }
+    "foragersinsight:dark_woodlands"
   ]
 }

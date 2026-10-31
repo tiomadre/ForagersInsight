@@ -5,8 +5,10 @@ import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.other.toolevents.SapTrapBaitGoal;
 import com.tiomadre.foragersinsight.core.other.toolevents.WaxedBoots;
 import com.tiomadre.foragersinsight.core.registry.FIConfig;
+import com.tiomadre.foragersinsight.core.registry.FIItems;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import com.tiomadre.foragersinsight.data.server.tags.FITags;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,6 +19,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
@@ -24,12 +29,16 @@ import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.items.ComponentItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FIEvents {
     private static final Map<UUID, MobEffectInstance> ODOROUS_MILK_EFFECTS = new HashMap<>();
 
@@ -100,19 +109,23 @@ public class FIEvents {
     @SubscribeEvent
     public static void onLivingTick(EntityTickEvent.Pre event) {
         LivingEntity entity = event.getEntity().getControllingPassenger();
-        WaxedBoots.tick(entity);
-        if (!entity.hasEffect(FIMobEffects.STUCK)) {
-            StuckEffect.restoreMovementActions(entity);
-            return;
-        }
+       if(entity != null){
+           WaxedBoots.tick(entity);
+           if (!entity.hasEffect(FIMobEffects.STUCK)) {
+               StuckEffect.restoreMovementActions(entity);
+               return;
+           }
+           StuckEffect.stopMovementActions(entity);
 
-        StuckEffect.stopMovementActions(entity);
+           if (entity instanceof Player player) {
+               player.xxa = 0.0F;
+               player.zza = 0.0F;
+               player.setJumping(false);
+           }
+       }
 
-        if (entity instanceof Player player) {
-            player.xxa = 0.0F;
-            player.zza = 0.0F;
-            player.setJumping(false);
-        }
+
+
     }
 
 
@@ -143,4 +156,17 @@ public class FIEvents {
         }
         return amount;
     }
+
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerItem(
+        Capabilities.ItemHandler.ITEM,
+                (itemStack, context) -> new ComponentItemHandler(itemStack, DataComponents.CONTAINER,10),
+        FIItems.HANDBASKET);
+    }
+
+
+
+
 }

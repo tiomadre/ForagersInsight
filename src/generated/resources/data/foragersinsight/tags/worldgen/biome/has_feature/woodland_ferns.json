@@ -4,9 +4,6 @@
     "minecraft:dark_forest",
     "minecraft:birch_forest",
     "minecraft:old_growth_birch_forest",
-    {
-      "id": "foragersinsight:dark_woodlands",
-      "required": false
-    }
+    "foragersinsight:dark_woodlands"
   ]
 }

@@ -4,7 +4,6 @@ import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
 import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -39,15 +38,27 @@ public class WaxedBoots {
     }
 
     public static boolean isWaxed(ItemStack stack) {
-        return stack.get(FIDataComponents.BOOTWAXED).isWaxed();
+        if(stack!=null){
+            if(stack.has(FIDataComponents.BOOTWAXED)){
+                return Objects.requireNonNull(stack.get(FIDataComponents.BOOTWAXED)).isWaxed();
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     public static int getWaxedDuration(ItemStack stack) {
-        if(!isWaxed(stack)){
-            return 0;
-        }else{
-            return Objects.requireNonNull(stack.get(FIDataComponents.BOOTWAXED)).duration();
-        }
+       if(stack!=null){
+           if(!isWaxed(stack)){
+               return 0;
+           }else{
+               return Objects.requireNonNull(stack.get(FIDataComponents.BOOTWAXED)).duration();
+           }
+       } else{
+           return 0;
+       }
     }
 
     public static int getWaxedLevel(ItemStack stack) {
@@ -61,29 +72,37 @@ public class WaxedBoots {
     }
 
     public static void appendTooltip(ItemStack stack, java.util.List<Component> tooltip) {
-        int duration = getWaxedDuration(stack);
-        if (duration <= 0) return;
+       if(stack!=null){
+           if(!isWaxed(stack)){
+               int duration = getWaxedDuration(stack);
+               if (duration <= 0) return;
 
-        int stepsRemaining = (int) Math.ceil(duration / (double) WALKING_DRAIN);
-        tooltip.add(Component.translatable("tooltip.foragersinsight.waxed_boots", stepsRemaining)
-                .withStyle(ChatFormatting.GRAY));
+               int stepsRemaining = (int) Math.ceil(duration / (double) WALKING_DRAIN);
+               tooltip.add(Component.translatable("tooltip.foragersinsight.waxed_boots", stepsRemaining)
+                       .withStyle(ChatFormatting.GRAY));
+           }
+       }
     }
 
     public static void tick(LivingEntity entity) {
-        ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
-        if (!isWaxed(boots)) return;
+        if(entity != null){
+            ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
+            if (isWaxed(boots)) return;
 
-        int amplifier = getWaxedLevel(boots) - 1;
-        entity.addEffect(new MobEffectInstance(FIMobEffects.STICKY_RESISTANCE, STICKY_RESISTANCE_REFRESH_DURATION, amplifier, false, false, true));
+            int amplifier = getWaxedLevel(boots) - 1;
+            entity.addEffect(new MobEffectInstance(FIMobEffects.STICKY_RESISTANCE, STICKY_RESISTANCE_REFRESH_DURATION, amplifier, false, false, true));
 
-        if (entity.level().getGameTime() % WALKING_DRAIN == 0 && entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5D) {
-            shrinkWaxedDuration(boots, WALKING_DRAIN);
+            if (entity.level().getGameTime() % WALKING_DRAIN == 0 && entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5D) {
+                shrinkWaxedDuration(boots, WALKING_DRAIN);
+            }
         }
+
+
     }
 
     public static void drainForStuckPrevention(LivingEntity entity) {
         ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
-        if (!isWaxed(boots)) return;
+        if (isWaxed(boots)) return;
 
         shrinkWaxedDuration(boots, STUCK_PREVENTION_DRAIN);
     }
