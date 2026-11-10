@@ -2,7 +2,6 @@ package com.tiomadre.foragersinsight.core.compat.jei;
 
 import com.tiomadre.foragersinsight.common.recipe.FIDiffuserRecipe;
 import com.tiomadre.foragersinsight.core.registry.FIRecipeSerializers;
-import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -10,11 +9,11 @@ import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
 
-public class FIModRecipes {
+public class FIJEIRecipes {
 
     private final RecipeManager recipeManager;
 
-    public FIModRecipes(){
+    public FIJEIRecipes(){
         Minecraft minecraft = Minecraft.getInstance();
         ClientLevel level = minecraft.level;
         if (level != null) {

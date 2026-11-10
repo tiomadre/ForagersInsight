@@ -63,8 +63,8 @@ public class DiffusingRecipeCategory implements IRecipeCategory<RecipeHolder<FID
     }
 
     @Override
-    public RecipeType<RecipeHolder<FIDiffuserRecipe>> getRecipeType() {
-        return JEIComp.DIFFUSING;
+    public @NotNull RecipeType<RecipeHolder<FIDiffuserRecipe>> getRecipeType() {
+        return FIRecipeTypes.DIFFUSING;
     }
 
     @Override
@@ -96,10 +96,10 @@ public class DiffusingRecipeCategory implements IRecipeCategory<RecipeHolder<FID
                 .addItemStacks(enhancementStacks());
     }
 
-
-    public void draw(@NotNull FIDiffuserRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    @Override
+    public void draw(@NotNull RecipeHolder<FIDiffuserRecipe> recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
         this.arrow.draw(guiGraphics, ARROW_X, ARROW_Y);
-        guiGraphics.blit(ResourceLocation.fromNamespaceAndPath("foragersinsight",recipe.getIcon()), RESULT_SLOT_X + SLOT_ITEM_OFFSET, RESULT_SLOT_Y + SLOT_ITEM_OFFSET, 0, 0, SCENT_ICON_SIZE, SCENT_ICON_SIZE, SCENT_ICON_SIZE, SCENT_ICON_SIZE);
+        //guiGraphics.blit(ResourceLocation.fromNamespaceAndPath("foragersinsight",recipe.value().getIcon()), RESULT_SLOT_X + SLOT_ITEM_OFFSET, RESULT_SLOT_Y + SLOT_ITEM_OFFSET, 0, 0, SCENT_ICON_SIZE, SCENT_ICON_SIZE, SCENT_ICON_SIZE, SCENT_ICON_SIZE);
     }
 
 

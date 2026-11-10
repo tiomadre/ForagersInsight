@@ -57,7 +57,7 @@ public class FIDiffusingRecipes {
                 "foragersinsight.diffuser.floral_ii.description")
                 .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT)
                 .addIngredient(FIBlocks.DENSE_LILAC_BLOOM_MAT)
-                .addIngredient(FIBlocks.DENSE_ROSE_PETAL_MAT)
+                .addIngredient(FIBlocks.DENSE_ROSELLE_PETAL_MAT)
                 .build(output);
 
         //Foul
