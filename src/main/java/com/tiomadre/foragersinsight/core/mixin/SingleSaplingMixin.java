@@ -13,8 +13,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TreeGrower.class)
 public class SingleSaplingMixin {
     @Inject(method = "getConfiguredFeature", at = @At("HEAD"), cancellable = true)
-    private void foragersInsight$growSingleDarkOakAsYoungTree(RandomSource random, boolean hasFlowers,
-                                                              CallbackInfoReturnable<ResourceKey<ConfiguredFeature<?, ?>>> cir) {
-        cir.setReturnValue(FIConfiguredFeatures.YOUNG_DARK_OAK_TREE_KEY);
+    private void foragersInsight$growSingleDarkOakAsYoungTree(
+            RandomSource random,
+            boolean hasFlowers,
+            CallbackInfoReturnable<ResourceKey<ConfiguredFeature<?, ?>>> cir
+    ) {
+        if ((Object) this == TreeGrower.DARK_OAK) {
+            cir.setReturnValue(FIConfiguredFeatures.YOUNG_DARK_OAK_TREE_KEY);
+        }
     }
 }
