@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.core.other.toolevents;
 
 import com.tiomadre.foragersinsight.common.item.component.WaxedComponent;
+import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIDataComponents;
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import net.minecraft.ChatFormatting;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 import java.util.Objects;
 

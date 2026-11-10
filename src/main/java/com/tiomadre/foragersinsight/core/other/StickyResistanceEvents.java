@@ -11,12 +11,13 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.UUID;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class StickyResistanceEvents {
     private static final int SPEED_BOOST_DURATION = 60;
     private static final String SPEED_BOOST_END_TICK_TAG = "ForagersInsightStickyResistanceSpeedEndTick";
@@ -53,13 +54,16 @@ public class StickyResistanceEvents {
     @SubscribeEvent
     public static void onLivingTick(EntityTickEvent.Pre event) {
         LivingEntity entity = event.getEntity().getControllingPassenger();
-        if (entity.level().isClientSide()) return;
+        if(entity!= null){
+            if (entity.level().isClientSide()) return;
 
-        long speedEndTick = entity.getPersistentData().getLong(SPEED_BOOST_END_TICK_TAG);
-        if (speedEndTick == 0L || entity.level().getGameTime() < speedEndTick) return;
+            long speedEndTick = entity.getPersistentData().getLong(SPEED_BOOST_END_TICK_TAG);
+            if (speedEndTick == 0L || entity.level().getGameTime() < speedEndTick) return;
 
-        removeSpeedBoost(entity);
-        entity.getPersistentData().remove(SPEED_BOOST_END_TICK_TAG);
+            removeSpeedBoost(entity);
+            entity.getPersistentData().remove(SPEED_BOOST_END_TICK_TAG);
+        }
+
     }
 
     private static void applySpeedBoost(LivingEntity entity) {

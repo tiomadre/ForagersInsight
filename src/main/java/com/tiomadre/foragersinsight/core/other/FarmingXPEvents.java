@@ -28,7 +28,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -40,7 +42,7 @@ import net.minecraft.world.entity.animal.Cow;
 
 import java.util.*;
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmingXPEvents {
 
     private static final Map<ResourceKey<Level>, Map<BlockPos, PendingForage>> PENDING_FORAGING_DROPS = new HashMap<>();

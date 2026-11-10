@@ -22,7 +22,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.Optional;
 
-@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmhandEntityEvents {
 
     @SubscribeEvent

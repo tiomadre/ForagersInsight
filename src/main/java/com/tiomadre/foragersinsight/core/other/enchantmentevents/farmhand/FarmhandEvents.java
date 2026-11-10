@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class FarmhandEvents {
     //checks if player has a handbasket and if item can go in
     private static boolean tryInsertToHandbasket(Player player, ItemStack drop) {

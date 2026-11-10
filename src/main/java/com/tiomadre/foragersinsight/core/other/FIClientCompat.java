@@ -1,6 +1,7 @@
 package com.tiomadre.foragersinsight.core.other;
 
 import com.tiomadre.foragersinsight.common.block.SuspiciousLitterBlock;
+import com.tiomadre.foragersinsight.core.ForagersInsight;
 import com.tiomadre.foragersinsight.core.registry.FIBlocks;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.tiomadre.foragersinsight.core.registry.FIItems;
@@ -12,13 +13,16 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
 public class FIClientCompat {
     public static void registerCompat() {
 

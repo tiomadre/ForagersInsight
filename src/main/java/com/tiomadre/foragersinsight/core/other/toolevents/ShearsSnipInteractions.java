@@ -28,7 +28,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoBlock;
@@ -44,7 +46,7 @@ import java.util.function.Predicate;
 //I think this class may no longer be necessary but I don't want to get rid of it just in case
 
 
-//@Mod.EventBusSubscriber(modid = ForagersInsight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class ShearsSnipInteractions {
 
     private static final long CHICKEN_SHEAR_COOLDOWN = 2_400L; // 2 min CD per chicken
