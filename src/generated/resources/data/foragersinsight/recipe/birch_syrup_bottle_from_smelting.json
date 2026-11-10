@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "foragersinsight:birch_sap_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:birch_syrup_bottle"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#foragersinsight:has_feature/spruce_forest_litter",
+  "features": "foragersinsight:spruce_fallen_trees_placed",
+  "step": "vegetal_decoration"
+}

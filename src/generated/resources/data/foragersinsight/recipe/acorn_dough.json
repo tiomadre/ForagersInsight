@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    [
+      {
+        "tag": "c:eggs"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      }
+    ]
+  ],
+  "result": {
+    "count": 3,
+    "id": "foragersinsight:acorn_dough"
+  }
+}

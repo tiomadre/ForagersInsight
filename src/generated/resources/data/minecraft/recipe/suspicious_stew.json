@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:brown_mushroom"
+      },
+      {
+        "item": "foragersinsight:blewit_mushroom"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:red_mushroom"
+      },
+      {
+        "item": "foragersinsight:blewit_mushroom"
+      }
+    ],
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:suspicious_stew"
+  }
+}

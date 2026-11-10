@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_ice"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 9,
+        "id": "minecraft:packed_ice"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:packed_ice"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/mallets"
+  }
+}

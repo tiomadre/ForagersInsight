@@ -1,0 +1,33 @@
+{
+  "parent": "foragersinsight:main/root",
+  "criteria": {
+    "spring_cleaning": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:brush"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.spring_cleaning.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:brush"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.spring_cleaning.title"
+    }
+  },
+  "requirements": [
+    [
+      "spring_cleaning"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

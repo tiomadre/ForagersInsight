@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_hip"
+    },
+    {
+      "item": "foragersinsight:rose_hip"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:rose_hip_soup"
+  }
+}

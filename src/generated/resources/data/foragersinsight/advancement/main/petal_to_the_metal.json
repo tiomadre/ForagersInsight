@@ -1,0 +1,45 @@
+{
+  "parent": "foragersinsight:main/wild_flowers",
+  "criteria": {
+    "rose_petals": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:rose_petals"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "roselle_petals": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:roselle_petals"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.petal_to_the_metal.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:rose_bush"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.petal_to_the_metal.title"
+    }
+  },
+  "requirements": [
+    [
+      "rose_petals",
+      "roselle_petals"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "foragersinsight:main/root",
+  "criteria": {
+    "stop_hammer_time": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:tools/mallets"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.stop_hammer_time.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:flint_mallet"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.stop_hammer_time.title"
+    }
+  },
+  "requirements": [
+    [
+      "stop_hammer_time"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

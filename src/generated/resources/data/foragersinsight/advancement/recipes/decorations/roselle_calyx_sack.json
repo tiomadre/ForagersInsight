@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_roselle_calyx": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:roselle_calyx"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:roselle_calyx_sack"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_roselle_calyx"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:roselle_calyx_sack"
+    ]
+  }
+}

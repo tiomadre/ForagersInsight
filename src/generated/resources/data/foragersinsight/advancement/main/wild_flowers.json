@@ -1,0 +1,33 @@
+{
+  "parent": "foragersinsight:main/root",
+  "criteria": {
+    "wild_flowers": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#foragersinsight:wild_flower_drops"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.wild_flowers.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:blewit_mushroom"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.wild_flowers.title"
+    }
+  },
+  "requirements": [
+    [
+      "wild_flowers"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

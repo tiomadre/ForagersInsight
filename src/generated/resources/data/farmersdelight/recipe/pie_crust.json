@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "tag": "c:drinks/milk"
+    },
+    "W": {
+      "tag": "c:flours/wheat"
+    }
+  },
+  "pattern": [
+    "WMW",
+    " W "
+  ],
+  "result": {
+    "count": 1,
+    "id": "farmersdelight:pie_crust"
+  }
+}

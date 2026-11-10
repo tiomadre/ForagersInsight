@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/stop_hammer_time",
+  "criteria": {
+    "will_it_crush": {
+      "trigger": "foragersinsight:crush_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.will_it_crush.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:wheat_flour"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.will_it_crush.title"
+    }
+  },
+  "requirements": [
+    [
+      "will_it_crush"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

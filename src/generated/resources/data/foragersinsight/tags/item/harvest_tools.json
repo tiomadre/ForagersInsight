@@ -1,0 +1,28 @@
+{
+  "values": [
+    "minecraft:wooden_hoe",
+    "minecraft:stone_hoe",
+    "minecraft:iron_hoe",
+    "minecraft:golden_hoe",
+    "minecraft:diamond_hoe",
+    "minecraft:netherite_hoe",
+    "minecraft:shears",
+    "farmersdelight:flint_knife",
+    "farmersdelight:iron_knife",
+    "farmersdelight:golden_knife",
+    "farmersdelight:diamond_knife",
+    "farmersdelight:netherite_knife",
+    {
+      "id": "#c:tools/knife",
+      "required": false
+    },
+    {
+      "id": "#c:tools/shear",
+      "required": false
+    },
+    {
+      "id": "#c:tools/hoe",
+      "required": false
+    }
+  ]
+}

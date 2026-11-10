@@ -1,0 +1,21 @@
+{
+  "type": "foragersinsight:diffusing",
+  "descriptionkey": "foragersinsight.diffuser.coniferous_ii.description",
+  "icon": "textures/scents/coniferous_ii.png",
+  "ingredients": [
+    {
+      "item": "foragersinsight:dense_spruce_tips"
+    },
+    {
+      "item": "foragersinsight:dense_spruce_tips"
+    },
+    {
+      "item": "foragersinsight:dense_spruce_tips"
+    }
+  ],
+  "scentduration": 1500,
+  "scenteffect": "minecraft:resistance",
+  "scentname": "coniferous_ii",
+  "scentradius": 12.0,
+  "translationkey": "foragersinsight.diffuser.coniferous_ii"
+}

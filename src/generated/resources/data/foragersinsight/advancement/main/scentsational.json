@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/wild_flowers",
+  "criteria": {
+    "scentsational": {
+      "trigger": "foragersinsight:light_diffuser"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.scentsational.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:diffuser"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.scentsational.title"
+    }
+  },
+  "requirements": [
+    [
+      "scentsational"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

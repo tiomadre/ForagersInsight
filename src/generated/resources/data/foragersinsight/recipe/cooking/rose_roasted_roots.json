@@ -1,0 +1,34 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:dandelion_root"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "foragersinsight:dandelion_root"
+        },
+        {
+          "item": "minecraft:beetroot"
+        }
+      ]
+    },
+    {
+      "item": "foragersinsight:rose_hip"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:rose_roasted_roots"
+  }
+}

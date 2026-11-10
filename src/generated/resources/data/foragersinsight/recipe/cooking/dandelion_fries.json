@@ -1,0 +1,18 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "item": "foragersinsight:dandelion_root"
+    },
+    {
+      "item": "foragersinsight:dandelion_root"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:dandelion_fries"
+  }
+}

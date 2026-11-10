@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:rose_petals"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "foragersinsight:rose_hip"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:rose_cordial"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "foragersinsight:main/tap_that",
+  "criteria": {
+    "birch_please": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:birch_sap_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.birch_please.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:birch_sap_bucket"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.birch_please.title"
+    }
+  },
+  "requirements": [
+    [
+      "birch_please"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

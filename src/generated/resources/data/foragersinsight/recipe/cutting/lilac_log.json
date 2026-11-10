@@ -1,0 +1,25 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:lilac_log"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:stripped_lilac_log"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "farmersdelight:tree_bark"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "minecraft:axes"
+  }
+}

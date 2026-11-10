@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:tinder_conk"
+    },
+    {
+      "item": "foragersinsight:tinder_conk"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "foragersinsight:amadou"
+  }
+}

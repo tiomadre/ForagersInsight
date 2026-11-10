@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:scattered_lilac_blooms"
+    },
+    {
+      "item": "foragersinsight:scattered_lilac_blooms"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:dense_lilac_blooms"
+  }
+}

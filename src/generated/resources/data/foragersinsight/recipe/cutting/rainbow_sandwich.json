@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:rainbow_sandwich"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 4,
+        "id": "foragersinsight:slice_of_rainbow_sandwich"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

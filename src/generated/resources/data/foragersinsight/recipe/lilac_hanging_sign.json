@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "P": {
+      "item": "foragersinsight:stripped_lilac_log"
+    }
+  },
+  "pattern": [
+    "C C",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 6,
+    "id": "foragersinsight:lilac_hanging_sign"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "foragersinsight:main/crack_it",
+  "criteria": {
+    "uh_fix_it": {
+      "trigger": "foragersinsight:fix_anvil"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.uh_fix_it.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:anvil"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.uh_fix_it.title"
+    }
+  },
+  "requirements": [
+    [
+      "uh_fix_it"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

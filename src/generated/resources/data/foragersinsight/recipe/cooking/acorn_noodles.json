@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:acorn_dough"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:acorn_noodles"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:spruce_tips"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:green_sauce"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/giving_trees",
+  "criteria": {
+    "shear": {
+      "trigger": "foragersinsight:shear_bounty"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.shear.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:flint_shears"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.shear.title"
+    }
+  },
+  "requirements": [
+    [
+      "shear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

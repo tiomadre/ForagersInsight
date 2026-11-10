@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:rose_bush"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:rose_hip"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:rose_hip"
+      }
+    },
+    {
+      "item": {
+        "count": 2,
+        "id": "foragersinsight:rose_petals"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:scattered_rose_petals"
+    },
+    {
+      "item": "foragersinsight:scattered_rose_petals"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:dense_rose_petals"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:lilac",
+    {
+      "id": "#minecraft:saplings",
+      "required": false
+    }
+  ]
+}

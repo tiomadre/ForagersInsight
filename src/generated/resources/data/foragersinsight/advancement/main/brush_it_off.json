@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/spring_cleaning",
+  "criteria": {
+    "brush_it_off": {
+      "trigger": "foragersinsight:brush_litter"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.brush_it_off.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:suspicious_leaf_litter"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.brush_it_off.title"
+    }
+  },
+  "requirements": [
+    [
+      "brush_it_off"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

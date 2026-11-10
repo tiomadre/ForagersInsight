@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/root",
+  "criteria": {
+    "giving_trees": {
+      "trigger": "foragersinsight:harvest_bounty"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.giving_trees.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:apple"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.giving_trees.title"
+    }
+  },
+  "requirements": [
+    [
+      "giving_trees"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

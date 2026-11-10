@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lilac_boat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:lilac_boat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:lilac_chest_boat"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_lilac_boat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:lilac_chest_boat"
+    ]
+  }
+}

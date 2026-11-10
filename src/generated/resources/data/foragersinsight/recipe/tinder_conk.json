@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:tinder_conk_crate"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "foragersinsight:tinder_conk"
+  }
+}

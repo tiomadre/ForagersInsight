@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:poppy"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:poppy_seeds"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:poppy_seeds"
+      }
+    },
+    {
+      "item": {
+        "count": 2,
+        "id": "minecraft:red_dye"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

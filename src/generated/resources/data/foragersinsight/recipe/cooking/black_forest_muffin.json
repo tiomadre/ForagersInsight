@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "foragersinsight:acorn_dough"
+    },
+    {
+      "tag": "c:foods/cocoa"
+    },
+    {
+      "tag": "c:foods/cocoa"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 2,
+    "id": "foragersinsight:black_forest_muffin"
+  }
+}

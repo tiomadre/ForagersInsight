@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:black_acorn"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 2,
+        "id": "foragersinsight:acorn_meal"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:acorn_meal"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/mallets"
+  }
+}

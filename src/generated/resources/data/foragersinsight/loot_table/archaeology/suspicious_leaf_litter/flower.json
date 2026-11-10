@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "quality": -1,
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "farmersdelight:tree_bark",
+          "weight": 7
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:dandelion_root",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:poppy_seeds",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_mushroom",
+          "quality": 1,
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brown_mushroom",
+          "quality": 1,
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:blewit_mushroom",
+          "quality": 2,
+          "weight": 2
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:lilac_bloom",
+          "quality": -1,
+          "weight": 7
+        },
+        {
+          "type": "minecraft:item",
+          "name": "foragersinsight:rose_hip",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:honeycomb",
+          "quality": 1,
+          "weight": 5
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "foragersinsight:archaeology/suspicious_leaf_litter/flower"
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "foragersinsight:main/scentsational",
+  "criteria": {
+    "stinky_situation": {
+      "trigger": "foragersinsight:stinky_smell"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.stinky_situation.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "farmersdelight:organic_compost"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.stinky_situation.title"
+    }
+  },
+  "requirements": [
+    [
+      "stinky_situation"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

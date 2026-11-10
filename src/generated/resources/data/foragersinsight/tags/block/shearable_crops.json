@@ -1,0 +1,25 @@
+{
+  "values": [
+    "foragersinsight:hanging_lilac_leaves",
+    "foragersinsight:bountiful_oak_leaves",
+    "foragersinsight:bountiful_dark_oak_leaves",
+    "foragersinsight:bountiful_spruce_leaves",
+    "foragersinsight:bountiful_spruce_tips",
+    "minecraft:kelp",
+    "minecraft:kelp_plant",
+    "minecraft:sugar_cane",
+    "minecraft:sweet_berry_bush",
+    {
+      "id": "farmersdelight:brown_mushroom_colony",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:red_mushroom_colony",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:tomato_vine",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "foragersinsight:main/spring_cleaning",
+  "criteria": {
+    "rare_find": {
+      "trigger": "foragersinsight:find_blewit"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.rare_find.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:blewit_mushroom"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.rare_find.title"
+    }
+  },
+  "requirements": [
+    [
+      "rare_find"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

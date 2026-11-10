@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/apple"
+    },
+    {
+      "tag": "c:foods/poppy_seeds"
+    },
+    {
+      "tag": "c:foods/poppy_seeds"
+    },
+    {
+      "item": "minecraft:dandelion"
+    },
+    {
+      "item": "minecraft:dandelion"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:meadow_medley"
+  }
+}

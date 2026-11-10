@@ -1,0 +1,37 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "foragersinsight:birch_syrup_bottle"
+        },
+        {
+          "item": "foragersinsight:birch_syrup_bucket"
+        }
+      ]
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:foods/acorn"
+    },
+    {
+      "tag": "c:drinks/milk"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:glazed_porkchop_and_acorn_grits"
+  }
+}

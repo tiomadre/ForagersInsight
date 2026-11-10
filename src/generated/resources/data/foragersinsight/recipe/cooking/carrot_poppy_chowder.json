@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "tag": "c:foods/poppy_seeds"
+    },
+    {
+      "tag": "c:foods/poppy_seeds"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "foragersinsight:seed_butter"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:carrot_poppy_chowder"
+  }
+}

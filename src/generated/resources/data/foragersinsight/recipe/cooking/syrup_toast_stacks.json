@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "foragersinsight:birch_syrup_bottle"
+        },
+        {
+          "item": "foragersinsight:birch_syrup_bucket"
+        }
+      ]
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "foragersinsight:syrup_toast_stacks"
+  }
+}

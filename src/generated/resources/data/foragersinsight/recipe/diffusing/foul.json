@@ -1,0 +1,20 @@
+{
+  "type": "foragersinsight:diffusing",
+  "descriptionkey": "foragersinsight.diffuser.foul_ii.description",
+  "icon": "textures/scents/foul.png",
+  "ingredients": [
+    {
+      "item": "foragersinsight:skunk_cabbage"
+    },
+    {
+      "item": "foragersinsight:skunk_cabbage"
+    },
+    {
+      "item": "foragersinsight:skunk_cabbage"
+    }
+  ],
+  "scentduration": 100,
+  "scenteffect": "foragersinsight:odorous",
+  "scentname": "foul",
+  "translationkey": "foragersinsight.diffuser.foul_ii"
+}

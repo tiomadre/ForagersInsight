@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "item": "foragersinsight:cooked_rabbit_leg"
+    },
+    {
+      "tag": "c:foods/root_vegetable"
+    },
+    {
+      "tag": "c:foods/mushroom"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:rabbit_stew"
+  }
+}

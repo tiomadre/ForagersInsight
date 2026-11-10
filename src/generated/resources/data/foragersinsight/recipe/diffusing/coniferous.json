@@ -1,0 +1,20 @@
+{
+  "type": "foragersinsight:diffusing",
+  "descriptionkey": "foragersinsight.diffuser.coniferous.description",
+  "icon": "textures/scents/coniferous.png",
+  "ingredients": [
+    {
+      "item": "foragersinsight:spruce_tips"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    },
+    {
+      "item": "foragersinsight:spruce_tips"
+    }
+  ],
+  "scentduration": 500,
+  "scenteffect": "minecraft:resistance",
+  "scentname": "coniferous",
+  "translationkey": "foragersinsight.diffuser.coniferous"
+}

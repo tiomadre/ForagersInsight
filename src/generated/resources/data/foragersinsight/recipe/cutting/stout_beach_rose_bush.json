@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:stout_beach_rose_bush"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:rose_hip"
+      }
+    },
+    {
+      "chance": 0.075,
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:rose_hip"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:rose_petals"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

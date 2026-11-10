@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_amadou": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:amadou"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "foragersinsight:charcoal_from_smelting_amadou"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_amadou"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "foragersinsight:charcoal_from_smelting_amadou"
+    ]
+  }
+}

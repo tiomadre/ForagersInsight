@@ -1,0 +1,32 @@
+{
+  "parent": "foragersinsight:main/root",
+  "criteria": {
+    "taste_the_rainbow_motha": {
+      "conditions": {
+        "item": {
+          "items": "foragersinsight:slice_of_rainbow_sandwich"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.taste_the_rainbow_motha.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:slice_of_rainbow_sandwich"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.taste_the_rainbow_motha.title"
+    }
+  },
+  "requirements": [
+    [
+      "taste_the_rainbow_motha"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

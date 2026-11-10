@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "foragersinsight:ghost_pipe"
+    }
+  },
+  "pattern": [
+    "G  ",
+    "G  ",
+    "G  "
+  ],
+  "result": {
+    "count": 6,
+    "id": "foragersinsight:ghost_pipe_torch"
+  }
+}

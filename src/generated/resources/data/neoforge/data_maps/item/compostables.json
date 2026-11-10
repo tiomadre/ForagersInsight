@@ -1,0 +1,154 @@
+{
+  "values": {
+    "foragersinsight:acorn_cookie": {
+      "chance": 0.85
+    },
+    "foragersinsight:acorn_meal": {
+      "chance": 0.3
+    },
+    "foragersinsight:apple_crate": {
+      "chance": 1.0
+    },
+    "foragersinsight:apple_dippers": {
+      "chance": 0.85
+    },
+    "foragersinsight:apple_slice": {
+      "chance": 0.3
+    },
+    "foragersinsight:black_acorn": {
+      "chance": 0.3
+    },
+    "foragersinsight:black_acorn_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:blewit_bites": {
+      "chance": 0.85
+    },
+    "foragersinsight:blewit_mushroom": {
+      "chance": 0.4
+    },
+    "foragersinsight:blewit_mushroom_crate": {
+      "chance": 1.0
+    },
+    "foragersinsight:blossoming_lilac_leaves": {
+      "chance": 0.3
+    },
+    "foragersinsight:bountiful_dark_oak_leaves": {
+      "chance": 0.3
+    },
+    "foragersinsight:bountiful_oak_leaves": {
+      "chance": 0.3
+    },
+    "foragersinsight:bountiful_spruce_leaves": {
+      "chance": 0.3
+    },
+    "foragersinsight:candied_calyces": {
+      "chance": 0.85
+    },
+    "foragersinsight:cocoa_powder": {
+      "chance": 0.3
+    },
+    "foragersinsight:creamy_salmon_bagel": {
+      "chance": 0.85
+    },
+    "foragersinsight:dandelion_root": {
+      "chance": 0.3
+    },
+    "foragersinsight:dandelion_root_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:dense_lilac_blooms": {
+      "chance": 0.6
+    },
+    "foragersinsight:dense_rose_petals": {
+      "chance": 0.6
+    },
+    "foragersinsight:dense_roselle_petals": {
+      "chance": 0.6
+    },
+    "foragersinsight:dense_spruce_tips": {
+      "chance": 0.6
+    },
+    "foragersinsight:dense_straw": {
+      "chance": 0.6
+    },
+    "foragersinsight:jammy_breakfast_sandwich": {
+      "chance": 0.85
+    },
+    "foragersinsight:kelp_wrap": {
+      "chance": 0.85
+    },
+    "foragersinsight:lilac_bloom": {
+      "chance": 0.3
+    },
+    "foragersinsight:lilac_crate": {
+      "chance": 1.0
+    },
+    "foragersinsight:lilac_leaves": {
+      "chance": 0.3
+    },
+    "foragersinsight:poppy_seed_paste": {
+      "chance": 0.3
+    },
+    "foragersinsight:poppy_seeds": {
+      "chance": 0.3
+    },
+    "foragersinsight:poppy_seeds_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:rose_cookie": {
+      "chance": 0.85
+    },
+    "foragersinsight:rose_hip": {
+      "chance": 0.3
+    },
+    "foragersinsight:rose_hip_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:rose_petals": {
+      "chance": 0.2
+    },
+    "foragersinsight:roselle_bush": {
+      "chance": 0.4
+    },
+    "foragersinsight:roselle_calyx": {
+      "chance": 0.3
+    },
+    "foragersinsight:roselle_calyx_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:roselle_petals": {
+      "chance": 0.2
+    },
+    "foragersinsight:scattered_lilac_blooms": {
+      "chance": 0.4
+    },
+    "foragersinsight:scattered_rose_petals": {
+      "chance": 0.35
+    },
+    "foragersinsight:scattered_roselle_petals": {
+      "chance": 0.4
+    },
+    "foragersinsight:scattered_spruce_tips": {
+      "chance": 0.4
+    },
+    "foragersinsight:scattered_straw": {
+      "chance": 0.4
+    },
+    "foragersinsight:spruce_tips": {
+      "chance": 0.3
+    },
+    "foragersinsight:spruce_tips_sack": {
+      "chance": 1.0
+    },
+    "foragersinsight:stout_beach_rose_bush": {
+      "chance": 0.3
+    },
+    "foragersinsight:tall_beach_rose_bush": {
+      "chance": 0.4
+    },
+    "foragersinsight:wheat_flour": {
+      "chance": 0.3
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "foragersinsight:roselle_bush"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:roselle_calyx"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "foragersinsight:roselle_calyx"
+      }
+    },
+    {
+      "item": {
+        "count": 2,
+        "id": "foragersinsight:roselle_petals"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

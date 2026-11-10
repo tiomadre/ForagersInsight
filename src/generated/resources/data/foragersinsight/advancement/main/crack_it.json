@@ -1,0 +1,26 @@
+{
+  "parent": "foragersinsight:main/stop_hammer_time",
+  "criteria": {
+    "crack_brick": {
+      "trigger": "foragersinsight:crack_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.crack_it.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:cracked_stone_bricks"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.crack_it.title"
+    }
+  },
+  "requirements": [
+    [
+      "crack_brick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:foods/cocoa"
+    },
+    "M": {
+      "tag": "c:drinks/milk"
+    },
+    "P": {
+      "item": "farmersdelight:pie_crust"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "MMM",
+    "SPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "farmersdelight:chocolate_pie"
+  }
+}

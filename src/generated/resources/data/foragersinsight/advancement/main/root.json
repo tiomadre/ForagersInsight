@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "foragers_insight": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#foragersinsight:foragers_insight_items"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "foragersinsight:textures/gui/advancements/backgrounds/foraging.png",
+    "description": {
+      "translate": "advancements.foragersinsight.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:handbasket"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.foragersinsight.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "foragers_insight"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

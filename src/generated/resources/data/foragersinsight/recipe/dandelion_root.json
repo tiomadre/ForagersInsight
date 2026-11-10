@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "foragersinsight:dandelion_root_sack"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "foragersinsight:dandelion_root"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "foragersinsight:diffusing",
+  "descriptionkey": "foragersinsight.diffuser.foul_ii.description",
+  "icon": "textures/scents/foul_ii.png",
+  "ingredients": [
+    {
+      "item": "farmersdelight:organic_compost"
+    },
+    {
+      "item": "farmersdelight:organic_compost"
+    },
+    {
+      "item": "farmersdelight:organic_compost"
+    }
+  ],
+  "scentduration": 1500,
+  "scenteffect": "foragersinsight:odorous",
+  "scentname": "foul_ii",
+  "scentradius": 12.0,
+  "translationkey": "foragersinsight.diffuser.foul_ii"
+}

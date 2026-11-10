@@ -1,0 +1,33 @@
+{
+  "parent": "foragersinsight:main/giving_trees",
+  "criteria": {
+    "tap_that": {
+      "conditions": {
+        "items": [
+          {
+            "items": "foragersinsight:tapper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.foragersinsight.tap_that.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "foragersinsight:tapper"
+    },
+    "title": {
+      "translate": "advancements.foragersinsight.tap_that.title"
+    }
+  },
+  "requirements": [
+    [
+      "tap_that"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,73 @@
+{
+  "values": [
+    {
+      "id": "#c:raw_meats",
+      "required": false
+    },
+    {
+      "id": "#c:cooked_meat",
+      "required": false
+    },
+    {
+      "id": "#c:raw_fish",
+      "required": false
+    },
+    {
+      "id": "#c:cooked_fish",
+      "required": false
+    },
+    {
+      "id": "#c:egg",
+      "required": false
+    },
+    {
+      "id": "#c:leather",
+      "required": false
+    },
+    {
+      "id": "#c:feather",
+      "required": false
+    },
+    {
+      "id": "#c:seeds",
+      "required": false
+    },
+    {
+      "id": "#c:crops",
+      "required": false
+    },
+    {
+      "id": "#c:crops/mushroom",
+      "required": false
+    },
+    {
+      "id": "#c:flour",
+      "required": false
+    },
+    {
+      "id": "#c:straw",
+      "required": false
+    },
+    {
+      "id": "#c:tree_bark",
+      "required": false
+    },
+    {
+      "id": "#c:ice",
+      "required": false
+    },
+    {
+      "id": "#c:sugar",
+      "required": false
+    },
+    {
+      "id": "#minecraft:flowers",
+      "required": false
+    },
+    {
+      "id": "#minecraft:saplings",
+      "required": false
+    },
+    "#foragersinsight:handbasket/other"
+  ]
+}
