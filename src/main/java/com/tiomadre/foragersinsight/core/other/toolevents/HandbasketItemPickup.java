@@ -13,12 +13,13 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 
-@EventBusSubscriber(modid = ForagersInsight.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ForagersInsight.MOD_ID)
 public class HandbasketItemPickup {
     @SubscribeEvent
     public static void onItemPickup(ItemEntityPickupEvent.Pre ev) {
@@ -47,19 +48,21 @@ public class HandbasketItemPickup {
         ItemEntity entity = ev.getItemEntity();
         ItemStack stack = entity.getItem();
         if (!stack.is(FITags.ItemTag.HANDBASKET_ALLOWED)) return;
+        if(!entity.hasPickUpDelay()){
+            ItemStack remainder = ItemHandlerHelper.insertItem(selectedHandler, entity.getItem().copyAndClear(), false);
+            playRustleSound(player);
+            if (remainder.getCount() == stack.getCount()) return;
+            if (remainder.isEmpty()) {
+                entity.discard();
+            } else {
+                entity.setItem(remainder);
+                ev.setCanPickup(TriState.FALSE);
 
-        ItemStack remainder = ItemHandlerHelper.insertItem(selectedHandler, stack.copy(), false);
-        if (remainder.getCount() == stack.getCount()) return;
-
-        //come back to this if there is a problem
-
-        //ev.setCanceled(true);
-        playRustleSound(player);
-        if (remainder.isEmpty()) {
-            entity.discard();
-        } else {
-            entity.setItem(remainder);
+            }
         }
+
+
+
     }
 
     private static int countUsedSlots(IItemHandler handler) {
