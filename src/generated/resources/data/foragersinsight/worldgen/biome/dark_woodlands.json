@@ -74,21 +74,21 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
+      "minecraft:forest_flowers",
       "minecraft:patch_grass_forest",
+      "minecraft:trees_grove",
+      "minecraft:patch_tall_grass",
+      "minecraft:patch_grass_normal",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
-      "minecraft:trees_grove",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin",
       "foragersinsight:dark_woodlands_fallen_trees_placed",
       "foragersinsight:woodlands_patch_placed",
       "foragersinsight:dark_woodlands_trees_placed",
       "foragersinsight:dark_oak_bush_placed",
-      "minecraft:patch_tall_grass",
-      "minecraft:patch_grass_normal",
       "foragersinsight:dark_woodlands_suspicious_leaf_litter_patch_placed",
-      "foragersinsight:phlox_patch_placed",
-      "minecraft:forest_flowers"
+      "foragersinsight:phlox_patch_placed"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -35,7 +35,7 @@ public class DataGenerators {
         DataGenerator gen = event.getGenerator();
         boolean server = event.includeServer();
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-        FIWorldgen worldgenProvider= new FIWorldgen(event.getGenerator().getPackOutput(),provider);
+        FIWorldgen worldgenProvider= new FIWorldgen(gen.getPackOutput(),provider);
         gen.addProvider(server, worldgenProvider);
 
         provider=worldgenProvider.getRegistryProvider();

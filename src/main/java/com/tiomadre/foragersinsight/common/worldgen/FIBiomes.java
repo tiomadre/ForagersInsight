@@ -36,10 +36,18 @@ public class FIBiomes {
         BiomeDefaultFeatures.addDefaultOres(generationSettings);
         BiomeDefaultFeatures.addDefaultSoftDisks(generationSettings);
 
-        BiomeDefaultFeatures.addDefaultExtraVegetation(generationSettings);
+
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(VegetationPlacements.FOREST_FLOWERS));
         BiomeDefaultFeatures.addForestGrass(generationSettings);
-        BiomeDefaultFeatures.addDefaultMushrooms(generationSettings);
         BiomeDefaultFeatures.addGroveTrees(generationSettings);
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS));
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                placedFeatures.getOrThrow(VegetationPlacements.PATCH_GRASS_NORMAL));
+        BiomeDefaultFeatures.addDefaultMushrooms(generationSettings);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(generationSettings);
+
+
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 placedFeatures.getOrThrow(FIPlacedFeatures.DARK_WOODLANDS_FALLEN_TREES_PLACED_KEY));
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -49,15 +57,10 @@ public class FIBiomes {
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 placedFeatures.getOrThrow(FIPlacedFeatures.DARK_OAK_BUSH_PLACED_KEY));
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS));
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                placedFeatures.getOrThrow(VegetationPlacements.PATCH_GRASS_NORMAL));
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 placedFeatures.getOrThrow(FIPlacedFeatures.DARK_WOODLANDS_SUSPICIOUS_LEAF_LITTER_PATCH_PLACED_KEY));
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 placedFeatures.getOrThrow(FIPlacedFeatures.PHLOX_PATCH_PLACED_KEY));
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                placedFeatures.getOrThrow(VegetationPlacements.FOREST_FLOWERS));
+
         context.register(DARK_WOODLANDS, new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .temperature(0.7F)

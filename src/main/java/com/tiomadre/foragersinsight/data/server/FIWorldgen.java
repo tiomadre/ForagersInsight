@@ -22,7 +22,6 @@ public class FIWorldgen extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, FIConfiguredFeatures::bootstap)
             .add(Registries.PLACED_FEATURE, FIPlacedFeatures::bootstap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FIBiomeModifiers::bootstap)
-            .add(Registries.BIOME, BlueprintDatapackBuiltinEntriesProvider::bootstrapBiomes)
             .add(BlueprintDataPackRegistries.MODDED_BIOME_SLICES, FIBiomeSlices::bootstrapSlices);;
 
 
