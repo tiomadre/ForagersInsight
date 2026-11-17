@@ -2,6 +2,7 @@ package com.tiomadre.foragersinsight.core.other.toolevents;
 
 import com.tiomadre.foragersinsight.core.registry.FIMobEffects;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -40,13 +41,15 @@ public class WaxedBoots {
     }
 
     public static int getWaxedDuration(ItemStack stack) {
-        return stack.getOrCreateTag().getInt(WAXED_DURATION_TAG);
+        CompoundTag tag = stack.getTag();
+        return stack.isEmpty() || tag == null ? 0 : tag.getInt(WAXED_DURATION_TAG);
     }
 
     public static int getWaxedLevel(ItemStack stack) {
-        if (!isWaxed(stack)) return 0;
+        CompoundTag tag = stack.getTag();
+        if (stack.isEmpty() || tag == null || tag.getInt(WAXED_DURATION_TAG) <= 0) return 0;
 
-        return Math.max(STICKY_RESISTANCE_LEVEL, stack.getOrCreateTag().getInt(WAXED_LEVEL_TAG));
+        return Math.max(STICKY_RESISTANCE_LEVEL, tag.getInt(WAXED_LEVEL_TAG));
     }
 
     public static void appendTooltip(ItemStack stack, java.util.List<Component> tooltip) {
